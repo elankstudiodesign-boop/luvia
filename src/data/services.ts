@@ -51,7 +51,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'visa-passport',
         title: 'Lý lịch tư pháp & Visa', 
-        description: 'Hỗ trợ điền form online, chuẩn bị hồ sơ chuẩn chỉnh, nhận ủy quyền nộp/rút hộ.', 
+        description: 'Chúng tôi giúp bạn điền tờ khai online chính xác, sắp xếp hồ sơ gọn gàng và thay bạn xếp hàng nộp hồ sơ tại cơ quan nhà nước.', 
         image: 'https://picsum.photos/seed/passport/800/600',
         detailedDescription: 'Dịch vụ trợ lý hồ sơ hành chính tận tâm. Chúng tôi thay bạn thực hiện các công việc tỉ mỉ như điền tờ khai, sắp xếp giấy tờ và kiên nhẫn xếp hàng nộp hồ sơ tại cơ quan nhà nước, giúp bạn tiết kiệm thời gian quý báu.',
         features: [
@@ -91,7 +91,7 @@ export const categories: ServiceCategory[] = [
       {
         id: 'global-booking',
         title: 'Vé máy bay & Khách sạn',
-        description: 'Săn vé rẻ, đặt phòng khách sạn, resort toàn cầu giá ưu đãi.',
+        description: 'Tìm kiếm vé máy bay giá tốt nhất và đặt phòng khách sạn phù hợp ngân sách, giúp bạn có chuyến đi tiết kiệm và thoải mái.',
         image: 'https://picsum.photos/seed/flight_hotel/800/600',
         detailedDescription: 'Dịch vụ đặt vé máy bay và phòng khách sạn trọn gói trên toàn thế giới. Chúng tôi kết nối trực tiếp với các hãng hàng không và hệ thống khách sạn toàn cầu để mang đến cho bạn mức giá cạnh tranh nhất. Dù là chuyến công tác gấp hay kỳ nghỉ dưỡng trong mơ, chúng tôi đều có phương án tối ưu cho bạn.',
         features: [
@@ -131,7 +131,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'consular',
         title: 'Hợp pháp hóa lãnh sự', 
-        description: 'Dịch vụ trung gian dịch thuật công chứng và nộp hồ sơ lên Cục Lãnh sự.', 
+        description: 'Nhận hồ sơ tận nhà, mang đi dịch thuật công chứng và đại diện nộp lên Cục Lãnh sự, giúp bạn không phải đi lại nhiều lần.', 
         image: 'https://picsum.photos/seed/consular/800/600',
         detailedDescription: 'Chúng tôi đóng vai trò là người kết nối và chạy việc giúp bạn. Thay vì tự mình tìm kiếm đơn vị dịch thuật và xếp hàng tại Cục Lãnh sự, chúng tôi sẽ thay bạn mang hồ sơ đi dịch thuật tại các văn phòng uy tín và đại diện nộp hồ sơ hợp pháp hóa.',
         features: [
@@ -165,7 +165,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'license',
         title: 'Đổi bằng lái xe (IAA/VN)', 
-        description: 'Đổi bằng lái quốc tế hoặc nước ngoài sang Việt Nam, hỗ trợ online hoặc nộp hộ.', 
+        description: 'Hướng dẫn thủ tục đổi bằng lái xe quốc tế/nước ngoài sang Việt Nam và ngược lại, hỗ trợ nộp hồ sơ online nhanh chóng.', 
         image: 'https://picsum.photos/seed/license/800/600',
         detailedDescription: 'Hỗ trợ các thủ tục hành chính liên quan đến giấy phép lái xe. Với sự tỉ mỉ và cẩn thận, chúng tôi giúp bạn chuẩn bị hồ sơ, dịch thuật và nộp đơn đề nghị đổi bằng lái một cách chính xác, giúp bạn không phải lo lắng về các thủ tục phức tạp.',
         features: [
@@ -199,7 +199,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'fast-track',
         title: 'Fast-track Sân bay', 
-        description: 'Đón khách VIP, hỗ trợ thủ tục check-in, xuất nhập cảnh nhanh chóng.', 
+        description: 'Hỗ trợ đặt dịch vụ đón tiễn VIP tại sân bay, giúp bạn làm thủ tục xuất nhập cảnh nhanh chóng mà không cần xếp hàng chờ đợi.', 
         image: 'https://picsum.photos/seed/fasttrack/800/600',
         detailedDescription: 'Dịch vụ đón tiễn ưu tiên tại sân bay (Fast-track) giúp khách hàng bỏ qua nỗi lo xếp hàng chờ đợi. Nhân viên của chúng tôi sẽ đón bạn ngay tại ống lồng/cửa máy bay, hỗ trợ làm thủ tục xuất nhập cảnh và lấy hành lý nhanh nhất.',
         features: [
@@ -233,7 +233,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'travel-portal',
         title: 'Hồ sơ du lịch cá nhân', 
-        description: 'Web cá nhân bảo mật lưu trữ vé máy bay, booking, lịch trình, bảo hiểm.', 
+        description: 'Tạo trang web cá nhân lưu trữ toàn bộ vé máy bay, booking khách sạn và lịch trình, giúp bạn tra cứu dễ dàng ngay cả khi không có mạng.', 
         image: 'https://picsum.photos/seed/travel_portal/800/600',
         detailedDescription: 'Sổ tay du lịch kỹ thuật số "All-in-one" dành cho người hay di chuyển. Chúng tôi số hóa và sắp xếp vé máy bay, booking khách sạn, bảo hiểm và lịch trình vào một đường link bảo mật duy nhất, giúp bạn truy cập mọi lúc mọi nơi ngay cả khi không có internet.',
         features: [
@@ -254,7 +254,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'agency-web',
         title: 'Quản lý Đại lý vé (B2B)', 
-        description: 'Web App No-code quản lý khách hàng, xuất vé và nhắc lịch bay cho đại lý.', 
+        description: 'Cung cấp hệ thống quản lý khách hàng và vé máy bay đơn giản, giúp các đại lý vé nhỏ lẻ chăm sóc khách hàng chuyên nghiệp hơn.', 
         image: 'https://picsum.photos/seed/agency_web/800/600',
         detailedDescription: 'Giải pháp chuyển đổi số "đo ni đóng giày" cho các đại lý vé máy bay và du lịch vừa và nhỏ. Hệ thống giúp bạn quản lý danh sách khách hàng, tự động hóa quy trình nhắc lịch bay, xuất hóa đơn và theo dõi công nợ một cách chuyên nghiệp.',
         features: [
@@ -275,7 +275,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'car-check',
         title: 'Đăng kiểm & Quản lý xe', 
-        description: 'Hỗ trợ thủ tục đăng kiểm, theo dõi hạn đăng kiểm, bảo hiểm và nộp phạt nguội.', 
+        description: 'Nhắc lịch đăng kiểm, bảo hiểm xe và hỗ trợ đặt lịch hẹn đăng kiểm online, giúp bạn tránh bị phạt nguội và tiết kiệm thời gian chờ.', 
         image: 'https://picsum.photos/seed/car_check/800/600',
         detailedDescription: 'Giải pháp hỗ trợ chủ xe bận rộn trong việc đăng kiểm và quản lý giấy tờ xe. Chúng tôi giúp bạn chuẩn bị hồ sơ, đặt lịch hẹn trước để giảm thiểu thời gian chờ đợi, và nhắc nhở các mốc thời gian quan trọng như hạn đăng kiểm, hạn bảo hiểm.',
         features: [
@@ -307,7 +307,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'residence',
         title: 'Đăng ký Tạm trú / Tạm vắng', 
-        description: 'Hỗ trợ điền tờ khai, chuẩn bị hồ sơ và nộp thay tại cơ quan công an.', 
+        description: 'Soạn thảo sẵn các mẫu đơn cư trú và thay mặt bạn đến cơ quan công an để nộp hồ sơ đúng quy định.', 
         image: 'https://picsum.photos/seed/residence/800/600',
         detailedDescription: 'Trợ lý hành chính giúp bạn hoàn thành nghĩa vụ khai báo cư trú. Chúng tôi hỗ trợ chuẩn bị các mẫu đơn, sắp xếp hồ sơ gọn gàng và thay mặt bạn đến cơ quan công an để nộp hồ sơ, giúp bạn tránh những phiền toái không đáng có.',
         features: [
@@ -341,7 +341,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'room-hunt',
         title: 'Tìm trọ theo yêu cầu', 
-        description: 'Lọc phòng theo tiêu chí và dẫn khách đi xem trực tiếp.', 
+        description: 'Lắng nghe nhu cầu của bạn để tìm kiếm phòng trọ/căn hộ ưng ý nhất và trực tiếp dẫn bạn đi xem, giúp bạn sớm an cư lạc nghiệp.', 
         image: 'https://picsum.photos/seed/room_hunt/800/600',
         detailedDescription: 'Dịch vụ tìm nhà trọ, căn hộ dịch vụ theo yêu cầu riêng biệt. Thay vì mất hàng giờ lướt web ảo, chúng tôi lọc ra những căn phòng "thực" phù hợp nhất với ngân sách và tiêu chí của bạn, sau đó dẫn đi xem trực tiếp.',
         features: [
@@ -368,7 +368,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'moving',
         title: 'Chuyển trọ rảnh tay', 
-        description: 'Combo đóng gói, bốc xếp và hỗ trợ đặt xe vận chuyển.', 
+        description: 'Hỗ trợ đóng gói đồ đạc cẩn thận và liên hệ xe ba gác/xe tải giúp bạn, để việc chuyển nhà không còn là nỗi ám ảnh.', 
         image: 'https://picsum.photos/seed/moving/800/600',
         detailedDescription: 'Dịch vụ chuyển nhà trọn gói "Rảnh tay" - Bạn chỉ cần giám sát, mọi việc nặng nhọc đã có chúng tôi lo. Từ tháo dỡ, đóng gói, vận chuyển đến lắp đặt lại tại nhà mới, tất cả đều được thực hiện chuyên nghiệp.',
         features: [
@@ -402,7 +402,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'cleaning',
         title: 'Vệ sinh & Dọn dẹp', 
-        description: 'Dọn dẹp nhà cửa, vệ sinh máy lạnh, vệ sinh phòng khi chuyển đến/đi.', 
+        description: 'Cung cấp dịch vụ dọn dẹp nhà cửa, vệ sinh máy lạnh sạch sẽ, gọn gàng, mang lại không gian sống trong lành cho gia đình bạn.', 
         image: 'https://picsum.photos/seed/cleaning/800/600',
         detailedDescription: 'Dịch vụ vệ sinh công nghiệp và dọn dẹp nhà cửa chuyên sâu. Chúng tôi sử dụng máy móc hiện đại và hóa chất chuyên dụng an toàn để làm sạch mọi ngóc ngách, trả lại không gian sống trong lành cho bạn.',
         features: [
@@ -436,7 +436,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'property-mgmt',
         title: 'Quản lý thay mặt chủ nhà', 
-        description: 'Nhắc nợ tiền phòng, xử lý khiếu nại, ghi số điện nước, mở cửa cho thợ.', 
+        description: 'Thay bạn quản lý phòng trọ: thu tiền nhà, ghi điện nước và giải quyết các vấn đề vặt, giúp bạn thảnh thơi tận hưởng cuộc sống.', 
         image: 'https://picsum.photos/seed/property_mgmt/800/600',
         detailedDescription: 'Dịch vụ Quản gia cao cấp dành cho chủ nhà bận rộn hoặc ở xa. Chúng tôi thay mặt bạn xử lý mọi vấn đề phát sinh tại căn hộ cho thuê: từ việc thu tiền nhà, chốt điện nước đến việc xử lý các sự cố hư hỏng nhỏ, giúp dòng tiền của bạn luôn ổn định.',
         features: [
@@ -457,7 +457,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'mini-erp-house',
         title: 'App Quản lý Phòng trọ', 
-        description: 'Web App tính tiền điện nước tự động và gửi hóa đơn QR qua Zalo.', 
+        description: 'Ứng dụng tính tiền trọ và gửi hóa đơn Zalo tự động, giúp chủ nhà quản lý dễ dàng, minh bạch và không lo sai sót.', 
         image: 'https://picsum.photos/seed/mini_erp_house/800/600',
         detailedDescription: 'Ứng dụng quản lý nhà trọ thông minh trên nền tảng Web/Mobile. Thay thế hoàn toàn sổ sách giấy tờ, giúp chủ nhà tính toán tiền phòng, điện nước chỉ với 1 cú click và gửi hóa đơn tự động qua Zalo cho khách thuê.',
         features: [
@@ -478,7 +478,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'landing-rent',
         title: 'Landing Page Cho thuê', 
-        description: 'Thiết kế web riêng cho tòa nhà với hình ảnh 360 độ và nút đặt cọc.', 
+        description: 'Thiết kế website giới thiệu căn hộ với hình ảnh đẹp và tour 360 độ, giúp khách thuê ấn tượng và chốt phòng nhanh hơn.', 
         image: 'https://picsum.photos/seed/landing_rent/800/600',
         detailedDescription: 'Nâng tầm hình ảnh căn hộ của bạn với một website giới thiệu chuyên nghiệp. Tích hợp hình ảnh 360 độ, video tour và thông tin chi tiết, giúp khách thuê hình dung rõ ràng không gian sống và ra quyết định đặt cọc nhanh chóng hơn.',
         features: [
@@ -499,7 +499,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'resident-service',
         title: 'Tiện ích cư dân', 
-        description: 'Đăng ký thẻ xe, thang máy, giám sát thi công nội thất hộ.', 
+        description: 'Thay bạn làm việc với Ban quản lý tòa nhà: đăng ký thẻ cư dân, đăng ký thi công, chuyển đồ... nhanh gọn và đúng quy định.', 
         image: 'https://picsum.photos/seed/resident_service/800/600',
         detailedDescription: 'Trợ lý hành chính cá nhân cho cư dân chung cư. Chúng tôi thay bạn thực hiện các thủ tục hành chính rườm rà với Ban quản lý tòa nhà như đăng ký thẻ cư dân, đăng ký thi công, chuyển đồ, giúp bạn tiết kiệm thời gian quý báu.',
         features: [
@@ -531,7 +531,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'insurance',
         title: 'Hồ sơ BHXH & Thai sản', 
-        description: 'Rà soát hồ sơ, điền form và nhận ủy quyền nộp/nhận kết quả.', 
+        description: 'Hỗ trợ mẹ bỉm sữa làm hồ sơ thai sản, BHXH: điền đơn, nộp hồ sơ và nhận tiền trợ cấp giúp bạn, không cần lo thủ tục.', 
         image: 'https://picsum.photos/seed/insurance/800/800',
         detailedDescription: 'Dịch vụ hỗ trợ nộp hồ sơ BHXH dành cho các mẹ bỉm sữa bận rộn. Chúng tôi giúp bạn điền các mẫu đơn phức tạp, sắp xếp hồ sơ và thay bạn đến cơ quan BHXH để nộp và nhận kết quả, giúp bạn có thêm thời gian nghỉ ngơi.',
         features: [
@@ -552,7 +552,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'tax',
         title: 'Nộp thuế nhà đất', 
-        description: 'Cầm giấy ủy quyền đi đóng thuế phi nông nghiệp/nhà đất hộ.', 
+        description: 'Nhận ủy quyền thay bạn đi nộp thuế nhà đất, thuế phi nông nghiệp tại kho bạc, giúp bạn không phải xin nghỉ làm để đi xếp hàng.', 
         image: 'https://picsum.photos/seed/tax/800/800',
         detailedDescription: 'Giải pháp nộp thuế nhà đất và thuế phi nông nghiệp "không chờ đợi". Bạn chỉ cần ủy quyền, chúng tôi sẽ thay bạn đến kho bạc hoặc ngân hàng để thực hiện nghĩa vụ thuế, đảm bảo đúng hạn và lưu trữ biên lai cẩn thận.',
         features: [
@@ -573,7 +573,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'land-cert',
         title: 'Sang tên Sổ đỏ', 
-        description: 'Tư vấn, sắp xếp hồ sơ, lấy số và xếp hàng tại văn phòng đất đai.', 
+        description: 'Thay bạn đi sớm lấy số thứ tự, nộp hồ sơ sang tên sổ đỏ và đi đóng thuế, giúp bạn tiết kiệm thời gian chờ đợi mệt mỏi.', 
         image: 'https://picsum.photos/seed/land_cert/800/800',
         detailedDescription: 'Trợ lý hành chính hỗ trợ các thủ tục nộp hồ sơ nhà đất. Chúng tôi không tư vấn pháp lý chuyên sâu mà tập trung vào việc hỗ trợ bạn đi lại, lấy số thứ tự, nộp hồ sơ và đóng thuế theo hướng dẫn của cơ quan chức năng, giúp bạn đỡ vất vả.',
         features: [
@@ -607,7 +607,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'elderly-care',
         title: 'Chăm sóc người già từ xa', 
-        description: 'Đi siêu thị, đồng hành đi khám bệnh, lấy thuốc định kỳ cho bố mẹ.', 
+        description: 'Thay bạn ghé thăm, trò chuyện và đưa bố mẹ đi khám bệnh định kỳ, giúp người già vui vẻ và con cái yên tâm công tác xa.', 
         image: 'https://picsum.photos/seed/elderly_care/800/800',
         detailedDescription: 'Người bạn đồng hành tin cậy chăm sóc cha mẹ già khi bạn ở xa. Chúng tôi không chỉ hỗ trợ mua sắm nhu yếu phẩm mà còn đóng vai trò như một người con, người cháu: trò chuyện, đưa đi dạo và đồng hành cùng các cụ trong các buổi khám bệnh định kỳ.',
         features: [
@@ -628,7 +628,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'family-tree',
         title: 'Gia phả Điện tử', 
-        description: 'Website dòng họ với cây gia phả tương tác và lưu trữ tư liệu.', 
+        description: 'Thiết kế website gia phả dòng họ hiện đại, lưu giữ hình ảnh và tiểu sử tổ tiên để con cháu đời sau luôn ghi nhớ cội nguồn.', 
         image: 'https://picsum.photos/seed/family_tree/800/800',
         detailedDescription: 'Lưu giữ cội nguồn gia đình với website Gia phả dòng họ hiện đại. Kết hợp giữa truyền thống và công nghệ, chúng tôi giúp bạn xây dựng cây gia phả tương tác, lưu trữ tiểu sử, hình ảnh và video của từng thành viên, để con cháu đời sau luôn nhớ về tổ tiên.',
         features: [
@@ -649,7 +649,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'asset-vault',
         title: 'Két sắt tài sản số', 
-        description: 'Web bảo mật thống kê sổ đỏ, bảo hiểm, tài khoản cho gia đình.', 
+        description: 'Hệ thống két sắt số bảo mật giúp bạn thống kê và lưu trữ thông tin tài sản, giấy tờ quan trọng của gia đình một cách an toàn.', 
         image: 'https://picsum.photos/seed/asset_vault/800/800',
         detailedDescription: 'Két sắt số bảo mật tuyệt đối dành cho tài sản gia đình. Nơi lưu trữ và thống kê toàn bộ thông tin về bất động sản, sổ tiết kiệm, hợp đồng bảo hiểm... giúp bạn quản lý tài sản tập trung và có kế hoạch thừa kế rõ ràng.',
         features: [
@@ -670,7 +670,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'medical-assistant',
         title: 'Trợ lý Y tế & Khám bệnh', 
-        description: 'Xếp hàng lấy số bệnh viện từ sớm, sổ khám bệnh điện tử.', 
+        description: 'Hỗ trợ lấy số thứ tự khám bệnh từ sáng sớm và hướng dẫn quy trình khám, giúp bạn giảm bớt mệt mỏi khi đi bệnh viện.', 
         image: 'https://picsum.photos/seed/medical_assistant/800/800',
         detailedDescription: 'Trợ lý y tế cá nhân giúp việc khám chữa bệnh trở nên nhẹ nhàng hơn. Chúng tôi hỗ trợ lấy số thứ tự khám bệnh từ sáng sớm, mua sổ khám bệnh và hướng dẫn quy trình, giúp bạn tiết kiệm hàng giờ đồng hồ chờ đợi mệt mỏi tại bệnh viện.',
         features: [
@@ -691,7 +691,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'shopper',
         title: 'Mua sắm & Giao quà', 
-        description: 'Personal Shopper mua đồ theo yêu cầu và giao tận tay.', 
+        description: 'Tư vấn và tìm mua quà tặng, đồ hiệu theo yêu cầu, đóng gói đẹp mắt và giao tận tay người nhận, giúp bạn trao gửi yêu thương.', 
         image: 'https://picsum.photos/seed/shopper/800/800',
         detailedDescription: 'Dịch vụ mua sắm cá nhân (Personal Shopper) chuyên nghiệp. Dù là món quà sinh nhật ý nghĩa hay món đồ hiệu khó tìm, chúng tôi sẽ thay bạn tìm kiếm, mua hàng chính hãng, đóng gói sang trọng và trao tận tay người nhận với thông điệp yêu thương.',
         features: [
@@ -712,7 +712,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'memories',
         title: 'Số hóa Kỷ niệm', 
-        description: 'Quét ảnh cũ, biên tập câu chuyện, xây dựng bảo tàng gia đình online.', 
+        description: 'Phục hồi ảnh cũ và biên tập thành video câu chuyện gia đình, giúp lưu giữ những khoảnh khắc quý giá không bị phai mờ theo thời gian.', 
         image: 'https://picsum.photos/seed/memories/800/800',
         detailedDescription: 'Phục dựng và lưu giữ những ký ức vô giá của gia đình. Chúng tôi số hóa những bức ảnh cũ ố vàng, phục hồi màu sắc và biên tập lại thành những câu chuyện, video clip cảm động để lưu giữ mãi mãi trên không gian số.',
         features: [
@@ -744,7 +744,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'qr-menu',
         title: 'Menu QR Code', 
-        description: 'Web No-code tạo menu tự động cho quán Cafe/Quán ăn.', 
+        description: 'Tạo menu điện tử quét mã QR cho quán, khách tự gọi món trên điện thoại giúp giảm tải cho nhân viên và không lo in lại menu.', 
         image: 'https://picsum.photos/seed/qr_menu/800/600',
         detailedDescription: 'Giải pháp Menu điện tử thông minh cho quán Cafe, Nhà hàng. Khách hàng chỉ cần quét mã QR tại bàn để xem thực đơn và gọi món, giúp giảm tải cho nhân viên phục vụ và mang lại trải nghiệm hiện đại, chuyên nghiệp.',
         features: [
@@ -765,7 +765,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'landing-sales',
         title: 'Landing Page Bán hàng', 
-        description: 'Web thiệp cưới online, web bán hàng đơn giản cho mẹ bỉm sữa.', 
+        description: 'Thiết kế trang web bán hàng đơn giản hoặc thiệp cưới online đẹp mắt, dễ dàng chia sẻ qua Zalo/Facebook để mời khách.', 
         image: 'https://picsum.photos/seed/landing_sales/800/600',
         detailedDescription: 'Website bán hàng và giới thiệu sản phẩm tinh gọn, hiệu quả. Phù hợp cho các shop online, mẹ bỉm sữa kinh doanh muốn có một "cửa hàng online" chuyên nghiệp để tăng uy tín và tỷ lệ chốt đơn mà không tốn quá nhiều chi phí.',
         features: [
@@ -792,7 +792,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'google-maps',
         title: 'Google Maps Business', 
-        description: 'Xác minh địa điểm, chụp ảnh thực tế, đưa tiệm lên bản đồ.', 
+        description: 'Đưa cửa hàng của bạn lên bản đồ Google, xác minh chính chủ và chụp ảnh đẹp để khách hàng dễ dàng tìm thấy và tin tưởng.', 
         image: 'https://picsum.photos/seed/google_maps/800/600',
         detailedDescription: 'Đưa thương hiệu của bạn lên bản đồ Google Maps một cách chuyên nghiệp. Chúng tôi giúp xác minh địa điểm, tối ưu hóa thông tin và hình ảnh, giúp khách hàng dễ dàng tìm thấy cửa hàng của bạn khi tìm kiếm trên Google.',
         features: [
@@ -813,7 +813,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'mini-erp',
         title: 'Mini-ERP cho Shop', 
-        description: 'App quản lý kho, thu chi đơn giản trên điện thoại.', 
+        description: 'Cài đặt ứng dụng quản lý kho và thu chi trên điện thoại, giúp chủ shop nhỏ kiểm soát hàng hóa và tiền nong dễ dàng.', 
         image: 'https://picsum.photos/seed/mini_erp/800/600',
         detailedDescription: 'Phần mềm quản lý bán hàng "bỏ túi" dành cho chủ shop nhỏ. Quản lý kho hàng, theo dõi thu chi, công nợ và đơn hàng mọi lúc mọi nơi ngay trên chiếc điện thoại của bạn, giúp việc kinh doanh trở nên nhẹ nhàng và kiểm soát tốt hơn.',
         features: [
@@ -834,7 +834,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'loyalty',
         title: 'Loyalty Web', 
-        description: 'Hệ thống tích điểm thành viên qua QR, không cần cài App.', 
+        description: 'Tạo thẻ thành viên tích điểm online qua số điện thoại, giúp giữ chân khách quen mà không cần in thẻ cứng tốn kém.', 
         image: 'https://picsum.photos/seed/loyalty/800/600',
         detailedDescription: 'Hệ thống chăm sóc khách hàng thân thiết thời đại 4.0. Tích điểm, đổi quà và gửi ưu đãi cho khách hàng qua Zalo/QR Code mà không cần phát hành thẻ cứng hay yêu cầu khách tải App phức tạp.',
         features: [
@@ -855,7 +855,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'freelancer-admin',
         title: 'Admin cho Freelancer', 
-        description: 'Thu hồi công nợ, rà soát hợp đồng, dashboard quản lý thu chi.', 
+        description: 'Trợ lý ảo giúp freelancer soạn hợp đồng, nhắc khách thanh toán đúng hạn và ghi chép thu chi rõ ràng.', 
         image: 'https://picsum.photos/seed/freelancer_admin/800/600',
         detailedDescription: 'Trợ lý ảo hành chính dành riêng cho Freelancer và người làm tự do. Chúng tôi giúp bạn xử lý các công việc "không tên" nhưng tốn thời gian như soạn hợp đồng, nhắc nợ khách hàng, theo dõi thu chi cá nhân, để bạn tập trung hoàn toàn vào chuyên môn.',
         features: [
@@ -887,7 +887,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'business-license',
         title: 'Giấy phép kinh doanh', 
-        description: 'Hỗ trợ khai thuế ban đầu và đăng ký kinh doanh hộ cá thể.', 
+        description: 'Chuẩn bị bộ hồ sơ đăng ký kinh doanh hộ cá thể, điền sẵn thông tin và thay bạn đi nộp để sớm có giấy phép hoạt động.', 
         image: 'https://picsum.photos/seed/business_license/800/600',
         detailedDescription: 'Hỗ trợ nộp hồ sơ đăng ký kinh doanh cho hộ cá thể và doanh nghiệp nhỏ. Chúng tôi giúp bạn chuẩn bị bộ hồ sơ theo mẫu có sẵn, điền thông tin và thay mặt nộp tại cơ quan đăng ký kinh doanh, giúp bạn khởi đầu thuận lợi.',
         features: [
@@ -921,7 +921,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'legal-draft',
         title: 'Soạn thảo đơn từ', 
-        description: 'Soạn đơn khiếu nại, tranh chấp dân sự theo mẫu chuẩn.', 
+        description: 'Đánh máy và soạn thảo các loại đơn từ, văn bản hành chính theo mẫu chuẩn, trình bày đẹp và rõ ràng nội dung bạn mong muốn.', 
         image: 'https://picsum.photos/seed/legal_draft/800/600',
         detailedDescription: 'Dịch vụ hỗ trợ đánh máy và soạn thảo văn bản hành chính theo mẫu. Nếu bạn không rành vi tính hoặc không biết trình bày văn bản, chúng tôi sẽ giúp bạn soạn thảo các lá đơn, công văn dựa trên nội dung bạn cung cấp một cách chỉn chu nhất.',
         features: [
@@ -942,7 +942,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'verification',
         title: 'Chuyển phát & Xác minh', 
-        description: 'Gửi đơn tận nơi, đến hiện trường chụp ảnh bằng chứng.', 
+        description: 'Thay bạn đến tận nơi để gửi đơn từ, chụp ảnh hiện trạng nhà đất hoặc xác minh địa chỉ thực tế một cách khách quan.', 
         image: 'https://picsum.photos/seed/verification/800/600',
         detailedDescription: 'Dịch vụ xác minh thực địa và thu thập thông tin theo yêu cầu. Chúng tôi thay bạn đến tận nơi để kiểm tra hiện trạng nhà đất, xác minh địa chỉ, hoặc thu thập các bằng chứng hình ảnh/video cần thiết một cách khách quan và bảo mật.',
         features: [
@@ -963,7 +963,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'school-admin',
         title: 'Hồ sơ nhập học hộ', 
-        description: 'Nộp hồ sơ tại trường, xác minh bằng cấp, chứng chỉ du học.', 
+        description: 'Đại diện phụ huynh đến trường nộp hồ sơ nhập học, rút học bạ hoặc đóng học phí, giúp cha mẹ yên tâm làm việc.', 
         image: 'https://picsum.photos/seed/school_admin/800/600',
         detailedDescription: 'Hỗ trợ phụ huynh bận rộn trong các thủ tục nhập học và hành chính tại trường. Chúng tôi đại diện nộp hồ sơ, đóng học phí, rút học bạ hoặc xác minh văn bằng, giúp bạn tiết kiệm thời gian đi lại trong giờ hành chính.',
         features: [
@@ -984,7 +984,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'school-track',
         title: 'Lộ trình chuyển trường', 
-        description: 'Checklist hồ sơ tự động và hệ thống tracking tiến độ nộp hồ sơ.', 
+        description: 'Lên danh sách các giấy tờ cần thiết để chuyển trường và nhắc lịch nộp hồ sơ, đảm bảo con bạn nhập học đúng hạn.', 
         image: 'https://picsum.photos/seed/school_track/800/600',
         detailedDescription: 'Người bạn đồng hành trong hành trình chuyển trường cho con. Chúng tôi xây dựng lộ trình chi tiết, lên danh sách hồ sơ cần thiết và theo dõi sát sao tiến độ xử lý, đảm bảo việc chuyển trường diễn ra suôn sẻ và đúng quy định.',
         features: [
@@ -1004,34 +1004,34 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'vehicle-paper',
-        title: 'Sang tên xe & Đổi bằng', 
-        description: 'Chuẩn bị hồ sơ và đi cùng khách đến cơ quan chức năng.', 
+        title: 'Hồ sơ Sang tên xe', 
+        description: 'Hướng dẫn chuẩn bị hồ sơ sang tên xe và hỗ trợ nộp thuế, giúp bạn hoàn tất thủ tục pháp lý mà không cần lo lắng về giấy tờ phức tạp.', 
         image: 'https://picsum.photos/seed/vehicle_paper/800/600',
-        detailedDescription: 'Dịch vụ sang tên đổi chủ phương tiện (Ô tô, Xe máy) trọn gói. Chúng tôi hỗ trợ từ khâu rút hồ sơ gốc (với xe ngoại tỉnh), cà số khung số máy, nộp thuế trước bạ đến bấm biển số mới.',
+        detailedDescription: 'Dịch vụ hỗ trợ thủ tục giấy tờ sang tên đổi chủ phương tiện (Ô tô, Xe máy). Chúng tôi hướng dẫn bạn chuẩn bị hồ sơ, soạn thảo hợp đồng mua bán và hỗ trợ nộp thuế trước bạ, giúp quá trình sang tên diễn ra thuận lợi.',
         features: [
-          'Hỗ trợ rút hồ sơ gốc toàn quốc',
-          'Cà số khung, số máy tận nơi',
-          'Đại diện nộp thuế trước bạ',
-          'Hỗ trợ thủ tục bấm biển nhanh'
+          'Soạn thảo hợp đồng mua bán xe chuẩn pháp lý',
+          'Hướng dẫn thủ tục cà số khung, số máy',
+          'Hỗ trợ kê khai và nộp thuế trước bạ online',
+          'Tư vấn quy trình rút hồ sơ gốc (nếu cần)'
         ],
         process: [
-          { step: '01', title: 'Chuẩn bị xe', description: 'Cà số khung, số máy và chuẩn bị Hợp đồng mua bán công chứng.' },
-          { step: '02', title: 'Rút hồ sơ gốc', description: 'Thực hiện thủ tục rút hồ sơ tại tỉnh cũ (nếu mua xe khác tỉnh).' },
-          { step: '03', title: 'Nộp thuế', description: 'Kê khai và nộp lệ phí trước bạ tại Chi cục thuế.' },
-          { step: '04', title: 'Bấm biển', description: 'Nộp hồ sơ tại Công an và bấm biển số mới.' }
+          { step: '01', title: 'Chuẩn bị hồ sơ', description: 'Hướng dẫn khách hàng chuẩn bị giấy tờ và cà số khung số máy.' },
+          { step: '02', title: 'Soạn thảo', description: 'Soạn thảo hợp đồng mua bán và các tờ khai thuế, đăng ký xe chuẩn xác.' },
+          { step: '03', title: 'Nộp thuế Online', description: 'Hỗ trợ kê khai và nộp thuế trước bạ qua cổng Dịch vụ công Quốc gia.' },
+          { step: '04', title: 'Hoàn tất', description: 'Hướng dẫn khách hàng nộp hồ sơ tại cơ quan công an để bấm biển.' }
         ],
         pricing: [
             {
-                name: 'Sang tên xe máy',
-                price: '1.200.000 VNĐ',
-                description: 'Dịch vụ sang tên xe máy trọn gói.',
-                features: ['Cà số khung số máy', 'Rút hồ sơ gốc', 'Nộp thuế trước bạ', 'Đăng ký biển mới']
+                name: 'Gói Hồ sơ Xe máy',
+                price: '500.000 VNĐ',
+                description: 'Soạn thảo trọn bộ hồ sơ sang tên.',
+                features: ['Hợp đồng mua bán', 'Tờ khai sang tên', 'Kê khai thuế Online', 'Hướng dẫn nộp']
             },
             {
-                name: 'Sang tên ô tô',
-                price: '3.500.000 VNĐ',
-                description: 'Dịch vụ sang tên ô tô trọn gói.',
-                features: ['Công chứng mua bán', 'Rút hồ sơ gốc', 'Nộp thuế', 'Đổi biển số'],
+                name: 'Gói Hồ sơ Ô tô',
+                price: '1.000.000 VNĐ',
+                description: 'Soạn thảo và hỗ trợ thủ tục thuế.',
+                features: ['Hợp đồng công chứng', 'Tờ khai đăng ký', 'Nộp thuế trước bạ', 'Tư vấn quy trình'],
                 recommended: true
             }
         ]

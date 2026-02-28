@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, CheckCircle, Phone, X, MessageCircle } from 'lucide-react';
 import { categories, PricingPackage } from '../data/services';
+import MedicalBookingForm from '../components/MedicalBookingForm';
 
 const BookingModal = ({ 
   isOpen, 
@@ -315,40 +316,46 @@ const ServiceDetail = () => {
 
           {/* Sidebar / CTA */}
           <div className="md:col-span-1">
-            <div className="bg-gray-50 p-8 rounded-2xl sticky top-24">
-              <h3 className="text-xl font-display font-bold text-luvia-blue mb-2">Đăng ký tư vấn</h3>
-              <p className="text-gray-500 text-sm mb-6">Để lại thông tin, chúng tôi sẽ liên hệ lại trong vòng 30 phút.</p>
-              
-              <div className="space-y-4">
-                <a 
-                  href="https://zalo.me/0899660847" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="flex items-center justify-center gap-3 w-full bg-blue-500 text-white py-4 font-bold uppercase tracking-widest hover:bg-blue-600 transition-colors rounded-lg"
-                >
-                  <MessageCircle size={20} />
-                  Chat Zalo ngay
-                </a>
-                <a 
-                  href="tel:0899660847"
-                  className="flex items-center justify-center gap-3 w-full border border-gray-300 text-gray-700 py-4 font-bold uppercase tracking-widest hover:border-luvia-blue hover:text-luvia-blue transition-colors rounded-lg"
-                >
-                  <Phone size={20} />
-                  Gọi 0899 660 847
-                </a>
+            {serviceId === 'medical-assistant' ? (
+              <div className="sticky top-24 z-10">
+                <MedicalBookingForm onSuccess={() => {}} />
               </div>
+            ) : (
+              <div className="bg-gray-50 p-8 rounded-2xl sticky top-24">
+                <h3 className="text-xl font-display font-bold text-luvia-blue mb-2">Đăng ký tư vấn</h3>
+                <p className="text-gray-500 text-sm mb-6">Để lại thông tin, chúng tôi sẽ liên hệ lại trong vòng 30 phút.</p>
+                
+                <div className="space-y-4">
+                  <a 
+                    href="https://zalo.me/0899660847" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="flex items-center justify-center gap-3 w-full bg-blue-500 text-white py-4 font-bold uppercase tracking-widest hover:bg-blue-600 transition-colors rounded-lg"
+                  >
+                    <MessageCircle size={20} />
+                    Chat Zalo ngay
+                  </a>
+                  <a 
+                    href="tel:0899660847"
+                    className="flex items-center justify-center gap-3 w-full border border-gray-300 text-gray-700 py-4 font-bold uppercase tracking-widest hover:border-luvia-blue hover:text-luvia-blue transition-colors rounded-lg"
+                  >
+                    <Phone size={20} />
+                    Gọi 0899 660 847
+                  </a>
+                </div>
 
-              <div className="mt-8 pt-8 border-t border-gray-200 space-y-4">
-                <div className="flex items-center gap-3 text-gray-600">
-                  <Phone size={18} />
-                  <span className="font-medium">0899 660 847</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-600">
-                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                  <span className="font-medium text-green-600">Đang hoạt động</span>
+                <div className="mt-8 pt-8 border-t border-gray-200 space-y-4">
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <Phone size={18} />
+                    <span className="font-medium">0899 660 847</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <span className="font-medium text-green-600">Đang hoạt động</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
 
         </div>
