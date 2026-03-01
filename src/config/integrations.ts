@@ -9,8 +9,8 @@ export const INTEGRATIONS = {
 
   // Bank Account Details for QR Code
   BANK_DETAILS: {
-    BANK_ID: 'TCB', // Techcombank
-    ACCOUNT_NO: '900488881002',
+    BANK_ID: 'MB', // MB Bank
+    ACCOUNT_NO: '942543939',
     ACCOUNT_NAME: 'NGUYEN DO TUONG VY',
     TEMPLATE: 'compact2' // QR Template
   },

@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
 import Database from 'better-sqlite3';
@@ -296,6 +297,104 @@ async function startServer() {
       });
     } catch (error) {
       res.status(500).json({ error: 'Failed to fetch stats' });
+    }
+  });
+
+  // Check booking status from Airtable
+  app.get('/api/check-booking/:code', async (req, res) => {
+    try {
+      const { code } = req.params;
+      // Trim the API key to remove potential whitespace from copy-pasting
+      const apiKey = process.env.AIRTABLE_ACCESS_TOKEN?.trim();
+      // Force use the Base ID provided by the user to rule out env var mismatch
+      const baseId = 'appRV26DyCdIiw6NY'; 
+      
+      console.log(`[DEBUG] Checking booking ${code}`);
+      console.log(`[DEBUG] Using Base ID: ${baseId}`);
+      console.log(`[DEBUG] API Key present: ${!!apiKey}`);
+      
+      if (!apiKey) {
+        console.warn('Missing Airtable credentials (AIRTABLE_ACCESS_TOKEN)');
+        return res.json({ isPaid: false, error: 'Configuration missing' });
+      }
+
+      // List of table names/IDs to try in order
+      const tableCandidates = [
+        'Bookings',                      // Default name (seen in screenshot)
+        process.env.AIRTABLE_TABLE_NAME, // User configured
+        'Table 1',                       // Common default
+        'tblYgdh1K0LrYvT3j'              // ID seen in previous screenshots
+      ].filter(Boolean) as string[];
+
+      // Remove duplicates
+      const uniqueTables = [...new Set(tableCandidates)];
+      
+      console.log(`Checking booking ${code}. Candidates: ${uniqueTables.join(', ')}`);
+
+      let lastError;
+
+      for (const tableName of uniqueTables) {
+        try {
+          const encodedTableName = encodeURIComponent(tableName);
+          // Fetch recent records (increased to 100)
+          // This avoids errors if the column is named 'Name', 'Code', 'Booking ID', etc.
+          const url = `https://api.airtable.com/v0/${baseId}/${encodedTableName}?maxRecords=100`;
+          
+          const response = await fetch(url, {
+            headers: { Authorization: `Bearer ${apiKey}` }
+          });
+
+          if (response.ok) {
+            const data = await response.json() as { records: any[] };
+            
+            if (data.records.length > 0) {
+                console.log(`Table '${tableName}' returned ${data.records.length} records. Fields available in first record:`, Object.keys(data.records[0].fields).join(', '));
+            }
+
+            // Search for the booking code in ANY field of the returned records (Case Insensitive)
+            const foundRecord = data.records.find(record => {
+              return Object.values(record.fields).some(value => 
+                String(value).trim().toLowerCase() === code.trim().toLowerCase()
+              );
+            });
+
+            if (foundRecord) {
+              const status = foundRecord.fields.Status || foundRecord.fields.status || foundRecord.fields['Trạng thái'];
+              // Check for various 'Paid' statuses (Case Insensitive)
+              const statusStr = String(status).toLowerCase();
+              const isPaid = 
+                statusStr === 'paid' || 
+                statusStr === 'đã thanh toán' || 
+                statusStr === 'done' ||
+                statusStr === 'hoàn thành';
+                
+              console.log(`Found booking ${code} in table '${tableName}'. Status: ${status}`);
+              return res.json({ status, isPaid });
+            } else {
+              console.log(`Table '${tableName}' scanned but booking ${code} not found in recent records.`);
+              // Don't return 'not_found' yet, try other tables
+            }
+          } else {
+            if (response.status === 404) {
+              console.warn(`Table '${tableName}' not found (404). Trying next...`);
+              continue; // Try next table
+            }
+            const errorText = await response.text();
+            throw new Error(`${response.status} ${response.statusText}: ${errorText}`);
+          }
+        } catch (error) {
+          console.error(`Error checking table '${tableName}':`, error);
+          lastError = error;
+        }
+      }
+
+      // If we get here, not found in any table
+      console.log(`Booking ${code} not found in any candidate table.`);
+      return res.json({ status: 'not_found', isPaid: false });
+
+    } catch (error) {
+      console.error('Airtable check error:', error);
+      res.status(500).json({ error: 'Failed to check booking status' });
     }
   });
 

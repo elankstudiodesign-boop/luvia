@@ -1,37 +1,122 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, CheckCircle, Phone, X, MessageCircle } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Phone, X, MessageCircle, Loader2, AlertCircle } from 'lucide-react';
 import { categories, PricingPackage } from '../data/services';
 import MedicalBookingForm from '../components/MedicalBookingForm';
+import { INTEGRATIONS } from '../config/integrations';
 
 const BookingModal = ({ 
   isOpen, 
   onClose, 
   pkg, 
-  serviceTitle 
+  serviceTitle,
+  serviceId,
+  categoryId,
+  formUrl
 }: { 
   isOpen: boolean; 
   onClose: () => void; 
   pkg: PricingPackage | null; 
-  serviceTitle: string 
+  serviceTitle: string;
+  serviceId: string;
+  categoryId: string;
+  formUrl?: string;
 }) => {
-  const [step, setStep] = useState<'form' | 'success'>('form');
+  const [step, setStep] = useState<'form' | 'payment' | 'success'>('form');
   const [formData, setFormData] = useState({ name: '', phone: '', note: '' });
+  const [bookingCode, setBookingCode] = useState('');
+  const [paymentStatus, setPaymentStatus] = useState<'pending' | 'checking' | 'success'>('pending');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Helper to determine actual payment amount
+  const getPaymentAmount = () => {
+    if (!pkg?.price) return 0;
+    // Remove non-digits
+    const digits = pkg.price.replace(/\D/g, '');
+    if (digits.length > 0) {
+      return parseInt(digits);
+    }
+    // If price is "Liên hệ", "Hợp đồng", etc., charge a small booking fee
+    return 50000; 
+  };
+
+  const paymentAmount = getPaymentAmount();
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
       setStep('form');
+      setBookingCode(`BK${Math.floor(10000 + Math.random() * 90000)}`); // Generate random code
+      setPaymentStatus('pending');
     } else {
       document.body.style.overflow = 'unset';
     }
     return () => { document.body.style.overflow = 'unset'; };
   }, [isOpen]);
 
+  // Poll for payment status
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    
+    if (step === 'payment' && paymentStatus !== 'success') {
+      interval = setInterval(async () => {
+        try {
+          const res = await fetch(`/api/check-booking/${bookingCode}`);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.isPaid) {
+              setPaymentStatus('success');
+              clearInterval(interval);
+              setTimeout(() => {
+                setStep('success');
+              }, 1500);
+            } else if (data.error === 'Configuration missing') {
+              clearInterval(interval);
+            }
+          }
+        } catch (err) {
+          console.error("Polling error", err);
+        }
+      }, 3000);
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [step, bookingCode, paymentStatus]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
+      // 1. Send to Make.com Webhook
+      const payload = {
+        bookingCode,
+        customerName: formData.name,
+        customerPhone: formData.phone,
+        serviceName: serviceTitle,
+        serviceId,
+        categoryId,
+        packageName: pkg?.name,
+        totalPrice: paymentAmount,
+        formattedPrice: paymentAmount.toLocaleString('vi-VN'), // Pre-formatted for Telegram
+        note: formData.note,
+        status: 'Pending Payment',
+        createdAt: new Date().toISOString(),
+      };
+
+      console.log('🚀 Sending payload to Webhook:', payload);
+
+      if (INTEGRATIONS.MAKE_BOOKING_WEBHOOK_URL && !INTEGRATIONS.MAKE_BOOKING_WEBHOOK_URL.includes('your-booking-webhook-id')) {
+        await fetch(INTEGRATIONS.MAKE_BOOKING_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }).catch(err => console.error("Webhook error:", err));
+      }
+
+      // 2. Save to local DB (optional, but good for backup)
       await fetch('/api/bookings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -40,14 +125,31 @@ const BookingModal = ({
           service_id: serviceId,
           service_name: serviceTitle,
           package_name: pkg?.name,
-          package_price: pkg?.price
+          package_price: paymentAmount.toString()
         }),
       });
-      setStep('success');
+
+      setStep('payment');
     } catch (error) {
       console.error('Booking failed', error);
-      alert('Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ trực tiếp qua Zalo.');
+      alert('Có lỗi xảy ra, vui lòng thử lại.');
+    } finally {
+      setIsSubmitting(false);
     }
+  };
+
+  const simulatePaymentCheck = () => {
+    setPaymentStatus('checking');
+    setTimeout(() => {
+      setPaymentStatus('success');
+      setTimeout(() => {
+        setStep('success');
+      }, 1500);
+    }, 3000);
+  };
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
   };
 
   if (!isOpen) return null;
@@ -66,17 +168,17 @@ const BookingModal = ({
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden z-10"
+          className="relative bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden z-10 max-h-[90vh] overflow-y-auto"
         >
           <button onClick={onClose} className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-colors z-20">
             <X size={24} className="text-gray-500" />
           </button>
 
-          {step === 'form' ? (
+          {step === 'form' && (
             <div className="p-8">
               <h3 className="text-2xl font-display font-bold text-luvia-blue mb-2">Đăng ký dịch vụ</h3>
               <p className="text-gray-500 text-sm mb-6">
-                Bạn đang chọn gói <span className="font-bold text-luvia-blue">{pkg?.name}</span> - <span className="font-bold text-luvia-mint">{pkg?.price}</span>
+                Bạn đang chọn gói <span className="font-bold text-luvia-blue">{pkg?.name}</span>
                 <br/>cho dịch vụ {serviceTitle}
               </p>
 
@@ -112,30 +214,124 @@ const BookingModal = ({
                     onChange={e => setFormData({...formData, note: e.target.value})}
                   />
                 </div>
-                <button type="submit" className="w-full bg-luvia-blue text-white py-4 font-bold uppercase tracking-widest hover:bg-luvia-mint hover:text-luvia-blue transition-colors rounded-lg mt-4">
-                  Tiếp tục
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full bg-luvia-blue text-white py-4 font-bold uppercase tracking-widest hover:bg-luvia-mint hover:text-luvia-blue transition-colors rounded-lg mt-4 flex justify-center items-center gap-2"
+                >
+                  {isSubmitting ? <Loader2 className="animate-spin" /> : 'Tiếp tục thanh toán'}
                 </button>
               </form>
             </div>
-          ) : (
+          )}
+
+          {step === 'payment' && (
+            <div className="p-8 text-center space-y-6">
+              <h3 className="text-xl font-display font-bold text-luvia-blue">Thanh toán đơn hàng</h3>
+              
+              <div className="bg-green-50 text-green-800 p-4 rounded-lg text-sm flex items-start gap-2 text-left">
+                <AlertCircle size={16} className="mt-0.5 flex-shrink-0" />
+                <div>
+                  Vui lòng quét mã QR bên dưới để thanh toán. Hệ thống sẽ tự động xác nhận sau 1-2 phút.
+                </div>
+              </div>
+
+              <div className="relative inline-block group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-luvia-blue to-luvia-mint rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <div className="relative bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                  <div className="w-48 h-48 bg-gray-100 mx-auto flex items-center justify-center rounded-lg mb-2 overflow-hidden">
+                    <img 
+                      src={`https://img.vietqr.io/image/${INTEGRATIONS.BANK_DETAILS.BANK_ID}-${INTEGRATIONS.BANK_DETAILS.ACCOUNT_NO}-${INTEGRATIONS.BANK_DETAILS.TEMPLATE}.jpg?amount=${paymentAmount}&addInfo=${bookingCode}&accountName=${encodeURIComponent(INTEGRATIONS.BANK_DETAILS.ACCOUNT_NAME)}`} 
+                      alt="VietQR" 
+                      className="w-full h-full object-contain" 
+                    />
+                  </div>
+                  <p className="font-mono font-bold text-lg text-gray-800 tracking-wider">{bookingCode}</p>
+                  <p className="text-xs text-gray-500">Nội dung chuyển khoản</p>
+                </div>
+              </div>
+
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between border-b border-gray-100 pb-2">
+                  <span className="text-gray-500">Số tiền:</span>
+                  <span className="font-bold text-luvia-blue">{formatCurrency(paymentAmount)}</span>
+                </div>
+                {paymentAmount === 50000 && (
+                   <div className="text-xs text-orange-500 italic text-right">
+                     * Phí cọc/giữ chỗ (Sẽ trừ vào tổng chi phí)
+                   </div>
+                )}
+                <div className="flex justify-between pb-2">
+                  <span className="text-gray-500">Chủ tài khoản:</span>
+                  <span className="font-medium uppercase">{INTEGRATIONS.BANK_DETAILS.ACCOUNT_NAME}</span>
+                </div>
+              </div>
+
+              {paymentStatus === 'pending' && (
+                <div className="space-y-3">
+                  <div className="flex items-center justify-center gap-2 text-luvia-blue animate-pulse">
+                    <Loader2 size={20} className="animate-spin" />
+                    <span className="font-medium">Đang chờ hệ thống xác nhận...</span>
+                  </div>
+                  <button
+                    onClick={simulatePaymentCheck}
+                    className="w-full py-3 border border-gray-200 text-gray-400 text-sm rounded-xl hover:bg-gray-50 transition-colors mt-2"
+                  >
+                    Tôi đã chuyển khoản (Bấm nếu đợi quá lâu)
+                  </button>
+                </div>
+              )}
+
+              {paymentStatus === 'checking' && (
+                <div className="flex flex-col items-center justify-center py-4 text-luvia-blue">
+                  <Loader2 size={32} className="animate-spin mb-2" />
+                  <span className="text-sm font-medium">Đang kiểm tra giao dịch...</span>
+                </div>
+              )}
+
+              {paymentStatus === 'success' && (
+                <div className="flex flex-col items-center justify-center py-4 text-green-600">
+                  <CheckCircle size={32} className="mb-2" />
+                  <span className="text-lg font-bold">Thanh toán thành công!</span>
+                </div>
+              )}
+            </div>
+          )}
+
+          {step === 'success' && (
             <div className="p-8 text-center">
               <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle size={32} />
               </div>
-              <h3 className="text-2xl font-display font-bold text-luvia-blue mb-4">Gửi yêu cầu thành công!</h3>
+              <h3 className="text-2xl font-display font-bold text-luvia-blue mb-4">Đã nhận đơn hàng!</h3>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Cảm ơn bạn đã đăng ký. Để đảm bảo an toàn và được hỗ trợ thanh toán ngay lập tức, vui lòng kết nối với chuyên viên qua Zalo.
+                Cảm ơn bạn đã thanh toán. Mã đơn hàng của bạn là <span className="font-bold text-luvia-blue">{bookingCode}</span>.
+                <br/>
+                {formUrl ? 'Vui lòng điền thêm thông tin để chúng tôi bắt đầu thực hiện.' : 'Chuyên viên sẽ liên hệ với bạn trong ít phút.'}
               </p>
               
-              <a 
-                href="https://zalo.me/0899660847" 
-                target="_blank" 
-                rel="noreferrer"
-                className="flex items-center justify-center gap-3 w-full bg-blue-500 text-white py-4 font-bold uppercase tracking-widest hover:bg-blue-600 transition-colors rounded-lg shadow-lg shadow-blue-200 mb-4"
-              >
-                <MessageCircle size={20} />
-                Chat Zalo ngay
-              </a>
+              {formUrl ? (
+                <a 
+                  href={formUrl}
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-3 w-full bg-luvia-blue text-white py-4 font-bold uppercase tracking-widest hover:bg-luvia-mint hover:text-luvia-blue transition-colors rounded-lg shadow-lg shadow-blue-200 mb-4"
+                >
+                  <CheckCircle size={20} />
+                  Điền thông tin bổ sung
+                </a>
+              ) : (
+                <a 
+                  href="https://zalo.me/0899660847" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-3 w-full bg-blue-500 text-white py-4 font-bold uppercase tracking-widest hover:bg-blue-600 transition-colors rounded-lg shadow-lg shadow-blue-200 mb-4"
+                >
+                  <MessageCircle size={20} />
+                  Chat Zalo ngay
+                </a>
+              )}
+              
               <button 
                 onClick={onClose}
                 className="text-sm text-gray-400 hover:text-gray-600 underline decoration-gray-300 underline-offset-4"
@@ -186,6 +382,9 @@ const ServiceDetail = () => {
         onClose={() => setIsModalOpen(false)} 
         pkg={selectedPackage}
         serviceTitle={service.title}
+        serviceId={service.id}
+        categoryId={category.id}
+        formUrl={service.formUrl}
       />
 
       {/* Breadcrumb & Back */}

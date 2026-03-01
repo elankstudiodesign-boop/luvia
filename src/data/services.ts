@@ -25,6 +25,7 @@ export interface ServiceItem {
   features?: string[];
   process?: ServiceProcess[];
   pricing?: PricingPackage[];
+  formUrl?: string; // Optional URL for data collection form (Typeform/Tally)
 }
 
 export interface ServiceCategory {
@@ -746,6 +747,7 @@ export const categories: ServiceCategory[] = [
         title: 'Menu QR Code', 
         description: 'Tạo menu điện tử quét mã QR cho quán, khách tự gọi món trên điện thoại giúp giảm tải cho nhân viên và không lo in lại menu.', 
         image: 'https://picsum.photos/seed/qr_menu/800/600',
+        formUrl: 'https://tally.so/r/w7XjK9', // Example form URL
         detailedDescription: 'Giải pháp Menu điện tử thông minh cho quán Cafe, Nhà hàng. Khách hàng chỉ cần quét mã QR tại bàn để xem thực đơn và gọi món, giúp giảm tải cho nhân viên phục vụ và mang lại trải nghiệm hiện đại, chuyên nghiệp.',
         features: [
           'Menu hình ảnh trực quan, kích thích vị giác',

@@ -44,6 +44,42 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
     setTotalPrice(price);
   }, [formData.hospitalId, formData.isUrgent]);
 
+  // Poll for payment status
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    
+    if (step === 'payment' && paymentStatus !== 'success') {
+      // Start polling
+      interval = setInterval(async () => {
+        try {
+          // In a real scenario, we check our backend which checks Airtable
+          // If backend is not configured, we fallback to manual button
+          const res = await fetch(`/api/check-booking/${bookingCode}`);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.isPaid) {
+              setPaymentStatus('success');
+              clearInterval(interval);
+              setTimeout(() => {
+                setStep('success');
+                onSuccess();
+              }, 1500);
+            } else if (data.error === 'Configuration missing') {
+              // Stop polling if server is not configured
+              clearInterval(interval);
+            }
+          }
+        } catch (err) {
+          console.error("Polling error", err);
+        }
+      }, 3000); // Check every 3 seconds
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [step, bookingCode, paymentStatus, onSuccess]);
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setFormData({ ...formData, files: e.target.files });
@@ -61,10 +97,14 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
         customerName: formData.customerName,
         customerPhone: formData.customerPhone,
         hospital: HOSPITALS.find(h => h.id === formData.hospitalId)?.name,
+        serviceName: 'Trợ lý Y tế & Khám bệnh',
+        serviceId: 'medical-assistant',
+        categoryId: 'family',
         date: formData.date,
         specialty: formData.specialty,
         isUrgent: formData.isUrgent,
         totalPrice,
+        formattedPrice: totalPrice.toLocaleString('vi-VN'), // Pre-formatted for Telegram
         status: 'Pending Payment',
         createdAt: new Date().toISOString(),
       };
@@ -264,12 +304,12 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
                   <div className="w-48 h-48 bg-gray-100 mx-auto flex items-center justify-center rounded-lg mb-2 overflow-hidden">
                     {/* <QrCode size={64} className="text-gray-400" /> */}
                     <img 
-                      src={`https://img.vietqr.io/image/${INTEGRATIONS.BANK_DETAILS.BANK_ID}-${INTEGRATIONS.BANK_DETAILS.ACCOUNT_NO}-${INTEGRATIONS.BANK_DETAILS.TEMPLATE}.jpg?amount=${totalPrice}&addInfo=XH ${bookingCode}&accountName=${encodeURIComponent(INTEGRATIONS.BANK_DETAILS.ACCOUNT_NAME)}`} 
+                      src={`https://img.vietqr.io/image/${INTEGRATIONS.BANK_DETAILS.BANK_ID}-${INTEGRATIONS.BANK_DETAILS.ACCOUNT_NO}-${INTEGRATIONS.BANK_DETAILS.TEMPLATE}.jpg?amount=${totalPrice}&addInfo=${bookingCode}&accountName=${encodeURIComponent(INTEGRATIONS.BANK_DETAILS.ACCOUNT_NAME)}`} 
                       alt="VietQR" 
                       className="w-full h-full object-contain" 
                     />
                   </div>
-                  <p className="font-mono font-bold text-lg text-gray-800 tracking-wider">XH {bookingCode}</p>
+                  <p className="font-mono font-bold text-lg text-gray-800 tracking-wider">{bookingCode}</p>
                   <p className="text-xs text-gray-500">Nội dung chuyển khoản</p>
                 </div>
               </div>
@@ -281,7 +321,7 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
                 </div>
                 <div className="flex justify-between text-sm border-b border-gray-100 pb-2">
                   <span className="text-gray-500">Ngân hàng:</span>
-                  <span className="font-medium">Techcombank</span>
+                  <span className="font-medium">MB Bank</span>
                 </div>
                 <div className="flex justify-between text-sm pb-2">
                   <span className="text-gray-500">Chủ tài khoản:</span>
@@ -290,13 +330,21 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
               </div>
 
               {paymentStatus === 'pending' && (
-                <button
-                  onClick={simulatePaymentCheck}
-                  className="w-full py-3 bg-gray-100 text-gray-600 font-bold rounded-xl hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
-                >
-                  <CheckCircle size={18} />
-                  Tôi đã chuyển khoản
-                </button>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-center gap-2 text-luvia-blue animate-pulse">
+                    <Loader2 size={20} className="animate-spin" />
+                    <span className="font-medium">Đang chờ hệ thống xác nhận thanh toán...</span>
+                  </div>
+                  <p className="text-xs text-gray-400">Hệ thống sẽ tự động cập nhật ngay khi nhận được tiền (thường mất 1-2 phút).</p>
+                  
+                  {/* Fallback button just in case */}
+                  <button
+                    onClick={simulatePaymentCheck}
+                    className="w-full py-3 border border-gray-200 text-gray-400 text-sm rounded-xl hover:bg-gray-50 transition-colors mt-2"
+                  >
+                    Tôi đã chuyển khoản (Bấm nếu đợi quá lâu)
+                  </button>
+                </div>
               )}
 
               {paymentStatus === 'checking' && (
