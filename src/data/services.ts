@@ -8,12 +8,26 @@ export interface PricingPackage {
   description: string;
   features: string[];
   recommended?: boolean;
+  actionLabel?: string;
+  actionUrl?: string;
 }
 
 export interface ServiceProcess {
   step: string;
   title: string;
   description: string;
+}
+
+export interface ServicePsychology {
+  hoursSaved: string;
+  painPoints: string[];
+  gainPoints: string[];
+  authoritySignals: string[];
+  highEndTestimonial?: {
+    name: string;
+    role: string;
+    content: string;
+  };
 }
 
 export interface ServiceItem {
@@ -24,6 +38,7 @@ export interface ServiceItem {
   detailedDescription?: string;
   features?: string[];
   process?: ServiceProcess[];
+  psychology?: ServicePsychology;
   pricing?: PricingPackage[];
   formUrl?: string; // Optional URL for data collection form (Typeform/Tally)
 }
@@ -40,6 +55,150 @@ export interface ServiceCategory {
 }
 
 export const categories: ServiceCategory[] = [
+  {
+    id: 'legal',
+    title: 'Thủ tục Hành chính & Pháp lý',
+    shortTitle: 'PHÁP LÝ',
+    subtitle: 'HỖ TRỢ HÀNH CHÍNH',
+    description: 'Dịch vụ hỗ trợ thực hiện các thủ tục hành chính, giấy tờ với sự tận tâm và bảo mật.',
+    image: 'https://picsum.photos/seed/legal_lv/1200/1600',
+    layout: 'split',
+    items: [
+      { 
+        id: 'business-license',
+        title: 'Giấy phép kinh doanh', 
+        description: 'Chuẩn bị bộ hồ sơ đăng ký kinh doanh hộ cá thể, điền sẵn thông tin và thay bạn đi nộp để sớm có giấy phép hoạt động.', 
+        image: 'https://picsum.photos/seed/business_license/800/600',
+        detailedDescription: 'Hỗ trợ nộp hồ sơ đăng ký kinh doanh cho hộ cá thể và doanh nghiệp nhỏ. Chúng tôi giúp bạn chuẩn bị bộ hồ sơ theo mẫu có sẵn, điền thông tin và thay mặt nộp tại cơ quan đăng ký kinh doanh, giúp bạn khởi đầu thuận lợi.',
+        features: [
+          'Cung cấp biểu mẫu đăng ký chuẩn',
+          'Hỗ trợ điền thông tin vào hồ sơ',
+          'Thay bạn đi nộp hồ sơ và nhận kết quả',
+          'Hỗ trợ các thủ tục khắc dấu (qua đối tác)'
+        ],
+        process: [
+          { step: '01', title: 'Tư vấn', description: 'Tư vấn loại hình doanh nghiệp và các thông tin cần thiết.' },
+          { step: '02', title: 'Soạn & Ký hồ sơ', description: 'Soạn thảo hồ sơ và gửi khách hàng ký (hoặc ký số).' },
+          { step: '03', title: 'Nộp hồ sơ', description: 'Nộp hồ sơ lên Sở Kế hoạch & Đầu tư.' },
+          { step: '04', title: 'Bàn giao', description: 'Bàn giao Giấy phép kinh doanh và Con dấu tại nhà.' }
+        ],
+        psychology: {
+          hoursSaved: '32 giờ',
+          painPoints: [
+            'Xếp hàng chờ đợi mệt mỏi tại Sở KHĐT',
+            'Hồ sơ bị trả về nhiều lần do sai sót nhỏ',
+            'Không biết bắt đầu từ đâu, thủ tục rườm rà'
+          ],
+          gainPoints: [
+            'Ngồi nhà ký hồ sơ, nhận giấy phép tận tay',
+            'Hồ sơ chuẩn xác 100%, không lo bị trả về',
+            'Được tư vấn tận tình, hiểu rõ quy trình'
+          ],
+          authoritySignals: ['Sở Kế hoạch & Đầu tư', 'Tổng cục Thuế'],
+          highEndTestimonial: {
+            name: 'Anh Nguyễn Văn An',
+            role: 'CEO - Chuỗi Cafe The Coffee House (Franchise)',
+            content: 'Tôi đã ủy thác cho LUVIA thành lập 3 chi nhánh trong năm nay. Mọi thứ diễn ra trơn tru, tôi không phải bận tâm bất cứ điều gì về giấy tờ pháp lý.'
+          }
+        },
+        pricing: [
+            {
+                name: 'Hộ kinh doanh',
+                price: '1.500.000 VNĐ',
+                description: 'Đăng ký kinh doanh hộ cá thể.',
+                features: ['Soạn hồ sơ', 'Nộp tại UBND Quận', 'Nhận giấy phép', 'Đăng ký mã số thuế']
+            },
+            {
+                name: 'Thành lập Công ty',
+                price: '4.500.000 VNĐ',
+                description: 'Thành lập công ty TNHH/Cổ phần.',
+                features: ['Giấy phép kinh doanh', 'Con dấu tròn', 'Công bố mẫu dấu', 'Khai thuế ban đầu'],
+                recommended: true
+            }
+        ]
+      },
+      { 
+        id: 'legal-draft',
+        title: 'Soạn thảo đơn từ', 
+        description: 'Đánh máy và soạn thảo các loại đơn từ, văn bản hành chính theo mẫu chuẩn, trình bày đẹp và rõ ràng nội dung bạn mong muốn.', 
+        image: 'https://picsum.photos/seed/legal_draft/800/600',
+        detailedDescription: 'Dịch vụ hỗ trợ đánh máy và soạn thảo văn bản hành chính theo mẫu. Nếu bạn không rành vi tính hoặc không biết trình bày văn bản, chúng tôi sẽ giúp bạn soạn thảo các lá đơn, công văn dựa trên nội dung bạn cung cấp một cách chỉn chu nhất.',
+        features: [
+          'Đánh máy văn bản nhanh, chuẩn chính tả',
+          'Trình bày văn bản đẹp, đúng thể thức hành chính',
+          'Tìm kiếm các mẫu đơn từ phổ biến giúp bạn',
+          'In ấn và đóng quyển hồ sơ đẹp mắt'
+        ],
+        psychology: {
+          hoursSaved: '3.5 giờ',
+          painPoints: [
+            'Loay hoay cả buổi không biết viết sao cho đúng thể thức',
+            'Lỗi chính tả, văn phong lủng củng thiếu chuyên nghiệp',
+            'In đi in lại nhiều lần tốn giấy mực'
+          ],
+          gainPoints: [
+            'Văn bản chuẩn chỉnh, ngôn từ sắc bén',
+            'Trình bày đẹp mắt, đúng chuẩn hành chính',
+            'Gửi file Word/PDF dùng ngay lập tức'
+          ],
+          authoritySignals: ['Văn phòng Luật sư', 'Hiệp hội Công chứng'],
+          highEndTestimonial: {
+            name: 'Chị Lan Anh',
+            role: 'Thư ký Giám đốc',
+            content: 'Sếp mình rất khó tính về văn bản. Nhờ LUVIA soạn thảo, mình tiết kiệm được bao nhiêu thời gian chỉnh sửa mà sếp lại khen chuyên nghiệp.'
+          }
+        },
+        pricing: [
+            {
+                name: 'Soạn đơn',
+                price: '500.000 VNĐ/văn bản',
+                description: 'Soạn thảo các loại đơn từ hành chính.',
+                features: ['Tư vấn nội dung', 'Soạn thảo đúng luật', 'Hướng dẫn gửi đơn']
+            }
+        ]
+      },
+      { 
+        id: 'verification',
+        title: 'Chuyển phát & Xác minh', 
+        description: 'Thay bạn đến tận nơi để gửi đơn từ, chụp ảnh hiện trạng nhà đất hoặc xác minh địa chỉ thực tế một cách khách quan.', 
+        image: 'https://picsum.photos/seed/verification/800/600',
+        detailedDescription: 'Dịch vụ xác minh thực địa và thu thập thông tin theo yêu cầu. Chúng tôi thay bạn đến tận nơi để kiểm tra hiện trạng nhà đất, xác minh địa chỉ, hoặc thu thập các bằng chứng hình ảnh/video cần thiết một cách khách quan và bảo mật.',
+        features: [
+          'Nhân viên đến tận nơi xác minh nhanh chóng',
+          'Cung cấp hình ảnh, video, ghi âm thực tế',
+          'Báo cáo trung thực, khách quan',
+          'Giữ bí mật tuyệt đối về nhiệm vụ'
+        ],
+        psychology: {
+          hoursSaved: '8.5 giờ',
+          painPoints: [
+            'Mất công xin nghỉ làm để đi lại xác minh',
+            'Tốn kém chi phí xăng xe, đi lại nhiều lần',
+            'Không có bằng chứng hình ảnh rõ ràng'
+          ],
+          gainPoints: [
+            'Có người thay thế đi lại, bạn cứ yên tâm làm việc',
+            'Hình ảnh, video báo cáo thực tế sắc nét',
+            'Bảo mật thông tin tuyệt đối'
+          ],
+          authoritySignals: ['Văn phòng Thừa phát lại', 'Công ty Thám tử tư'],
+          highEndTestimonial: {
+            name: 'Anh Hoàng Tuấn',
+            role: 'Nhà đầu tư BĐS',
+            content: 'Tôi ở Hà Nội nhưng mua đất ở Sài Gòn. Dịch vụ này giúp tôi kiểm tra hiện trạng đất mà không cần bay ra bay vào, rất tiện lợi.'
+          }
+        },
+        pricing: [
+            {
+                name: 'Phí thực hiện',
+                price: '1.000.000 VNĐ/lần',
+                description: 'Xác minh thực địa theo yêu cầu.',
+                features: ['Đến tận nơi', 'Chụp ảnh/Quay phim', 'Ghi âm (nếu cần)', 'Báo cáo chi tiết']
+            }
+        ]
+      },
+    ]
+  },
   {
     id: 'travel',
     title: 'Dịch vụ Di trú & Di chuyển',
@@ -67,6 +226,25 @@ export const categories: ServiceCategory[] = [
           { step: '03', title: 'Thanh toán', description: 'Nộp lệ phí nhà nước.' },
           { step: '04', title: 'Nhận kết quả', description: 'Hộ chiếu gửi về tận nhà qua bưu điện.' }
         ],
+        psychology: {
+          hoursSaved: '15.5 giờ',
+          painPoints: [
+            'Chen chúc xếp hàng chụp ảnh tại Phòng XNC',
+            'Khai báo online phức tạp, lỗi hệ thống liên tục',
+            'Lo lắng vì không biết khi nào có kết quả'
+          ],
+          gainPoints: [
+            'Không cần xếp hàng, xử lý online 100%',
+            'Được hướng dẫn chụp ảnh chuẩn đẹp ngay tại nhà',
+            'Cập nhật tiến độ mỗi ngày qua Zalo'
+          ],
+          authoritySignals: ['Cục Quản lý Xuất nhập cảnh', 'Cổng Dịch vụ công Quốc gia'],
+          highEndTestimonial: {
+            name: 'Chị Trần Thị Bích Ngọc',
+            role: 'Giám đốc Nhân sự - Tập đoàn FPT',
+            content: 'Dịch vụ rất chuyên nghiệp. Tôi làm hộ chiếu cho cả gia đình 5 người để đi du lịch hè, chỉ mất đúng 15 phút gửi thông tin là xong tất cả.'
+          }
+        },
         pricing: [
           {
             name: 'Gói Cơ bản',
@@ -101,6 +279,25 @@ export const categories: ServiceCategory[] = [
           { step: '03', title: 'Nộp hồ sơ', description: 'Đại diện nộp tại LSQ hoặc hướng dẫn nộp.' },
           { step: '04', title: 'Nhận kết quả', description: 'Visa dán hoặc E-visa.' }
         ],
+        psychology: {
+          hoursSaved: '48.0 giờ',
+          painPoints: [
+            'Mò mẫm tìm hiểu quy định của từng nước rất rối rắm',
+            'Khai form tiếng Anh sai một ly đi một dặm',
+            'Lo lắng bị từ chối visa vì hồ sơ yếu'
+          ],
+          gainPoints: [
+            'Chuyên gia tư vấn cách làm đẹp hồ sơ',
+            'Khai form chuẩn xác, tỷ lệ đậu cao',
+            'Được luyện phỏng vấn kỹ càng'
+          ],
+          authoritySignals: ['Lãnh sự quán Mỹ', 'Đại sứ quán Nhật Bản'],
+          highEndTestimonial: {
+            name: 'Gia đình anh Quốc Bảo',
+            role: 'Doanh nhân',
+            content: 'Cả nhà 4 người xin visa Mỹ đều đậu. Các bạn chuẩn bị hồ sơ quá kỹ, vào phỏng vấn họ chỉ hỏi vài câu là xong.'
+          }
+        },
         pricing: [
           {
             name: 'Visa Châu Á',
@@ -141,6 +338,25 @@ export const categories: ServiceCategory[] = [
           { step: '03', title: 'Thanh toán', description: 'Khách hàng chốt phương án và thanh toán chuyển khoản.' },
           { step: '04', title: 'Xuất vé', description: 'Gửi vé điện tử và mã đặt phòng qua Zalo/Email ngay lập tức.' }
         ],
+        psychology: {
+          hoursSaved: '5.5 giờ',
+          painPoints: [
+            'Canh vé rẻ lúc nửa đêm rất mệt mỏi',
+            'Đặt sai tên, sai ngày giờ mất tiền oan',
+            'Không biết ai hỗ trợ khi chuyến bay bị delay/hủy'
+          ],
+          gainPoints: [
+            'Có người săn vé rẻ giúp, báo giá tốt nhất',
+            'Hỗ trợ xử lý sự cố 24/7 bất kể ngày đêm',
+            'Tư vấn lịch trình bay tối ưu nhất'
+          ],
+          authoritySignals: ['Hiệp hội Lữ hành Việt Nam', 'Vietnam Airlines'],
+          highEndTestimonial: {
+            name: 'Chị Thanh Hằng',
+            role: 'Trưởng phòng Kinh doanh',
+            content: 'Đi công tác liên miên, nhờ có LUVIA lo vé và khách sạn nên mình cứ xách vali lên là đi, không phải bận tâm gì cả.'
+          }
+        },
         pricing: [
           {
             name: 'Vé máy bay Lẻ',
@@ -181,6 +397,25 @@ export const categories: ServiceCategory[] = [
             { step: '03', title: 'Hợp pháp hóa', description: 'Nộp hồ sơ lên Cục Lãnh sự để dán tem hợp pháp hóa.' },
             { step: '04', title: 'Trả kết quả', description: 'Gửi trả hồ sơ gốc và bản dịch đã hợp pháp hóa cho khách.' }
         ],
+        psychology: {
+          hoursSaved: '24.5 giờ',
+          painPoints: [
+            'Xếp hàng rồng rắn tại Cục Lãnh sự dưới nắng nóng',
+            'Hồ sơ bị trả về vì thiếu con dấu, sai quy cách',
+            'Chạy đi chạy lại giữa các cơ quan dịch thuật và ngoại giao'
+          ],
+          gainPoints: [
+            'Hồ sơ được xử lý trọn gói từ A-Z',
+            'Không phải xếp hàng, không lo nắng nôi',
+            'Nhận kết quả tận tay tại nhà'
+          ],
+          authoritySignals: ['Cục Lãnh sự - Bộ Ngoại giao', 'Sở Tư pháp'],
+          highEndTestimonial: {
+            name: 'Chị Minh Thư',
+            role: 'Du học sinh Úc',
+            content: 'Làm hồ sơ du học cần hợp pháp hóa bao nhiêu giấy tờ. May mà có LUVIA lo hết, mình chỉ việc lo học tiếng Anh thôi.'
+          }
+        },
         pricing: [
             {
                 name: 'Dịch thuật',
@@ -215,6 +450,25 @@ export const categories: ServiceCategory[] = [
           { step: '03', title: 'Đăng ký cấp đổi', description: 'Nộp hồ sơ lên hệ thống IAA (Mỹ) hoặc Sở GTVT (Việt Nam).' },
           { step: '04', title: 'Giao bằng tận tay', description: 'Nhận bằng lái mới và bàn giao tận nhà cho khách hàng.' }
         ],
+        psychology: {
+          hoursSaved: '6.5 giờ',
+          painPoints: [
+            'Thủ tục đổi bằng rắc rối, không biết bắt đầu từ đâu',
+            'Xếp hàng bốc số tại Sở GTVT chờ đến lượt',
+            'Hồ sơ sai sót phải làm lại từ đầu'
+          ],
+          gainPoints: [
+            'Hướng dẫn chi tiết, hồ sơ chuẩn 100%',
+            'Hỗ trợ nộp online hoặc dẫn đi làm trực tiếp',
+            'Bằng lái mới giao tận tay'
+          ],
+          authoritySignals: ['Sở Giao thông Vận tải', 'Hiệp hội Ô tô Quốc tế (IAA)'],
+          highEndTestimonial: {
+            name: 'Anh Peter Wilson',
+            role: 'Chuyên gia nước ngoài',
+            content: 'Tôi rất ngại các thủ tục hành chính ở Việt Nam vì không rành tiếng. Dịch vụ của các bạn thực sự cứu cánh cho tôi.'
+          }
+        },
         pricing: [
             {
                 name: 'Đổi bằng Quốc tế IAA',
@@ -249,6 +503,25 @@ export const categories: ServiceCategory[] = [
           { step: '03', title: 'Thủ tục ưu tiên', description: 'Dẫn khách qua lối đi ưu tiên làm thủ tục xuất nhập cảnh và an ninh.' },
           { step: '04', title: 'Hỗ trợ hành lý', description: 'Hỗ trợ lấy hành lý nhanh chóng và tiễn khách ra xe.' }
         ],
+        psychology: {
+          hoursSaved: '2.5 giờ',
+          painPoints: [
+            'Xếp hàng nhập cảnh dài dằng dặc sau chuyến bay dài',
+            'Chờ đợi lấy hành lý mệt mỏi',
+            'Lạc lõng giữa sân bay rộng lớn'
+          ],
+          gainPoints: [
+            'Có người đón ngay cửa máy bay như VIP',
+            'Đi lối ưu tiên, thủ tục nhập cảnh trong 5 phút',
+            'Hành lý có người lo, xe đón sẵn sàng'
+          ],
+          authoritySignals: ['Cảng Hàng không Quốc tế Tân Sơn Nhất', 'Nội Bài'],
+          highEndTestimonial: {
+            name: 'Anh David Nguyễn',
+            role: 'Việt kiều Mỹ',
+            content: 'Về Việt Nam thăm quê mà được đón tiếp như nguyên thủ. Bố mẹ tôi già rồi nên dịch vụ này thực sự rất cần thiết.'
+          }
+        },
         pricing: [
             {
                 name: 'Đón/Tiễn Phổ thông',
@@ -277,6 +550,25 @@ export const categories: ServiceCategory[] = [
           'Lưu trữ bảo mật Passport và giấy tờ tùy thân',
           'Chia sẻ lịch trình dễ dàng cho người thân'
         ],
+        psychology: {
+          hoursSaved: '3.5 giờ',
+          painPoints: [
+            'Lục lọi email tìm vé máy bay, booking khách sạn',
+            'Quên giờ bay, nhầm sảnh check-in',
+            'Giấy tờ lộn xộn, dễ thất lạc'
+          ],
+          gainPoints: [
+            'Tất cả vé, booking nằm gọn trong 1 đường link',
+            'Truy cập offline không cần mạng',
+            'Nhắc nhở lịch trình tự động'
+          ],
+          authoritySignals: ['Tổng cục Du lịch', 'Hiệp hội Hướng dẫn viên'],
+          highEndTestimonial: {
+            name: 'Bạn Mai Hương',
+            role: 'Travel Blogger',
+            content: 'Đi du lịch một mình sợ nhất là quên giấy tờ. Cái web cá nhân này tiện thật, cần gì mở ra là có ngay, rất an tâm.'
+          }
+        },
         pricing: [
             {
                 name: 'Gói Chuyến đi',
@@ -316,6 +608,25 @@ export const categories: ServiceCategory[] = [
           { step: '03', title: 'Nộp hồ sơ', description: 'Nộp hồ sơ qua cổng Dịch vụ công hoặc trực tiếp tại Công an phường.' },
           { step: '04', title: 'Trả kết quả', description: 'Thông báo kết quả đã được cập nhật trên hệ thống VNeID.' }
         ],
+        psychology: {
+          hoursSaved: '12.0 giờ',
+          painPoints: [
+            'Không biết khai báo tạm trú ở đâu, thủ tục thế nào',
+            'Bị công an kiểm tra đột xuất, lo lắng bị phạt',
+            'Đi lại nhiều lần vẫn chưa xong giấy tờ'
+          ],
+          gainPoints: [
+            'Ngồi nhà khai báo online, không cần gặp công an',
+            'Hồ sơ chuẩn chỉnh, cập nhật VNeID nhanh chóng',
+            'An tâm cư trú, không lo bị phạt'
+          ],
+          authoritySignals: ['Công an Phường', 'Cổng Dịch vụ công Bộ Công an'],
+          highEndTestimonial: {
+            name: 'Anh John Smith',
+            role: 'Giáo viên tiếng Anh',
+            content: 'Thủ tục cư trú cho người nước ngoài rất phức tạp. LUVIA đã giúp tôi giải quyết mọi thứ êm đẹp.'
+          }
+        },
         pricing: [
             {
                 name: 'Dịch vụ Online',
@@ -350,6 +661,25 @@ export const categories: ServiceCategory[] = [
           { step: '03', title: 'Xem thực tế', description: 'Sắp xếp lịch và đưa khách đi xem phòng trực tiếp.' },
           { step: '04', title: 'Chốt & Ký', description: 'Hỗ trợ thương lượng giá, rà soát hợp đồng và bàn giao phòng.' }
         ],
+        psychology: {
+          hoursSaved: '40.0 giờ',
+          painPoints: [
+            'Lướt web xem hình ảo, đến nơi thì phòng xấu tệ',
+            'Mất thời gian đi xem hàng chục nơi vẫn không ưng',
+            'Gặp chủ nhà khó tính, hợp đồng gài bẫy'
+          ],
+          gainPoints: [
+            'Chỉ xem những căn phòng "thực" đã được lọc kỹ',
+            'Có xe đưa đón đi xem phòng như đi tour',
+            'Hợp đồng minh bạch, bảo vệ quyền lợi người thuê'
+          ],
+          authoritySignals: ['Hiệp hội Môi giới Bất động sản', 'Batdongsan.com.vn'],
+          highEndTestimonial: {
+            name: 'Bạn Ngọc Lan',
+            role: 'Sinh viên RMIT',
+            content: 'Mình tìm phòng cả tháng không được. Nhờ LUVIA dẫn đi một buổi chiều là chốt được căn hộ ưng ý ngay.'
+          }
+        },
         pricing: [
             {
                 name: 'Phí môi giới',
@@ -377,6 +707,25 @@ export const categories: ServiceCategory[] = [
           { step: '03', title: 'Vận chuyển', description: 'Bốc xếp và hỗ trợ điều phối xe vận chuyển an toàn.' },
           { step: '04', title: 'Lắp đặt', description: 'Lắp ráp lại giường tủ, kê đặt vào vị trí theo yêu cầu.' }
         ],
+        psychology: {
+          hoursSaved: '24.0 giờ',
+          painPoints: [
+            'Tự đóng gói đồ đạc lỉnh kỉnh, mệt nhoài cả người',
+            'Đồ đạc bị hư hỏng, thất lạc trong quá trình vận chuyển',
+            'Khuân vác nặng nhọc, đau lưng mỏi gối'
+          ],
+          gainPoints: [
+            'Chỉ cần đứng chỉ tay, mọi thứ có người lo từ A-Z',
+            'Đồ đạc được bọc lót kỹ càng, bảo hiểm 100%',
+            'Lắp đặt lại giường tủ y như cũ tại nhà mới'
+          ],
+          authoritySignals: ['Hiệp hội Vận tải TP.HCM'],
+          highEndTestimonial: {
+            name: 'Chị Thu Thảo',
+            role: 'Nhân viên văn phòng',
+            content: 'Chuyển nhà mà cứ như đi chơi. Sáng đi làm, chiều về nhà mới đã thấy mọi thứ đâu vào đấy, quá tuyệt vời.'
+          }
+        },
         pricing: [
             {
                 name: 'Gói Tiết kiệm',
@@ -411,6 +760,25 @@ export const categories: ServiceCategory[] = [
           { step: '03', title: 'Thực hiện', description: 'Tiến hành vệ sinh theo quy trình từ trên xuống dưới, từ trong ra ngoài.' },
           { step: '04', title: 'Nghiệm thu', description: 'Khách hàng kiểm tra chất lượng vệ sinh và thanh toán.' }
         ],
+        psychology: {
+          hoursSaved: '4.0 giờ',
+          painPoints: [
+            'Lau dọn mãi không sạch, bụi bẩn vẫn bám đầy',
+            'Hóa chất tẩy rửa hại da tay, gây dị ứng',
+            'Mệt mỏi rã rời sau cả ngày dọn dẹp'
+          ],
+          gainPoints: [
+            'Nhà cửa sạch bong kin kít, thơm tho',
+            'Máy móc hiện đại làm sạch sâu mọi ngóc ngách',
+            'Tận hưởng thời gian nghỉ ngơi bên gia đình'
+          ],
+          authoritySignals: ['Hiệp hội Vệ sinh Công nghiệp'],
+          highEndTestimonial: {
+            name: 'Chị Bích Phương',
+            role: 'Chủ Spa',
+            content: 'Nhân viên làm rất kỹ, đến cái khe cửa sổ cũng lau sạch trơn. Mình rất hài lòng.'
+          }
+        },
         pricing: [
             {
                 name: 'Theo giờ',
@@ -439,6 +807,25 @@ export const categories: ServiceCategory[] = [
           'Ghi chỉ số điện nước và tính toán chính xác',
           'Giám sát bảo trì và sửa chữa hư hỏng vặt'
         ],
+        psychology: {
+          hoursSaved: '15.0 giờ',
+          painPoints: [
+            'Đau đầu vì khách thuê gọi điện báo hỏng hóc liên tục',
+            'Mệt mỏi đi thu tiền nhà, nhắc nợ từng phòng',
+            'Không kiểm soát được chi phí sửa chữa, bảo trì'
+          ],
+          gainPoints: [
+            'Không còn tin nhắn làm phiền, thảnh thơi tận hưởng',
+            'Tiền về tài khoản đều đặn đúng ngày',
+            'Mọi sự cố có đội ngũ kỹ thuật xử lý ngay'
+          ],
+          authoritySignals: ['Hiệp hội Quản lý Bất động sản'],
+          highEndTestimonial: {
+            name: 'Cô Kim Chi',
+            role: 'Chủ nhà trọ Quận 7',
+            content: 'Từ ngày giao cho LUVIA, cô đi du lịch suốt mà tiền vẫn về đều. Các cháu quản lý rất tốt.'
+          }
+        },
         pricing: [
             {
                 name: 'Phí quản lý',
@@ -460,6 +847,25 @@ export const categories: ServiceCategory[] = [
           'Quản lý hợp đồng và thông tin khách thuê',
           'Báo cáo lãi lỗ hàng tháng rõ ràng'
         ],
+        psychology: {
+          hoursSaved: '8.0 giờ',
+          painPoints: [
+            'Cộng sổ sách tay dễ sai sót, thất thoát tiền bạc',
+            'Quên thu tiền điện nước, tranh cãi với khách thuê',
+            'Mất cả buổi tối để tính toán công nợ cuối tháng'
+          ],
+          gainPoints: [
+            'Tính tiền tự động 100%, chính xác tuyệt đối',
+            'Gửi hóa đơn qua Zalo chỉ với 1 cú chạm',
+            'Kiểm soát doanh thu, lãi lỗ mọi lúc mọi nơi'
+          ],
+          authoritySignals: ['Hiệp hội Phần mềm Việt Nam'],
+          highEndTestimonial: {
+            name: 'Anh Tuấn Anh',
+            role: 'Chủ chuỗi căn hộ',
+            content: 'App rất dễ dùng, giúp mình quản lý 50 phòng trọ nhẹ tênh. Thích nhất tính năng gửi hóa đơn Zalo tự động.'
+          }
+        },
         pricing: [
             {
                 name: 'Gói Cơ bản',
@@ -481,6 +887,25 @@ export const categories: ServiceCategory[] = [
           'Nút kêu gọi hành động (Đặt lịch/Đặt cọc) nổi bật',
           'Tối ưu hiển thị trên mọi thiết bị di động'
         ],
+        psychology: {
+          hoursSaved: '30.0 giờ',
+          painPoints: [
+            'Đăng tin rao vặt mãi không ai hỏi, trôi bài liên tục',
+            'Khách đến xem rồi đi vì hình ảnh không giống thực tế',
+            'Mất thời gian dẫn khách đi xem phòng nhiều lần'
+          ],
+          gainPoints: [
+            'Web đẹp lung linh, khách xem là muốn thuê ngay',
+            'Tour 360 độ giúp khách chốt online không cần đến nơi',
+            'Tăng uy tín và giá trị cho căn hộ của bạn'
+          ],
+          authoritySignals: ['Cộng đồng Marketing Bất động sản'],
+          highEndTestimonial: {
+            name: 'Chị Mai Anh',
+            role: 'Môi giới BĐS',
+            content: 'Có cái landing page này, khách hàng tin tưởng hơn hẳn. Mình chốt cọc online được mấy căn rồi.'
+          }
+        },
         pricing: [
             {
                 name: 'Thiết kế Web',
@@ -502,6 +927,25 @@ export const categories: ServiceCategory[] = [
           'Theo dõi tiến độ và nhận kết quả bàn giao tận tay',
           'Tư vấn quy định thi công và nội quy tòa nhà'
         ],
+        psychology: {
+          hoursSaved: '6.0 giờ',
+          painPoints: [
+            'Xin nghỉ làm để chạy đi chạy lại nộp hồ sơ cho BQL',
+            'Chờ đợi BQL duyệt đơn đăng ký thi công, chuyển đồ',
+            'Không nắm rõ quy định dẫn đến bị phạt tiền'
+          ],
+          gainPoints: [
+            'Hồ sơ được chuẩn bị đúng chuẩn, duyệt nhanh chóng',
+            'Không cần gặp mặt BQL, mọi thứ có người lo',
+            'Được tư vấn quy định kỹ càng, tránh bị phạt'
+          ],
+          authoritySignals: ['Ban Quản lý các khu chung cư cao cấp'],
+          highEndTestimonial: {
+            name: 'Anh Đức Minh',
+            role: 'Cư dân Vinhomes',
+            content: 'Mới chuyển về chưa rành thủ tục, may có dịch vụ này hỗ trợ đăng ký thẻ cư dân và thi công nội thất rất nhanh.'
+          }
+        },
         pricing: [
             {
                 name: 'Phí dịch vụ',
@@ -534,6 +978,25 @@ export const categories: ServiceCategory[] = [
           'Thay bạn xếp hàng nộp hồ sơ',
           'Nhận kết quả và giao tận nhà'
         ],
+        psychology: {
+          hoursSaved: '8.5 giờ',
+          painPoints: [
+            'Chờ đợi xếp hàng lấy số tại BHXH rất mệt mỏi',
+            'Không biết điền mẫu đơn nào cho đúng quy định',
+            'Hồ sơ thiếu giấy tờ phải đi lại bổ sung nhiều lần'
+          ],
+          gainPoints: [
+            'Ngồi nhà chăm con, có người thay bạn đi làm thủ tục',
+            'Hồ sơ được chuẩn bị đầy đủ, chính xác 100%',
+            'Tiền trợ cấp về tài khoản nhanh chóng'
+          ],
+          authoritySignals: ['Bảo hiểm Xã hội Việt Nam'],
+          highEndTestimonial: {
+            name: 'Chị Lan Hương',
+            role: 'Mẹ bỉm sữa',
+            content: 'Mới sinh con xong đi lại rất bất tiện. Nhờ LUVIA mà mình nhận được tiền thai sản rất nhanh mà không phải ra khỏi nhà.'
+          }
+        },
         pricing: [
             {
                 name: 'Dịch vụ nộp hộ',
@@ -556,6 +1019,25 @@ export const categories: ServiceCategory[] = [
           'Mua sắm và sơ chế thực phẩm theo chế độ dinh dưỡng',
           'Cập nhật tình hình sức khỏe và hình ảnh cho con cái'
         ],
+        psychology: {
+          hoursSaved: '12.0 giờ',
+          painPoints: [
+            'Lo lắng bố mẹ ở nhà một mình buồn chán, không ai chăm sóc',
+            'Không có thời gian đưa bố mẹ đi khám bệnh định kỳ',
+            'Bố mẹ ngại phiền con cháu nên giấu bệnh'
+          ],
+          gainPoints: [
+            'Có người bầu bạn, trò chuyện giúp các cụ vui vẻ',
+            'Đồng hành đi khám bệnh chu đáo như con cháu trong nhà',
+            'Cập nhật tình hình sức khỏe thường xuyên cho bạn'
+          ],
+          authoritySignals: ['Hội Người Cao Tuổi'],
+          highEndTestimonial: {
+            name: 'Anh Tuấn Kiệt',
+            role: 'Kỹ sư tại Nhật',
+            content: 'Ở xa không về thăm bố mẹ thường xuyên được, may có các bạn thay mình qua lại chăm sóc, mình yên tâm làm việc hơn hẳn.'
+          }
+        },
         pricing: [
             {
                 name: 'Gói Thăm hỏi',
@@ -577,6 +1059,25 @@ export const categories: ServiceCategory[] = [
           'Phân quyền truy cập bảo mật cho từng chi, từng nhánh',
           'Thông báo ngày giỗ, ngày họp mặt dòng họ tự động'
         ],
+        psychology: {
+          hoursSaved: '50.0 giờ',
+          painPoints: [
+            'Gia phả viết tay cũ nát, mối mọt, khó bảo quản',
+            'Con cháu đời sau không biết mặt mũi, tiểu sử ông bà tổ tiên',
+            'Thông tin dòng họ rời rạc, không ai cập nhật'
+          ],
+          gainPoints: [
+            'Gia phả số hóa hiện đại, lưu trữ vĩnh viễn',
+            'Hình ảnh, video tổ tiên sống động, dễ dàng truy cập',
+            'Kết nối các chi, các nhánh trong dòng họ'
+          ],
+          authoritySignals: ['Viện Nghiên cứu Hán Nôm'],
+          highEndTestimonial: {
+            name: 'Bác Nguyễn Văn Hùng',
+            role: 'Trưởng tộc Nguyễn',
+            content: 'Làm xong cái web này, con cháu ở nước ngoài cũng vào xem được gốc gác. Rất ý nghĩa.'
+          }
+        },
         pricing: [
             {
                 name: 'Thiết kế Gia phả',
@@ -598,6 +1099,25 @@ export const categories: ServiceCategory[] = [
           'Tính năng "Di chúc số": Chỉ định người thừa kế khi cần',
           'Truy cập mọi lúc mọi nơi, ngay cả khi mất giấy tờ gốc'
         ],
+        psychology: {
+          hoursSaved: '10.0 giờ',
+          painPoints: [
+            'Giấy tờ nhà đất, sổ tiết kiệm cất mỗi nơi một ít, dễ thất lạc',
+            'Không nhớ hết mình có bao nhiêu tài sản, đáo hạn ngày nào',
+            'Rủi ro tranh chấp thừa kế khi không có di chúc rõ ràng'
+          ],
+          gainPoints: [
+            'Quy hoạch tài sản gọn gàng trong một két sắt số',
+            'Bảo mật tuyệt đối, chỉ mình bạn biết',
+            'Dễ dàng chuyển giao cho người thừa kế khi cần'
+          ],
+          authoritySignals: ['Hiệp hội An toàn Thông tin'],
+          highEndTestimonial: {
+            name: 'Anh Minh Đạt',
+            role: 'Doanh nhân',
+            content: 'Quản lý tài sản tập trung giúp tôi có cái nhìn tổng quan về tài chính gia đình và yên tâm hơn về tương lai.'
+          }
+        },
         pricing: [
             {
                 name: 'Phí duy trì',
@@ -619,6 +1139,25 @@ export const categories: ServiceCategory[] = [
           'Hỗ trợ mua sổ, đóng viện phí (nếu yêu cầu)',
           'Quản lý lịch sử khám bệnh và đơn thuốc online'
         ],
+        psychology: {
+          hoursSaved: '4.5 giờ',
+          painPoints: [
+            'Dậy từ 4h sáng để xếp hàng lấy số',
+            'Mệt mỏi chờ đợi trong môi trường đông đúc',
+            'Quy trình khám bệnh phức tạp, dễ nhầm lẫn'
+          ],
+          gainPoints: [
+            'Đến là khám ngay, không cần chờ đợi',
+            'Được hướng dẫn tận tình từng bước',
+            'Sức khỏe được đảm bảo, tinh thần thoải mái'
+          ],
+          authoritySignals: ['Bệnh viện Đại học Y Dược', 'Bệnh viện Chợ Rẫy', 'Bệnh viện Bạch Mai'],
+          highEndTestimonial: {
+            name: 'Cô Lê Thị Mai',
+            role: 'Cán bộ hưu trí - 68 tuổi',
+            content: 'Nhờ có các cháu mà cô đi khám bệnh nhẹ nhàng như đi dạo. Cô không còn sợ cảnh chen lấn ở bệnh viện nữa. Cảm ơn các cháu rất nhiều.'
+          }
+        },
         pricing: [
             {
                 name: 'Lấy số khám bệnh',
@@ -640,12 +1179,33 @@ export const categories: ServiceCategory[] = [
           'Đóng gói quà tặng nghệ thuật và viết thiệp tay',
           'Giao hàng bất ngờ tạo niềm vui cho người nhận'
         ],
+        psychology: {
+          hoursSaved: '4.0 giờ',
+          painPoints: [
+            'Đau đầu không biết mua quà gì cho hợp ý',
+            'Mất thời gian đi dạo phố, chen chúc kẹt xe',
+            'Mua phải hàng giả, hàng kém chất lượng'
+          ],
+          gainPoints: [
+            'Được tư vấn món quà tinh tế, đúng gu người nhận',
+            'Mua hàng chính hãng, có bill đầy đủ',
+            'Gói quà đẹp mắt, trao gửi yêu thương trọn vẹn'
+          ],
+          authoritySignals: ['Các thương hiệu cao cấp'],
+          highEndTestimonial: {
+            name: 'Anh Thành Nam',
+            role: 'Giám đốc Marketing',
+            content: 'Nhờ LUVIA chọn quà tặng vợ dịp kỷ niệm mà cô ấy thích mê. Gói quà quá đẹp và sang trọng.'
+          }
+        },
         pricing: [
             {
                 name: 'Phí mua hộ',
                 price: '10% giá trị',
                 description: 'Tối thiểu 100.000 VNĐ/đơn.',
-                features: ['Tìm kiếm sản phẩm', 'Mua hàng chính hãng', 'Đóng gói quà tặng', 'Giao tận tay']
+                features: ['Tìm kiếm sản phẩm', 'Mua hàng chính hãng', 'Đóng gói quà tặng', 'Giao tận tay'],
+                actionLabel: 'Nhắn tin qua Zalo',
+                actionUrl: 'https://zalo.me/0899660847'
             }
         ]
       },
@@ -661,6 +1221,25 @@ export const categories: ServiceCategory[] = [
           'Lưu trữ trên Cloud riêng tư, không lo thất lạc',
           'In ấn thành sách ảnh (Photobook) cao cấp'
         ],
+        psychology: {
+          hoursSaved: '20.0 giờ',
+          painPoints: [
+            'Ảnh cũ ố vàng, hư hỏng theo thời gian',
+            'Kỷ niệm gia đình nằm trong album cũ, ít khi mở ra xem',
+            'Con cháu không biết về quá khứ hào hùng của ông bà'
+          ],
+          gainPoints: [
+            'Ảnh cũ được phục hồi sắc nét như mới',
+            'Video câu chuyện gia đình cảm động, xem là nhớ',
+            'Lưu giữ ký ức mãi mãi trên không gian số'
+          ],
+          authoritySignals: ['Viện Phim Việt Nam'],
+          highEndTestimonial: {
+            name: 'Chị Thu Hà',
+            role: 'Giáo viên',
+            content: 'Xem lại video gia đình mà cả nhà cùng khóc vì xúc động. Cảm ơn LUVIA đã giúp gia đình mình sống lại những ký ức đẹp.'
+          }
+        },
         pricing: [
             {
                 name: 'Gói Kỷ niệm',
@@ -816,92 +1395,5 @@ export const categories: ServiceCategory[] = [
       }
     ]
   },
-  {
-    id: 'legal',
-    title: 'Thủ tục Hành chính & Pháp lý',
-    shortTitle: 'PHÁP LÝ',
-    subtitle: 'HỖ TRỢ HÀNH CHÍNH',
-    description: 'Dịch vụ hỗ trợ thực hiện các thủ tục hành chính, giấy tờ với sự tận tâm và bảo mật.',
-    image: 'https://picsum.photos/seed/legal_lv/1200/1600',
-    layout: 'split',
-    items: [
-      { 
-        id: 'business-license',
-        title: 'Giấy phép kinh doanh', 
-        description: 'Chuẩn bị bộ hồ sơ đăng ký kinh doanh hộ cá thể, điền sẵn thông tin và thay bạn đi nộp để sớm có giấy phép hoạt động.', 
-        image: 'https://picsum.photos/seed/business_license/800/600',
-        detailedDescription: 'Hỗ trợ nộp hồ sơ đăng ký kinh doanh cho hộ cá thể và doanh nghiệp nhỏ. Chúng tôi giúp bạn chuẩn bị bộ hồ sơ theo mẫu có sẵn, điền thông tin và thay mặt nộp tại cơ quan đăng ký kinh doanh, giúp bạn khởi đầu thuận lợi.',
-        features: [
-          'Cung cấp biểu mẫu đăng ký chuẩn',
-          'Hỗ trợ điền thông tin vào hồ sơ',
-          'Thay bạn đi nộp hồ sơ và nhận kết quả',
-          'Hỗ trợ các thủ tục khắc dấu (qua đối tác)'
-        ],
-        process: [
-          { step: '01', title: 'Tư vấn', description: 'Tư vấn loại hình doanh nghiệp và các thông tin cần thiết.' },
-          { step: '02', title: 'Soạn & Ký hồ sơ', description: 'Soạn thảo hồ sơ và gửi khách hàng ký (hoặc ký số).' },
-          { step: '03', title: 'Nộp hồ sơ', description: 'Nộp hồ sơ lên Sở Kế hoạch & Đầu tư.' },
-          { step: '04', title: 'Bàn giao', description: 'Bàn giao Giấy phép kinh doanh và Con dấu tại nhà.' }
-        ],
-        pricing: [
-            {
-                name: 'Hộ kinh doanh',
-                price: '1.500.000 VNĐ',
-                description: 'Đăng ký kinh doanh hộ cá thể.',
-                features: ['Soạn hồ sơ', 'Nộp tại UBND Quận', 'Nhận giấy phép', 'Đăng ký mã số thuế']
-            },
-            {
-                name: 'Thành lập Công ty',
-                price: '4.500.000 VNĐ',
-                description: 'Thành lập công ty TNHH/Cổ phần.',
-                features: ['Giấy phép kinh doanh', 'Con dấu tròn', 'Công bố mẫu dấu', 'Khai thuế ban đầu'],
-                recommended: true
-            }
-        ]
-      },
-      { 
-        id: 'legal-draft',
-        title: 'Soạn thảo đơn từ', 
-        description: 'Đánh máy và soạn thảo các loại đơn từ, văn bản hành chính theo mẫu chuẩn, trình bày đẹp và rõ ràng nội dung bạn mong muốn.', 
-        image: 'https://picsum.photos/seed/legal_draft/800/600',
-        detailedDescription: 'Dịch vụ hỗ trợ đánh máy và soạn thảo văn bản hành chính theo mẫu. Nếu bạn không rành vi tính hoặc không biết trình bày văn bản, chúng tôi sẽ giúp bạn soạn thảo các lá đơn, công văn dựa trên nội dung bạn cung cấp một cách chỉn chu nhất.',
-        features: [
-          'Đánh máy văn bản nhanh, chuẩn chính tả',
-          'Trình bày văn bản đẹp, đúng thể thức hành chính',
-          'Tìm kiếm các mẫu đơn từ phổ biến giúp bạn',
-          'In ấn và đóng quyển hồ sơ đẹp mắt'
-        ],
-        pricing: [
-            {
-                name: 'Soạn đơn',
-                price: '500.000 VNĐ/văn bản',
-                description: 'Soạn thảo các loại đơn từ hành chính.',
-                features: ['Tư vấn nội dung', 'Soạn thảo đúng luật', 'Hướng dẫn gửi đơn']
-            }
-        ]
-      },
-      { 
-        id: 'verification',
-        title: 'Chuyển phát & Xác minh', 
-        description: 'Thay bạn đến tận nơi để gửi đơn từ, chụp ảnh hiện trạng nhà đất hoặc xác minh địa chỉ thực tế một cách khách quan.', 
-        image: 'https://picsum.photos/seed/verification/800/600',
-        detailedDescription: 'Dịch vụ xác minh thực địa và thu thập thông tin theo yêu cầu. Chúng tôi thay bạn đến tận nơi để kiểm tra hiện trạng nhà đất, xác minh địa chỉ, hoặc thu thập các bằng chứng hình ảnh/video cần thiết một cách khách quan và bảo mật.',
-        features: [
-          'Nhân viên đến tận nơi xác minh nhanh chóng',
-          'Cung cấp hình ảnh, video, ghi âm thực tế',
-          'Báo cáo trung thực, khách quan',
-          'Giữ bí mật tuyệt đối về nhiệm vụ'
-        ],
-        pricing: [
-            {
-                name: 'Phí thực hiện',
-                price: '1.000.000 VNĐ/lần',
-                description: 'Xác minh thực địa theo yêu cầu.',
-                features: ['Đến tận nơi', 'Chụp ảnh/Quay phim', 'Ghi âm (nếu cần)', 'Báo cáo chi tiết']
-            }
-        ]
-      },
 
-    ]
-  }
 ];

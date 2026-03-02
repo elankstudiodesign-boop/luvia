@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { 
-  Globe, Phone, ArrowRight 
+  Globe, Phone, ArrowRight, CheckCircle, ShieldCheck, Star, Clock, Users 
 } from 'lucide-react';
 import { categories, ServiceCategory } from './data/services';
 import ServiceDetail from './pages/ServiceDetail';
@@ -20,43 +20,106 @@ const Hero = () => {
           alt="LUVIA Hero" 
           className="w-full h-full object-cover animate-ken-burns"
         />
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-luvia-blue/20 to-luvia-blue/60" />
       </div>
       
-      <div className="absolute bottom-12 md:bottom-24 left-0 right-0 text-center text-white px-4">
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4 z-10">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-sm md:text-base font-medium tracking-[0.3em] uppercase mb-6 drop-shadow-md"
+          className="text-sm md:text-base font-medium tracking-[0.3em] uppercase mb-6 drop-shadow-md text-luvia-mint"
         >
-          Chiến dịch mới
+          QUẢN GIA CAO CẤP & TRỢ LÝ TOÀN NĂNG
         </motion.h2>
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl md:text-7xl font-display font-bold mb-10 tracking-wide drop-shadow-lg"
+          className="text-4xl md:text-7xl font-display font-bold mb-6 tracking-wide drop-shadow-lg"
         >
           HỆ SINH THÁI LUVIA
         </motion.h1>
+        <motion.p
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.8, delay: 0.3 }}
+           className="text-lg md:text-2xl font-light mb-10 max-w-3xl leading-relaxed text-gray-200"
+        >
+          Tiết kiệm 20 giờ xếp hàng chỉ với một lần chạm.
+        </motion.p>
+
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col items-center gap-8"
+          className="flex flex-col items-center gap-6"
         >
           <a 
-            href="#travel" 
-            className="inline-block px-10 py-4 bg-white text-luvia-blue text-xs font-bold uppercase tracking-[0.2em] hover:bg-luvia-mint transition-colors duration-300"
+            href="#legal" 
+            className="inline-block px-12 py-5 bg-luvia-emerald text-white text-sm font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-luvia-emerald transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
-            Khám phá ngay
+            Ủy thác ngay
           </a>
+          <p className="text-xs text-gray-300 italic tracking-wider flex items-center gap-2">
+            <Users size={12} className="text-luvia-gold" />
+            Chỉ nhận tối đa 5 khách hàng ủy thác/tháng
+          </p>
         </motion.div>
       </div>
     </section>
   );
 };
+
+const SocialProof = () => (
+  <section className="bg-luvia-light py-12 border-b border-gray-200">
+    <div className="container mx-auto px-4 text-center">
+      <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-8">
+        Được tin tưởng bởi 500+ Gia đình & Doanh nghiệp
+      </p>
+      <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+        <div className="flex items-center gap-2 font-display font-bold text-xl text-gray-600"><Star className="text-luvia-gold" /> VINHOMES</div>
+        <div className="flex items-center gap-2 font-display font-bold text-xl text-gray-600"><Star className="text-luvia-gold" /> SUN GROUP</div>
+        <div className="flex items-center gap-2 font-display font-bold text-xl text-gray-600"><Star className="text-luvia-gold" /> VIETNAM AIRLINES</div>
+        <div className="flex items-center gap-2 font-display font-bold text-xl text-gray-600"><Star className="text-luvia-gold" /> TECHCOMBANK</div>
+      </div>
+    </div>
+  </section>
+);
+
+const RiskReversal = () => (
+  <section className="bg-luvia-blue text-white py-16">
+    <div className="container mx-auto px-4">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto">
+        <div className="flex-1">
+           <h3 className="text-2xl md:text-3xl font-display font-bold mb-4 flex items-center gap-3">
+             <ShieldCheck size={32} className="text-luvia-mint" />
+             Cam kết rủi ro bằng 0
+           </h3>
+           <p className="text-gray-300 leading-relaxed">
+             Chúng tôi hiểu sự lo lắng của bạn khi giao phó công việc quan trọng. LUVIA cam kết hoàn tiền 100% nếu không hoàn thành đúng hạn hoặc sai sót trong quá trình thực hiện.
+           </p>
+        </div>
+        <div className="flex-shrink-0 bg-white/10 p-6 rounded-lg backdrop-blur-sm border border-white/20">
+           <ul className="space-y-3">
+             <li className="flex items-center gap-3 text-sm">
+               <CheckCircle size={16} className="text-luvia-mint" />
+               <span>Bảo hiểm trách nhiệm trọn gói</span>
+             </li>
+             <li className="flex items-center gap-3 text-sm">
+               <CheckCircle size={16} className="text-luvia-mint" />
+               <span>Hoàn tiền 100% nếu sai hẹn</span>
+             </li>
+             <li className="flex items-center gap-3 text-sm">
+               <CheckCircle size={16} className="text-luvia-mint" />
+               <span>Bảo mật thông tin tuyệt đối</span>
+             </li>
+           </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+);
 
 const FullWidthSection = ({ category }: { category: ServiceCategory }) => (
   <section id={category.id} className="relative w-full min-h-[80vh] md:min-h-screen overflow-hidden group flex items-center justify-center">
@@ -258,11 +321,23 @@ const HomePage = () => {
   return (
     <>
       <Hero />
-      <FullWidthSection category={categories[0]} /> {/* Travel */}
-      <SplitSection category={categories[1]} /> {/* Property */}
-      <GridSection category={categories[2]} /> {/* Family */}
-      <FullWidthSection category={categories[3]} /> {/* Business */}
-      <SplitSection category={categories[4]} reverse /> {/* Legal */}
+      <SocialProof />
+      {/* Legal - High Trust - First (Halo Effect) */}
+      <SplitSection category={categories[0]} />
+      
+      {/* Travel - Popular */}
+      <FullWidthSection category={categories[1]} />
+      
+      {/* Property - Visual */}
+      <SplitSection category={categories[2]} reverse />
+      
+      {/* Family - Personal */}
+      <GridSection category={categories[3]} />
+      
+      {/* Business - Professional */}
+      <FullWidthSection category={categories[4]} />
+      
+      <RiskReversal />
     </>
   );
 };

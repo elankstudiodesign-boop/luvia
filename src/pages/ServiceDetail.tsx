@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, CheckCircle, Phone, X, MessageCircle, Loader2, 
   AlertCircle, Plane, Home, ShieldCheck, Star, Clock, 
-  Users, Award, FileCheck, ChevronRight 
+  Users, Award, FileCheck, ChevronRight, XCircle, Coffee, ThumbsUp, HeartHandshake
 } from 'lucide-react';
-import { categories, PricingPackage } from '../data/services';
+import { categories, PricingPackage, ServicePsychology } from '../data/services';
 import MedicalBookingForm from '../components/MedicalBookingForm';
 import { INTEGRATIONS } from '../config/integrations';
 
@@ -723,6 +723,118 @@ const BookingModal = ({
   );
 };
 
+const PsychologyTimeline = ({ steps }: { steps: { step: string; title: string; description: string }[] }) => (
+  <div className="py-8">
+    <h3 className="text-2xl font-bold text-gray-900 mb-10 tracking-tight">Quy trình tinh gọn</h3>
+    <div className="relative">
+      {/* Connector Line (Desktop) */}
+      <div className="hidden md:block absolute top-6 left-0 right-0 h-0.5 bg-gray-100 -z-10"></div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {steps.map((item, idx) => (
+          <div key={idx} className="relative bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+            <div className="w-12 h-12 bg-luvia-blue text-white rounded-full flex items-center justify-center text-xl font-bold mb-4 shadow-lg shadow-blue-200">
+              {idx + 1}
+            </div>
+            <h4 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h4>
+            <p className="text-sm text-gray-500 leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+const ContrastSection = ({ psychology }: { psychology?: ServicePsychology }) => {
+  if (!psychology) return null;
+
+  return (
+    <div className="my-16 bg-gray-50 rounded-3xl p-8 md:p-12 overflow-hidden relative">
+      <div className="text-center mb-12">
+        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Sự lựa chọn của bạn</h3>
+        <p className="text-gray-500">Tại sao phải tự làm khổ mình trong khi có thể thảnh thơi?</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+        {/* Pain Side */}
+        <div className="bg-white p-8 rounded-2xl border border-red-100 shadow-sm opacity-80 hover:opacity-100 transition-opacity">
+          <div className="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+            <XCircle className="text-red-500" size={32} />
+            <h4 className="text-xl font-bold text-gray-500">Tự làm (0đ)</h4>
+          </div>
+          <ul className="space-y-4">
+            {psychology.painPoints.map((point, idx) => (
+              <li key={idx} className="flex items-start gap-3 text-gray-500">
+                <XCircle size={18} className="flex-shrink-0 mt-1 text-red-300" />
+                <span>{point}</span>
+              </li>
+            ))}
+            <li className="flex items-start gap-3 text-gray-500 font-bold mt-6 pt-4 border-t border-gray-100">
+              <Clock size={18} className="flex-shrink-0 mt-1 text-red-300" />
+              <span>Mất hàng chục giờ chờ đợi</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Gain Side */}
+        <div className="bg-white p-8 rounded-2xl border-2 border-luvia-blue shadow-xl transform md:scale-105 relative z-20">
+          <div className="absolute top-0 right-0 bg-luvia-blue text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg uppercase tracking-wider">
+            Khuyên dùng
+          </div>
+          <div className="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+            <CheckCircle className="text-green-500" size={32} />
+            <h4 className="text-xl font-bold text-luvia-blue">Ủy thác LUVIA</h4>
+          </div>
+          <ul className="space-y-4">
+            {psychology.gainPoints.map((point, idx) => (
+              <li key={idx} className="flex items-start gap-3 text-gray-800">
+                <CheckCircle size={18} className="flex-shrink-0 mt-1 text-green-500" />
+                <span className="font-medium">{point}</span>
+              </li>
+            ))}
+            <li className="flex items-start gap-3 text-luvia-blue font-bold mt-6 pt-4 border-t border-gray-100">
+              <Coffee size={18} className="flex-shrink-0 mt-1" />
+              <span>Tiết kiệm {psychology.hoursSaved} cuộc đời</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const AuthoritySection = ({ signals }: { signals?: string[] }) => {
+  if (!signals || signals.length === 0) return null;
+  
+  return (
+    <div className="mt-8 pt-8 border-t border-gray-100">
+      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest text-center mb-4">
+        Được tín nhiệm bởi
+      </p>
+      <div className="flex flex-wrap justify-center gap-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+        {signals.map((signal, idx) => (
+          <span key={idx} className="bg-gray-100 px-3 py-1 rounded text-xs font-bold text-gray-600">
+            {signal}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const SeniorSupport = () => (
+  <div className="flex items-center justify-between gap-3 group cursor-pointer hover:bg-white/50 transition-colors rounded-lg p-1">
+    <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-luvia-blue flex-shrink-0 group-hover:scale-110 transition-transform">
+      <HeartHandshake size={16} />
+    </div>
+    <div className="text-left flex-1">
+      <p className="text-xs font-bold text-gray-900 uppercase tracking-wide">Dành cho người lớn tuổi</p>
+      <p className="text-[10px] text-gray-500">Hỗ trợ riêng 1:1, kiên nhẫn & tận tâm</p>
+    </div>
+    <ChevronRight size={14} className="text-gray-400 group-hover:translate-x-1 transition-transform" />
+  </div>
+);
+
 const ServiceDetail = () => {
   const { categoryId, serviceId } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -899,31 +1011,21 @@ const ServiceDetail = () => {
             )}
 
             {/* Process Steps - Minimalist Timeline */}
-            {service.process && (
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-10 tracking-tight">Quy trình xử lý hồ sơ</h3>
-                <div className="space-y-0">
-                  {service.process.map((item, idx) => (
-                    <div key={idx} className="flex gap-8 group">
-                      <div className="flex flex-col items-center">
-                        <div className="w-4 h-4 rounded-full bg-gray-200 border-2 border-white ring-1 ring-gray-300 group-hover:bg-blue-600 group-hover:ring-blue-200 transition-all duration-300"></div>
-                        {idx !== service.process!.length - 1 && <div className="w-px h-24 bg-gray-200 my-2 group-hover:bg-gray-300 transition-colors"></div>}
-                      </div>
-                      <div className="pb-12">
-                        <span className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 block">Bước {item.step}</span>
-                        <h4 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h4>
-                        <p className="text-gray-600">{item.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            {service.process && <PsychologyTimeline steps={service.process} />}
 
-            {/* Pricing Section - Clean Table */}
-            {service.pricing && (
-              <div className="mt-12">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8 tracking-tight">Bảng giá minh bạch</h3>
+            {/* Contrast Section - Pain vs Gain */}
+            <ContrastSection psychology={service.psychology} />
+
+            {/* Booking Form for Medical Service - Replaces Pricing */}
+             {serviceId === 'medical-assistant' ? (
+               <div className="mt-12" id="booking-form">
+                 <MedicalBookingForm onSuccess={() => {}} />
+               </div>
+             ) : (
+              /* Pricing Section - Clean Table */
+              service.pricing && (
+                <div className="mt-12">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-8 tracking-tight">Bảng giá minh bạch</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {service.pricing.map((pkg, idx) => (
                     <div key={idx} className={`relative p-8 rounded-2xl border transition-all duration-300 ${pkg.recommended ? 'bg-gray-900 text-white border-gray-900 shadow-xl scale-105 z-10' : 'bg-white text-gray-900 border-gray-200 hover:border-gray-300'}`}>
@@ -950,12 +1052,23 @@ const ServiceDetail = () => {
                         ))}
                       </ul>
 
-                      <button 
-                        onClick={() => handleSelectPackage(pkg)}
-                        className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest transition-all duration-300 ${pkg.recommended ? 'bg-white text-gray-900 hover:bg-gray-100' : 'bg-gray-900 text-white hover:bg-gray-800'}`}
-                      >
-                        Chọn gói này
-                      </button>
+                      {pkg.actionLabel && pkg.actionUrl ? (
+                        <a 
+                          href={pkg.actionUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className={`block w-full text-center py-4 rounded-xl font-bold text-sm uppercase tracking-widest transition-all duration-300 ${pkg.recommended ? 'bg-white text-gray-900 hover:bg-gray-100' : 'bg-gray-900 text-white hover:bg-gray-800'}`}
+                        >
+                          {pkg.actionLabel}
+                        </a>
+                      ) : (
+                        <button 
+                          onClick={() => handleSelectPackage(pkg)}
+                          className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest transition-all duration-300 ${pkg.recommended ? 'bg-white text-gray-900 hover:bg-gray-100' : 'bg-gray-900 text-white hover:bg-gray-800'}`}
+                        >
+                          Chọn gói này
+                        </button>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -964,74 +1077,95 @@ const ServiceDetail = () => {
                   <span>Cam kết không phát sinh chi phí ẩn. Hoàn tiền 100% nếu không hài lòng.</span>
                 </div>
               </div>
+            )
             )}
           </div>
 
           {/* Sidebar / CTA - 4 cols */}
           <div className="lg:col-span-4">
-            {serviceId === 'medical-assistant' ? (
-              <div className="sticky top-32 z-10">
-                <MedicalBookingForm onSuccess={() => {}} />
-              </div>
-            ) : (
               <div className="sticky top-32 space-y-8">
                 {/* Consultation Card */}
-                <div className="bg-white p-8 rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-luvia-blue to-luvia-mint"></div>
+                <div className="bg-white p-8 rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-100/50 transition-all duration-500">
+                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-luvia-blue via-blue-400 to-luvia-mint"></div>
                   
-                  <div className="flex items-center gap-4 mb-8 border-b border-gray-50 pb-8">
+                  <div className="flex items-center gap-5 mb-8 border-b border-gray-50 pb-8">
                     <div className="relative">
-                      <div className="w-16 h-16 rounded-full bg-gray-100 overflow-hidden border-2 border-white shadow-md">
-                        <img src="https://picsum.photos/seed/expert_avatar/200/200" alt="Specialist" className="w-full h-full object-cover" />
+                      <div className="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-gray-100 to-white shadow-lg">
+                        <img src="https://picsum.photos/seed/expert_avatar/200/200" alt="Specialist" className="w-full h-full rounded-full object-cover border-2 border-white" />
                       </div>
-                      <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
+                      <div className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-[3px] border-white rounded-full shadow-sm animate-pulse"></div>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Chuyên viên tư vấn</p>
-                      <p className="font-display font-bold text-lg text-luvia-blue">Nguyễn Thanh Hương</p>
-                      <div className="flex items-center gap-1 text-xs text-yellow-500 mt-1">
-                        <Star size={12} fill="currentColor" />
-                        <Star size={12} fill="currentColor" />
-                        <Star size={12} fill="currentColor" />
-                        <Star size={12} fill="currentColor" />
-                        <Star size={12} fill="currentColor" />
-                        <span className="text-gray-400 ml-1">(4.9/5)</span>
+                      <div className="flex items-center gap-1.5 mb-1">
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-luvia-blue bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
+                          Chuyên gia cao cấp
+                        </span>
+                      </div>
+                      <h4 className="font-display font-bold text-xl text-gray-900 flex items-center gap-1.5">
+                        Nguyễn Thanh Hương
+                        <CheckCircle size={16} className="text-blue-500 fill-blue-50" />
+                      </h4>
+                      <div className="flex items-center gap-1 text-xs text-yellow-500 mt-1.5">
+                        <div className="flex">
+                          {[1,2,3,4,5].map(i => (
+                            <Star key={i} size={14} fill="currentColor" className="text-yellow-400" />
+                          ))}
+                        </div>
+                        <span className="text-gray-400 font-medium ml-1.5">(4.9/5 - 500+ tư vấn)</span>
                       </div>
                     </div>
                   </div>
                   
-                  <h3 className="text-xl font-display font-bold text-luvia-blue mb-3">Đăng ký tư vấn miễn phí</h3>
-                  <p className="text-gray-500 text-sm mb-8 leading-relaxed">
-                    Để lại thông tin, chuyên viên của chúng tôi sẽ liên hệ lại để tư vấn chi tiết cho bạn trong vòng 30 phút.
-                  </p>
+                  <div className="mb-8">
+                    <h3 className="text-xl font-display font-bold text-gray-900 mb-3">Đăng ký tư vấn miễn phí</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">
+                      Để lại thông tin, chuyên viên của chúng tôi sẽ phân tích hồ sơ và liên hệ lại tư vấn giải pháp tối ưu cho bạn trong vòng 30 phút.
+                    </p>
+                  </div>
                   
-                  <div className="space-y-4">
+                  <div className="space-y-4 mb-8">
                     <a 
                       href="https://zalo.me/0899660847" 
                       target="_blank" 
                       rel="noreferrer"
-                      className="group flex items-center justify-center gap-3 w-full bg-[#0068FF] text-white py-4 font-bold uppercase tracking-widest hover:bg-[#0054CC] transition-all rounded-xl shadow-lg shadow-blue-200 hover:shadow-blue-300 hover:-translate-y-0.5"
+                      className="group relative flex items-center justify-center gap-3 w-full bg-gradient-to-r from-[#0068FF] to-[#0054CC] text-white py-4 font-bold uppercase tracking-widest rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-600/40 hover:-translate-y-0.5 transition-all overflow-hidden"
                     >
-                      <MessageCircle size={20} className="group-hover:scale-110 transition-transform" />
-                      Chat Zalo ngay
+                      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                      <MessageCircle size={20} className="relative z-10 group-hover:scale-110 transition-transform" />
+                      <span className="relative z-10">Chat Zalo ngay</span>
                     </a>
                     <a 
                       href="tel:0899660847"
-                      className="group flex items-center justify-center gap-3 w-full bg-white border-2 border-gray-100 text-gray-700 py-4 font-bold uppercase tracking-widest hover:border-luvia-blue hover:text-luvia-blue transition-all rounded-xl hover:shadow-lg hover:-translate-y-0.5"
+                      className="group flex items-center justify-center gap-3 w-full bg-white border border-gray-200 text-gray-700 py-4 font-bold uppercase tracking-widest hover:border-luvia-blue hover:text-luvia-blue hover:bg-blue-50/30 transition-all rounded-xl hover:shadow-lg hover:-translate-y-0.5"
                     >
                       <Phone size={20} className="group-hover:scale-110 transition-transform" />
                       Gọi 0899 660 847
                     </a>
                   </div>
+                  
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-100 mb-6">
+                    <SeniorSupport />
+                  </div>
 
-                  <div className="mt-8 pt-6 border-t border-gray-50">
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-2">
-                      <span className="flex items-center gap-2"><Clock size={14} /> Phản hồi:</span>
-                      <span className="font-bold text-green-600">~ 5 phút</span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm text-gray-500">
-                      <span className="flex items-center gap-2"><Users size={14} /> Đang online:</span>
-                      <span className="font-bold text-luvia-blue">12 chuyên viên</span>
+                  <div className="pt-6 border-t border-gray-100">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="flex flex-col gap-1">
+                        <span className="text-xs text-gray-400 flex items-center gap-1.5">
+                          <Clock size={12} /> Tốc độ phản hồi
+                        </span>
+                        <span className="font-bold text-green-600 text-sm flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                          ~ 5 phút
+                        </span>
+                      </div>
+                      <div className="flex flex-col gap-1 border-l border-gray-100 pl-4">
+                        <span className="text-xs text-gray-400 flex items-center gap-1.5">
+                          <Users size={12} /> Trực tuyến
+                        </span>
+                        <span className="font-bold text-luvia-blue text-sm">
+                          12 chuyên viên
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1047,8 +1181,9 @@ const ServiceDetail = () => {
                     <p className="text-xs font-bold text-gray-700 uppercase">Uy tín hàng đầu</p>
                   </div>
                 </div>
+
+                <AuthoritySection signals={service.psychology?.authoritySignals} />
               </div>
-            )}
           </div>
 
         </div>

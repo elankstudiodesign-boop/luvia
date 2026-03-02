@@ -6,6 +6,7 @@ import {
   ChevronRight, Heart 
 } from 'lucide-react';
 import { categories } from '../data/services';
+import ContactDrawer from './ContactDrawer';
 
 const SearchOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   const [query, setQuery] = useState('');
@@ -106,6 +107,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -182,9 +184,12 @@ const Navbar = () => {
 
           {/* Right: Contact, Wishlist, Account */}
           <div className="flex items-center justify-end gap-6 w-1/3">
-            <a href="#" className="text-sm font-medium uppercase tracking-wide hover:opacity-70 transition-opacity hidden lg:block">
+            <button 
+              onClick={() => setIsContactOpen(true)}
+              className="text-sm font-medium uppercase tracking-wide hover:opacity-70 transition-opacity hidden lg:block"
+            >
               Liên hệ với chúng tôi
-            </a>
+            </button>
             <button className="hover:opacity-70 transition-opacity">
               <Heart size={20} strokeWidth={1.5} />
             </button>
@@ -288,6 +293,8 @@ const Navbar = () => {
       </nav>
 
       {/* Menu Drawer */}
+      <ContactDrawer isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      
       <AnimatePresence>
         {isMenuOpen && (
           <>
@@ -336,7 +343,15 @@ const Navbar = () => {
                   </button>
                 ))}
                 <div className="mt-8 px-6 space-y-4 text-sm text-gray-600">
-                  <p className="cursor-pointer hover:text-luvia-blue">Dịch vụ Khách hàng</p>
+                  <p 
+                    className="cursor-pointer hover:text-luvia-blue"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsContactOpen(true);
+                    }}
+                  >
+                    Dịch vụ Khách hàng
+                  </p>
                   <p className="cursor-pointer hover:text-luvia-blue">Tuyển dụng</p>
                   <p className="cursor-pointer hover:text-luvia-blue">Pháp lý & Quyền riêng tư</p>
                 </div>
