@@ -50,7 +50,12 @@ db.exec(`
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     status TEXT DEFAULT 'new'
   );
-// ... (rest of schema)
+  CREATE TABLE IF NOT EXISTS customers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    phone TEXT UNIQUE NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
 `);
 
 // Add booking_code column if it doesn't exist (migration)
@@ -88,6 +93,14 @@ async function sendTelegramMessage(message: string) {
 }
 
 // ...
+
+async function startServer() {
+  const app = express();
+  const PORT = Number(process.env.PORT) || 5173;
+
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.static(path.join(__dirname, 'public')));
 
   app.post('/api/bookings', (req, res) => {
     try {
