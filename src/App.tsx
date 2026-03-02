@@ -13,7 +13,7 @@ import UtilityBar from './components/UtilityBar';
 
 const Hero = () => {
   return (
-    <section className="relative h-[calc(100vh-64px)] md:h-[calc(100vh-80px)] w-full overflow-hidden mt-[64px] md:mt-[80px]">
+    <section className="relative h-screen w-full overflow-hidden">
       <div className="absolute inset-0">
         <img 
           src="https://picsum.photos/seed/luxury_hero_lv/1920/1080" 
@@ -287,7 +287,6 @@ export default function App() {
         {/* Public Routes */}
         <Route path="/" element={
           <div className="min-h-screen bg-white font-sans selection:bg-luvia-mint selection:text-luvia-blue">
-            <UtilityBar />
             <Navbar />
             <HomePage />
             <Footer />
@@ -295,7 +294,6 @@ export default function App() {
         } />
         <Route path="/service/:categoryId/:serviceId" element={
           <div className="min-h-screen bg-white font-sans selection:bg-luvia-mint selection:text-luvia-blue">
-            <UtilityBar />
             <Navbar />
             <ServiceDetail />
             <Footer />
@@ -303,28 +301,24 @@ export default function App() {
         } />
         <Route path="/about" element={
           <div className="min-h-screen bg-white font-sans selection:bg-luvia-mint selection:text-luvia-blue">
-            <UtilityBar />
             <AboutPage />
             <Footer />
           </div>
         } />
         <Route path="/careers" element={
           <div className="min-h-screen bg-white font-sans selection:bg-luvia-mint selection:text-luvia-blue">
-            <UtilityBar />
             <CareersPage />
             <Footer />
           </div>
         } />
         <Route path="/legal" element={
           <div className="min-h-screen bg-white font-sans selection:bg-luvia-mint selection:text-luvia-blue">
-            <UtilityBar />
             <LegalPage />
             <Footer />
           </div>
         } />
         <Route path="/sitemap" element={
           <div className="min-h-screen bg-white font-sans selection:bg-luvia-mint selection:text-luvia-blue">
-            <UtilityBar />
             <SitemapPage />
             <Footer />
           </div>

@@ -10,15 +10,15 @@ const SitemapPage = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[40vh] w-full overflow-hidden mt-[64px] md:mt-[80px] bg-gray-100 flex items-center justify-center">
+      <section className="relative h-[40vh] w-full overflow-hidden bg-gray-900 flex items-center justify-center">
         <div className="text-center px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 tracking-wide text-luvia-blue">SITEMAP</h1>
-            <p className="text-lg font-light tracking-wider uppercase text-gray-500">Bản đồ website</p>
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 tracking-wide text-white">SITEMAP</h1>
+            <p className="text-lg font-light tracking-wider uppercase text-gray-300">Bản đồ website</p>
           </motion.div>
         </div>
       </section>

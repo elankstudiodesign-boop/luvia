@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, CheckCircle, Phone, X, MessageCircle, Loader2, AlertCircle } from 'lucide-react';
+import { 
+  ArrowLeft, CheckCircle, Phone, X, MessageCircle, Loader2, 
+  AlertCircle, Plane, Home, ShieldCheck, Star, Clock, 
+  Users, Award, FileCheck, ChevronRight 
+} from 'lucide-react';
 import { categories, PricingPackage } from '../data/services';
 import MedicalBookingForm from '../components/MedicalBookingForm';
 import { INTEGRATIONS } from '../config/integrations';
@@ -24,7 +28,45 @@ const BookingModal = ({
   formUrl?: string;
 }) => {
   const [step, setStep] = useState<'form' | 'payment' | 'success'>('form');
-  const [formData, setFormData] = useState({ name: '', phone: '', note: '' });
+  
+  // Extended form state
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    phone: '', 
+    note: '',
+    // Passport specific
+    dob: '',
+    gender: 'Nam',
+    pob: '', // Place of birth
+    cccd: '', // ID Card
+    cccdDate: '', // Issue Date
+    permanentAddr: '',
+    currentAddr: '',
+    // Visa specific
+    destination: '',
+    visaType: 'Du lịch',
+    passportNo: '',
+    passportExpiry: '',
+    job: '',
+    // Global Booking (Flight & Hotel) specific
+    bookingType: 'flight', // flight, hotel, combo
+    flightType: 'roundtrip', // oneway, roundtrip
+    fromLocation: '',
+    toLocation: '',
+    departDate: '',
+    returnDate: '',
+    adults: 1,
+    children: 0,
+    infants: 0,
+    hotelLocation: '',
+    checkIn: '',
+    checkOut: '',
+    rooms: 1,
+    guests: 1,
+    budget: '',
+    hotelStars: '3'
+  });
+
   const [bookingCode, setBookingCode] = useState('');
   const [paymentStatus, setPaymentStatus] = useState<'pending' | 'checking' | 'success'>('pending');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,6 +74,8 @@ const BookingModal = ({
   // Helper to determine actual payment amount
   const getPaymentAmount = () => {
     if (!pkg?.price) return 0;
+    if (pkg.price.toLowerCase().includes('miễn phí') || pkg.price.toLowerCase().includes('free')) return 0;
+    
     // Remove non-digits
     const digits = pkg.price.replace(/\D/g, '');
     if (digits.length > 0) {
@@ -49,11 +93,23 @@ const BookingModal = ({
       setStep('form');
       setBookingCode(`BK${Math.floor(10000 + Math.random() * 90000)}`); // Generate random code
       setPaymentStatus('pending');
+
+      // Auto-select booking type based on package name
+      if (pkg?.name) {
+        const name = pkg.name.toLowerCase();
+        if (name.includes('combo')) {
+          setFormData(prev => ({ ...prev, bookingType: 'combo' }));
+        } else if (name.includes('khách sạn') || name.includes('hotel')) {
+          setFormData(prev => ({ ...prev, bookingType: 'hotel' }));
+        } else {
+          setFormData(prev => ({ ...prev, bookingType: 'flight' }));
+        }
+      }
     } else {
       document.body.style.overflow = 'unset';
     }
     return () => { document.body.style.overflow = 'unset'; };
-  }, [isOpen]);
+  }, [isOpen, pkg]);
 
   // Poll for payment status
   useEffect(() => {
@@ -90,6 +146,63 @@ const BookingModal = ({
     e.preventDefault();
     setIsSubmitting(true);
     try {
+      // Construct detailed note based on service type
+      let detailedNote = formData.note;
+      if (serviceId === 'passport') {
+        detailedNote = `
+          [Thông tin làm Hộ chiếu]
+          - Ngày sinh: ${formData.dob}
+          - Giới tính: ${formData.gender}
+          - Nơi sinh: ${formData.pob}
+          - CCCD: ${formData.cccd} (Cấp ngày: ${formData.cccdDate})
+          - Thường trú: ${formData.permanentAddr}
+          - Địa chỉ nhận: ${formData.currentAddr}
+          - Ghi chú: ${formData.note}
+        `.trim();
+      } else if (serviceId === 'visa') {
+        detailedNote = `
+          [Thông tin xin Visa]
+          - Nước đến: ${formData.destination}
+          - Loại Visa: ${formData.visaType}
+          - Số Hộ chiếu: ${formData.passportNo} (Hết hạn: ${formData.passportExpiry})
+          - Công việc: ${formData.job}
+          - Ghi chú: ${formData.note}
+        `.trim();
+      } else if (serviceId === 'global-booking') {
+        const isFlight = formData.bookingType === 'flight' || formData.bookingType === 'combo';
+        const isHotel = formData.bookingType === 'hotel' || formData.bookingType === 'combo';
+        
+        let flightInfo = '';
+        if (isFlight) {
+          flightInfo = `
+          [Vé máy bay]
+          - Hành trình: ${formData.flightType === 'roundtrip' ? 'Khứ hồi' : 'Một chiều'}
+          - Từ: ${formData.fromLocation} -> Đến: ${formData.toLocation}
+          - Ngày đi: ${formData.departDate} ${formData.flightType === 'roundtrip' ? `- Ngày về: ${formData.returnDate}` : ''}
+          - Khách: ${formData.adults} Lớn, ${formData.children} Trẻ em, ${formData.infants} Em bé
+          `.trim();
+        }
+
+        let hotelInfo = '';
+        if (isHotel) {
+          hotelInfo = `
+          [Khách sạn]
+          - Điểm đến: ${formData.hotelLocation || formData.toLocation}
+          - Check-in: ${formData.checkIn} - Check-out: ${formData.checkOut}
+          - Số lượng: ${formData.rooms} phòng, ${formData.guests} khách
+          - Ngân sách/Sao: ${formData.budget}, ${formData.hotelStars} sao
+          `.trim();
+        }
+
+        detailedNote = `
+          [Yêu cầu Đặt vé/Phòng]
+          - Loại dịch vụ: ${formData.bookingType === 'combo' ? 'Combo Vé + Khách sạn' : (formData.bookingType === 'flight' ? 'Vé máy bay' : 'Khách sạn')}
+          ${flightInfo}
+          ${hotelInfo}
+          - Ghi chú: ${formData.note}
+        `.trim();
+      }
+
       // 1. Send to Make.com Webhook
       const payload = {
         bookingCode,
@@ -101,8 +214,10 @@ const BookingModal = ({
         packageName: pkg?.name,
         totalPrice: paymentAmount,
         formattedPrice: paymentAmount.toLocaleString('vi-VN'), // Pre-formatted for Telegram
-        note: formData.note,
-        status: 'Pending Payment',
+        note: detailedNote,
+        // Pass raw details for flexibility
+        details: formData,
+        status: paymentAmount === 0 ? 'New Request' : 'Pending Payment',
         createdAt: new Date().toISOString(),
       };
 
@@ -121,7 +236,9 @@ const BookingModal = ({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...formData,
+          name: formData.name,
+          phone: formData.phone,
+          note: detailedNote,
           service_id: serviceId,
           service_name: serviceTitle,
           package_name: pkg?.name,
@@ -129,7 +246,11 @@ const BookingModal = ({
         }),
       });
 
-      setStep('payment');
+      if (paymentAmount === 0) {
+        setStep('success');
+      } else {
+        setStep('payment');
+      }
     } catch (error) {
       console.error('Booking failed', error);
       alert('Có lỗi xảy ra, vui lòng thử lại.');
@@ -150,6 +271,253 @@ const BookingModal = ({
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+  };
+
+  const renderPassportForm = () => (
+    <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
+      <h4 className="font-bold text-luvia-blue text-sm uppercase">Thông tin tờ khai Hộ chiếu</h4>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ngày sinh <span className="text-red-500">*</span></label>
+          <input required type="date" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm" 
+            value={formData.dob} onChange={e => setFormData({...formData, dob: e.target.value})} />
+        </div>
+        <div>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Giới tính</label>
+          <select className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+            value={formData.gender} onChange={e => setFormData({...formData, gender: e.target.value})}>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Nơi sinh (Tỉnh/TP) <span className="text-red-500">*</span></label>
+        <input required type="text" placeholder="Ví dụ: Hà Nội" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+          value={formData.pob} onChange={e => setFormData({...formData, pob: e.target.value})} />
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Số CCCD <span className="text-red-500">*</span></label>
+          <input required type="text" placeholder="12 số CCCD" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+            value={formData.cccd} onChange={e => setFormData({...formData, cccd: e.target.value})} />
+        </div>
+        <div>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ngày cấp</label>
+          <input required type="date" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+            value={formData.cccdDate} onChange={e => setFormData({...formData, cccdDate: e.target.value})} />
+        </div>
+      </div>
+      <div>
+        <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Địa chỉ thường trú <span className="text-red-500">*</span></label>
+        <input required type="text" placeholder="Theo sổ hộ khẩu/Cơ sở dữ liệu dân cư" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+          value={formData.permanentAddr} onChange={e => setFormData({...formData, permanentAddr: e.target.value})} />
+      </div>
+      <div>
+        <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Địa chỉ nhận hộ chiếu <span className="text-red-500">*</span></label>
+        <input required type="text" placeholder="Địa chỉ hiện tại để bưu điện gửi về" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+          value={formData.currentAddr} onChange={e => setFormData({...formData, currentAddr: e.target.value})} />
+      </div>
+    </div>
+  );
+
+  const renderVisaForm = () => (
+    <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
+      <h4 className="font-bold text-luvia-blue text-sm uppercase">Thông tin xin Visa</h4>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Nước muốn đến <span className="text-red-500">*</span></label>
+          <input required type="text" placeholder="VD: Hàn Quốc, Nhật Bản..." className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+            value={formData.destination} onChange={e => setFormData({...formData, destination: e.target.value})} />
+        </div>
+        <div>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Loại Visa</label>
+          <select className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+            value={formData.visaType} onChange={e => setFormData({...formData, visaType: e.target.value})}>
+            <option value="Du lịch">Du lịch</option>
+            <option value="Công tác">Công tác</option>
+            <option value="Thăm thân">Thăm thân</option>
+            <option value="Du học">Du học</option>
+          </select>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Số Hộ chiếu (Nếu có)</label>
+          <input type="text" placeholder="Số Passport" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+            value={formData.passportNo} onChange={e => setFormData({...formData, passportNo: e.target.value})} />
+        </div>
+        <div>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ngày hết hạn</label>
+          <input type="date" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+            value={formData.passportExpiry} onChange={e => setFormData({...formData, passportExpiry: e.target.value})} />
+        </div>
+      </div>
+      <div>
+        <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Công việc hiện tại</label>
+        <input required type="text" placeholder="VD: Nhân viên văn phòng, Kinh doanh tự do..." className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+          value={formData.job} onChange={e => setFormData({...formData, job: e.target.value})} />
+      </div>
+    </div>
+  );
+
+  const renderGlobalBookingForm = () => {
+    const isFlight = formData.bookingType === 'flight' || formData.bookingType === 'combo';
+    const isHotel = formData.bookingType === 'hotel' || formData.bookingType === 'combo';
+
+    return (
+      <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
+        <div className="flex gap-2 p-1 bg-gray-100 rounded-lg">
+          {['flight', 'hotel', 'combo'].map((type) => (
+            <button
+              key={type}
+              type="button"
+              onClick={() => setFormData({ ...formData, bookingType: type })}
+              className={`flex-1 py-2 text-xs font-bold uppercase rounded-md transition-all ${
+                formData.bookingType === type 
+                  ? 'bg-white text-luvia-blue shadow-sm' 
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              {type === 'flight' ? 'Vé máy bay' : type === 'hotel' ? 'Khách sạn' : 'Combo'}
+            </button>
+          ))}
+        </div>
+
+        {isFlight && (
+          <div className="space-y-3 animate-in fade-in slide-in-from-top-2 duration-300">
+            <h4 className="font-bold text-luvia-blue text-sm uppercase flex items-center gap-2">
+              <Plane size={16} /> Thông tin chuyến bay
+            </h4>
+            
+            <div className="flex gap-4">
+              <label className="flex items-center gap-2 text-sm cursor-pointer">
+                <input type="radio" name="flightType" value="roundtrip" 
+                  checked={formData.flightType === 'roundtrip'}
+                  onChange={() => setFormData({...formData, flightType: 'roundtrip'})}
+                  className="text-luvia-blue focus:ring-luvia-blue"
+                />
+                Khứ hồi
+              </label>
+              <label className="flex items-center gap-2 text-sm cursor-pointer">
+                <input type="radio" name="flightType" value="oneway" 
+                  checked={formData.flightType === 'oneway'}
+                  onChange={() => setFormData({...formData, flightType: 'oneway'})}
+                  className="text-luvia-blue focus:ring-luvia-blue"
+                />
+                Một chiều
+              </label>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Điểm đi</label>
+                <input required={isFlight} type="text" placeholder="Hà Nội (HAN)" className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                  value={formData.fromLocation} onChange={e => setFormData({...formData, fromLocation: e.target.value})} />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Điểm đến</label>
+                <input required={isFlight} type="text" placeholder="Đà Nẵng (DAD)" className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                  value={formData.toLocation} onChange={e => setFormData({...formData, toLocation: e.target.value})} />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ngày đi</label>
+                <input required={isFlight} type="date" className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                  value={formData.departDate} onChange={e => setFormData({...formData, departDate: e.target.value})} />
+              </div>
+              {formData.flightType === 'roundtrip' && (
+                <div>
+                  <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ngày về</label>
+                  <input required={isFlight} type="date" className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                    value={formData.returnDate} onChange={e => setFormData({...formData, returnDate: e.target.value})} />
+                </div>
+              )}
+            </div>
+
+            <div className="grid grid-cols-3 gap-3">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Người lớn</label>
+                <input type="number" min="1" className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                  value={formData.adults} onChange={e => setFormData({...formData, adults: parseInt(e.target.value)})} />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Trẻ em (2-12)</label>
+                <input type="number" min="0" className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                  value={formData.children} onChange={e => setFormData({...formData, children: parseInt(e.target.value)})} />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Em bé (&lt;2)</label>
+                <input type="number" min="0" className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                  value={formData.infants} onChange={e => setFormData({...formData, infants: parseInt(e.target.value)})} />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {isHotel && (
+          <div className="space-y-3 animate-in fade-in slide-in-from-top-2 duration-300 border-t border-dashed border-gray-200 pt-3">
+            <h4 className="font-bold text-luvia-blue text-sm uppercase flex items-center gap-2">
+              <Home size={16} /> Thông tin Khách sạn
+            </h4>
+            
+            {!isFlight && (
+               <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Điểm đến / Khu vực</label>
+                <input required={isHotel} type="text" placeholder="Đà Lạt, Gần chợ..." className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                  value={formData.hotelLocation} onChange={e => setFormData({...formData, hotelLocation: e.target.value})} />
+              </div>
+            )}
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Check-in</label>
+                <input required={isHotel} type="date" className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                  value={formData.checkIn} onChange={e => setFormData({...formData, checkIn: e.target.value})} />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Check-out</label>
+                <input required={isHotel} type="date" className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                  value={formData.checkOut} onChange={e => setFormData({...formData, checkOut: e.target.value})} />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Số phòng</label>
+                <input type="number" min="1" className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                  value={formData.rooms} onChange={e => setFormData({...formData, rooms: parseInt(e.target.value)})} />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Số khách</label>
+                <input type="number" min="1" className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                  value={formData.guests} onChange={e => setFormData({...formData, guests: parseInt(e.target.value)})} />
+              </div>
+            </div>
+
+             <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ngân sách (đêm)</label>
+                <input type="text" placeholder="VD: 1tr - 2tr" className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                  value={formData.budget} onChange={e => setFormData({...formData, budget: e.target.value})} />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Hạng sao</label>
+                <select className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
+                  value={formData.hotelStars} onChange={e => setFormData({...formData, hotelStars: e.target.value})}>
+                  <option value="any">Tùy chọn</option>
+                  <option value="3">3 sao</option>
+                  <option value="4">4 sao</option>
+                  <option value="5">5 sao</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    );
   };
 
   if (!isOpen) return null;
@@ -183,32 +551,41 @@ const BookingModal = ({
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Họ và tên <span className="text-red-500">*</span></label>
-                  <input 
-                    required
-                    type="text" 
-                    className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-luvia-blue transition-colors" 
-                    placeholder="Nhập họ tên của bạn"
-                    value={formData.name}
-                    onChange={e => setFormData({...formData, name: e.target.value})}
-                  />
+                {/* Common Fields */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Họ và tên <span className="text-red-500">*</span></label>
+                    <input 
+                      required
+                      type="text" 
+                      className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-luvia-blue transition-colors text-sm" 
+                      placeholder="Nguyễn Văn A"
+                      value={formData.name}
+                      onChange={e => setFormData({...formData, name: e.target.value})}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Số điện thoại <span className="text-red-500">*</span></label>
+                    <input 
+                      required
+                      type="tel" 
+                      className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-luvia-blue transition-colors text-sm" 
+                      placeholder="0909xxxxxx"
+                      value={formData.phone}
+                      onChange={e => setFormData({...formData, phone: e.target.value})}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Số điện thoại <span className="text-red-500">*</span></label>
-                  <input 
-                    required
-                    type="tel" 
-                    className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-luvia-blue transition-colors" 
-                    placeholder="Nhập số điện thoại"
-                    value={formData.phone}
-                    onChange={e => setFormData({...formData, phone: e.target.value})}
-                  />
-                </div>
+
+                {/* Specific Forms */}
+                {serviceId === 'passport' && renderPassportForm()}
+                {serviceId === 'visa' && renderVisaForm()}
+                {serviceId === 'global-booking' && renderGlobalBookingForm()}
+
                 <div>
                   <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ghi chú thêm</label>
                   <textarea 
-                    className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-luvia-blue transition-colors h-24 resize-none" 
+                    className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-luvia-blue transition-colors h-20 resize-none text-sm" 
                     placeholder="Bạn cần hỗ trợ gì thêm không?"
                     value={formData.note}
                     onChange={e => setFormData({...formData, note: e.target.value})}
@@ -376,7 +753,7 @@ const ServiceDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-white">
       <BookingModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
@@ -386,19 +763,6 @@ const ServiceDetail = () => {
         categoryId={category.id}
         formUrl={service.formUrl}
       />
-
-      {/* Breadcrumb & Back */}
-      <div className="container mx-auto px-6 py-8">
-        <Link to="/" className="inline-flex items-center text-gray-500 hover:text-luvia-blue transition-colors mb-6">
-          <ArrowLeft size={20} className="mr-2" />
-          Quay lại trang chủ
-        </Link>
-        <div className="flex items-center text-sm text-gray-400 uppercase tracking-wider mb-2">
-          <span>{category.title}</span>
-          <span className="mx-2">/</span>
-          <span className="text-luvia-blue font-semibold">{service.title}</span>
-        </div>
-      </div>
 
       {/* Hero Section */}
       <section className="relative h-[60vh] w-full overflow-hidden">
@@ -427,48 +791,128 @@ const ServiceDetail = () => {
         </div>
       </section>
 
+      {/* Breadcrumb & Back */}
+      <div className="container mx-auto px-6 py-8">
+        <Link to="/" className="inline-flex items-center text-gray-500 hover:text-luvia-blue transition-colors mb-6">
+          <ArrowLeft size={20} className="mr-2" />
+          Quay lại trang chủ
+        </Link>
+        <div className="flex items-center text-sm text-gray-400 uppercase tracking-wider mb-2">
+          <span>{category.title}</span>
+          <span className="mx-2">/</span>
+          <span className="text-luvia-blue font-semibold">{service.title}</span>
+        </div>
+      </div>
+
       {/* Content Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+      <section className="py-16 md:py-24 bg-[#FAFAFA]" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+        <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          {/* Main Content */}
-          <div className="md:col-span-2 space-y-12">
-            <div>
-              <h2 className="text-2xl font-display font-bold text-luvia-blue mb-6">Chi tiết dịch vụ</h2>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                {service.detailedDescription || service.description}
-                <br /><br />
-                Chúng tôi cung cấp giải pháp toàn diện giúp bạn tiết kiệm thời gian và công sức. 
-                Đội ngũ chuyên gia của LUVIA cam kết mang lại trải nghiệm dịch vụ tốt nhất với quy trình minh bạch và chuyên nghiệp.
-              </p>
+          {/* Main Content - 8 cols */}
+          <div className="lg:col-span-8 space-y-16">
+            
+            {/* Trust Header */}
+            <div className="flex items-center gap-4 border-b border-gray-200 pb-6">
+              <div className="flex -space-x-2">
+                {[1,2,3,4].map(i => (
+                  <img key={i} src={`https://picsum.photos/seed/user${i}/100/100`} alt="User" className="w-10 h-10 rounded-full border-2 border-white" />
+                ))}
+              </div>
+              <div className="text-sm">
+                <p className="font-bold text-gray-900">Được tin dùng bởi 10.000+ khách hàng</p>
+                <div className="flex text-yellow-500 gap-0.5">
+                  <Star size={14} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
+                  <span className="text-gray-400 ml-2 font-normal">4.9/5 đánh giá</span>
+                </div>
+              </div>
             </div>
 
-            {/* Features / Benefits */}
+            {/* Detailed Description */}
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 tracking-tight leading-tight">
+                Chi tiết dịch vụ
+              </h2>
+              <div className="prose prose-lg text-gray-600 max-w-none">
+                <p className="leading-relaxed text-lg mb-8 text-gray-800">
+                  {service.detailedDescription || service.description}
+                </p>
+                
+                <div className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm my-8">
+                  <h4 className="font-bold text-lg text-gray-900 mb-4 flex items-center gap-2">
+                    <ShieldCheck className="text-green-600" size={24} />
+                    Cam kết từ LUVIA
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="flex gap-3">
+                      <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+                      <div>
+                        <span className="font-bold text-gray-900 block">Minh bạch tuyệt đối</span>
+                        <span className="text-sm text-gray-500">Báo cáo tiến độ theo thời gian thực, không phí ẩn.</span>
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+                      <div>
+                        <span className="font-bold text-gray-900 block">Hoàn tiền 100%</span>
+                        <span className="text-sm text-gray-500">Nếu không đạt kết quả như cam kết ban đầu.</span>
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+                      <div>
+                        <span className="font-bold text-gray-900 block">Bảo mật thông tin</span>
+                        <span className="text-sm text-gray-500">Dữ liệu khách hàng được mã hóa và bảo vệ 2 lớp.</span>
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+                      <div>
+                        <span className="font-bold text-gray-900 block">Hỗ trợ 24/7</span>
+                        <span className="text-sm text-gray-500">Đội ngũ chuyên viên sẵn sàng giải đáp mọi lúc.</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Features / Benefits - Editorial Style */}
             {service.features && (
               <div>
-                <h3 className="text-xl font-display font-bold text-luvia-blue mb-6">Lợi ích nổi bật</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8 tracking-tight">Tại sao chọn chúng tôi?</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                   {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <CheckCircle className="text-luvia-mint flex-shrink-0 mt-1" size={20} />
-                      <span className="text-gray-700">{feature}</span>
+                    <div key={idx} className="group">
+                      <div className="w-12 h-12 bg-gray-900 text-white rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <span className="font-bold text-lg">{idx + 1}</span>
+                      </div>
+                      <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">Tiêu chuẩn {idx === 0 ? 'Quốc tế' : (idx === 1 ? 'Chuyên nghiệp' : (idx === 2 ? 'Tận tâm' : 'Bảo mật'))}</h4>
+                      <p className="text-gray-600 leading-relaxed">{feature}</p>
                     </div>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* Process Steps */}
+            {/* Process Steps - Minimalist Timeline */}
             {service.process && (
               <div>
-                <h3 className="text-xl font-display font-bold text-luvia-blue mb-6">Quy trình thực hiện</h3>
-                <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-10 tracking-tight">Quy trình xử lý hồ sơ</h3>
+                <div className="space-y-0">
                   {service.process.map((item, idx) => (
-                    <div key={idx} className="flex gap-6 border-b border-gray-100 pb-6 last:border-0 last:pb-0">
-                      <span className="text-3xl font-display font-bold text-gray-200">{item.step}</span>
-                      <div>
-                        <h4 className="text-lg font-bold text-luvia-blue mb-2">{item.title}</h4>
-                        <p className="text-gray-500 text-sm">{item.description}</p>
+                    <div key={idx} className="flex gap-8 group">
+                      <div className="flex flex-col items-center">
+                        <div className="w-4 h-4 rounded-full bg-gray-200 border-2 border-white ring-1 ring-gray-300 group-hover:bg-blue-600 group-hover:ring-blue-200 transition-all duration-300"></div>
+                        {idx !== service.process!.length - 1 && <div className="w-px h-24 bg-gray-200 my-2 group-hover:bg-gray-300 transition-colors"></div>}
+                      </div>
+                      <div className="pb-12">
+                        <span className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 block">Bước {item.step}</span>
+                        <h4 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h4>
+                        <p className="text-gray-600">{item.description}</p>
                       </div>
                     </div>
                   ))}
@@ -476,81 +920,131 @@ const ServiceDetail = () => {
               </div>
             )}
 
-            {/* Pricing Section */}
+            {/* Pricing Section - Clean Table */}
             {service.pricing && (
-              <div className="mt-8">
-                <h3 className="text-2xl font-display font-bold text-luvia-blue mb-8">Bảng giá dịch vụ</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="mt-12">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8 tracking-tight">Bảng giá minh bạch</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {service.pricing.map((pkg, idx) => (
-                    <div key={idx} className={`border p-8 rounded-2xl relative transition-all duration-300 hover:shadow-lg ${pkg.recommended ? 'border-luvia-blue bg-blue-50/30 ring-1 ring-luvia-blue/20' : 'border-gray-200 bg-white'}`}>
+                    <div key={idx} className={`relative p-8 rounded-2xl border transition-all duration-300 ${pkg.recommended ? 'bg-gray-900 text-white border-gray-900 shadow-xl scale-105 z-10' : 'bg-white text-gray-900 border-gray-200 hover:border-gray-300'}`}>
                       {pkg.recommended && (
-                        <span className="absolute top-0 right-0 bg-luvia-blue text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-xl uppercase tracking-wider shadow-sm">
-                          Khuyên dùng
-                        </span>
+                        <div className="absolute top-4 right-4">
+                          <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                            Phổ biến nhất
+                          </span>
+                        </div>
                       )}
-                      <h4 className="text-lg font-bold text-luvia-blue mb-2">{pkg.name}</h4>
-                      <div className="text-3xl font-display font-bold text-luvia-mint mb-4">{pkg.price}</div>
-                      <p className="text-gray-500 text-sm mb-6 pb-6 border-b border-gray-100">{pkg.description}</p>
+                      
+                      <h4 className={`text-lg font-bold uppercase tracking-wider mb-4 ${pkg.recommended ? 'text-gray-300' : 'text-gray-500'}`}>{pkg.name}</h4>
+                      <div className="flex items-baseline gap-1 mb-6">
+                        <span className="text-4xl font-bold">{pkg.price}</span>
+                      </div>
+                      <p className={`text-sm mb-8 pb-8 border-b ${pkg.recommended ? 'text-gray-400 border-gray-700' : 'text-gray-500 border-gray-100'}`}>{pkg.description}</p>
+
                       <ul className="space-y-4 mb-8">
                         {pkg.features.map((feat, fIdx) => (
-                          <li key={fIdx} className="flex items-start gap-3 text-sm text-gray-700">
-                            <CheckCircle size={18} className="text-luvia-mint mt-0.5 flex-shrink-0" />
+                          <li key={fIdx} className="flex items-start gap-3 text-sm">
+                            <CheckCircle size={18} className={`flex-shrink-0 mt-0.5 ${pkg.recommended ? 'text-green-400' : 'text-green-600'}`} />
                             <span className="leading-relaxed">{feat}</span>
                           </li>
                         ))}
                       </ul>
+
                       <button 
                         onClick={() => handleSelectPackage(pkg)}
-                        className={`w-full py-4 rounded-xl font-bold text-xs uppercase tracking-widest transition-all duration-300 ${pkg.recommended ? 'bg-luvia-blue text-white hover:bg-luvia-mint hover:text-luvia-blue shadow-md hover:shadow-lg' : 'border border-gray-200 text-gray-600 hover:border-luvia-blue hover:text-luvia-blue'}`}
+                        className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest transition-all duration-300 ${pkg.recommended ? 'bg-white text-gray-900 hover:bg-gray-100' : 'bg-gray-900 text-white hover:bg-gray-800'}`}
                       >
                         Chọn gói này
                       </button>
                     </div>
                   ))}
                 </div>
-                <p className="text-xs text-gray-400 mt-6 italic text-center">* Giá trên chưa bao gồm VAT và có thể thay đổi tùy theo yêu cầu cụ thể của từng hồ sơ.</p>
+                <div className="mt-8 flex items-center justify-center gap-2 text-sm text-gray-500 bg-white p-4 rounded-lg border border-gray-100 inline-block mx-auto">
+                  <ShieldCheck size={16} className="text-green-600" />
+                  <span>Cam kết không phát sinh chi phí ẩn. Hoàn tiền 100% nếu không hài lòng.</span>
+                </div>
               </div>
             )}
           </div>
 
-          {/* Sidebar / CTA */}
-          <div className="md:col-span-1">
+          {/* Sidebar / CTA - 4 cols */}
+          <div className="lg:col-span-4">
             {serviceId === 'medical-assistant' ? (
-              <div className="sticky top-24 z-10">
+              <div className="sticky top-32 z-10">
                 <MedicalBookingForm onSuccess={() => {}} />
               </div>
             ) : (
-              <div className="bg-gray-50 p-8 rounded-2xl sticky top-24">
-                <h3 className="text-xl font-display font-bold text-luvia-blue mb-2">Đăng ký tư vấn</h3>
-                <p className="text-gray-500 text-sm mb-6">Để lại thông tin, chúng tôi sẽ liên hệ lại trong vòng 30 phút.</p>
-                
-                <div className="space-y-4">
-                  <a 
-                    href="https://zalo.me/0899660847" 
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="flex items-center justify-center gap-3 w-full bg-blue-500 text-white py-4 font-bold uppercase tracking-widest hover:bg-blue-600 transition-colors rounded-lg"
-                  >
-                    <MessageCircle size={20} />
-                    Chat Zalo ngay
-                  </a>
-                  <a 
-                    href="tel:0899660847"
-                    className="flex items-center justify-center gap-3 w-full border border-gray-300 text-gray-700 py-4 font-bold uppercase tracking-widest hover:border-luvia-blue hover:text-luvia-blue transition-colors rounded-lg"
-                  >
-                    <Phone size={20} />
-                    Gọi 0899 660 847
-                  </a>
+              <div className="sticky top-32 space-y-8">
+                {/* Consultation Card */}
+                <div className="bg-white p-8 rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-luvia-blue to-luvia-mint"></div>
+                  
+                  <div className="flex items-center gap-4 mb-8 border-b border-gray-50 pb-8">
+                    <div className="relative">
+                      <div className="w-16 h-16 rounded-full bg-gray-100 overflow-hidden border-2 border-white shadow-md">
+                        <img src="https://picsum.photos/seed/expert_avatar/200/200" alt="Specialist" className="w-full h-full object-cover" />
+                      </div>
+                      <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Chuyên viên tư vấn</p>
+                      <p className="font-display font-bold text-lg text-luvia-blue">Nguyễn Thanh Hương</p>
+                      <div className="flex items-center gap-1 text-xs text-yellow-500 mt-1">
+                        <Star size={12} fill="currentColor" />
+                        <Star size={12} fill="currentColor" />
+                        <Star size={12} fill="currentColor" />
+                        <Star size={12} fill="currentColor" />
+                        <Star size={12} fill="currentColor" />
+                        <span className="text-gray-400 ml-1">(4.9/5)</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-xl font-display font-bold text-luvia-blue mb-3">Đăng ký tư vấn miễn phí</h3>
+                  <p className="text-gray-500 text-sm mb-8 leading-relaxed">
+                    Để lại thông tin, chuyên viên của chúng tôi sẽ liên hệ lại để tư vấn chi tiết cho bạn trong vòng 30 phút.
+                  </p>
+                  
+                  <div className="space-y-4">
+                    <a 
+                      href="https://zalo.me/0899660847" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="group flex items-center justify-center gap-3 w-full bg-[#0068FF] text-white py-4 font-bold uppercase tracking-widest hover:bg-[#0054CC] transition-all rounded-xl shadow-lg shadow-blue-200 hover:shadow-blue-300 hover:-translate-y-0.5"
+                    >
+                      <MessageCircle size={20} className="group-hover:scale-110 transition-transform" />
+                      Chat Zalo ngay
+                    </a>
+                    <a 
+                      href="tel:0899660847"
+                      className="group flex items-center justify-center gap-3 w-full bg-white border-2 border-gray-100 text-gray-700 py-4 font-bold uppercase tracking-widest hover:border-luvia-blue hover:text-luvia-blue transition-all rounded-xl hover:shadow-lg hover:-translate-y-0.5"
+                    >
+                      <Phone size={20} className="group-hover:scale-110 transition-transform" />
+                      Gọi 0899 660 847
+                    </a>
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-gray-50">
+                    <div className="flex items-center justify-between text-sm text-gray-500 mb-2">
+                      <span className="flex items-center gap-2"><Clock size={14} /> Phản hồi:</span>
+                      <span className="font-bold text-green-600">~ 5 phút</span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm text-gray-500">
+                      <span className="flex items-center gap-2"><Users size={14} /> Đang online:</span>
+                      <span className="font-bold text-luvia-blue">12 chuyên viên</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="mt-8 pt-8 border-t border-gray-200 space-y-4">
-                  <div className="flex items-center gap-3 text-gray-600">
-                    <Phone size={18} />
-                    <span className="font-medium">0899 660 847</span>
+                {/* Trust Badges */}
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 grid grid-cols-2 gap-4">
+                  <div className="text-center p-2">
+                    <ShieldCheck className="mx-auto text-luvia-blue mb-2" size={24} />
+                    <p className="text-xs font-bold text-gray-700 uppercase">Bảo mật 100%</p>
                   </div>
-                  <div className="flex items-center gap-3 text-gray-600">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                    <span className="font-medium text-green-600">Đang hoạt động</span>
+                  <div className="text-center p-2">
+                    <Award className="mx-auto text-luvia-blue mb-2" size={24} />
+                    <p className="text-xs font-bold text-gray-700 uppercase">Uy tín hàng đầu</p>
                   </div>
                 </div>
               </div>

@@ -50,42 +50,76 @@ export const categories: ServiceCategory[] = [
     layout: 'full',
     items: [
       { 
-        id: 'visa-passport',
-        title: 'Lý lịch tư pháp & Visa', 
-        description: 'Chúng tôi giúp bạn điền tờ khai online chính xác, sắp xếp hồ sơ gọn gàng và thay bạn xếp hàng nộp hồ sơ tại cơ quan nhà nước.', 
-        image: 'https://picsum.photos/seed/passport/800/600',
-        detailedDescription: 'Dịch vụ trợ lý hồ sơ hành chính tận tâm. Chúng tôi thay bạn thực hiện các công việc tỉ mỉ như điền tờ khai, sắp xếp giấy tờ và kiên nhẫn xếp hàng nộp hồ sơ tại cơ quan nhà nước, giúp bạn tiết kiệm thời gian quý báu.',
+        id: 'passport',
+        title: 'Làm Passport (Hộ chiếu)', 
+        description: 'Dịch vụ làm hộ chiếu nhanh chóng, hỗ trợ điền tờ khai online và nộp hồ sơ, giúp bạn tiết kiệm thời gian.', 
+        image: 'https://picsum.photos/seed/passport_new/800/600',
+        detailedDescription: 'Dịch vụ hỗ trợ làm hộ chiếu (passport) trọn gói. Chúng tôi hướng dẫn bạn chuẩn bị hồ sơ, điền tờ khai trực tuyến trên Cổng dịch vụ công và hỗ trợ các thủ tục liên quan để bạn nhận được hộ chiếu sớm nhất.',
         features: [
-          'Hỗ trợ điền tờ khai trực tuyến cẩn thận, chính xác',
-          'Sắp xếp hồ sơ ngăn nắp, đầy đủ theo hướng dẫn',
-          'Thay bạn xếp hàng nộp hồ sơ và nhận kết quả',
-          'Giao nhận hồ sơ tận nơi chu đáo'
+          'Hướng dẫn chụp ảnh chân dung đúng quy định',
+          'Đăng ký tài khoản và nộp hồ sơ trên Cổng Dịch vụ công',
+          'Thanh toán lệ phí nhà nước thay khách hàng',
+          'Theo dõi tiến độ và thông báo kết quả'
         ],
         process: [
-          { step: '01', title: 'Tư vấn & Tiếp nhận', description: 'Tiếp nhận yêu cầu, tư vấn loại giấy tờ phù hợp và báo giá chi tiết.' },
-          { step: '02', title: 'Chuẩn bị hồ sơ', description: 'Thu thập thông tin, điền tờ khai và chuẩn bị bộ hồ sơ hoàn chỉnh.' },
-          { step: '03', title: 'Nộp hồ sơ', description: 'Đại diện khách hàng nộp hồ sơ tại cơ quan có thẩm quyền.' },
-          { step: '04', title: 'Bàn giao kết quả', description: 'Nhận kết quả và bàn giao tận tay khách hàng.' }
+          { step: '01', title: 'Tiếp nhận', description: 'Kiểm tra CCCD và sim chính chủ.' },
+          { step: '02', title: 'Xử lý hồ sơ', description: 'Chụp ảnh, điền tờ khai online.' },
+          { step: '03', title: 'Thanh toán', description: 'Nộp lệ phí nhà nước.' },
+          { step: '04', title: 'Nhận kết quả', description: 'Hộ chiếu gửi về tận nhà qua bưu điện.' }
         ],
         pricing: [
           {
-            name: 'Cơ bản',
-            price: '500.000 VNĐ',
-            description: 'Hỗ trợ điền form và hướng dẫn chuẩn bị hồ sơ.',
-            features: ['Tư vấn quy trình', 'Điền tờ khai online', 'Hướng dẫn sắp xếp hồ sơ']
+            name: 'Gói Cơ bản',
+            price: '300.000 VNĐ',
+            description: 'Khai form, nộp hồ sơ trực tuyến.',
+            features: ['Khai form chuẩn', 'Nộp hồ sơ trực tuyến', 'Hướng dẫn chi tiết']
           },
           {
-            name: 'Tiêu chuẩn',
+            name: 'Gói Trọn gói',
+            price: '800.000 VNĐ',
+            description: 'Bao gồm lệ phí nhà nước.',
+            features: ['Bao gồm lệ phí', 'Chụp ảnh thẻ', 'Sim chính chủ (nếu cần)', 'Theo dõi kết quả'],
+            recommended: true
+          }
+        ]
+      },
+      { 
+        id: 'visa',
+        title: 'Làm Visa (Thị thực)', 
+        description: 'Tư vấn và xử lý hồ sơ xin Visa các nước, tỷ lệ đậu cao, thủ tục đơn giản hóa tối đa cho khách hàng.', 
+        image: 'https://picsum.photos/seed/visa_new/800/600',
+        detailedDescription: 'Chuyên cung cấp dịch vụ xin Visa du lịch, công tác, thăm thân các nước. Đội ngũ chuyên viên giàu kinh nghiệm sẽ đánh giá hồ sơ, tư vấn giải pháp tối ưu để tăng tỷ lệ đậu Visa cho bạn.',
+        features: [
+          'Tư vấn hồ sơ theo từng trường hợp cụ thể',
+          'Dịch thuật và công chứng giấy tờ',
+          'Điền đơn xin Visa chuẩn xác',
+          'Đặt lịch hẹn và hướng dẫn phỏng vấn'
+        ],
+        process: [
+          { step: '01', title: 'Thẩm định', description: 'Đánh giá hồ sơ và khả năng đậu.' },
+          { step: '02', title: 'Hoàn thiện', description: 'Dịch thuật, điền đơn, sắp xếp hồ sơ.' },
+          { step: '03', title: 'Nộp hồ sơ', description: 'Đại diện nộp tại LSQ hoặc hướng dẫn nộp.' },
+          { step: '04', title: 'Nhận kết quả', description: 'Visa dán hoặc E-visa.' }
+        ],
+        pricing: [
+          {
+            name: 'Visa Châu Á',
             price: '1.500.000 VNĐ',
-            description: 'Trọn gói nộp và nhận kết quả (khu vực nội thành).',
-            features: ['Tư vấn & Điền form', 'Đại diện nộp hồ sơ', 'Nhận kết quả tại nhà', 'Theo dõi tiến độ'],
+            description: 'Hàn Quốc, Nhật Bản, Trung Quốc...',
+            features: ['Tư vấn hồ sơ', 'Điền đơn', 'Nộp hồ sơ', 'Theo dõi kết quả']
+          },
+          {
+            name: 'Visa Châu Âu/Úc',
+            price: '3.500.000 VNĐ',
+            description: 'Schengen, Anh, Úc...',
+            features: ['Dịch thuật công chứng', 'Đặt lịch hẹn', 'Luyện phỏng vấn', 'Bảo hiểm du lịch'],
             recommended: true
           },
           {
-            name: 'Hỏa tốc',
-            price: '2.500.000 VNĐ',
-            description: 'Xử lý hồ sơ ưu tiên và giao nhận nhanh.',
-            features: ['Xử lý hồ sơ trong 24h', 'Giao nhận tận nơi', 'Hỗ trợ 24/7', 'Đại diện nộp hồ sơ']
+            name: 'Visa Mỹ/Canada',
+            price: '5.000.000 VNĐ',
+            description: 'Tư vấn chuyên sâu, luyện phỏng vấn.',
+            features: ['Phân tích hồ sơ khó', 'Luyện phỏng vấn 1-1', 'Sắp xếp hồ sơ logic', 'Hỗ trợ chứng minh tài chính']
           }
         ]
       },
@@ -108,25 +142,25 @@ export const categories: ServiceCategory[] = [
           { step: '04', title: 'Xuất vé', description: 'Gửi vé điện tử và mã đặt phòng qua Zalo/Email ngay lập tức.' }
         ],
         pricing: [
-            {
-                name: 'Vé máy bay Lẻ',
-                price: '50.000 VNĐ/vé',
-                description: 'Phí dịch vụ xuất vé và hỗ trợ thay đổi lịch trình.',
-                features: ['Săn vé giá rẻ nhất', 'Hỗ trợ check-in online', 'Xử lý mua thêm hành lý', 'Hỗ trợ đổi ngày/giờ bay']
-            },
-            {
-                name: 'Combo Du lịch',
-                price: 'Miễn phí DV',
-                description: 'Đặt trọn gói Vé máy bay + Khách sạn.',
-                features: ['Giá rẻ hơn đặt lẻ 10-20%', 'Tư vấn lịch trình ăn chơi', 'Hỗ trợ xe đưa đón sân bay', 'Nâng hạng phòng (nếu có)'],
-                recommended: true
-            },
-            {
-                name: 'Khách Doanh nghiệp',
-                price: 'Hợp đồng',
-                description: 'Dành cho công ty đi công tác hoặc du lịch hè.',
-                features: ['Xuất hóa đơn VAT nhanh', 'Công nợ theo tháng', 'Nhân viên hỗ trợ 1-1', 'Ưu đãi đoàn đông']
-            }
+          {
+            name: 'Vé máy bay Lẻ',
+            price: '50.000 VNĐ/vé',
+            description: 'Phí dịch vụ xuất vé và xử lý phát sinh.',
+            features: ['Săn vé giá rẻ nhất', 'Hỗ trợ check-in', 'Xử lý mua thêm hành lý', 'Hỗ trợ đổi ngày/giờ bay']
+          },
+          {
+            name: 'Combo Du lịch',
+            price: 'Phí dịch vụ ưu đãi',
+            description: 'Đặt trọn gói Vé máy bay + Khách sạn (Tiết kiệm hơn).',
+            features: ['Giá rẻ hơn đặt lẻ 10-20%', 'Tư vấn lịch trình ăn chơi', 'Hỗ trợ đặt xe đưa đón (có phí)', 'Nâng hạng phòng (nếu có)'],
+            recommended: true
+          },
+          {
+            name: 'Khách Doanh nghiệp',
+            price: 'Hợp đồng',
+            description: 'Dành cho công ty đi công tác hoặc du lịch hè.',
+            features: ['Xuất hóa đơn VAT nhanh', 'Công nợ theo tháng', 'Nhân viên hỗ trợ 1-1', 'Ưu đãi đoàn đông']
+          }
         ]
       },
       { 
@@ -252,48 +286,7 @@ export const categories: ServiceCategory[] = [
             }
         ]
       },
-      { 
-        id: 'agency-web',
-        title: 'Quản lý Đại lý vé (B2B)', 
-        description: 'Cung cấp hệ thống quản lý khách hàng và vé máy bay đơn giản, giúp các đại lý vé nhỏ lẻ chăm sóc khách hàng chuyên nghiệp hơn.', 
-        image: 'https://picsum.photos/seed/agency_web/800/600',
-        detailedDescription: 'Giải pháp chuyển đổi số "đo ni đóng giày" cho các đại lý vé máy bay và du lịch vừa và nhỏ. Hệ thống giúp bạn quản lý danh sách khách hàng, tự động hóa quy trình nhắc lịch bay, xuất hóa đơn và theo dõi công nợ một cách chuyên nghiệp.',
-        features: [
-          'CRM quản lý thông tin khách hàng trọn đời',
-          'Tự động gửi tin nhắn nhắc lịch bay qua Zalo',
-          'Quản lý công nợ và báo cáo doanh thu thực tế',
-          'Giao diện đơn giản, không cần am hiểu công nghệ'
-        ],
-        pricing: [
-            {
-                name: 'Khởi nghiệp',
-                price: '5.000.000 VNĐ',
-                description: 'Thiết lập hệ thống quản lý cơ bản.',
-                features: ['Quản lý khách hàng', 'Lưu trữ vé', 'Nhắc lịch bay tự động', 'Báo cáo doanh thu']
-            }
-        ]
-      },
-      { 
-        id: 'car-check',
-        title: 'Đăng kiểm & Quản lý xe', 
-        description: 'Nhắc lịch đăng kiểm, bảo hiểm xe và hỗ trợ đặt lịch hẹn đăng kiểm online, giúp bạn tránh bị phạt nguội và tiết kiệm thời gian chờ.', 
-        image: 'https://picsum.photos/seed/car_check/800/600',
-        detailedDescription: 'Giải pháp hỗ trợ chủ xe bận rộn trong việc đăng kiểm và quản lý giấy tờ xe. Chúng tôi giúp bạn chuẩn bị hồ sơ, đặt lịch hẹn trước để giảm thiểu thời gian chờ đợi, và nhắc nhở các mốc thời gian quan trọng như hạn đăng kiểm, hạn bảo hiểm.',
-        features: [
-          'Soạn thảo và rà soát hồ sơ đăng kiểm chuẩn xác',
-          'Đặt lịch hẹn ưu tiên, không lo xếp hàng lâu',
-          'Theo dõi và nhắc hạn đăng kiểm, bảo hiểm, phí đường bộ',
-          'Hỗ trợ nộp phạt nguội nhanh chóng'
-        ],
-        pricing: [
-            {
-                name: 'Hỗ trợ Đăng kiểm',
-                price: '500.000 VNĐ/lần',
-                description: 'Hỗ trợ thủ tục và hồ sơ đăng kiểm chuẩn xác.',
-                features: ['Soạn hồ sơ đăng kiểm', 'Đặt lịch hẹn trước', 'Giao hồ sơ tận nhà', 'Lái xe hộ: Đang nâng cấp']
-            }
-        ]
-      }
+
     ]
   },
   {
@@ -348,7 +341,7 @@ export const categories: ServiceCategory[] = [
         features: [
           'Kho dữ liệu 5000+ phòng xác thực',
           'Lọc phòng theo 10+ tiêu chí (Ban công, Thang máy...)',
-          'Dẫn đi xem phòng miễn phí (Xe máy/Hỗ trợ đặt xe)',
+          'Dẫn đi xem phòng trực tiếp (Phí đi lại tính riêng)',
           'Hỗ trợ đàm phán giá và check hợp đồng'
         ],
         process: [
@@ -373,7 +366,7 @@ export const categories: ServiceCategory[] = [
         image: 'https://picsum.photos/seed/moving/800/600',
         detailedDescription: 'Dịch vụ chuyển nhà trọn gói "Rảnh tay" - Bạn chỉ cần giám sát, mọi việc nặng nhọc đã có chúng tôi lo. Từ tháo dỡ, đóng gói, vận chuyển đến lắp đặt lại tại nhà mới, tất cả đều được thực hiện chuyên nghiệp.',
         features: [
-          'Miễn phí thùng carton, băng keo, màng PE',
+          'Cung cấp thùng carton, băng keo, màng PE',
           'Thợ tháo lắp giường tủ, máy lạnh chuyên nghiệp',
           'Bảo hiểm hàng hóa 100% giá trị',
           'Không phát sinh chi phí sau báo giá'
@@ -389,7 +382,7 @@ export const categories: ServiceCategory[] = [
                 name: 'Gói Tiết kiệm',
                 price: 'Từ 400.000 VNĐ',
                 description: 'Hỗ trợ đóng gói và bốc xếp (Khách tự gọi xe).',
-                features: ['Nhân viên đóng gói', 'Thùng carton miễn phí', 'Hỗ trợ bốc xếp']
+                features: ['Nhân viên đóng gói', 'Cung cấp thùng carton', 'Hỗ trợ bốc xếp']
             },
             {
                 name: 'Trọn gói (Coming Soon)',
@@ -550,61 +543,7 @@ export const categories: ServiceCategory[] = [
             }
         ]
       },
-      { 
-        id: 'tax',
-        title: 'Nộp thuế nhà đất', 
-        description: 'Nhận ủy quyền thay bạn đi nộp thuế nhà đất, thuế phi nông nghiệp tại kho bạc, giúp bạn không phải xin nghỉ làm để đi xếp hàng.', 
-        image: 'https://picsum.photos/seed/tax/800/800',
-        detailedDescription: 'Giải pháp nộp thuế nhà đất và thuế phi nông nghiệp "không chờ đợi". Bạn chỉ cần ủy quyền, chúng tôi sẽ thay bạn đến kho bạc hoặc ngân hàng để thực hiện nghĩa vụ thuế, đảm bảo đúng hạn và lưu trữ biên lai cẩn thận.',
-        features: [
-          'Không cần xếp hàng tại Kho bạc/Ngân hàng',
-          'Đảm bảo nộp thuế đúng hạn, tránh phạt chậm nộp',
-          'Lưu trữ và số hóa biên lai thuế giúp dễ dàng tra cứu',
-          'Bảo mật thông tin tài sản tuyệt đối'
-        ],
-        pricing: [
-            {
-                name: 'Phí dịch vụ',
-                price: '300.000 VNĐ/lần',
-                description: 'Đại diện đi đóng thuế tại kho bạc/ngân hàng.',
-                features: ['Nhận thông báo thuế', 'Đi đóng tiền', 'Gửi lại biên lai', 'Lưu trữ hồ sơ']
-            }
-        ]
-      },
-      { 
-        id: 'land-cert',
-        title: 'Sang tên Sổ đỏ', 
-        description: 'Thay bạn đi sớm lấy số thứ tự, nộp hồ sơ sang tên sổ đỏ và đi đóng thuế, giúp bạn tiết kiệm thời gian chờ đợi mệt mỏi.', 
-        image: 'https://picsum.photos/seed/land_cert/800/800',
-        detailedDescription: 'Trợ lý hành chính hỗ trợ các thủ tục nộp hồ sơ nhà đất. Chúng tôi không tư vấn pháp lý chuyên sâu mà tập trung vào việc hỗ trợ bạn đi lại, lấy số thứ tự, nộp hồ sơ và đóng thuế theo hướng dẫn của cơ quan chức năng, giúp bạn đỡ vất vả.',
-        features: [
-          'Hỗ trợ đi sớm lấy số thứ tự ưu tiên',
-          'Thay bạn xếp hàng nộp hồ sơ tại bộ phận một cửa',
-          'Đi đóng thuế hộ tại ngân hàng/kho bạc',
-          'Nhận kết quả và bàn giao tận tay'
-        ],
-        process: [
-          { step: '01', title: 'Kiểm tra pháp lý', description: 'Kiểm tra sổ đỏ thật/giả, tình trạng tranh chấp và quy hoạch.' },
-          { step: '02', title: 'Công chứng', description: 'Hỗ trợ các bên ký kết hợp đồng tại Văn phòng công chứng.' },
-          { step: '03', title: 'Kê khai nghĩa vụ', description: 'Kê khai thuế thu nhập cá nhân và lệ phí trước bạ.' },
-          { step: '04', title: 'Đăng bộ & Nhận sổ', description: 'Nộp hồ sơ đăng ký biến động và nhận sổ mới về cho khách.' }
-        ],
-        pricing: [
-            {
-                name: 'Tư vấn & Sắp xếp',
-                price: '1.000.000 VNĐ',
-                description: 'Chuẩn bị hồ sơ chuẩn chỉnh để khách tự đi nộp.',
-                features: ['Kiểm tra pháp lý', 'Soạn thảo hợp đồng', 'Sắp xếp hồ sơ', 'Hướng dẫn nộp']
-            },
-            {
-                name: 'Trọn gói Sang tên',
-                price: '5.000.000 VNĐ',
-                description: 'Đại diện thực hiện toàn bộ quy trình sang tên.',
-                features: ['Công chứng hợp đồng', 'Kê khai thuế', 'Nộp hồ sơ sang tên', 'Nhận sổ mới'],
-                recommended: true
-            }
-        ]
-      },
+
       { 
         id: 'elderly-care',
         title: 'Chăm sóc người già từ xa', 
@@ -962,82 +901,7 @@ export const categories: ServiceCategory[] = [
             }
         ]
       },
-      { 
-        id: 'school-admin',
-        title: 'Hồ sơ nhập học hộ', 
-        description: 'Đại diện phụ huynh đến trường nộp hồ sơ nhập học, rút học bạ hoặc đóng học phí, giúp cha mẹ yên tâm làm việc.', 
-        image: 'https://picsum.photos/seed/school_admin/800/600',
-        detailedDescription: 'Hỗ trợ phụ huynh bận rộn trong các thủ tục nhập học và hành chính tại trường. Chúng tôi đại diện nộp hồ sơ, đóng học phí, rút học bạ hoặc xác minh văn bằng, giúp bạn tiết kiệm thời gian đi lại trong giờ hành chính.',
-        features: [
-          'Rà soát hồ sơ nhập học đầy đủ, đúng hạn',
-          'Đại diện làm việc với phòng đào tạo/ban giám hiệu',
-          'Đóng học phí và các khoản thu hộ',
-          'Gửi biên nhận và kết quả về tận nhà'
-        ],
-        pricing: [
-            {
-                name: 'Phí dịch vụ',
-                price: '500.000 VNĐ/hồ sơ',
-                description: 'Đại diện nộp hồ sơ nhập học.',
-                features: ['Kiểm tra hồ sơ', 'Nộp tại trường', 'Đóng học phí hộ', 'Gửi biên nhận']
-            }
-        ]
-      },
-      { 
-        id: 'school-track',
-        title: 'Lộ trình chuyển trường', 
-        description: 'Lên danh sách các giấy tờ cần thiết để chuyển trường và nhắc lịch nộp hồ sơ, đảm bảo con bạn nhập học đúng hạn.', 
-        image: 'https://picsum.photos/seed/school_track/800/600',
-        detailedDescription: 'Người bạn đồng hành trong hành trình chuyển trường cho con. Chúng tôi xây dựng lộ trình chi tiết, lên danh sách hồ sơ cần thiết và theo dõi sát sao tiến độ xử lý, đảm bảo việc chuyển trường diễn ra suôn sẻ và đúng quy định.',
-        features: [
-          'Lên checklist hồ sơ chuyển trường chi tiết',
-          'Tìm kiếm trường học phù hợp với nhu cầu',
-          'Theo dõi deadline nộp hồ sơ và nhập học',
-          'Tư vấn giải quyết các vướng mắc hồ sơ'
-        ],
-        pricing: [
-            {
-                name: 'Tư vấn lộ trình',
-                price: '2.000.000 VNĐ',
-                description: 'Lên kế hoạch chuyển trường chi tiết.',
-                features: ['Đánh giá hồ sơ', 'Tìm trường phù hợp', 'Lên checklist giấy tờ', 'Theo dõi deadline']
-            }
-        ]
-      },
-      { 
-        id: 'vehicle-paper',
-        title: 'Hồ sơ Sang tên xe', 
-        description: 'Hướng dẫn chuẩn bị hồ sơ sang tên xe và hỗ trợ nộp thuế, giúp bạn hoàn tất thủ tục pháp lý mà không cần lo lắng về giấy tờ phức tạp.', 
-        image: 'https://picsum.photos/seed/vehicle_paper/800/600',
-        detailedDescription: 'Dịch vụ hỗ trợ thủ tục giấy tờ sang tên đổi chủ phương tiện (Ô tô, Xe máy). Chúng tôi hướng dẫn bạn chuẩn bị hồ sơ, soạn thảo hợp đồng mua bán và hỗ trợ nộp thuế trước bạ, giúp quá trình sang tên diễn ra thuận lợi.',
-        features: [
-          'Soạn thảo hợp đồng mua bán xe chuẩn pháp lý',
-          'Hướng dẫn thủ tục cà số khung, số máy',
-          'Hỗ trợ kê khai và nộp thuế trước bạ online',
-          'Tư vấn quy trình rút hồ sơ gốc (nếu cần)'
-        ],
-        process: [
-          { step: '01', title: 'Chuẩn bị hồ sơ', description: 'Hướng dẫn khách hàng chuẩn bị giấy tờ và cà số khung số máy.' },
-          { step: '02', title: 'Soạn thảo', description: 'Soạn thảo hợp đồng mua bán và các tờ khai thuế, đăng ký xe chuẩn xác.' },
-          { step: '03', title: 'Nộp thuế Online', description: 'Hỗ trợ kê khai và nộp thuế trước bạ qua cổng Dịch vụ công Quốc gia.' },
-          { step: '04', title: 'Hoàn tất', description: 'Hướng dẫn khách hàng nộp hồ sơ tại cơ quan công an để bấm biển.' }
-        ],
-        pricing: [
-            {
-                name: 'Gói Hồ sơ Xe máy',
-                price: '500.000 VNĐ',
-                description: 'Soạn thảo trọn bộ hồ sơ sang tên.',
-                features: ['Hợp đồng mua bán', 'Tờ khai sang tên', 'Kê khai thuế Online', 'Hướng dẫn nộp']
-            },
-            {
-                name: 'Gói Hồ sơ Ô tô',
-                price: '1.000.000 VNĐ',
-                description: 'Soạn thảo và hỗ trợ thủ tục thuế.',
-                features: ['Hợp đồng công chứng', 'Tờ khai đăng ký', 'Nộp thuế trước bạ', 'Tư vấn quy trình'],
-                recommended: true
-            }
-        ]
-      }
+
     ]
   }
 ];

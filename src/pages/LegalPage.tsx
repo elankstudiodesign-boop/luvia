@@ -8,7 +8,7 @@ const LegalPage = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[60vh] w-full overflow-hidden mt-[64px] md:mt-[80px]">
+      <section className="relative h-[60vh] w-full overflow-hidden">
         <div className="absolute inset-0">
           <img 
             src="https://picsum.photos/seed/legal_document/1920/1080" 

@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Search, User, ShoppingBag, Menu, X, 
-  ChevronRight 
+  ChevronRight, Heart 
 } from 'lucide-react';
 import { categories } from '../data/services';
 
@@ -104,7 +104,7 @@ const SearchOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -138,7 +138,6 @@ const Navbar = () => {
           element.scrollIntoView({ behavior: 'smooth' });
         }
       }, 100);
-      // Clear state
       window.history.replaceState({}, document.title);
     }
   }, [location]);
@@ -148,47 +147,55 @@ const Navbar = () => {
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
       
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm text-luvia-blue border-b border-gray-100`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 group hover:bg-white hover:text-luvia-blue ${
+          isScrolled ? 'bg-white text-luvia-blue shadow-sm' : 'bg-transparent text-white'
+        }`}
         onMouseLeave={() => setHoveredCategory(null)}
       >
-        {/* Main Header Row */}
-        <div className="container mx-auto px-4 md:px-8 h-16 md:h-20 flex justify-between items-center relative">
+        <div className="container mx-auto px-6 h-20 flex justify-between items-center relative z-50">
           
-          {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden p-2 -ml-2"
-            onClick={() => setIsMobileMenuOpen(true)}
-          >
-            <Menu size={24} strokeWidth={1.5} />
-          </button>
+          {/* Left: Menu & Search */}
+          <div className="flex items-center gap-6 w-1/3">
+            <button 
+              className="flex items-center gap-3 hover:opacity-70 transition-opacity"
+              onClick={() => setIsMenuOpen(true)}
+            >
+              <Menu size={20} strokeWidth={1.5} />
+              <span className="text-sm font-medium uppercase tracking-wide hidden md:inline-block">Menu</span>
+            </button>
 
-          {/* Desktop Search (Left) */}
-          <div 
-            className="hidden md:flex items-center gap-4 w-1/3 cursor-pointer group"
-            onClick={() => setIsSearchOpen(true)}
-          >
-            <Search size={20} strokeWidth={1.5} className="group-hover:text-luvia-mint transition-colors" />
-            <span className="text-sm font-medium group-hover:text-luvia-mint transition-colors">Tìm kiếm</span>
+            <button 
+              className="flex items-center gap-3 hover:opacity-70 transition-opacity"
+              onClick={() => setIsSearchOpen(true)}
+            >
+              <Search size={20} strokeWidth={1.5} />
+              <span className="text-sm font-medium uppercase tracking-wide hidden md:inline-block">Tìm kiếm</span>
+            </button>
           </div>
 
-          {/* Logo (Center) */}
+          {/* Center: Logo */}
           <div className="w-1/3 flex justify-center">
-            <a href="/" className="text-2xl md:text-3xl font-bold tracking-[0.2em] font-display text-center">
+            <a href="/" className="text-3xl font-bold tracking-[0.2em] font-display uppercase text-center">
               LUVIA
             </a>
           </div>
 
-          {/* Icons (Right) */}
+          {/* Right: Contact, Wishlist, Account */}
           <div className="flex items-center justify-end gap-6 w-1/3">
-            <span className="hidden md:block text-sm font-medium cursor-pointer hover:text-luvia-mint transition-colors">Danh sách yêu thích</span>
-            <span className="hidden md:block text-sm font-medium cursor-pointer hover:text-luvia-mint transition-colors">My LUVIA</span>
-            <User size={20} strokeWidth={1.5} className="md:hidden cursor-pointer" />
-            <ShoppingBag size={20} strokeWidth={1.5} className="cursor-pointer hover:text-luvia-mint transition-colors" />
+            <a href="#" className="text-sm font-medium uppercase tracking-wide hover:opacity-70 transition-opacity hidden lg:block">
+              Liên hệ với chúng tôi
+            </a>
+            <button className="hover:opacity-70 transition-opacity">
+              <Heart size={20} strokeWidth={1.5} />
+            </button>
+            <button className="hover:opacity-70 transition-opacity">
+              <User size={20} strokeWidth={1.5} />
+            </button>
           </div>
         </div>
 
-        {/* Desktop Navigation Row */}
-        <div className="hidden md:flex justify-center items-center h-12 border-t border-gray-100 relative z-40 bg-white">
+        {/* Secondary Navigation Row (Categories) */}
+        <div className={`hidden md:flex justify-center items-center h-12 border-t ${isScrolled ? 'border-gray-100' : 'border-white/20 group-hover:border-gray-100'} relative z-40 transition-colors duration-300`}>
           <div className="flex space-x-8 h-full">
             {categories.map((cat) => (
               <div 
@@ -198,7 +205,9 @@ const Navbar = () => {
               >
                 <button 
                   onClick={() => scrollToSection(cat.id)}
-                  className={`text-xs font-semibold uppercase tracking-widest hover:text-luvia-mint hover:underline underline-offset-4 transition-all ${hoveredCategory === cat.id ? 'text-luvia-mint underline' : ''}`}
+                  className={`text-xs font-semibold uppercase tracking-widest hover:underline underline-offset-4 transition-all ${
+                    hoveredCategory === cat.id ? 'underline' : ''
+                  }`}
                 >
                   {cat.shortTitle}
                 </button>
@@ -206,6 +215,7 @@ const Navbar = () => {
             ))}
           </div>
         </div>
+
         {/* Mega Menu Dropdown */}
         <AnimatePresence>
           {hoveredCategory && (
@@ -214,7 +224,7 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-xl z-30"
+              className="absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-xl z-30 text-luvia-blue"
               onMouseEnter={() => setHoveredCategory(hoveredCategory)}
               onMouseLeave={() => setHoveredCategory(null)}
             >
@@ -224,7 +234,7 @@ const Navbar = () => {
                   <div className="col-span-3 border-r border-gray-100 pr-8">
                     {categories.find(c => c.id === hoveredCategory) && (
                       <>
-                        <h3 className="text-2xl font-display font-bold text-luvia-blue mb-2">
+                        <h3 className="text-2xl font-display font-bold mb-2">
                           {categories.find(c => c.id === hoveredCategory)?.title}
                         </h3>
                         <p className="text-sm text-gray-500 mb-6 leading-relaxed">
@@ -277,15 +287,15 @@ const Navbar = () => {
         </AnimatePresence>
       </nav>
 
-      {/* Mobile Menu Drawer */}
+      {/* Menu Drawer */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {isMenuOpen && (
           <>
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => setIsMenuOpen(false)}
               className="fixed inset-0 bg-black/50 z-50"
             />
             <motion.div 
@@ -296,16 +306,16 @@ const Navbar = () => {
               className="fixed top-0 left-0 bottom-0 w-[85%] max-w-sm bg-white z-50 overflow-y-auto"
             >
               <div className="p-6 flex justify-between items-center border-b border-gray-100">
-                <span className="font-display font-bold text-xl tracking-widest">LUVIA</span>
-                <button onClick={() => setIsMobileMenuOpen(false)}>
-                  <X size={24} strokeWidth={1.5} />
+                <span className="font-display font-bold text-xl tracking-widest text-luvia-blue">LUVIA</span>
+                <button onClick={() => setIsMenuOpen(false)}>
+                  <X size={24} strokeWidth={1.5} className="text-gray-500" />
                 </button>
               </div>
               <div className="py-4">
                 <div 
                   className="px-6 py-4 border-b border-gray-50 flex items-center gap-3 cursor-pointer hover:bg-gray-50"
                   onClick={() => {
-                    setIsMobileMenuOpen(false);
+                    setIsMenuOpen(false);
                     setIsSearchOpen(true);
                   }}
                 >
@@ -317,18 +327,18 @@ const Navbar = () => {
                     key={cat.id} 
                     onClick={() => {
                       scrollToSection(cat.id);
-                      setIsMobileMenuOpen(false);
+                      setIsMenuOpen(false);
                     }}
-                    className="w-full px-6 py-4 text-sm font-semibold uppercase tracking-wider border-b border-gray-50 hover:bg-gray-50 flex justify-between items-center text-left"
+                    className="w-full px-6 py-4 text-sm font-semibold uppercase tracking-wider border-b border-gray-50 hover:bg-gray-50 flex justify-between items-center text-left text-gray-800"
                   >
                     {cat.shortTitle}
                     <ChevronRight size={16} className="text-gray-400" />
                   </button>
                 ))}
                 <div className="mt-8 px-6 space-y-4 text-sm text-gray-600">
-                  <p className="cursor-pointer">Dịch vụ Khách hàng</p>
-                  <p className="cursor-pointer">Tuyển dụng</p>
-                  <p className="cursor-pointer">Pháp lý & Quyền riêng tư</p>
+                  <p className="cursor-pointer hover:text-luvia-blue">Dịch vụ Khách hàng</p>
+                  <p className="cursor-pointer hover:text-luvia-blue">Tuyển dụng</p>
+                  <p className="cursor-pointer hover:text-luvia-blue">Pháp lý & Quyền riêng tư</p>
                 </div>
               </div>
             </motion.div>
