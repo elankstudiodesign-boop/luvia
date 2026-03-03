@@ -17,8 +17,8 @@ const SitemapPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 tracking-wide text-white">SITEMAP</h1>
-            <p className="text-lg font-light tracking-wider uppercase text-gray-300">Bản đồ website</p>
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 tracking-wide text-white drop-shadow-lg">SITEMAP</h1>
+            <p className="text-lg font-light tracking-wider uppercase text-gray-300 drop-shadow-md">Bản đồ website</p>
           </motion.div>
         </div>
       </section>
@@ -34,13 +34,13 @@ const SitemapPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-2xl font-display font-bold text-luvia-blue mb-6 border-b pb-2">Trang Chính</h2>
+            <h2 className="text-2xl font-display font-bold text-lavia-blue mb-6 border-b pb-2">Trang Chính</h2>
             <ul className="space-y-4 text-gray-600">
-              <li><Link to="/" className="hover:text-luvia-mint transition-colors">Trang Chủ</Link></li>
-              <li><Link to="/about" className="hover:text-luvia-mint transition-colors">Về LUVIA</Link></li>
-              <li><Link to="/careers" className="hover:text-luvia-mint transition-colors">Tuyển dụng</Link></li>
-              <li><Link to="/legal" className="hover:text-luvia-mint transition-colors">Pháp lý & Quyền riêng tư</Link></li>
-              <li><Link to="/sitemap" className="hover:text-luvia-mint transition-colors">Sitemap</Link></li>
+              <li><Link to="/" className="hover:text-lavia-mint transition-colors">Trang Chủ</Link></li>
+              <li><Link to="/about" className="hover:text-lavia-mint transition-colors">Về LAVIA</Link></li>
+              <li><Link to="/careers" className="hover:text-lavia-mint transition-colors">Tuyển dụng</Link></li>
+              <li><Link to="/legal" className="hover:text-lavia-mint transition-colors">Pháp lý & Quyền riêng tư</Link></li>
+              <li><Link to="/sitemap" className="hover:text-lavia-mint transition-colors">Sitemap</Link></li>
             </ul>
           </motion.div>
 
@@ -53,11 +53,11 @@ const SitemapPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: (index + 1) * 0.1 }}
             >
-              <h2 className="text-2xl font-display font-bold text-luvia-blue mb-6 border-b pb-2">{category.title}</h2>
+              <h2 className="text-2xl font-display font-bold text-lavia-blue mb-6 border-b pb-2">{category.title}</h2>
               <ul className="space-y-4 text-gray-600">
                 {category.items.map((item) => (
                   <li key={item.id}>
-                    <Link to={`/service/${category.id}/${item.id}`} className="hover:text-luvia-mint transition-colors">
+                    <Link to={`/service/${category.id}/${item.id}`} className="hover:text-lavia-mint transition-colors">
                       {item.title}
                     </Link>
                   </li>
@@ -73,9 +73,9 @@ const SitemapPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-             <h2 className="text-2xl font-display font-bold text-luvia-blue mb-6 border-b pb-2">Quản Trị</h2>
+             <h2 className="text-2xl font-display font-bold text-lavia-blue mb-6 border-b pb-2">Quản Trị</h2>
              <ul className="space-y-4 text-gray-600">
-               <li><Link to="/admin" className="hover:text-luvia-mint transition-colors">Dashboard</Link></li>
+               <li><Link to="/admin" className="hover:text-lavia-mint transition-colors">Dashboard</Link></li>
              </ul>
           </motion.div>
 

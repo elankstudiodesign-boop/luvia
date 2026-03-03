@@ -44,7 +44,7 @@ const CustomersPage = () => {
           <input 
             type="text" 
             placeholder="Tìm tên hoặc số điện thoại..." 
-            className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-luvia-blue transition-colors"
+            className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-lavia-blue transition-colors"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />

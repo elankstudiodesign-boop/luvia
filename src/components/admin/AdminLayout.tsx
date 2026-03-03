@@ -33,7 +33,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         } md:relative md:translate-x-0`}
       >
         <div className="h-16 flex items-center justify-between px-6 border-b border-gray-100">
-          <span className="text-xl font-display font-bold text-luvia-blue tracking-widest">LUVIA ADMIN</span>
+          <span className="text-xl font-display font-bold text-lavia-blue tracking-widest">LAVIA ADMIN</span>
           <button onClick={() => setIsSidebarOpen(false)} className="md:hidden">
             <X size={20} />
           </button>
@@ -48,8 +48,8 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                   isActive
-                    ? 'bg-luvia-blue text-white shadow-md shadow-blue-200'
-                    : 'text-gray-600 hover:bg-gray-50 hover:text-luvia-blue'
+                    ? 'bg-lavia-blue text-white shadow-md shadow-blue-200'
+                    : 'text-gray-600 hover:bg-gray-50 hover:text-lavia-blue'
                 }`
               }
             >
@@ -79,7 +79,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
           </button>
           <div className="flex items-center gap-4 ml-auto">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-luvia-blue text-white flex items-center justify-center font-bold text-xs">
+              <div className="w-8 h-8 rounded-full bg-lavia-blue text-white flex items-center justify-center font-bold text-xs">
                 AD
               </div>
               <span className="text-sm font-medium text-gray-700 hidden md:block">Administrator</span>

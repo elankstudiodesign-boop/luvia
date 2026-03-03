@@ -46,7 +46,7 @@ const SearchOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           <div className="container mx-auto px-6 py-8">
             <div className="flex justify-end mb-8">
               <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                <X size={32} className="text-luvia-blue" strokeWidth={1} />
+                <X size={32} className="text-lavia-blue" strokeWidth={1} />
               </button>
             </div>
             
@@ -55,7 +55,7 @@ const SearchOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
                 <input 
                   type="text" 
                   placeholder="Tìm kiếm dịch vụ..." 
-                  className="w-full text-3xl md:text-5xl font-display font-bold text-luvia-blue placeholder-gray-200 border-b-2 border-gray-100 pb-4 focus:outline-none focus:border-luvia-blue bg-transparent transition-colors"
+                  className="w-full text-3xl md:text-5xl font-display font-bold text-lavia-blue placeholder-gray-200 border-b-2 border-gray-100 pb-4 focus:outline-none focus:border-lavia-blue bg-transparent transition-colors"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   autoFocus
@@ -87,7 +87,7 @@ const SearchOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
                         </div>
                         <div>
                           <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">{service.categoryName}</p>
-                          <h4 className="text-lg font-bold text-luvia-blue group-hover:text-luvia-mint transition-colors">{service.title}</h4>
+                          <h4 className="text-lg font-bold text-lavia-blue group-hover:text-lavia-mint transition-colors">{service.title}</h4>
                           <p className="text-sm text-gray-500 line-clamp-2 mt-1">{service.description}</p>
                         </div>
                       </div>
@@ -149,8 +149,8 @@ const Navbar = () => {
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
       
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 group hover:bg-white hover:text-luvia-blue ${
-          isScrolled ? 'bg-white text-luvia-blue shadow-sm' : 'bg-transparent text-white'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 group hover:bg-white hover:text-lavia-blue ${
+          isScrolled ? 'bg-white text-lavia-blue shadow-sm' : 'bg-transparent text-white'
         }`}
         onMouseLeave={() => setHoveredCategory(null)}
       >
@@ -178,7 +178,7 @@ const Navbar = () => {
           {/* Center: Logo */}
           <div className="w-1/3 flex justify-center">
             <a href="/" className="text-3xl font-bold tracking-[0.2em] font-display uppercase text-center">
-              LUVIA
+              LAVIA
             </a>
           </div>
 
@@ -229,7 +229,7 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-xl z-30 text-luvia-blue"
+              className="absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-xl z-30 text-lavia-blue"
               onMouseEnter={() => setHoveredCategory(hoveredCategory)}
               onMouseLeave={() => setHoveredCategory(null)}
             >
@@ -273,7 +273,7 @@ const Navbar = () => {
                               <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                             </div>
                             <div>
-                              <h4 className="text-sm font-bold text-gray-800 group-hover:text-luvia-blue transition-colors mb-1">
+                              <h4 className="text-sm font-bold text-gray-800 group-hover:text-lavia-blue transition-colors mb-1">
                                 {item.title}
                               </h4>
                               <p className="text-xs text-gray-500 line-clamp-2 group-hover:text-gray-700">
@@ -313,7 +313,7 @@ const Navbar = () => {
               className="fixed top-0 left-0 bottom-0 w-[85%] max-w-sm bg-white z-50 overflow-y-auto"
             >
               <div className="p-6 flex justify-between items-center border-b border-gray-100">
-                <span className="font-display font-bold text-xl tracking-widest text-luvia-blue">LUVIA</span>
+                <span className="font-display font-bold text-xl tracking-widest text-lavia-blue">LAVIA</span>
                 <button onClick={() => setIsMenuOpen(false)}>
                   <X size={24} strokeWidth={1.5} className="text-gray-500" />
                 </button>
@@ -344,7 +344,7 @@ const Navbar = () => {
                 ))}
                 <div className="mt-8 px-6 space-y-4 text-sm text-gray-600">
                   <p 
-                    className="cursor-pointer hover:text-luvia-blue"
+                    className="cursor-pointer hover:text-lavia-blue"
                     onClick={() => {
                       setIsMenuOpen(false);
                       setIsContactOpen(true);
@@ -352,8 +352,8 @@ const Navbar = () => {
                   >
                     Dịch vụ Khách hàng
                   </p>
-                  <p className="cursor-pointer hover:text-luvia-blue">Tuyển dụng</p>
-                  <p className="cursor-pointer hover:text-luvia-blue">Pháp lý & Quyền riêng tư</p>
+                  <p className="cursor-pointer hover:text-lavia-blue">Tuyển dụng</p>
+                  <p className="cursor-pointer hover:text-lavia-blue">Pháp lý & Quyền riêng tư</p>
                 </div>
               </div>
             </motion.div>

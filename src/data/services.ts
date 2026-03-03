@@ -98,7 +98,7 @@ export const categories: ServiceCategory[] = [
           highEndTestimonial: {
             name: 'Anh Nguyễn Văn An',
             role: 'CEO - Chuỗi Cafe The Coffee House (Franchise)',
-            content: 'Tôi đã ủy thác cho LUVIA thành lập 3 chi nhánh trong năm nay. Mọi thứ diễn ra trơn tru, tôi không phải bận tâm bất cứ điều gì về giấy tờ pháp lý.'
+            content: 'Tôi đã ủy thác cho LAVIA thành lập 3 chi nhánh trong năm nay. Mọi thứ diễn ra trơn tru, tôi không phải bận tâm bất cứ điều gì về giấy tờ pháp lý.'
           }
         },
         pricing: [
@@ -145,7 +145,7 @@ export const categories: ServiceCategory[] = [
           highEndTestimonial: {
             name: 'Chị Lan Anh',
             role: 'Thư ký Giám đốc',
-            content: 'Sếp mình rất khó tính về văn bản. Nhờ LUVIA soạn thảo, mình tiết kiệm được bao nhiêu thời gian chỉnh sửa mà sếp lại khen chuyên nghiệp.'
+            content: 'Sếp mình rất khó tính về văn bản. Nhờ LAVIA soạn thảo, mình tiết kiệm được bao nhiêu thời gian chỉnh sửa mà sếp lại khen chuyên nghiệp.'
           }
         },
         pricing: [
@@ -162,8 +162,9 @@ export const categories: ServiceCategory[] = [
         title: 'Chuyển phát & Xác minh', 
         description: 'Thay bạn đến tận nơi để gửi đơn từ, chụp ảnh hiện trạng nhà đất hoặc xác minh địa chỉ thực tế một cách khách quan.', 
         image: 'https://picsum.photos/seed/verification/800/600',
-        detailedDescription: 'Dịch vụ xác minh thực địa và thu thập thông tin theo yêu cầu. Chúng tôi thay bạn đến tận nơi để kiểm tra hiện trạng nhà đất, xác minh địa chỉ, hoặc thu thập các bằng chứng hình ảnh/video cần thiết một cách khách quan và bảo mật.',
+        detailedDescription: 'Dịch vụ xác minh thực địa và thu thập thông tin theo yêu cầu. Chúng tôi thay bạn đến tận nơi để kiểm tra hiện trạng nhà đất, xác minh địa chỉ, hoặc thu thập các bằng chứng hình ảnh/video cần thiết một cách khách quan và bảo mật.\n\nLưu ý về phí di chuyển:\n- Miễn phí: Quận 1, 3, 5, 6, 8.\n- Phí 100.000đ: Các quận khác.\n- Đi tỉnh: Phí thương lượng.',
         features: [
+          'Miễn phí di chuyển tại Quận 1, 3, 5, 6, 8',
           'Nhân viên đến tận nơi xác minh nhanh chóng',
           'Cung cấp hình ảnh, video, ghi âm thực tế',
           'Báo cáo trung thực, khách quan',
@@ -190,10 +191,17 @@ export const categories: ServiceCategory[] = [
         },
         pricing: [
             {
-                name: 'Phí thực hiện',
+                name: 'Gói Tiêu chuẩn',
                 price: '1.000.000 VNĐ/lần',
-                description: 'Xác minh thực địa theo yêu cầu.',
+                description: 'Xác minh thực địa theo yêu cầu. (Chưa bao gồm phí di chuyển nếu có)',
                 features: ['Đến tận nơi', 'Chụp ảnh/Quay phim', 'Ghi âm (nếu cần)', 'Báo cáo chi tiết']
+            },
+            {
+                name: 'Gói Cao cấp',
+                price: '2.000.000 VNĐ/lần',
+                description: 'Xác minh chuyên sâu & Báo cáo VIP. (Chưa bao gồm phí di chuyển nếu có)',
+                features: ['Livestream trực tiếp tại hiện trường', 'Quay video 4K chi tiết', 'Báo cáo văn bản chuyên sâu', 'Tư vấn phương án xử lý tiếp theo'],
+                recommended: true
             }
         ]
       },
@@ -354,14 +362,14 @@ export const categories: ServiceCategory[] = [
           highEndTestimonial: {
             name: 'Chị Thanh Hằng',
             role: 'Trưởng phòng Kinh doanh',
-            content: 'Đi công tác liên miên, nhờ có LUVIA lo vé và khách sạn nên mình cứ xách vali lên là đi, không phải bận tâm gì cả.'
+            content: 'Đi công tác liên miên, nhờ có LAVIA lo vé và khách sạn nên mình cứ xách vali lên là đi, không phải bận tâm gì cả.'
           }
         },
         pricing: [
           {
             name: 'Vé máy bay Lẻ',
-            price: '50.000 VNĐ/vé',
-            description: 'Phí dịch vụ xuất vé và xử lý phát sinh.',
+            price: '200.000đ - 300.000đ',
+            description: '200k (Mùa thường) - 300k (Mùa lễ hội). Lưu ý: Chưa bao gồm giá vé máy bay.',
             features: ['Săn vé giá rẻ nhất', 'Hỗ trợ check-in', 'Xử lý mua thêm hành lý', 'Hỗ trợ đổi ngày/giờ bay']
           },
           {
@@ -413,7 +421,7 @@ export const categories: ServiceCategory[] = [
           highEndTestimonial: {
             name: 'Chị Minh Thư',
             role: 'Du học sinh Úc',
-            content: 'Làm hồ sơ du học cần hợp pháp hóa bao nhiêu giấy tờ. May mà có LUVIA lo hết, mình chỉ việc lo học tiếng Anh thôi.'
+            content: 'Làm hồ sơ du học cần hợp pháp hóa bao nhiêu giấy tờ. May mà có LAVIA lo hết, mình chỉ việc lo học tiếng Anh thôi.'
           }
         },
         pricing: [
@@ -488,7 +496,7 @@ export const categories: ServiceCategory[] = [
       { 
         id: 'fast-track',
         title: 'Fast-track Sân bay', 
-        description: 'Hỗ trợ đặt dịch vụ đón tiễn VIP tại sân bay, giúp bạn làm thủ tục xuất nhập cảnh nhanh chóng mà không cần xếp hàng chờ đợi.', 
+        description: 'Nhân viên sẽ xếp hàng sẵn đợi giúp quý khách làm thủ tục xuất nhập cảnh nhanh chóng, không cần chờ đợi mệt mỏi.', 
         image: 'https://picsum.photos/seed/fasttrack/800/600',
         detailedDescription: 'Dịch vụ đón tiễn ưu tiên tại sân bay (Fast-track) giúp khách hàng bỏ qua nỗi lo xếp hàng chờ đợi. Nhân viên của chúng tôi sẽ đón bạn ngay tại ống lồng/cửa máy bay, hỗ trợ làm thủ tục xuất nhập cảnh và lấy hành lý nhanh nhất.',
         features: [
@@ -543,12 +551,13 @@ export const categories: ServiceCategory[] = [
         title: 'Hồ sơ du lịch cá nhân', 
         description: 'Tạo trang web cá nhân lưu trữ toàn bộ vé máy bay, booking khách sạn và lịch trình, giúp bạn tra cứu dễ dàng ngay cả khi không có mạng.', 
         image: 'https://picsum.photos/seed/travel_portal/800/600',
-        detailedDescription: 'Sổ tay du lịch kỹ thuật số "All-in-one" dành cho người hay di chuyển. Chúng tôi số hóa và sắp xếp vé máy bay, booking khách sạn, bảo hiểm và lịch trình vào một đường link bảo mật duy nhất, giúp bạn truy cập mọi lúc mọi nơi ngay cả khi không có internet.',
+        detailedDescription: 'Sổ tay du lịch kỹ thuật số "All-in-one" dành cho người hay di chuyển. Ngoài việc lưu trữ vé và booking, hệ thống còn tự động cập nhật thời tiết, tỷ giá ngoại tệ, nhắc nhở thủ tục nhập cảnh và lưu trữ lịch sử tiêm chủng/bảo hiểm du lịch, giúp bạn hoàn toàn chủ động trong mọi chuyến đi.',
         features: [
-          'Truy cập vé và lịch trình Offline không cần mạng',
-          'Tự động đồng bộ múi giờ và nhắc nhở chuyến bay',
-          'Lưu trữ bảo mật Passport và giấy tờ tùy thân',
-          'Chia sẻ lịch trình dễ dàng cho người thân'
+          'Truy cập vé, booking khách sạn Offline',
+          'Tự động cập nhật thời tiết & Tỷ giá tại điểm đến',
+          'Nhắc nhở thủ tục nhập cảnh & Visa',
+          'Lưu trữ bảo mật Passport, Bảo hiểm & Tiêm chủng',
+          'Chia sẻ lịch trình thông minh cho người thân'
         ],
         psychology: {
           hoursSaved: '3.5 giờ',
@@ -582,64 +591,85 @@ export const categories: ServiceCategory[] = [
     ]
   },
   {
-    id: 'property',
-    title: 'Tiện ích Lưu trú & Bất động sản',
+    id: 'real-estate',
+    title: 'Bất động sản & Cư dân',
     shortTitle: 'BẤT ĐỘNG SẢN',
-    subtitle: 'QUẢN GIA TẬN TỤY',
-    description: 'Đội ngũ quản gia nữ tỉ mỉ giúp bạn chăm sóc nhà cửa và hỗ trợ cư dân chu đáo.',
-    image: 'https://picsum.photos/seed/architecture_lv/1200/1600',
-    layout: 'split',
+    subtitle: 'GIAO DỊCH - QUẢN LÝ - TIỆN ÍCH',
+    description: 'Hệ sinh thái dịch vụ bất động sản toàn diện: Từ môi giới không hoa hồng, quản lý vận hành đến các tiện ích hỗ trợ cư dân và chủ nhà.',
+    image: 'https://picsum.photos/seed/real_estate/1920/1080',
+    layout: 'grid',
     items: [
-      { 
-        id: 'residence',
-        title: 'Đăng ký Tạm trú / Tạm vắng', 
-        description: 'Soạn thảo sẵn các mẫu đơn cư trú và thay mặt bạn đến cơ quan công an để nộp hồ sơ đúng quy định.', 
-        image: 'https://picsum.photos/seed/residence/800/600',
-        detailedDescription: 'Trợ lý hành chính giúp bạn hoàn thành nghĩa vụ khai báo cư trú. Chúng tôi hỗ trợ chuẩn bị các mẫu đơn, sắp xếp hồ sơ gọn gàng và thay mặt bạn đến cơ quan công an để nộp hồ sơ, giúp bạn tránh những phiền toái không đáng có.',
+      {
+        id: 'buy-sell-house',
+        title: 'Mua bán Nhà đất & Căn hộ',
+        description: 'Kết nối người mua và người bán trực tiếp, hỗ trợ đàm phán giá gốc và lo trọn gói thủ tục pháp lý sang tên.',
+        image: 'https://picsum.photos/seed/house_buy_sell/800/600',
+        detailedDescription: 'Dịch vụ môi giới Bất động sản kiểu mới: KHÔNG thu hoa hồng % trên giá trị tài sản. Chúng tôi chỉ thu một khoản phí dịch vụ cố định để hỗ trợ tìm kiếm, thẩm định, đàm phán và hoàn tất thủ tục pháp lý, giúp bạn tiết kiệm hàng trăm triệu đồng.',
         features: [
-          'Hướng dẫn chuẩn bị giấy tờ đơn giản',
-          'Soạn thảo sẵn các mẫu đơn CT01, CT02...',
-          'Thay bạn đi lại làm việc với cơ quan chức năng',
-          'Bàn giao kết quả tận nơi'
-        ],
-        process: [
-          { step: '01', title: 'Tiếp nhận thông tin', description: 'Khách hàng cung cấp ảnh chụp CCCD và Hợp đồng thuê nhà.' },
-          { step: '02', title: 'Soạn hồ sơ', description: 'Chúng tôi điền tờ khai và chuẩn bị bộ hồ sơ đầy đủ theo quy định.' },
-          { step: '03', title: 'Nộp hồ sơ', description: 'Nộp hồ sơ qua cổng Dịch vụ công hoặc trực tiếp tại Công an phường.' },
-          { step: '04', title: 'Trả kết quả', description: 'Thông báo kết quả đã được cập nhật trên hệ thống VNeID.' }
+          'Tìm kiếm khách mua/nhà bán theo đúng nhu cầu',
+          'Thẩm định giá và kiểm tra quy hoạch chi tiết',
+          'Hỗ trợ đàm phán giá gốc trực tiếp với chủ nhà',
+          'Soạn thảo hợp đồng và lo thủ tục sang tên sổ đỏ'
         ],
         psychology: {
-          hoursSaved: '12.0 giờ',
+          hoursSaved: '40+ giờ',
           painPoints: [
-            'Không biết khai báo tạm trú ở đâu, thủ tục thế nào',
-            'Bị công an kiểm tra đột xuất, lo lắng bị phạt',
-            'Đi lại nhiều lần vẫn chưa xong giấy tờ'
+            'Mất phí môi giới 1-2% quá cao (vài trăm triệu)',
+            'Bị môi giới kê giá ăn chênh lệch',
+            'Rủi ro pháp lý, quy hoạch không rõ ràng'
           ],
           gainPoints: [
-            'Ngồi nhà khai báo online, không cần gặp công an',
-            'Hồ sơ chuẩn chỉnh, cập nhật VNeID nhanh chóng',
-            'An tâm cư trú, không lo bị phạt'
+            'Tiết kiệm khoản tiền lớn nhờ phí cố định',
+            'Giao dịch trực tiếp, minh bạch giá cả',
+            'Pháp lý được đảm bảo an toàn tuyệt đối'
           ],
-          authoritySignals: ['Công an Phường', 'Cổng Dịch vụ công Bộ Công an'],
+          authoritySignals: ['Sở Tài nguyên & Môi trường', 'Văn phòng Công chứng'],
           highEndTestimonial: {
-            name: 'Anh John Smith',
-            role: 'Giáo viên tiếng Anh',
-            content: 'Thủ tục cư trú cho người nước ngoài rất phức tạp. LUVIA đã giúp tôi giải quyết mọi thứ êm đẹp.'
+            name: 'Anh Minh Tuấn',
+            role: 'Nhà đầu tư',
+            content: 'Mô hình này quá hay! Tôi bán căn nhà 10 tỷ, bình thường mất 100-200 triệu phí môi giới, giờ chỉ tốn phí cố định chưa tới 1/5. Dịch vụ lại rất chuyên nghiệp.'
           }
         },
         pricing: [
-            {
-                name: 'Dịch vụ Online',
-                price: '300.000 VNĐ',
-                description: 'Hỗ trợ khai báo qua cổng dịch vụ công.',
-                features: ['Tạo tài khoản DVC', 'Khai báo thông tin', 'Theo dõi kết quả']
+             {
+                name: 'Gói Pháp lý',
+                price: '5.000.000 VNĐ',
+                description: 'Dành cho khách đã tìm được người mua/bán.',
+                features: ['Kiểm tra quy hoạch', 'Soạn thảo hợp đồng', 'Công chứng mua bán', 'Sang tên sổ đỏ']
             },
             {
-                name: 'Trọn gói',
-                price: '800.000 VNĐ',
-                description: 'Đại diện làm việc trực tiếp với CSKV.',
-                features: ['Chuẩn bị hồ sơ', 'Làm việc với CSKV', 'Nhận kết quả', 'Giao tận nơi'],
+                name: 'Gói Môi giới',
+                price: '15.000.000 VNĐ',
+                description: 'Tìm kiếm khách hàng và chốt giao dịch.',
+                features: ['Tìm khách/nhà', 'Dẫn khách xem nhà', 'Đàm phán giá', 'Hỗ trợ chốt deal'],
                 recommended: true
+            },
+            {
+                name: 'Trọn gói VIP',
+                price: '19.000.000 VNĐ',
+                description: 'Từ tìm kiếm đến khi ra sổ đỏ.',
+                features: ['Bao gồm gói Môi giới', 'Bao gồm gói Pháp lý', 'Hỗ trợ vay ngân hàng', 'Ưu tiên xử lý nhanh']
+            }
+        ]
+      },
+      {
+        id: 'rent-house',
+        title: 'Cho thuê Mặt bằng & Căn hộ',
+        description: 'Tìm kiếm khách thuê hoặc mặt bằng kinh doanh ưng ý với chi phí dịch vụ cố định, không thu phí tháng tiền nhà đầu tiên.',
+        image: 'https://picsum.photos/seed/house_rent/800/600',
+        detailedDescription: 'Giải pháp cho thuê Bất động sản tiết kiệm. Thay vì mất 1 tháng tiền nhà cho môi giới, bạn chỉ cần trả phí dịch vụ cố định để chúng tôi tìm khách thuê uy tín, hỗ trợ soạn thảo hợp đồng và bàn giao nhà.',
+        features: [
+          'Tìm kiếm khách thuê văn minh, lịch sự',
+          'Tìm mặt bằng kinh doanh vị trí đắc địa',
+          'Soạn thảo hợp đồng thuê chặt chẽ',
+          'Hỗ trợ đăng ký tạm trú cho khách thuê'
+        ],
+        pricing: [
+            {
+                name: 'Phí Dịch vụ',
+                price: '3.000.000 VNĐ',
+                description: 'Phí cố định/giao dịch thành công.',
+                features: ['Tìm khách thuê', 'Dẫn khách xem nhà', 'Soạn hợp đồng', 'Bàn giao nhà']
             }
         ]
       },
@@ -677,7 +707,7 @@ export const categories: ServiceCategory[] = [
           highEndTestimonial: {
             name: 'Bạn Ngọc Lan',
             role: 'Sinh viên RMIT',
-            content: 'Mình tìm phòng cả tháng không được. Nhờ LUVIA dẫn đi một buổi chiều là chốt được căn hộ ưng ý ngay.'
+            content: 'Mình tìm phòng cả tháng không được. Nhờ LAVIA dẫn đi một buổi chiều là chốt được căn hộ ưng ý ngay.'
           }
         },
         pricing: [
@@ -689,6 +719,174 @@ export const categories: ServiceCategory[] = [
             }
         ]
       },
+       {
+        id: 'legal-check',
+        title: 'Thẩm định & Kiểm tra Quy hoạch',
+        description: 'Dịch vụ kiểm tra quy hoạch và pháp lý bất động sản nhanh chóng, chính xác để tránh rủi ro "tiền mất tật mang".',
+        image: 'https://picsum.photos/seed/legal_check/800/600',
+        detailedDescription: 'Kiểm tra chi tiết tình trạng pháp lý và quy hoạch của bất động sản trước khi xuống tiền. Chúng tôi giúp bạn xác minh sổ đỏ thật/giả, kiểm tra tranh chấp, quy hoạch treo, đảm bảo an toàn tuyệt đối cho dòng vốn của bạn.',
+        features: [
+          'Tra cứu thông tin quy hoạch mới nhất',
+          'Xác minh tình trạng tranh chấp, thi hành án',
+          'Kiểm tra sổ đỏ thật/giả tại cơ quan chức năng',
+          'Tư vấn pháp lý rủi ro trước khi đặt cọc'
+        ],
+        pricing: [
+            {
+                name: 'Check Quy hoạch',
+                price: '500.000 VNĐ/lần',
+                description: 'Có kết quả ngay trong ngày.',
+                features: ['Bản đồ quy hoạch', 'Thông tin lộ giới', 'Tình trạng sử dụng đất', 'Tư vấn rủi ro']
+            }
+        ]
+      },
+      { 
+        id: 'property-mgmt',
+        title: 'Quản lý & Vận hành Nhà trọ', 
+        description: 'Giải pháp quản lý toàn diện từ Ứng dụng tính tiền tự động đến Dịch vụ quản gia thay mặt chủ nhà xử lý mọi vấn đề, giúp bạn thảnh thơi tận hưởng cuộc sống.', 
+        image: 'https://picsum.photos/seed/property_mgmt/800/600',
+        detailedDescription: 'Dịch vụ Quản lý Bất động sản linh hoạt theo nhu cầu của bạn. Bạn có thể chọn tự quản lý bằng App thông minh của chúng tôi để tiết kiệm chi phí, hoặc ủy thác toàn bộ việc vận hành (thu tiền, bảo trì, xử lý sự cố) cho đội ngũ chuyên nghiệp của LAVIA.',
+        features: [
+          'App tính tiền & Gửi hóa đơn Zalo tự động',
+          'Đại diện thu tiền nhà & Nhắc nợ khéo léo',
+          'Bảo trì, sửa chữa & Xử lý sự cố 24/7',
+          'Báo cáo doanh thu & Lãi lỗ minh bạch'
+        ],
+        psychology: {
+          hoursSaved: '15.0 giờ',
+          painPoints: [
+            'Đau đầu tính tiền điện nước, dễ sai sót',
+            'Mệt mỏi đi thu tiền nhà, nhắc nợ từng phòng',
+            'Khách gọi báo hỏng hóc lúc nửa đêm'
+          ],
+          gainPoints: [
+            'Tự động hóa sổ sách, chính xác tuyệt đối',
+            'Tiền về tài khoản đều đặn đúng ngày',
+            'Mọi sự cố có đội ngũ kỹ thuật xử lý ngay'
+          ],
+          authoritySignals: ['Hiệp hội Quản lý Bất động sản', 'Hiệp hội Phần mềm Việt Nam'],
+          highEndTestimonial: {
+            name: 'Cô Kim Chi',
+            role: 'Chủ nhà trọ Quận 7',
+            content: 'Từ ngày dùng dịch vụ này, cô đi du lịch suốt mà tiền vẫn về đều. App tính tiền rất nhanh, còn mấy việc sửa chữa thì mấy cháu quản lý lo hết.'
+          }
+        },
+        pricing: [
+            {
+                name: 'App Quản lý (Tự vận hành)',
+                price: '99.000 VNĐ/tháng',
+                description: 'Dành cho chủ nhà muốn tự quản lý.',
+                features: ['Tính tiền tự động', 'Gửi hóa đơn Zalo', 'Quản lý hợp đồng', 'Báo cáo doanh thu']
+            },
+            {
+                name: 'Quản lý Cơ bản (Ký gửi)',
+                price: '5% doanh thu',
+                description: 'Hỗ trợ thu tiền và gửi hóa đơn.',
+                features: ['Bao gồm App Quản lý', 'Đại diện thu tiền', 'Nhắc nợ tự động', 'Gửi báo cáo định kỳ']
+            },
+            {
+                name: 'Quản lý Toàn diện (Ủy thác)',
+                price: '10% doanh thu',
+                description: 'Bao gồm bảo trì và xử lý sự cố.',
+                features: ['Tìm kiếm khách thuê', 'Thu tiền hàng tháng', 'Bảo trì sửa chữa', 'Đại diện giải quyết sự cố'],
+                recommended: true
+            }
+        ]
+      },
+      { 
+        id: 'landing-rent',
+        title: 'Landing Page Cho thuê', 
+        description: 'Thiết kế website giới thiệu căn hộ với hình ảnh đẹp và tour 360 độ, giúp khách thuê ấn tượng và chốt phòng nhanh hơn.', 
+        image: 'https://picsum.photos/seed/landing_rent/800/600',
+        detailedDescription: 'Nâng tầm hình ảnh căn hộ của bạn với một website giới thiệu chuyên nghiệp. Tích hợp hình ảnh 360 độ, video tour và thông tin chi tiết, giúp khách thuê hình dung rõ ràng không gian sống và ra quyết định đặt cọc nhanh chóng hơn.',
+        features: [
+          'Giao diện sang trọng, tôn vinh vẻ đẹp căn hộ',
+          'Tích hợp xem phòng 360 độ thực tế ảo',
+          'Nút kêu gọi hành động (Đặt lịch/Đặt cọc) nổi bật',
+          'Tối ưu hiển thị trên mọi thiết bị di động'
+        ],
+        psychology: {
+          hoursSaved: '30.0 giờ',
+          painPoints: [
+            'Đăng tin rao vặt mãi không ai hỏi, trôi bài liên tục',
+            'Khách đến xem rồi đi vì hình ảnh không giống thực tế',
+            'Mất thời gian dẫn khách đi xem phòng nhiều lần'
+          ],
+          gainPoints: [
+            'Web đẹp lung linh, khách xem là muốn thuê ngay',
+            'Tour 360 độ giúp khách chốt online không cần đến nơi',
+            'Tăng uy tín và giá trị cho căn hộ của bạn'
+          ],
+          authoritySignals: ['Cộng đồng Marketing Bất động sản'],
+          highEndTestimonial: {
+            name: 'Chị Mai Anh',
+            role: 'Môi giới BĐS',
+            content: 'Có cái landing page này, khách hàng tin tưởng hơn hẳn. Mình chốt cọc online được mấy căn rồi.'
+          }
+        },
+        pricing: [
+            {
+                name: 'Thiết kế Web',
+                price: '3.000.000 VNĐ',
+                description: 'Trang giới thiệu căn hộ chuyên nghiệp.',
+                features: ['Giao diện sang trọng', 'Tích hợp hình ảnh 360', 'Form đặt lịch xem', 'Tối ưu SEO']
+            }
+        ]
+      },
+      { 
+        id: 'residence',
+        title: 'Đăng ký Tạm trú / Tạm vắng', 
+        description: 'Soạn thảo sẵn các mẫu đơn cư trú và thay mặt bạn đến cơ quan công an để nộp hồ sơ đúng quy định.', 
+        image: 'https://picsum.photos/seed/residence/800/600',
+        detailedDescription: 'Trợ lý hành chính giúp bạn hoàn thành nghĩa vụ khai báo cư trú. Chúng tôi hỗ trợ chuẩn bị các mẫu đơn, sắp xếp hồ sơ gọn gàng và thay mặt bạn đến cơ quan công an để nộp hồ sơ, giúp bạn tránh những phiền toái không đáng có.',
+        features: [
+          'Hướng dẫn chuẩn bị giấy tờ đơn giản',
+          'Soạn thảo sẵn các mẫu đơn CT01, CT02...',
+          'Thay bạn đi lại làm việc với cơ quan chức năng',
+          'Bàn giao kết quả tận nơi'
+        ],
+        process: [
+          { step: '01', title: 'Tiếp nhận thông tin', description: 'Khách hàng cung cấp ảnh chụp CCCD và Hợp đồng thuê nhà.' },
+          { step: '02', title: 'Soạn hồ sơ', description: 'Chúng tôi điền tờ khai và chuẩn bị bộ hồ sơ đầy đủ theo quy định.' },
+          { step: '03', title: 'Nộp hồ sơ', description: 'Nộp hồ sơ qua cổng Dịch vụ công hoặc trực tiếp tại Công an phường.' },
+          { step: '04', title: 'Trả kết quả', description: 'Thông báo kết quả đã được cập nhật trên hệ thống VNeID.' }
+        ],
+        psychology: {
+          hoursSaved: '12.0 giờ',
+          painPoints: [
+            'Không biết khai báo tạm trú ở đâu, thủ tục thế nào',
+            'Bị công an kiểm tra đột xuất, lo lắng bị phạt',
+            'Đi lại nhiều lần vẫn chưa xong giấy tờ'
+          ],
+          gainPoints: [
+            'Ngồi nhà khai báo online, không cần gặp công an',
+            'Hồ sơ chuẩn chỉnh, cập nhật VNeID nhanh chóng',
+            'An tâm cư trú, không lo bị phạt'
+          ],
+          authoritySignals: ['Công an Phường', 'Cổng Dịch vụ công Bộ Công an'],
+          highEndTestimonial: {
+            name: 'Anh John Smith',
+            role: 'Giáo viên tiếng Anh',
+            content: 'Thủ tục cư trú cho người nước ngoài rất phức tạp. LAVIA đã giúp tôi giải quyết mọi thứ êm đẹp.'
+          }
+        },
+        pricing: [
+            {
+                name: 'Dịch vụ Online',
+                price: '300.000 VNĐ',
+                description: 'Hỗ trợ khai báo qua cổng dịch vụ công.',
+                features: ['Tạo tài khoản DVC', 'Khai báo thông tin', 'Theo dõi kết quả']
+            },
+            {
+                name: 'Trọn gói',
+                price: '800.000 VNĐ',
+                description: 'Đại diện làm việc trực tiếp với CSKV.',
+                features: ['Chuẩn bị hồ sơ', 'Làm việc với CSKV', 'Nhận kết quả', 'Giao tận nơi'],
+                recommended: true
+            }
+        ]
+      },
+
       { 
         id: 'moving',
         title: 'Chuyển trọ rảnh tay', 
@@ -794,166 +992,6 @@ export const categories: ServiceCategory[] = [
                 recommended: true
             }
         ]
-      },
-      { 
-        id: 'property-mgmt',
-        title: 'Quản lý thay mặt chủ nhà', 
-        description: 'Thay bạn quản lý phòng trọ: thu tiền nhà, ghi điện nước và giải quyết các vấn đề vặt, giúp bạn thảnh thơi tận hưởng cuộc sống.', 
-        image: 'https://picsum.photos/seed/property_mgmt/800/600',
-        detailedDescription: 'Dịch vụ Quản gia cao cấp dành cho chủ nhà bận rộn hoặc ở xa. Chúng tôi thay mặt bạn xử lý mọi vấn đề phát sinh tại căn hộ cho thuê: từ việc thu tiền nhà, chốt điện nước đến việc xử lý các sự cố hư hỏng nhỏ, giúp dòng tiền của bạn luôn ổn định.',
-        features: [
-          'Đại diện thu tiền nhà và nhắc nợ khéo léo',
-          'Tiếp nhận và xử lý khiếu nại của khách thuê 24/7',
-          'Ghi chỉ số điện nước và tính toán chính xác',
-          'Giám sát bảo trì và sửa chữa hư hỏng vặt'
-        ],
-        psychology: {
-          hoursSaved: '15.0 giờ',
-          painPoints: [
-            'Đau đầu vì khách thuê gọi điện báo hỏng hóc liên tục',
-            'Mệt mỏi đi thu tiền nhà, nhắc nợ từng phòng',
-            'Không kiểm soát được chi phí sửa chữa, bảo trì'
-          ],
-          gainPoints: [
-            'Không còn tin nhắn làm phiền, thảnh thơi tận hưởng',
-            'Tiền về tài khoản đều đặn đúng ngày',
-            'Mọi sự cố có đội ngũ kỹ thuật xử lý ngay'
-          ],
-          authoritySignals: ['Hiệp hội Quản lý Bất động sản'],
-          highEndTestimonial: {
-            name: 'Cô Kim Chi',
-            role: 'Chủ nhà trọ Quận 7',
-            content: 'Từ ngày giao cho LUVIA, cô đi du lịch suốt mà tiền vẫn về đều. Các cháu quản lý rất tốt.'
-          }
-        },
-        pricing: [
-            {
-                name: 'Phí quản lý',
-                price: '10% doanh thu',
-                description: 'Quản lý vận hành toàn diện.',
-                features: ['Tìm kiếm khách thuê', 'Thu tiền hàng tháng', 'Bảo trì sửa chữa', 'Báo cáo tài chính']
-            }
-        ]
-      },
-      { 
-        id: 'mini-erp-house',
-        title: 'App Quản lý Phòng trọ', 
-        description: 'Ứng dụng tính tiền trọ và gửi hóa đơn Zalo tự động, giúp chủ nhà quản lý dễ dàng, minh bạch và không lo sai sót.', 
-        image: 'https://picsum.photos/seed/mini_erp_house/800/600',
-        detailedDescription: 'Ứng dụng quản lý nhà trọ thông minh trên nền tảng Web/Mobile. Thay thế hoàn toàn sổ sách giấy tờ, giúp chủ nhà tính toán tiền phòng, điện nước chỉ với 1 cú click và gửi hóa đơn tự động qua Zalo cho khách thuê.',
-        features: [
-          'Tính tiền tự động, không lo sai sót',
-          'Gửi hóa đơn và nhắc nợ tự động qua Zalo',
-          'Quản lý hợp đồng và thông tin khách thuê',
-          'Báo cáo lãi lỗ hàng tháng rõ ràng'
-        ],
-        psychology: {
-          hoursSaved: '8.0 giờ',
-          painPoints: [
-            'Cộng sổ sách tay dễ sai sót, thất thoát tiền bạc',
-            'Quên thu tiền điện nước, tranh cãi với khách thuê',
-            'Mất cả buổi tối để tính toán công nợ cuối tháng'
-          ],
-          gainPoints: [
-            'Tính tiền tự động 100%, chính xác tuyệt đối',
-            'Gửi hóa đơn qua Zalo chỉ với 1 cú chạm',
-            'Kiểm soát doanh thu, lãi lỗ mọi lúc mọi nơi'
-          ],
-          authoritySignals: ['Hiệp hội Phần mềm Việt Nam'],
-          highEndTestimonial: {
-            name: 'Anh Tuấn Anh',
-            role: 'Chủ chuỗi căn hộ',
-            content: 'App rất dễ dùng, giúp mình quản lý 50 phòng trọ nhẹ tênh. Thích nhất tính năng gửi hóa đơn Zalo tự động.'
-          }
-        },
-        pricing: [
-            {
-                name: 'Gói Cơ bản',
-                price: '99.000 VNĐ/tháng',
-                description: 'Dành cho chủ nhà dưới 20 phòng.',
-                features: ['Quản lý phòng & khách', 'Tính tiền điện nước', 'Xuất hóa đơn', 'Gửi Zalo tự động']
-            }
-        ]
-      },
-      { 
-        id: 'landing-rent',
-        title: 'Landing Page Cho thuê', 
-        description: 'Thiết kế website giới thiệu căn hộ với hình ảnh đẹp và tour 360 độ, giúp khách thuê ấn tượng và chốt phòng nhanh hơn.', 
-        image: 'https://picsum.photos/seed/landing_rent/800/600',
-        detailedDescription: 'Nâng tầm hình ảnh căn hộ của bạn với một website giới thiệu chuyên nghiệp. Tích hợp hình ảnh 360 độ, video tour và thông tin chi tiết, giúp khách thuê hình dung rõ ràng không gian sống và ra quyết định đặt cọc nhanh chóng hơn.',
-        features: [
-          'Giao diện sang trọng, tôn vinh vẻ đẹp căn hộ',
-          'Tích hợp xem phòng 360 độ thực tế ảo',
-          'Nút kêu gọi hành động (Đặt lịch/Đặt cọc) nổi bật',
-          'Tối ưu hiển thị trên mọi thiết bị di động'
-        ],
-        psychology: {
-          hoursSaved: '30.0 giờ',
-          painPoints: [
-            'Đăng tin rao vặt mãi không ai hỏi, trôi bài liên tục',
-            'Khách đến xem rồi đi vì hình ảnh không giống thực tế',
-            'Mất thời gian dẫn khách đi xem phòng nhiều lần'
-          ],
-          gainPoints: [
-            'Web đẹp lung linh, khách xem là muốn thuê ngay',
-            'Tour 360 độ giúp khách chốt online không cần đến nơi',
-            'Tăng uy tín và giá trị cho căn hộ của bạn'
-          ],
-          authoritySignals: ['Cộng đồng Marketing Bất động sản'],
-          highEndTestimonial: {
-            name: 'Chị Mai Anh',
-            role: 'Môi giới BĐS',
-            content: 'Có cái landing page này, khách hàng tin tưởng hơn hẳn. Mình chốt cọc online được mấy căn rồi.'
-          }
-        },
-        pricing: [
-            {
-                name: 'Thiết kế Web',
-                price: '3.000.000 VNĐ',
-                description: 'Trang giới thiệu căn hộ chuyên nghiệp.',
-                features: ['Giao diện sang trọng', 'Tích hợp hình ảnh 360', 'Form đặt lịch xem', 'Tối ưu SEO']
-            }
-        ]
-      },
-      { 
-        id: 'resident-service',
-        title: 'Tiện ích cư dân', 
-        description: 'Thay bạn làm việc với Ban quản lý tòa nhà: đăng ký thẻ cư dân, đăng ký thi công, chuyển đồ... nhanh gọn và đúng quy định.', 
-        image: 'https://picsum.photos/seed/resident_service/800/600',
-        detailedDescription: 'Trợ lý hành chính cá nhân cho cư dân chung cư. Chúng tôi thay bạn thực hiện các thủ tục hành chính rườm rà với Ban quản lý tòa nhà như đăng ký thẻ cư dân, đăng ký thi công, chuyển đồ, giúp bạn tiết kiệm thời gian quý báu.',
-        features: [
-          'Soạn thảo và chuẩn bị hồ sơ đúng quy định BQL',
-          'Đại diện nộp hồ sơ và làm việc với BQL',
-          'Theo dõi tiến độ và nhận kết quả bàn giao tận tay',
-          'Tư vấn quy định thi công và nội quy tòa nhà'
-        ],
-        psychology: {
-          hoursSaved: '6.0 giờ',
-          painPoints: [
-            'Xin nghỉ làm để chạy đi chạy lại nộp hồ sơ cho BQL',
-            'Chờ đợi BQL duyệt đơn đăng ký thi công, chuyển đồ',
-            'Không nắm rõ quy định dẫn đến bị phạt tiền'
-          ],
-          gainPoints: [
-            'Hồ sơ được chuẩn bị đúng chuẩn, duyệt nhanh chóng',
-            'Không cần gặp mặt BQL, mọi thứ có người lo',
-            'Được tư vấn quy định kỹ càng, tránh bị phạt'
-          ],
-          authoritySignals: ['Ban Quản lý các khu chung cư cao cấp'],
-          highEndTestimonial: {
-            name: 'Anh Đức Minh',
-            role: 'Cư dân Vinhomes',
-            content: 'Mới chuyển về chưa rành thủ tục, may có dịch vụ này hỗ trợ đăng ký thẻ cư dân và thi công nội thất rất nhanh.'
-          }
-        },
-        pricing: [
-            {
-                name: 'Phí dịch vụ',
-                price: '200.000 VNĐ/lần',
-                description: 'Hỗ trợ thực hiện các thủ tục hành chính chung cư.',
-                features: ['Đăng ký thẻ cư dân', 'Đăng ký thi công', 'Giám sát thợ thầu']
-            }
-        ]
       }
     ]
   },
@@ -968,41 +1006,54 @@ export const categories: ServiceCategory[] = [
     items: [
       { 
         id: 'insurance',
-        title: 'Hồ sơ BHXH & Thai sản', 
-        description: 'Hỗ trợ mẹ bỉm sữa làm hồ sơ thai sản, BHXH: điền đơn, nộp hồ sơ và nhận tiền trợ cấp giúp bạn, không cần lo thủ tục.', 
-        image: 'https://picsum.photos/seed/insurance/800/800',
-        detailedDescription: 'Dịch vụ hỗ trợ nộp hồ sơ BHXH dành cho các mẹ bỉm sữa bận rộn. Chúng tôi giúp bạn điền các mẫu đơn phức tạp, sắp xếp hồ sơ và thay bạn đến cơ quan BHXH để nộp và nhận kết quả, giúp bạn có thêm thời gian nghỉ ngơi.',
+        title: 'Hồ sơ BHXH & Giải quyết Quyền lợi Bảo hiểm', 
+        description: 'Hỗ trợ mẹ bỉm sữa làm hồ sơ thai sản, BHXH và đại diện giải quyết quyền lợi bảo hiểm (Claim tiền) nhanh chóng, tối đa hóa quyền lợi.', 
+        image: '/images/services/bhxh-cover.jpg',
+        detailedDescription: 'Dịch vụ hỗ trợ trọn gói các thủ tục BHXH và Giải quyết quyền lợi bảo hiểm (Claim). Chúng tôi thay bạn làm việc với cơ quan BHXH và các công ty bảo hiểm nhân thọ/phi nhân thọ để giải quyết các quyền lợi: Thai sản, Trợ cấp y tế, Tai nạn, Viện phí... đảm bảo hồ sơ chuẩn xác và tiền về tài khoản nhanh nhất.',
         features: [
-          'Hỗ trợ điền mẫu đơn chính xác',
-          'Sắp xếp hồ sơ gọn gàng, đầy đủ',
-          'Thay bạn xếp hàng nộp hồ sơ',
-          'Nhận kết quả và giao tận nhà'
+          'Hồ sơ Thai sản & BHXH: Điền đơn, nộp và nhận kết quả',
+          'Claim tiền Bảo hiểm: Thai sản, Tai nạn, Sức khỏe, Nhân thọ...',
+          'Hỗ trợ thanh toán viện phí trực tiếp (Bảo lãnh viện phí)',
+          'Tư vấn rà soát hợp đồng để tối ưu quyền lợi được hưởng'
         ],
         psychology: {
-          hoursSaved: '8.5 giờ',
+          hoursSaved: '12.5 giờ',
           painPoints: [
-            'Chờ đợi xếp hàng lấy số tại BHXH rất mệt mỏi',
-            'Không biết điền mẫu đơn nào cho đúng quy định',
-            'Hồ sơ thiếu giấy tờ phải đi lại bổ sung nhiều lần'
+            'Thủ tục claim tiền bảo hiểm rắc rối, nhiều giấy tờ',
+            'Không biết mình được hưởng những quyền lợi gì',
+            'Mệt mỏi vì chờ đợi và bị từ chối hồ sơ nhiều lần'
           ],
           gainPoints: [
-            'Ngồi nhà chăm con, có người thay bạn đi làm thủ tục',
-            'Hồ sơ được chuẩn bị đầy đủ, chính xác 100%',
-            'Tiền trợ cấp về tài khoản nhanh chóng'
+            'Có chuyên gia am hiểu luật thay bạn đòi quyền lợi',
+            'Tối đa hóa số tiền được chi trả (không bỏ sót quyền lợi)',
+            'Tiền về nhanh, không mất công đi lại, tranh cãi'
           ],
-          authoritySignals: ['Bảo hiểm Xã hội Việt Nam'],
+          authoritySignals: ['Bảo hiểm Xã hội VN', 'Hiệp hội Bảo hiểm VN'],
           highEndTestimonial: {
             name: 'Chị Lan Hương',
             role: 'Mẹ bỉm sữa',
-            content: 'Mới sinh con xong đi lại rất bất tiện. Nhờ LUVIA mà mình nhận được tiền thai sản rất nhanh mà không phải ra khỏi nhà.'
+            content: 'Vừa sinh xong mệt mỏi, nhờ LAVIA mà mình nhận đủ cả tiền thai sản BHXH lẫn tiền bảo hiểm sức khỏe của công ty, tổng cộng hơn 50 triệu mà không phải làm gì cả.'
           }
         },
         pricing: [
             {
-                name: 'Dịch vụ nộp hộ',
-                price: '500.000 VNĐ',
-                description: 'Hỗ trợ nộp hồ sơ và nhận kết quả BHXH.',
-                features: ['Rà soát hồ sơ', 'Nộp tại cơ quan BHXH', 'Theo dõi kết quả', 'Giao tận nhà']
+                name: 'Hồ sơ Thai sản/BHXH',
+                price: '500.000 VNĐ/hồ sơ',
+                description: 'Dành cho mẹ bỉm sữa làm chế độ thai sản.',
+                features: ['Soạn thảo hồ sơ', 'Nộp tại BHXH', 'Theo dõi kết quả', 'Giao giấy tờ tận nhà']
+            },
+            {
+                name: 'Claim Bảo hiểm',
+                price: '800.000 VNĐ/hồ sơ',
+                description: 'Giải quyết quyền lợi BH Nhân thọ/Sức khỏe.',
+                features: ['Thu thập chứng từ y tế', 'Làm việc với công ty BH', 'Giải trình hồ sơ', 'Đảm bảo chi trả tối đa'],
+                recommended: true
+            },
+            {
+                name: 'Hỗ trợ Viện phí',
+                price: '1.200.000 VNĐ/lần',
+                description: 'Hỗ trợ trực tiếp tại bệnh viện.',
+                features: ['Làm thủ tục nhập/xuất viện', 'Làm việc với quầy bảo hiểm', 'Bảo lãnh viện phí nhanh', 'Không lo thủ tục rườm rà']
             }
         ]
       },
@@ -1081,7 +1132,7 @@ export const categories: ServiceCategory[] = [
         pricing: [
             {
                 name: 'Thiết kế Gia phả',
-                price: '5.000.000 VNĐ',
+                price: '3.000.000 - 3.500.000 VNĐ',
                 description: 'Xây dựng website gia phả dòng họ.',
                 features: ['Cây gia phả tương tác', 'Lưu trữ tiểu sử', 'Thư viện ảnh/video', 'Bảo mật riêng tư']
             }
@@ -1169,41 +1220,58 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'shopper',
-        title: 'Mua sắm & Giao quà', 
-        description: 'Tư vấn và tìm mua quà tặng, đồ hiệu theo yêu cầu, đóng gói đẹp mắt và giao tận tay người nhận, giúp bạn trao gửi yêu thương.', 
+        title: 'Mua sắm Cá nhân & Hàng hiệu', 
+        description: 'Dịch vụ Personal Shopper chuyên nghiệp: Mua sắm quần áo, mỹ phẩm, nước hoa theo gu thẩm mỹ và săn hàng hiệu (Luxury) chính hãng.', 
         image: 'https://picsum.photos/seed/shopper/800/800',
-        detailedDescription: 'Dịch vụ mua sắm cá nhân (Personal Shopper) chuyên nghiệp. Dù là món quà sinh nhật ý nghĩa hay món đồ hiệu khó tìm, chúng tôi sẽ thay bạn tìm kiếm, mua hàng chính hãng, đóng gói sang trọng và trao tận tay người nhận với thông điệp yêu thương.',
+        detailedDescription: 'Trợ lý mua sắm cá nhân (Personal Shopper) đắc lực của bạn. Chúng tôi không chỉ giúp bạn mua quà tặng mà còn tư vấn, tìm mua các sản phẩm thời trang, mỹ phẩm, nước hoa... phù hợp với phong cách và nhu cầu riêng. Đặc biệt là dịch vụ săn hàng hiệu (Luxury) hiếm có, đảm bảo chính hãng 100%.',
         features: [
-          'Tìm kiếm sản phẩm theo yêu cầu (kể cả hàng hiếm)',
-          'Tư vấn quà tặng phù hợp với đối tượng và ngân sách',
-          'Đóng gói quà tặng nghệ thuật và viết thiệp tay',
-          'Giao hàng bất ngờ tạo niềm vui cho người nhận'
+          'Mua sắm theo yêu cầu: Quần áo, Mỹ phẩm, Nước hoa...',
+          'Săn hàng hiệu (Luxury): Túi xách, Đồng hồ, Giày limited',
+          'Tư vấn phong cách và gu thẩm mỹ cá nhân',
+          'Đóng gói quà tặng nghệ thuật và giao tận tay'
         ],
         psychology: {
-          hoursSaved: '4.0 giờ',
+          hoursSaved: '6.0 giờ',
           painPoints: [
-            'Đau đầu không biết mua quà gì cho hợp ý',
-            'Mất thời gian đi dạo phố, chen chúc kẹt xe',
-            'Mua phải hàng giả, hàng kém chất lượng'
+            'Không biết mua gì, mặc gì cho hợp mốt',
+            'Sợ mua phải hàng Fake, hàng kém chất lượng',
+            'Không có thời gian săn các món đồ hiệu giới hạn'
           ],
           gainPoints: [
-            'Được tư vấn món quà tinh tế, đúng gu người nhận',
-            'Mua hàng chính hãng, có bill đầy đủ',
-            'Gói quà đẹp mắt, trao gửi yêu thương trọn vẹn'
+            'Có Stylist riêng tư vấn, chọn đồ đúng gu',
+            'Cam kết hàng Authentic 100%, đầy đủ hóa đơn',
+            'Sở hữu những món đồ độc lạ mà không cần xếp hàng'
           ],
-          authoritySignals: ['Các thương hiệu cao cấp'],
+          authoritySignals: ['Chứng thực hàng Auth', 'Personal Stylist'],
           highEndTestimonial: {
-            name: 'Anh Thành Nam',
-            role: 'Giám đốc Marketing',
-            content: 'Nhờ LUVIA chọn quà tặng vợ dịp kỷ niệm mà cô ấy thích mê. Gói quà quá đẹp và sang trọng.'
+            name: 'Chị Ngọc Mai',
+            role: 'Doanh nhân',
+            content: 'Mình rất bận nên toàn nhờ LAVIA mua hộ đồ skincare và quần áo. Các bạn chọn đồ rất có gu, lại còn săn được cái túi Hermes mình thích nữa.'
           }
         },
         pricing: [
             {
-                name: 'Phí mua hộ',
-                price: '10% giá trị',
-                description: 'Tối thiểu 100.000 VNĐ/đơn.',
-                features: ['Tìm kiếm sản phẩm', 'Mua hàng chính hãng', 'Đóng gói quà tặng', 'Giao tận tay'],
+                name: 'Shopping Cá nhân',
+                price: '10% giá trị đơn',
+                description: 'Mua quần áo, mỹ phẩm, nước hoa...',
+                features: ['Tư vấn thương hiệu', 'Mua đúng mẫu mã', 'Kiểm tra lỗi sp', 'Giao hàng tận nơi'],
+                actionLabel: 'Nhắn tin qua Zalo',
+                actionUrl: 'https://zalo.me/0899660847'
+            },
+            {
+                name: 'Săn Hàng hiệu',
+                price: '5% giá trị đơn',
+                description: 'Mua hộ đồ Luxury (Túi, Đồng hồ...)',
+                features: ['Check Authentic 100%', 'Săn hàng Limited', 'Vận chuyển bảo hiểm', 'Giao tận tay VIP'],
+                recommended: true,
+                actionLabel: 'Nhắn tin qua Zalo',
+                actionUrl: 'https://zalo.me/0899660847'
+            },
+            {
+                name: 'Gói Quà tặng',
+                price: '200.000 VNĐ +',
+                description: 'Phí dịch vụ chọn và gói quà.',
+                features: ['Tư vấn quà tặng', 'Gói quà nghệ thuật', 'Viết thiệp tay', 'Giao hàng bất ngờ'],
                 actionLabel: 'Nhắn tin qua Zalo',
                 actionUrl: 'https://zalo.me/0899660847'
             }
@@ -1216,7 +1284,7 @@ export const categories: ServiceCategory[] = [
         image: 'https://picsum.photos/seed/memories/800/800',
         detailedDescription: 'Phục dựng và lưu giữ những ký ức vô giá của gia đình. Chúng tôi số hóa những bức ảnh cũ ố vàng, phục hồi màu sắc và biên tập lại thành những câu chuyện, video clip cảm động để lưu giữ mãi mãi trên không gian số.',
         features: [
-          'Công nghệ AI phục hồi ảnh cũ sắc nét',
+          'Công nghệ phục hồi ảnh cũ sắc nét',
           'Biên tập video câu chuyện gia đình chuyên nghiệp',
           'Lưu trữ trên Cloud riêng tư, không lo thất lạc',
           'In ấn thành sách ảnh (Photobook) cao cấp'
@@ -1237,7 +1305,7 @@ export const categories: ServiceCategory[] = [
           highEndTestimonial: {
             name: 'Chị Thu Hà',
             role: 'Giáo viên',
-            content: 'Xem lại video gia đình mà cả nhà cùng khóc vì xúc động. Cảm ơn LUVIA đã giúp gia đình mình sống lại những ký ức đẹp.'
+            content: 'Xem lại video gia đình mà cả nhà cùng khóc vì xúc động. Cảm ơn LAVIA đã giúp gia đình mình sống lại những ký ức đẹp.'
           }
         },
         pricing: [
@@ -1324,7 +1392,7 @@ export const categories: ServiceCategory[] = [
         pricing: [
             {
                 name: 'Xác minh Map',
-                price: '1.000.000 VNĐ',
+                price: '700.000 - 1.500.000 VNĐ',
                 description: 'Đưa doanh nghiệp lên Google Maps.',
                 features: ['Xác minh chính chủ', 'Cập nhật thông tin', 'Đăng tải hình ảnh', 'Tối ưu từ khóa']
             }
@@ -1345,7 +1413,7 @@ export const categories: ServiceCategory[] = [
         pricing: [
             {
                 name: 'Triển khai',
-                price: '3.000.000 VNĐ',
+                price: '2.000.000 VNĐ',
                 description: 'Cài đặt và hướng dẫn sử dụng phần mềm.',
                 features: ['Cài đặt hệ thống', 'Thiết lập danh mục', 'Đào tạo nhân viên', 'Hỗ trợ 1 tháng']
             }
@@ -1366,9 +1434,334 @@ export const categories: ServiceCategory[] = [
         pricing: [
             {
                 name: 'Gói Thành viên',
-                price: '5.000.000 VNĐ',
+                price: '1.000.000 - 3.000.000 VNĐ',
                 description: 'Hệ thống CSKH thân thiết.',
                 features: ['Tích điểm đổi quà', 'Quản lý thành viên', 'Gửi tin nhắn ưu đãi', 'Báo cáo khách hàng']
+            }
+        ]
+      },
+
+    ]
+  },
+
+  {
+    id: 'design-creative',
+    title: 'Thiết kế & Chỉnh sửa Đa phương tiện',
+    shortTitle: 'THIẾT KẾ',
+    subtitle: 'SÁNG TẠO KHÔNG GIỚI HẠN',
+    description: 'Dịch vụ thiết kế đồ họa, chỉnh sửa ảnh và video chuyên nghiệp, giúp bạn có những sản phẩm truyền thông ấn tượng.',
+    image: 'https://picsum.photos/seed/creative_design/1920/1080',
+    layout: 'grid',
+    items: [
+      {
+        id: 'photo-editing',
+        title: 'Chỉnh sửa & Phục hồi Ảnh',
+        description: 'Dịch vụ chỉnh sửa ảnh chuyên nghiệp: Retouch ảnh chân dung, phục hồi ảnh cũ, chỉnh màu nghệ thuật và cắt ghép theo yêu cầu.',
+        image: 'https://picsum.photos/seed/photo_edit/800/600',
+        detailedDescription: 'Biến những bức ảnh bình thường trở nên lung linh và chuyên nghiệp. Đội ngũ designer giàu kinh nghiệm của chúng tôi sẽ giúp bạn retouch ảnh chân dung, phục hồi những tấm ảnh cũ quý giá, hay chỉnh màu nghệ thuật cho bộ ảnh du lịch của bạn.',
+        features: [
+          'Retouch ảnh chân dung, làm đẹp da tự nhiên',
+          'Phục hồi ảnh cũ, ảnh bị ố vàng, rách nát',
+          'Chỉnh màu (Color Grading) theo phong cách riêng',
+          'Cắt ghép, xóa phông và tách nền chuyên nghiệp'
+        ],
+        psychology: {
+          hoursSaved: '5.0 giờ',
+          painPoints: [
+            'Ảnh chụp bị tối, mờ hoặc bố cục lộn xộn',
+            'Không biết sử dụng Photoshop, Lightroom',
+            'Ảnh kỷ niệm cũ bị hư hỏng theo thời gian'
+          ],
+          gainPoints: [
+            'Sở hữu bộ ảnh đẹp lung linh như chụp studio',
+            'Lưu giữ trọn vẹn ký ức qua những tấm ảnh phục hồi',
+            'Tiết kiệm thời gian tự mày mò chỉnh sửa'
+          ],
+          authoritySignals: ['Adobe Certified Expert'],
+          highEndTestimonial: {
+            name: 'Bạn Thanh Hằng',
+            role: 'KOL',
+            content: 'Hình ảnh đăng Facebook của mình lúc nào cũng phải chỉn chu. Nhờ LAVIA retouch mà ảnh vừa đẹp tự nhiên lại vừa sang.'
+          }
+        },
+        pricing: [
+            {
+                name: 'Gói Cơ bản',
+                price: '50.000 VNĐ/ảnh',
+                description: 'Chỉnh sáng, màu sắc và da.',
+                features: ['Chỉnh sáng tối', 'Cân bằng màu', 'Làm mịn da', 'Giao file sau 24h']
+            },
+            {
+                name: 'Gói Nâng cao',
+                price: '150.000 VNĐ/ảnh',
+                description: 'Retouch kỹ và cắt ghép.',
+                features: ['Retouch chi tiết', 'Bóp dáng/mặt', 'Xóa vật thể thừa', 'Hiệu ứng nghệ thuật'],
+                recommended: true
+            },
+            {
+                name: 'Phục hồi Ảnh cũ',
+                price: '300.000 VNĐ/ảnh',
+                description: 'Phục dựng ảnh hư hỏng.',
+                features: ['Xử lý vết ố/rách', 'Phục hồi chi tiết', 'Tô màu ảnh đen trắng', 'In ảnh chất lượng cao']
+            }
+        ]
+      },
+      {
+        id: 'video-editing',
+        title: 'Edit Video theo yêu cầu',
+        description: 'Dựng video chuyên nghiệp từ source quay sẵn: Vlog du lịch, Video cưới, TikTok/Reels, Video doanh nghiệp...',
+        image: 'https://picsum.photos/seed/video_edit/800/600',
+        detailedDescription: 'Dịch vụ dựng phim (Video Editing) theo yêu cầu. Bạn chỉ cần gửi source quay thô, chúng tôi sẽ biên tập thành những video clip ấn tượng với âm nhạc, hiệu ứng và màu sắc chuyên nghiệp, phù hợp cho mọi nền tảng từ Youtube, TikTok đến màn hình tiệc cưới.',
+        features: [
+          'Dựng Vlog du lịch, video kỷ niệm gia đình',
+          'Edit video ngắn TikTok, Reels, Shorts bắt trend',
+          'Dựng highlight tiệc cưới, sinh nhật cảm xúc',
+          'Video giới thiệu doanh nghiệp, sản phẩm'
+        ],
+        psychology: {
+          hoursSaved: '15.0 giờ',
+          painPoints: [
+            'Quay rất nhiều nhưng không biết dựng thành clip',
+            'Máy tính cấu hình yếu, render video quá lâu',
+            'Video tự làm nhìn nghiệp dư, không hấp dẫn'
+          ],
+          gainPoints: [
+            'Có ngay video xịn xò để khoe với bạn bè',
+            'Bắt trend nhanh chóng trên mạng xã hội',
+            'Lưu giữ khoảnh khắc sống động bằng video'
+          ],
+          authoritySignals: ['Davinci Resolve Certified'],
+          highEndTestimonial: {
+            name: 'Anh Tuấn Anh',
+            role: 'Youtuber',
+            content: 'Mình quay source xong gửi qua LAVIA dựng, tiết kiệm được bao nhiêu thời gian để tập trung sáng tạo nội dung mới.'
+          }
+        },
+        pricing: [
+            {
+                name: 'Video TikTok/Reels',
+                price: '300.000 VNĐ/clip',
+                description: 'Video ngắn dưới 1 phút.',
+                features: ['Cắt ghép cơ bản', 'Thêm nhạc/hiệu ứng', 'Chèn text/subtitle', 'Tối ưu khung hình dọc']
+            },
+            {
+                name: 'Vlog Du lịch',
+                price: '1.500.000 VNĐ/clip',
+                description: 'Video dài 3-5 phút.',
+                features: ['Kể chuyện (Storytelling)', 'Chỉnh màu Cinematic', 'Nhạc bản quyền', 'Hiệu ứng chuyển cảnh'],
+                recommended: true
+            },
+            {
+                name: 'Video Sự kiện',
+                price: '3.000.000 VNĐ/clip',
+                description: 'Highlight tiệc/Sự kiện.',
+                features: ['Dựng đa camera', 'Lồng tiếng/Voice off', 'Đồ họa chuyên nghiệp', 'Render 4K sắc nét']
+            }
+        ]
+      },
+      {
+        id: 'graphic-design',
+        title: 'Thiết kế Đồ họa & Ấn phẩm',
+        description: 'Thiết kế các ấn phẩm nhận diện thương hiệu và quảng cáo: Logo, Banner, Poster, Menu, Name card, Standee...',
+        image: 'https://picsum.photos/seed/graphic_design/800/600',
+        detailedDescription: 'Giải pháp thiết kế đồ họa trọn gói cho cá nhân và doanh nghiệp nhỏ. Từ chiếc danh thiếp nhỏ gọn, menu quán cafe đến những tấm banner quảng cáo thu hút, chúng tôi giúp ý tưởng của bạn được thể hiện một cách chuyên nghiệp và thẩm mỹ nhất.',
+        features: [
+          'Thiết kế Logo và bộ nhận diện thương hiệu cơ bản',
+          'Thiết kế Banner, Poster quảng cáo online/offline',
+          'Thiết kế Menu, Catalogue, Brochure sản phẩm',
+          'Thiết kế Thiệp mời, Name card cá nhân hóa'
+        ],
+        pricing: [
+            {
+                name: 'Thiết kế 2D',
+                price: '500.000 VNĐ/mẫu',
+                description: 'Banner, Poster, Card...',
+                features: ['Thiết kế sáng tạo', 'Chỉnh sửa 3 lần', 'Giao file gốc in ấn', 'Tư vấn chất liệu in']
+            },
+            {
+                name: 'Thiết kế Menu',
+                price: '1.500.000 VNĐ/mẫu',
+                description: 'Menu nhà hàng/Cafe.',
+                features: ['Layout khoa học', 'Xử lý hình ảnh món', 'Thiết kế trang bìa', 'File in ấn chất lượng']
+            }
+        ]
+      },
+      {
+        id: 'presentation',
+        title: 'Thiết kế Slide & Presentation',
+        description: 'Thiết kế Slide PowerPoint, Pitch Deck chuyên nghiệp, ấn tượng giúp bạn tự tin thuyết trình và chinh phục người nghe.',
+        image: 'https://picsum.photos/seed/presentation/800/600',
+        detailedDescription: 'Nâng tầm bài thuyết trình của bạn với dịch vụ thiết kế Slide chuyên nghiệp. Chúng tôi biến những nội dung khô khan thành những slide trình chiếu trực quan, sinh động và thuyết phục, giúp bạn ghi điểm tuyệt đối trong mắt đối tác và khán giả.',
+        features: [
+          'Thiết kế Template PowerPoint theo brand',
+          'Trình bày nội dung (Data Visualization) trực quan',
+          'Thiết kế Pitch Deck gọi vốn cho Startup',
+          'Hiệu ứng Animation mượt mà, chuyên nghiệp'
+        ],
+        pricing: [
+            {
+                name: 'Gói Tiêu chuẩn',
+                price: '300.000 VNĐ/slide',
+                description: 'Tối thiểu 10 slide.',
+                features: ['Thiết kế layout đẹp', 'Hình ảnh minh họa', 'Icon/Infographic', 'File Powerpoint edit được']
+            }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'writing-publishing',
+    title: 'Soạn thảo & Dàn trang Văn bản',
+    shortTitle: 'SOẠN THẢO',
+    subtitle: 'CHUẨN HÓA VĂN BẢN - NÂNG TẦM TÁC PHẨM',
+    description: 'Dịch vụ đánh máy, dàn trang sách, thơ ca, luận án và các loại văn bản hành chính chuyên nghiệp.',
+    image: 'https://picsum.photos/seed/writing_publishing/1920/1080',
+    layout: 'grid',
+    items: [
+      {
+        id: 'typing-service',
+        title: 'Đánh máy & Soạn thảo Văn bản',
+        description: 'Dịch vụ đánh máy văn bản từ bản viết tay, hình ảnh, file ghi âm với tốc độ nhanh và độ chính xác tuyệt đối.',
+        image: 'https://picsum.photos/seed/typing_service/800/600',
+        detailedDescription: 'Giải phóng bạn khỏi công việc gõ máy nhàm chán. Chúng tôi nhận đánh máy lại các tài liệu từ bản viết tay, file PDF không copy được, hình ảnh chụp hoặc file ghi âm cuộc họp. Cam kết đúng chính tả, trình bày văn bản theo chuẩn hành chính.',
+        features: [
+          'Đánh máy từ bản viết tay, hình ảnh, PDF scan',
+          'Gỡ băng ghi âm cuộc họp, phỏng vấn',
+          'Soạn thảo văn bản hành chính đúng chuẩn',
+          'Kiểm tra và chỉnh sửa lỗi chính tả, ngữ pháp'
+        ],
+        psychology: {
+          hoursSaved: '10.0 giờ',
+          painPoints: [
+            'Tài liệu viết tay dài, nhìn ngại gõ lại',
+            'Không có thời gian ngồi gõ máy lạch cạch',
+            'Văn bản trình bày lộn xộn, thiếu chuyên nghiệp'
+          ],
+          gainPoints: [
+            'Có ngay file Word sạch đẹp, đúng chuẩn',
+            'Tiết kiệm thời gian quý báu cho việc khác',
+            'Văn bản được rà soát lỗi kỹ càng'
+          ],
+          authoritySignals: ['Chứng chỉ Tin học VP'],
+          highEndTestimonial: {
+            name: 'Chị Thu Hà',
+            role: 'Giáo viên',
+            content: 'Tôi có rất nhiều giáo án viết tay từ xưa, nhờ LAVIA đánh máy lại mà giờ lưu trữ và chỉnh sửa rất tiện lợi.'
+          }
+        },
+        pricing: [
+            {
+                name: 'Đánh máy Văn bản',
+                price: '5.000 VNĐ/trang',
+                description: 'Văn bản tiếng Việt.',
+                features: ['Đánh máy chính xác', 'Căn chỉnh cơ bản', 'Giao file Word', 'Hoàn thành nhanh']
+            },
+            {
+                name: 'Gỡ băng Ghi âm',
+                price: '200.000 VNĐ/giờ',
+                description: 'File audio/video.',
+                features: ['Nghe và gõ lại nội dung', 'Phân biệt giọng người nói', 'Ghi chú thời gian (Timestamp)', 'Bảo mật thông tin']
+            }
+        ]
+      },
+      {
+        id: 'book-layout',
+        title: 'Dàn trang Sách & Thơ ca',
+        description: 'Dịch vụ dàn trang sách, tập thơ, kỷ yếu chuyên nghiệp, đảm bảo tính thẩm mỹ và chuẩn in ấn xuất bản.',
+        image: 'https://picsum.photos/seed/book_layout/800/600',
+        detailedDescription: 'Biến bản thảo của bạn thành những cuốn sách, tập thơ đẹp mắt. Chúng tôi cung cấp dịch vụ dàn trang (layout) chuyên nghiệp cho sách in, ebook, tập thơ, kỷ yếu, tạp chí... với phong cách trình bày tinh tế, tôn vinh giá trị nội dung.',
+        features: [
+          'Dàn trang sách chữ, sách ảnh, tạp chí',
+          'Trình bày tập thơ nghệ thuật, giàu cảm xúc',
+          'Thiết kế bìa sách (Book Cover) ấn tượng',
+          'Xuất file PDF chuẩn in ấn nhà xuất bản'
+        ],
+        psychology: {
+          hoursSaved: '20.0 giờ',
+          painPoints: [
+            'Không biết dùng InDesign để dàn trang',
+            'Sách tự làm bị lỗi font, ngắt dòng xấu',
+            'Không biết quy chuẩn in ấn nhà xuất bản'
+          ],
+          gainPoints: [
+            'Tác phẩm được trình bày chuyên nghiệp',
+            'Dễ dàng xin giấy phép xuất bản',
+            'Sách in ra đẹp, không bị lỗi lề/trang'
+          ],
+          authoritySignals: ['Kinh nghiệm NXB Trẻ'],
+          highEndTestimonial: {
+            name: 'Nhà thơ Minh Đức',
+            role: 'Tác giả',
+            content: 'Tập thơ đầu tay của mình được LAVIA dàn trang rất có hồn, ai cầm lên đọc cũng khen đẹp và trang trọng.'
+          }
+        },
+        pricing: [
+            {
+                name: 'Dàn trang Sách',
+                price: '15.000 VNĐ/trang',
+                description: 'Sách chữ thông thường.',
+                features: ['Thiết kế Layout', 'Dàn trang InDesign', 'Mục lục tự động', 'File in ấn']
+            },
+            {
+                name: 'Dàn trang Thơ',
+                price: '25.000 VNĐ/trang',
+                description: 'Yêu cầu thẩm mỹ cao.',
+                features: ['Layout nghệ thuật', 'Họa tiết trang trí', 'Chọn font chữ đẹp', 'Thiết kế bìa đơn giản'],
+                recommended: true
+            }
+        ]
+      },
+      {
+        id: 'academic-format',
+        title: 'Luận văn & Đồ án Tốt nghiệp',
+        description: 'Chỉnh sửa format luận văn, đồ án, khóa luận tốt nghiệp theo đúng quy chuẩn của từng trường Đại học.',
+        image: 'https://picsum.photos/seed/academic_format/800/600',
+        detailedDescription: 'Đừng để lỗi trình bày làm mất điểm bài khóa luận tâm huyết của bạn. Chúng tôi hỗ trợ chỉnh sửa format (định dạng) luận văn, đồ án, tiểu luận theo đúng quy định chuẩn của trường, tạo mục lục tự động, danh mục tài liệu tham khảo chuẩn APA/Harvard...',
+        features: [
+          'Chỉnh sửa format theo quy định của trường',
+          'Tạo mục lục, danh mục hình ảnh tự động',
+          'Trích dẫn tài liệu tham khảo chuẩn (EndNote)',
+          'Đánh số trang, căn lề, giãn dòng chuẩn'
+        ],
+        pricing: [
+            {
+                name: 'Chỉnh Format',
+                price: '300.000 VNĐ/cuốn',
+                description: 'Luận văn < 100 trang.',
+                features: ['Căn lề, font chữ', 'Mục lục tự động', 'Đánh số trang', 'Giao file trong ngày']
+            },
+            {
+                name: 'Trọn gói Luận án',
+                price: '1.000.000 VNĐ/cuốn',
+                description: 'Luận án Tiến sĩ/Thạc sĩ.',
+                features: ['Format chi tiết', 'Tài liệu tham khảo', 'Chỉnh sửa Powerpoint', 'Hỗ trợ in ấn']
+            }
+        ]
+      },
+      {
+        id: 'music-lyrics',
+        title: 'Chép nhạc & Lời bài hát',
+        description: 'Dịch vụ chép nhạc (ký âm), dàn trang bản nhạc và làm video lyric cho nhạc sĩ, ca sĩ.',
+        image: 'https://picsum.photos/seed/music_score/800/600',
+        detailedDescription: 'Lưu giữ những giai điệu của bạn bằng văn bản chuyên nghiệp. Chúng tôi nhận chép nhạc (ký âm) từ bản demo audio, dàn trang tập nhạc (Sheet music) để in ấn, hoặc làm video chạy lời bài hát (Lyric Video) để đăng tải Youtube.',
+        features: [
+          'Ký âm (Chép nhạc) từ file audio demo',
+          'Dàn trang bản nhạc (Sheet music) chuyên nghiệp',
+          'Soạn lời bài hát (Lyrics) cho MV, Karaoke',
+          'Chuyển soạn tổng phổ (Score) cho ban nhạc'
+        ],
+        pricing: [
+            {
+                name: 'Chép nhạc (Sheet)',
+                price: '300.000 VNĐ/bài',
+                description: '1 bài hát (melody + hợp âm).',
+                features: ['Ký âm melody', 'Đặt hợp âm (Chord)', 'Dàn trang PDF', 'File MIDI/XML']
+            },
+            {
+                name: 'Video Lyric',
+                price: '500.000 VNĐ/bài',
+                description: 'Video chạy chữ đơn giản.',
+                features: ['Hiệu ứng chữ chạy', 'Background tĩnh/động', 'Render Full HD', 'Tối ưu Youtube']
             }
         ]
       },
@@ -1387,7 +1780,7 @@ export const categories: ServiceCategory[] = [
         pricing: [
             {
                 name: 'Trợ lý ảo',
-                price: '1.000.000 VNĐ/tháng',
+                price: '1.500.000 - 2.000.000 VNĐ/tháng',
                 description: 'Hỗ trợ các công việc hành chính.',
                 features: ['Soạn thảo hợp đồng', 'Nhắc lịch thanh toán', 'Theo dõi công nợ', 'Báo cáo tài chính']
             }

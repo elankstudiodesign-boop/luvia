@@ -64,15 +64,75 @@ const BookingModal = ({
     rooms: 1,
     guests: 1,
     budget: '',
-    hotelStars: '3'
+    hotelStars: '3',
+    // Business License specific
+    businessName: '',
+    businessAddress: '',
+    businessCapital: '',
+    businessAreas: '',
+    // Verification specific
+    verificationAddress: '',
+    verificationCity: 'Hồ Chí Minh',
+    verificationDistrict: '1'
   });
 
   const [bookingCode, setBookingCode] = useState('');
   const [paymentStatus, setPaymentStatus] = useState<'pending' | 'checking' | 'success'>('pending');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Shipping Fee Logic
+  const [shippingFee, setShippingFee] = useState(0);
+  const [isNegotiableFee, setIsNegotiableFee] = useState(false);
+
+  // Flight Service Fee Logic
+  const [flightServiceFee, setFlightServiceFee] = useState(200000);
+  const isSingleFlight = serviceId === 'global-booking' && pkg?.name?.toLowerCase().includes('lẻ');
+
+  useEffect(() => {
+    if (isSingleFlight) {
+      if (formData.departDate) {
+        const date = new Date(formData.departDate);
+        const month = date.getMonth() + 1; // 1-12
+        // Festival/High Season Months: Jan, Feb, Apr, May, Jun, Jul, Aug, Dec
+        const highSeasonMonths = [1, 2, 4, 5, 6, 7, 8, 12];
+        
+        if (highSeasonMonths.includes(month)) {
+          setFlightServiceFee(300000);
+        } else {
+          setFlightServiceFee(200000);
+        }
+      } else {
+        setFlightServiceFee(200000); // Default base price
+      }
+    }
+  }, [formData.departDate, isSingleFlight]);
+
+  useEffect(() => {
+    if (serviceId !== 'verification') {
+        setShippingFee(0);
+        setIsNegotiableFee(false);
+        return;
+    }
+
+    if (formData.verificationCity !== 'Hồ Chí Minh') {
+      setShippingFee(0);
+      setIsNegotiableFee(true);
+    } else {
+      setIsNegotiableFee(false);
+      const freeDistricts = ['1', '3', '5', '6', '8'];
+      if (freeDistricts.includes(formData.verificationDistrict)) {
+        setShippingFee(0);
+      } else {
+        setShippingFee(100000);
+      }
+    }
+  }, [formData.verificationCity, formData.verificationDistrict, serviceId]);
 
   // Helper to determine actual payment amount
-  const getPaymentAmount = () => {
+  const getBasePaymentAmount = () => {
+    if (isSingleFlight) {
+        return flightServiceFee;
+    }
     if (!pkg?.price) return 0;
     if (pkg.price.toLowerCase().includes('miễn phí') || pkg.price.toLowerCase().includes('free')) return 0;
     
@@ -85,7 +145,8 @@ const BookingModal = ({
     return 50000; 
   };
 
-  const paymentAmount = getPaymentAmount();
+  const basePrice = getBasePaymentAmount();
+  const paymentAmount = basePrice + shippingFee;
 
   useEffect(() => {
     if (isOpen) {
@@ -168,6 +229,16 @@ const BookingModal = ({
           - Công việc: ${formData.job}
           - Ghi chú: ${formData.note}
         `.trim();
+      } else if (serviceId === 'business-license') {
+        detailedNote = `
+          [Đăng ký Kinh doanh]
+          - Tên HKD/Công ty dự kiến: ${formData.businessName}
+          - Địa chỉ kinh doanh: ${formData.businessAddress}
+          - Vốn điều lệ: ${formData.businessCapital}
+          - Ngành nghề chính: ${formData.businessAreas}
+          - Số CCCD/CMND: ${formData.cccd}
+          - Ghi chú: ${formData.note}
+        `.trim();
       } else if (serviceId === 'global-booking') {
         const isFlight = formData.bookingType === 'flight' || formData.bookingType === 'combo';
         const isHotel = formData.bookingType === 'hotel' || formData.bookingType === 'combo';
@@ -201,6 +272,15 @@ const BookingModal = ({
           ${hotelInfo}
           - Ghi chú: ${formData.note}
         `.trim();
+      } else if (serviceId === 'verification') {
+        detailedNote = `
+          [Yêu cầu Xác minh]
+          - Địa chỉ cần xác minh: ${formData.verificationAddress}
+          - Quận/Huyện: ${formData.verificationDistrict}
+          - Tỉnh/Thành phố: ${formData.verificationCity}
+          - Phí di chuyển: ${isNegotiableFee ? 'Thương lượng' : formatCurrency(shippingFee)}
+          - Ghi chú: ${formData.note}
+        `.trim();
       }
 
       // 1. Send to Make.com Webhook
@@ -215,6 +295,14 @@ const BookingModal = ({
         totalPrice: paymentAmount,
         formattedPrice: paymentAmount.toLocaleString('vi-VN'), // Pre-formatted for Telegram
         note: detailedNote,
+        
+        // Flatten specific fields for easier Make.com mapping (Business License)
+        businessName: formData.businessName,
+        businessAddress: formData.businessAddress,
+        businessCapital: formData.businessCapital,
+        businessAreas: formData.businessAreas,
+        ownerCCCD: formData.cccd, // Renamed for clarity
+
         // Pass raw details for flexibility
         details: formData,
         status: paymentAmount === 0 ? 'New Request' : 'Pending Payment',
@@ -242,7 +330,9 @@ const BookingModal = ({
           service_id: serviceId,
           service_name: serviceTitle,
           package_name: pkg?.name,
-          package_price: paymentAmount.toString()
+          package_price: paymentAmount.toString(),
+          booking_code: bookingCode,
+          details: formData
         }),
       });
 
@@ -275,7 +365,7 @@ const BookingModal = ({
 
   const renderPassportForm = () => (
     <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
-      <h4 className="font-bold text-luvia-blue text-sm uppercase">Thông tin tờ khai Hộ chiếu</h4>
+      <h4 className="font-bold text-lavia-blue text-sm uppercase">Thông tin tờ khai Hộ chiếu</h4>
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ngày sinh <span className="text-red-500">*</span></label>
@@ -323,7 +413,7 @@ const BookingModal = ({
 
   const renderVisaForm = () => (
     <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
-      <h4 className="font-bold text-luvia-blue text-sm uppercase">Thông tin xin Visa</h4>
+      <h4 className="font-bold text-lavia-blue text-sm uppercase">Thông tin xin Visa</h4>
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Nước muốn đến <span className="text-red-500">*</span></label>
@@ -361,6 +451,110 @@ const BookingModal = ({
     </div>
   );
 
+  const renderBusinessLicenseForm = () => (
+    <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
+      <h4 className="font-bold text-lavia-blue text-sm uppercase">Thông tin Đăng ký Kinh doanh</h4>
+      <div>
+        <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Tên HKD/Công ty dự kiến <span className="text-red-500">*</span></label>
+        <input required type="text" placeholder="VD: Hộ Kinh Doanh Nguyễn Văn A / Công ty TNHH..." className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+          value={formData.businessName} onChange={e => setFormData({...formData, businessName: e.target.value})} />
+      </div>
+      <div>
+        <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Địa chỉ kinh doanh <span className="text-red-500">*</span></label>
+        <input required type="text" placeholder="Địa chỉ đặt trụ sở/cửa hàng" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+          value={formData.businessAddress} onChange={e => setFormData({...formData, businessAddress: e.target.value})} />
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Vốn điều lệ <span className="text-red-500">*</span></label>
+          <input required type="text" placeholder="VD: 1 tỷ đồng" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+            value={formData.businessCapital} onChange={e => setFormData({...formData, businessCapital: e.target.value})} />
+        </div>
+        <div>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Số CCCD chủ sở hữu <span className="text-red-500">*</span></label>
+          <input required type="text" placeholder="Số CCCD/CMND" className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+            value={formData.cccd} onChange={e => setFormData({...formData, cccd: e.target.value})} />
+        </div>
+      </div>
+      <div>
+        <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ngành nghề kinh doanh chính</label>
+        <textarea placeholder="Mô tả các ngành nghề bạn muốn kinh doanh..." className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm h-20 resize-none"
+          value={formData.businessAreas} onChange={e => setFormData({...formData, businessAreas: e.target.value})} />
+      </div>
+    </div>
+  );
+
+  const renderVerificationForm = () => (
+    <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
+      <h4 className="font-bold text-lavia-blue text-sm uppercase">Thông tin địa điểm xác minh</h4>
+      
+      <div>
+        <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Địa chỉ cụ thể <span className="text-red-500">*</span></label>
+        <input required type="text" placeholder="Số nhà, tên đường..." className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+          value={formData.verificationAddress} onChange={e => setFormData({...formData, verificationAddress: e.target.value})} />
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Tỉnh / Thành phố</label>
+          <select className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+            value={formData.verificationCity} onChange={e => setFormData({...formData, verificationCity: e.target.value})}>
+            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+            <option value="Tỉnh/Thành khác">Tỉnh/Thành khác</option>
+          </select>
+        </div>
+        
+        {formData.verificationCity === 'Hồ Chí Minh' && (
+          <div>
+            <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Quận / Huyện</label>
+            <select className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+              value={formData.verificationDistrict} onChange={e => setFormData({...formData, verificationDistrict: e.target.value})}>
+              <option value="1">Quận 1</option>
+              <option value="3">Quận 3</option>
+              <option value="5">Quận 5</option>
+              <option value="6">Quận 6</option>
+              <option value="8">Quận 8</option>
+              <option disabled>──────────</option>
+              <option value="4">Quận 4</option>
+              <option value="7">Quận 7</option>
+              <option value="10">Quận 10</option>
+              <option value="11">Quận 11</option>
+              <option value="12">Quận 12</option>
+              <option value="Bình Thạnh">Bình Thạnh</option>
+              <option value="Gò Vấp">Gò Vấp</option>
+              <option value="Phú Nhuận">Phú Nhuận</option>
+              <option value="Tân Bình">Tân Bình</option>
+              <option value="Tân Phú">Tân Phú</option>
+              <option value="Bình Tân">Bình Tân</option>
+              <option value="Thủ Đức">Thủ Đức</option>
+              <option value="Nhà Bè">Nhà Bè</option>
+              <option value="Hóc Môn">Hóc Môn</option>
+              <option value="Bình Chánh">Bình Chánh</option>
+              <option value="Củ Chi">Củ Chi</option>
+              <option value="Cần Giờ">Cần Giờ</option>
+            </select>
+          </div>
+        )}
+      </div>
+
+      <div className="bg-blue-50 p-3 rounded-lg border border-blue-100 mt-2">
+        <div className="flex justify-between items-center text-sm">
+          <span className="text-blue-800 font-medium">Phí di chuyển:</span>
+          <span className="font-bold text-blue-900">
+            {isNegotiableFee ? 'Thương lượng' : (shippingFee === 0 ? 'Miễn phí' : formatCurrency(shippingFee))}
+          </span>
+        </div>
+        <p className="text-xs text-blue-600 mt-1 italic">
+          {isNegotiableFee 
+            ? '* Chúng tôi sẽ liên hệ để báo phí di chuyển cụ thể.' 
+            : (shippingFee === 0 
+                ? '* Miễn phí di chuyển cho khu vực này.' 
+                : '* Đã bao gồm phụ thu phí di chuyển.')}
+        </p>
+      </div>
+    </div>
+  );
+
   const renderGlobalBookingForm = () => {
     const isFlight = formData.bookingType === 'flight' || formData.bookingType === 'combo';
     const isHotel = formData.bookingType === 'hotel' || formData.bookingType === 'combo';
@@ -375,7 +569,7 @@ const BookingModal = ({
               onClick={() => setFormData({ ...formData, bookingType: type })}
               className={`flex-1 py-2 text-xs font-bold uppercase rounded-md transition-all ${
                 formData.bookingType === type 
-                  ? 'bg-white text-luvia-blue shadow-sm' 
+                  ? 'bg-white text-lavia-blue shadow-sm' 
                   : 'text-gray-500 hover:text-gray-700'
               }`}
             >
@@ -386,7 +580,7 @@ const BookingModal = ({
 
         {isFlight && (
           <div className="space-y-3 animate-in fade-in slide-in-from-top-2 duration-300">
-            <h4 className="font-bold text-luvia-blue text-sm uppercase flex items-center gap-2">
+            <h4 className="font-bold text-lavia-blue text-sm uppercase flex items-center gap-2">
               <Plane size={16} /> Thông tin chuyến bay
             </h4>
             
@@ -395,7 +589,7 @@ const BookingModal = ({
                 <input type="radio" name="flightType" value="roundtrip" 
                   checked={formData.flightType === 'roundtrip'}
                   onChange={() => setFormData({...formData, flightType: 'roundtrip'})}
-                  className="text-luvia-blue focus:ring-luvia-blue"
+                  className="text-lavia-blue focus:ring-lavia-blue"
                 />
                 Khứ hồi
               </label>
@@ -403,7 +597,7 @@ const BookingModal = ({
                 <input type="radio" name="flightType" value="oneway" 
                   checked={formData.flightType === 'oneway'}
                   onChange={() => setFormData({...formData, flightType: 'oneway'})}
-                  className="text-luvia-blue focus:ring-luvia-blue"
+                  className="text-lavia-blue focus:ring-lavia-blue"
                 />
                 Một chiều
               </label>
@@ -427,6 +621,12 @@ const BookingModal = ({
                 <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ngày đi</label>
                 <input required={isFlight} type="date" className="w-full bg-gray-50 border border-gray-200 p-2.5 rounded-lg text-sm"
                   value={formData.departDate} onChange={e => setFormData({...formData, departDate: e.target.value})} />
+                 {isSingleFlight && (
+                   <div className="text-[10px] mt-1 text-orange-600 italic">
+                     * Mùa thường: 200k | Mùa lễ hội: 300k
+                     <br/>(Tháng 1, 2, 4, 5, 6, 7, 8, 12 là mùa cao điểm)
+                   </div>
+                 )}
               </div>
               {formData.flightType === 'roundtrip' && (
                 <div>
@@ -459,7 +659,7 @@ const BookingModal = ({
 
         {isHotel && (
           <div className="space-y-3 animate-in fade-in slide-in-from-top-2 duration-300 border-t border-dashed border-gray-200 pt-3">
-            <h4 className="font-bold text-luvia-blue text-sm uppercase flex items-center gap-2">
+            <h4 className="font-bold text-lavia-blue text-sm uppercase flex items-center gap-2">
               <Home size={16} /> Thông tin Khách sạn
             </h4>
             
@@ -544,9 +744,9 @@ const BookingModal = ({
 
           {step === 'form' && (
             <div className="p-8">
-              <h3 className="text-2xl font-display font-bold text-luvia-blue mb-2">Đăng ký dịch vụ</h3>
+              <h3 className="text-2xl font-display font-bold text-lavia-blue mb-2">Đăng ký dịch vụ</h3>
               <p className="text-gray-500 text-sm mb-6">
-                Bạn đang chọn gói <span className="font-bold text-luvia-blue">{pkg?.name}</span>
+                Bạn đang chọn gói <span className="font-bold text-lavia-blue">{pkg?.name}</span>
                 <br/>cho dịch vụ {serviceTitle}
               </p>
 
@@ -558,7 +758,7 @@ const BookingModal = ({
                     <input 
                       required
                       type="text" 
-                      className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-luvia-blue transition-colors text-sm" 
+                      className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-lavia-blue transition-colors text-sm" 
                       placeholder="Nguyễn Văn A"
                       value={formData.name}
                       onChange={e => setFormData({...formData, name: e.target.value})}
@@ -569,7 +769,7 @@ const BookingModal = ({
                     <input 
                       required
                       type="tel" 
-                      className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-luvia-blue transition-colors text-sm" 
+                      className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-lavia-blue transition-colors text-sm" 
                       placeholder="0909xxxxxx"
                       value={formData.phone}
                       onChange={e => setFormData({...formData, phone: e.target.value})}
@@ -580,12 +780,14 @@ const BookingModal = ({
                 {/* Specific Forms */}
                 {serviceId === 'passport' && renderPassportForm()}
                 {serviceId === 'visa' && renderVisaForm()}
+                {serviceId === 'business-license' && renderBusinessLicenseForm()}
+                {serviceId === 'verification' && renderVerificationForm()}
                 {serviceId === 'global-booking' && renderGlobalBookingForm()}
 
                 <div>
                   <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ghi chú thêm</label>
                   <textarea 
-                    className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-luvia-blue transition-colors h-20 resize-none text-sm" 
+                    className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-lavia-blue transition-colors h-20 resize-none text-sm" 
                     placeholder="Bạn cần hỗ trợ gì thêm không?"
                     value={formData.note}
                     onChange={e => setFormData({...formData, note: e.target.value})}
@@ -594,7 +796,7 @@ const BookingModal = ({
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-full bg-luvia-blue text-white py-4 font-bold uppercase tracking-widest hover:bg-luvia-mint hover:text-luvia-blue transition-colors rounded-lg mt-4 flex justify-center items-center gap-2"
+                  className="w-full bg-lavia-blue text-white py-4 font-bold uppercase tracking-widest hover:bg-lavia-mint hover:text-lavia-blue transition-colors rounded-lg mt-4 flex justify-center items-center gap-2"
                 >
                   {isSubmitting ? <Loader2 className="animate-spin" /> : 'Tiếp tục thanh toán'}
                 </button>
@@ -604,7 +806,7 @@ const BookingModal = ({
 
           {step === 'payment' && (
             <div className="p-8 text-center space-y-6">
-              <h3 className="text-xl font-display font-bold text-luvia-blue">Thanh toán đơn hàng</h3>
+              <h3 className="text-xl font-display font-bold text-lavia-blue">Thanh toán đơn hàng</h3>
               
               <div className="bg-green-50 text-green-800 p-4 rounded-lg text-sm flex items-start gap-2 text-left">
                 <AlertCircle size={16} className="mt-0.5 flex-shrink-0" />
@@ -614,7 +816,7 @@ const BookingModal = ({
               </div>
 
               <div className="relative inline-block group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-luvia-blue to-luvia-mint rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-lavia-blue to-lavia-mint rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
                 <div className="relative bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
                   <div className="w-48 h-48 bg-gray-100 mx-auto flex items-center justify-center rounded-lg mb-2 overflow-hidden">
                     <img 
@@ -631,7 +833,7 @@ const BookingModal = ({
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between border-b border-gray-100 pb-2">
                   <span className="text-gray-500">Số tiền:</span>
-                  <span className="font-bold text-luvia-blue">{formatCurrency(paymentAmount)}</span>
+                  <span className="font-bold text-lavia-blue">{formatCurrency(paymentAmount)}</span>
                 </div>
                 {paymentAmount === 50000 && (
                    <div className="text-xs text-orange-500 italic text-right">
@@ -646,7 +848,7 @@ const BookingModal = ({
 
               {paymentStatus === 'pending' && (
                 <div className="space-y-3">
-                  <div className="flex items-center justify-center gap-2 text-luvia-blue animate-pulse">
+                  <div className="flex items-center justify-center gap-2 text-lavia-blue animate-pulse">
                     <Loader2 size={20} className="animate-spin" />
                     <span className="font-medium">Đang chờ hệ thống xác nhận...</span>
                   </div>
@@ -660,7 +862,7 @@ const BookingModal = ({
               )}
 
               {paymentStatus === 'checking' && (
-                <div className="flex flex-col items-center justify-center py-4 text-luvia-blue">
+                <div className="flex flex-col items-center justify-center py-4 text-lavia-blue">
                   <Loader2 size={32} className="animate-spin mb-2" />
                   <span className="text-sm font-medium">Đang kiểm tra giao dịch...</span>
                 </div>
@@ -680,11 +882,13 @@ const BookingModal = ({
               <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle size={32} />
               </div>
-              <h3 className="text-2xl font-display font-bold text-luvia-blue mb-4">Đã nhận đơn hàng!</h3>
+              <h3 className="text-2xl font-display font-bold text-lavia-blue mb-4">Đã nhận đơn hàng!</h3>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Cảm ơn bạn đã thanh toán. Mã đơn hàng của bạn là <span className="font-bold text-luvia-blue">{bookingCode}</span>.
+                Cảm ơn bạn đã thanh toán. Mã đơn hàng của bạn là <span className="font-bold text-lavia-blue">{bookingCode}</span>.
                 <br/>
-                {formUrl ? 'Vui lòng điền thêm thông tin để chúng tôi bắt đầu thực hiện.' : 'Chuyên viên sẽ liên hệ với bạn trong ít phút.'}
+                Chúng tôi sẽ liên hệ với bạn qua zalo trong vòng 3-5 phút...
+                <br/>
+                {formUrl ? 'Vui lòng điền thêm thông tin để chúng tôi bắt đầu thực hiện.' : ''}
               </p>
               
               {formUrl ? (
@@ -692,7 +896,7 @@ const BookingModal = ({
                   href={formUrl}
                   target="_blank" 
                   rel="noreferrer"
-                  className="flex items-center justify-center gap-3 w-full bg-luvia-blue text-white py-4 font-bold uppercase tracking-widest hover:bg-luvia-mint hover:text-luvia-blue transition-colors rounded-lg shadow-lg shadow-blue-200 mb-4"
+                  className="flex items-center justify-center gap-3 w-full bg-lavia-blue text-white py-4 font-bold uppercase tracking-widest hover:bg-lavia-mint hover:text-lavia-blue transition-colors rounded-lg shadow-lg shadow-blue-200 mb-4"
                 >
                   <CheckCircle size={20} />
                   Điền thông tin bổ sung
@@ -733,7 +937,7 @@ const PsychologyTimeline = ({ steps }: { steps: { step: string; title: string; d
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {steps.map((item, idx) => (
           <div key={idx} className="relative bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 bg-luvia-blue text-white rounded-full flex items-center justify-center text-xl font-bold mb-4 shadow-lg shadow-blue-200">
+            <div className="w-12 h-12 bg-lavia-blue text-white rounded-full flex items-center justify-center text-xl font-bold mb-4 shadow-lg shadow-blue-200">
               {idx + 1}
             </div>
             <h4 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h4>
@@ -777,13 +981,13 @@ const ContrastSection = ({ psychology }: { psychology?: ServicePsychology }) => 
         </div>
 
         {/* Gain Side */}
-        <div className="bg-white p-8 rounded-2xl border-2 border-luvia-blue shadow-xl transform md:scale-105 relative z-20">
-          <div className="absolute top-0 right-0 bg-luvia-blue text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg uppercase tracking-wider">
+        <div className="bg-white p-8 rounded-2xl border-2 border-lavia-blue shadow-xl transform md:scale-105 relative z-20">
+          <div className="absolute top-0 right-0 bg-lavia-blue text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg uppercase tracking-wider">
             Khuyên dùng
           </div>
           <div className="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
             <CheckCircle className="text-green-500" size={32} />
-            <h4 className="text-xl font-bold text-luvia-blue">Ủy thác LUVIA</h4>
+            <h4 className="text-xl font-bold text-lavia-blue">Ủy thác LAVIA</h4>
           </div>
           <ul className="space-y-4">
             {psychology.gainPoints.map((point, idx) => (
@@ -792,7 +996,7 @@ const ContrastSection = ({ psychology }: { psychology?: ServicePsychology }) => 
                 <span className="font-medium">{point}</span>
               </li>
             ))}
-            <li className="flex items-start gap-3 text-luvia-blue font-bold mt-6 pt-4 border-t border-gray-100">
+            <li className="flex items-start gap-3 text-lavia-blue font-bold mt-6 pt-4 border-t border-gray-100">
               <Coffee size={18} className="flex-shrink-0 mt-1" />
               <span>Tiết kiệm {psychology.hoursSaved} cuộc đời</span>
             </li>
@@ -824,7 +1028,7 @@ const AuthoritySection = ({ signals }: { signals?: string[] }) => {
 
 const SeniorSupport = () => (
   <div className="flex items-center justify-between gap-3 group cursor-pointer hover:bg-white/50 transition-colors rounded-lg p-1">
-    <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-luvia-blue flex-shrink-0 group-hover:scale-110 transition-transform">
+    <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-lavia-blue flex-shrink-0 group-hover:scale-110 transition-transform">
       <HeartHandshake size={16} />
     </div>
     <div className="text-left flex-1">
@@ -857,8 +1061,8 @@ const ServiceDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
-          <h2 className="text-2xl font-display font-bold text-luvia-blue mb-4">Dịch vụ không tồn tại</h2>
-          <Link to="/" className="text-luvia-mint hover:underline">Quay lại trang chủ</Link>
+          <h2 className="text-2xl font-display font-bold text-lavia-blue mb-4">Dịch vụ không tồn tại</h2>
+          <Link to="/" className="text-lavia-mint hover:underline">Quay lại trang chủ</Link>
         </div>
       </div>
     );
@@ -883,12 +1087,12 @@ const ServiceDetail = () => {
           alt={service.title} 
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 text-white container mx-auto">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-display font-bold mb-4"
+            className="text-4xl md:text-6xl font-display font-bold mb-4 drop-shadow-lg"
           >
             {service.title}
           </motion.h1>
@@ -896,7 +1100,7 @@ const ServiceDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg md:text-xl font-light opacity-90 max-w-2xl"
+            className="text-lg md:text-xl font-light opacity-90 max-w-2xl drop-shadow-md"
           >
             {service.description}
           </motion.p>
@@ -905,14 +1109,14 @@ const ServiceDetail = () => {
 
       {/* Breadcrumb & Back */}
       <div className="container mx-auto px-6 py-8">
-        <Link to="/" className="inline-flex items-center text-gray-500 hover:text-luvia-blue transition-colors mb-6">
+        <Link to="/" className="inline-flex items-center text-gray-500 hover:text-lavia-blue transition-colors mb-6">
           <ArrowLeft size={20} className="mr-2" />
           Quay lại trang chủ
         </Link>
         <div className="flex items-center text-sm text-gray-400 uppercase tracking-wider mb-2">
           <span>{category.title}</span>
           <span className="mx-2">/</span>
-          <span className="text-luvia-blue font-semibold">{service.title}</span>
+          <span className="text-lavia-blue font-semibold">{service.title}</span>
         </div>
       </div>
 
@@ -956,7 +1160,7 @@ const ServiceDetail = () => {
                 <div className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm my-8">
                   <h4 className="font-bold text-lg text-gray-900 mb-4 flex items-center gap-2">
                     <ShieldCheck className="text-green-600" size={24} />
-                    Cam kết từ LUVIA
+                    Cam kết từ LAVIA
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex gap-3">
@@ -1086,7 +1290,7 @@ const ServiceDetail = () => {
               <div className="sticky top-32 space-y-8">
                 {/* Consultation Card */}
                 <div className="bg-white p-8 rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-100/50 transition-all duration-500">
-                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-luvia-blue via-blue-400 to-luvia-mint"></div>
+                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-lavia-blue via-blue-400 to-lavia-mint"></div>
                   
                   <div className="flex items-center gap-5 mb-8 border-b border-gray-50 pb-8">
                     <div className="relative">
@@ -1097,7 +1301,7 @@ const ServiceDetail = () => {
                     </div>
                     <div>
                       <div className="flex items-center gap-1.5 mb-1">
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-luvia-blue bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-lavia-blue bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
                           Chuyên gia cao cấp
                         </span>
                       </div>
@@ -1136,7 +1340,7 @@ const ServiceDetail = () => {
                     </a>
                     <a 
                       href="tel:0899660847"
-                      className="group flex items-center justify-center gap-3 w-full bg-white border border-gray-200 text-gray-700 py-4 font-bold uppercase tracking-widest hover:border-luvia-blue hover:text-luvia-blue hover:bg-blue-50/30 transition-all rounded-xl hover:shadow-lg hover:-translate-y-0.5"
+                      className="group flex items-center justify-center gap-3 w-full bg-white border border-gray-200 text-gray-700 py-4 font-bold uppercase tracking-widest hover:border-lavia-blue hover:text-lavia-blue hover:bg-blue-50/30 transition-all rounded-xl hover:shadow-lg hover:-translate-y-0.5"
                     >
                       <Phone size={20} className="group-hover:scale-110 transition-transform" />
                       Gọi 0899 660 847
@@ -1162,7 +1366,7 @@ const ServiceDetail = () => {
                         <span className="text-xs text-gray-400 flex items-center gap-1.5">
                           <Users size={12} /> Trực tuyến
                         </span>
-                        <span className="font-bold text-luvia-blue text-sm">
+                        <span className="font-bold text-lavia-blue text-sm">
                           12 chuyên viên
                         </span>
                       </div>
@@ -1173,11 +1377,11 @@ const ServiceDetail = () => {
                 {/* Trust Badges */}
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 grid grid-cols-2 gap-4">
                   <div className="text-center p-2">
-                    <ShieldCheck className="mx-auto text-luvia-blue mb-2" size={24} />
+                    <ShieldCheck className="mx-auto text-lavia-blue mb-2" size={24} />
                     <p className="text-xs font-bold text-gray-700 uppercase">Bảo mật 100%</p>
                   </div>
                   <div className="text-center p-2">
-                    <Award className="mx-auto text-luvia-blue mb-2" size={24} />
+                    <Award className="mx-auto text-lavia-blue mb-2" size={24} />
                     <p className="text-xs font-bold text-gray-700 uppercase">Uy tín hàng đầu</p>
                   </div>
                 </div>

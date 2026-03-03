@@ -27,7 +27,7 @@ const ContactOption = ({ icon: Icon, label, href, subLabel }: { icon: any, label
 const FooterLink = ({ label, href }: { label: string, href: string }) => (
   <a 
     href={href} 
-    className="block py-2 text-xs font-bold text-gray-500 uppercase tracking-wider hover:text-luvia-blue transition-colors"
+    className="block py-2 text-xs font-bold text-gray-500 uppercase tracking-wider hover:text-lavia-blue transition-colors"
   >
     {label}
   </a>
@@ -78,7 +78,7 @@ const ContactDrawer: React.FC<ContactDrawerProps> = ({ isOpen, onClose }) => {
             {/* Content */}
             <div className="flex-1 overflow-y-auto px-8 py-4">
               <p className="text-sm text-gray-500 mb-8 leading-relaxed">
-                Trung tâm Tư vấn Khách hàng của LUVIA rất hân hạnh được hỗ trợ quý khách.
+                Trung tâm Tư vấn Khách hàng của LAVIA rất hân hạnh được hỗ trợ quý khách.
               </p>
 
               <div className="space-y-1">
@@ -90,7 +90,7 @@ const ContactDrawer: React.FC<ContactDrawerProps> = ({ isOpen, onClose }) => {
                 <ContactOption 
                   icon={Mail} 
                   label="Gửi email" 
-                  href="mailto:support@luvia.vn" 
+                  href="mailto:support@lavia.vn" 
                 />
                 <ContactOption 
                   icon={MessageCircle} 
@@ -105,7 +105,7 @@ const ContactDrawer: React.FC<ContactDrawerProps> = ({ isOpen, onClose }) => {
                 <ContactOption 
                   icon={Facebook} 
                   label="Facebook Messenger" 
-                  href="https://m.me/luvia.vn" 
+                  href="https://m.me/lavia.vn" 
                 />
                 {/* Zalo - Custom Icon or Generic */}
                 <a 

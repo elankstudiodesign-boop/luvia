@@ -17,10 +17,10 @@ const Hero = () => {
       <div className="absolute inset-0">
         <img 
           src="https://picsum.photos/seed/luxury_hero_lv/1920/1080" 
-          alt="LUVIA Hero" 
+          alt="LAVIA Hero" 
           className="w-full h-full object-cover animate-ken-burns"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-luvia-blue/20 to-luvia-blue/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
       </div>
       
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4 z-10">
@@ -28,7 +28,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-sm md:text-base font-medium tracking-[0.3em] uppercase mb-6 drop-shadow-md text-luvia-mint"
+          className="text-sm md:text-base font-medium tracking-[0.3em] uppercase mb-6 drop-shadow-md text-lavia-mint"
         >
           QUẢN GIA CAO CẤP & TRỢ LÝ TOÀN NĂNG
         </motion.h2>
@@ -38,13 +38,13 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-4xl md:text-7xl font-display font-bold mb-6 tracking-wide drop-shadow-lg"
         >
-          HỆ SINH THÁI LUVIA
+          HỆ SINH THÁI LAVIA
         </motion.h1>
         <motion.p
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8, delay: 0.3 }}
-           className="text-lg md:text-2xl font-light mb-10 max-w-3xl leading-relaxed text-gray-200"
+           className="text-lg md:text-2xl font-light mb-10 max-w-3xl leading-relaxed text-gray-200 drop-shadow-md"
         >
           Tiết kiệm 20 giờ xếp hàng chỉ với một lần chạm.
         </motion.p>
@@ -57,12 +57,12 @@ const Hero = () => {
         >
           <a 
             href="#legal" 
-            className="inline-block px-12 py-5 bg-luvia-emerald text-white text-sm font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-luvia-emerald transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            className="inline-block px-12 py-5 bg-lavia-emerald text-white text-sm font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-lavia-emerald transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
             Ủy thác ngay
           </a>
           <p className="text-xs text-gray-300 italic tracking-wider flex items-center gap-2">
-            <Users size={12} className="text-luvia-gold" />
+            <Users size={12} className="text-lavia-gold" />
             Chỉ nhận tối đa 5 khách hàng ủy thác/tháng
           </p>
         </motion.div>
@@ -71,47 +71,67 @@ const Hero = () => {
   );
 };
 
+const PARTNERS = [
+  "VINHOMES", "SUN GROUP", "VIETNAM AIRLINES", "TECHCOMBANK", 
+  "MASAN GROUP", "NOVALAND", "VIETCOMBANK", "BIDV", 
+  "FPT CORPORATION", "VIETTEL", "VPBANK", "MASTERISE HOMES",
+  "FLAMINGO GROUP", "BIM GROUP", "HOA PHAT GROUP"
+];
+
 const SocialProof = () => (
-  <section className="bg-luvia-light py-12 border-b border-gray-200">
-    <div className="container mx-auto px-4 text-center">
-      <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-8">
+  <section className="bg-lavia-light py-12 border-b border-gray-200 overflow-hidden">
+    <div className="container mx-auto px-4 text-center mb-10">
+      <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em]">
         Được tin tưởng bởi 500+ Gia đình & Doanh nghiệp
       </p>
-      <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-        <div className="flex items-center gap-2 font-display font-bold text-xl text-gray-600"><Star className="text-luvia-gold" /> VINHOMES</div>
-        <div className="flex items-center gap-2 font-display font-bold text-xl text-gray-600"><Star className="text-luvia-gold" /> SUN GROUP</div>
-        <div className="flex items-center gap-2 font-display font-bold text-xl text-gray-600"><Star className="text-luvia-gold" /> VIETNAM AIRLINES</div>
-        <div className="flex items-center gap-2 font-display font-bold text-xl text-gray-600"><Star className="text-luvia-gold" /> TECHCOMBANK</div>
-      </div>
+    </div>
+    
+    <div className="relative flex overflow-hidden w-full mask-gradient-x">
+      <motion.div 
+        className="flex gap-16 items-center whitespace-nowrap pl-16"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ 
+          repeat: Infinity, 
+          ease: "linear", 
+          duration: 40 
+        }}
+      >
+        {[...PARTNERS, ...PARTNERS].map((partner, idx) => (
+          <div key={idx} className="flex items-center gap-3 font-display font-bold text-xl text-gray-500 opacity-60 hover:opacity-100 hover:text-lavia-blue transition-all duration-300 flex-shrink-0 cursor-default">
+            <Star className="text-lavia-gold w-5 h-5" /> 
+            {partner}
+          </div>
+        ))}
+      </motion.div>
     </div>
   </section>
 );
 
 const RiskReversal = () => (
-  <section className="bg-luvia-blue text-white py-16">
+  <section className="bg-lavia-blue text-white py-16">
     <div className="container mx-auto px-4">
       <div className="flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl mx-auto">
         <div className="flex-1">
            <h3 className="text-2xl md:text-3xl font-display font-bold mb-4 flex items-center gap-3">
-             <ShieldCheck size={32} className="text-luvia-mint" />
+             <ShieldCheck size={32} className="text-lavia-mint" />
              Cam kết rủi ro bằng 0
            </h3>
            <p className="text-gray-300 leading-relaxed">
-             Chúng tôi hiểu sự lo lắng của bạn khi giao phó công việc quan trọng. LUVIA cam kết hoàn tiền 100% nếu không hoàn thành đúng hạn hoặc sai sót trong quá trình thực hiện.
+             Chúng tôi hiểu sự lo lắng của bạn khi giao phó công việc quan trọng. LAVIA cam kết hoàn tiền 100% nếu không hoàn thành đúng hạn hoặc sai sót trong quá trình thực hiện.
            </p>
         </div>
         <div className="flex-shrink-0 bg-white/10 p-6 rounded-lg backdrop-blur-sm border border-white/20">
            <ul className="space-y-3">
              <li className="flex items-center gap-3 text-sm">
-               <CheckCircle size={16} className="text-luvia-mint" />
+               <CheckCircle size={16} className="text-lavia-mint" />
                <span>Bảo hiểm trách nhiệm trọn gói</span>
              </li>
              <li className="flex items-center gap-3 text-sm">
-               <CheckCircle size={16} className="text-luvia-mint" />
+               <CheckCircle size={16} className="text-lavia-mint" />
                <span>Hoàn tiền 100% nếu sai hẹn</span>
              </li>
              <li className="flex items-center gap-3 text-sm">
-               <CheckCircle size={16} className="text-luvia-mint" />
+               <CheckCircle size={16} className="text-lavia-mint" />
                <span>Bảo mật thông tin tuyệt đối</span>
              </li>
            </ul>
@@ -129,7 +149,7 @@ const FullWidthSection = ({ category }: { category: ServiceCategory }) => (
         alt={category.title} 
         className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
     </div>
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
@@ -138,11 +158,11 @@ const FullWidthSection = ({ category }: { category: ServiceCategory }) => (
       transition={{ duration: 0.8 }}
       className="relative z-10 flex flex-col items-center justify-center text-center text-white p-8 md:p-16 max-w-4xl mx-auto"
     >
-      <h3 className="text-sm md:text-base font-medium tracking-[0.3em] uppercase mb-6 opacity-90">{category.subtitle}</h3>
-      <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 leading-tight">{category.title}</h2>
+      <h3 className="text-sm md:text-base font-medium tracking-[0.3em] uppercase mb-6 opacity-90 drop-shadow-md">{category.subtitle}</h3>
+      <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 leading-tight drop-shadow-lg">{category.title}</h2>
       <a 
         href={`#${category.id}`}
-        className="inline-block border-b border-white pb-1 text-sm font-semibold uppercase tracking-widest hover:text-luvia-mint hover:border-luvia-mint transition-colors"
+        className="inline-block border-b border-white pb-1 text-sm font-semibold uppercase tracking-widest hover:text-lavia-mint hover:border-lavia-mint transition-colors drop-shadow-md"
       >
         Xem chi tiết
       </a>
@@ -170,7 +190,7 @@ const SplitSection = ({ category, reverse }: { category: ServiceCategory, revers
           className="max-w-xl mx-auto"
         >
           <h3 className="text-xs font-bold text-gray-400 tracking-[0.25em] uppercase mb-6">{category.subtitle}</h3>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-luvia-blue mb-8 leading-tight">{category.title}</h2>
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-lavia-blue mb-8 leading-tight">{category.title}</h2>
           <p className="text-gray-600 font-light leading-relaxed mb-10 text-lg">
             {category.description}
           </p>
@@ -182,8 +202,8 @@ const SplitSection = ({ category, reverse }: { category: ServiceCategory, revers
                 onClick={() => navigate(`/service/${category.id}/${item.id}`)}
               >
                 <div className="flex justify-between items-start mb-2 gap-2">
-                  <h4 className="font-display font-semibold text-luvia-blue text-base group-hover:text-luvia-mint transition-colors leading-tight">{item.title}</h4>
-                  <ArrowRight size={16} className="text-gray-300 group-hover:text-luvia-mint flex-shrink-0 mt-1 -translate-x-2 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                  <h4 className="font-display font-semibold text-lavia-blue text-base group-hover:text-lavia-mint transition-colors leading-tight">{item.title}</h4>
+                  <ArrowRight size={16} className="text-gray-300 group-hover:text-lavia-mint flex-shrink-0 mt-1 -translate-x-2 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-300" />
                 </div>
                 <p className="text-sm text-gray-500 font-light line-clamp-3 leading-relaxed">{item.description}</p>
               </div>
@@ -191,7 +211,7 @@ const SplitSection = ({ category, reverse }: { category: ServiceCategory, revers
           </div>
           <button 
             onClick={() => navigate(`/service/${category.id}/${category.items[0].id}`)}
-            className="mt-12 inline-block border border-luvia-blue px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-luvia-blue hover:text-white transition-all duration-300"
+            className="mt-12 inline-block border border-lavia-blue px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-lavia-blue hover:text-white transition-all duration-300"
           >
             Khám phá dịch vụ
           </button>
@@ -213,7 +233,7 @@ const GridSection = ({ category }: { category: ServiceCategory }) => {
         className="text-center mb-20 max-w-3xl mx-auto"
       >
         <h3 className="text-xs font-bold text-gray-400 tracking-[0.25em] uppercase mb-4">{category.subtitle}</h3>
-        <h2 className="text-3xl md:text-5xl font-display font-bold text-luvia-blue mb-6">{category.title}</h2>
+        <h2 className="text-3xl md:text-5xl font-display font-bold text-lavia-blue mb-6">{category.title}</h2>
         <p className="text-gray-500 font-light text-lg leading-relaxed">{category.description}</p>
       </motion.div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16 container mx-auto">
@@ -235,7 +255,7 @@ const GridSection = ({ category }: { category: ServiceCategory }) => {
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
             </div>
-            <h4 className="text-xl font-display font-bold text-luvia-blue mb-3 text-center uppercase tracking-wider group-hover:text-luvia-mint transition-colors duration-300 px-2">
+            <h4 className="text-xl font-display font-bold text-lavia-blue mb-3 text-center uppercase tracking-wider group-hover:text-lavia-mint transition-colors duration-300 px-2">
               {item.title}
             </h4>
             <p className="text-sm text-gray-500 text-center font-light px-4 leading-relaxed">
@@ -257,49 +277,49 @@ import SitemapPage from './pages/SitemapPage';
 
 const Footer = () => {
   return (
-    <footer className="bg-white text-luvia-blue border-t border-gray-200 pt-16 pb-8">
+    <footer className="bg-white text-lavia-blue border-t border-gray-200 pt-16 pb-8">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-1">
-            <h4 className="font-bold text-sm uppercase tracking-widest mb-6">LUVIA ECOSYSTEM</h4>
+            <h4 className="font-bold text-sm uppercase tracking-widest mb-6">LAVIA ECOSYSTEM</h4>
             <div className="flex flex-col space-y-3 text-sm text-gray-600">
               <span className="flex items-center gap-2"><Globe size={16}/> Việt Nam</span>
-              <a href="tel:0899660847" className="hover:text-luvia-mint transition-colors flex items-center gap-2"><Phone size={16}/> 0899 660 847</a>
+              <a href="tel:0899660847" className="hover:text-lavia-mint transition-colors flex items-center gap-2"><Phone size={16}/> 0899 660 847</a>
             </div>
           </div>
 
           <div className="md:col-span-1">
             <h4 className="font-bold text-sm uppercase tracking-widest mb-6">Dịch vụ</h4>
             <ul className="space-y-3 text-sm text-gray-600">
-              <li><a href="#" className="hover:text-luvia-mint transition-colors">Di trú & Du lịch</a></li>
-              <li><a href="#" className="hover:text-luvia-mint transition-colors">Bất động sản</a></li>
-              <li><a href="#" className="hover:text-luvia-mint transition-colors">Chăm sóc Gia đình</a></li>
-              <li><a href="#" className="hover:text-luvia-mint transition-colors">Giải pháp Doanh nghiệp</a></li>
+              <li><a href="#" className="hover:text-lavia-mint transition-colors">Di trú & Du lịch</a></li>
+              <li><a href="#" className="hover:text-lavia-mint transition-colors">Bất động sản</a></li>
+              <li><a href="#" className="hover:text-lavia-mint transition-colors">Chăm sóc Gia đình</a></li>
+              <li><a href="#" className="hover:text-lavia-mint transition-colors">Giải pháp Doanh nghiệp</a></li>
             </ul>
           </div>
 
           <div className="md:col-span-1">
             <h4 className="font-bold text-sm uppercase tracking-widest mb-6">Công ty</h4>
             <ul className="space-y-3 text-sm text-gray-600">
-              <li><Link to="/about" className="hover:text-luvia-mint transition-colors">Về LUVIA</Link></li>
-              <li><Link to="/careers" className="hover:text-luvia-mint transition-colors">Tuyển dụng</Link></li>
-              <li><Link to="/legal" className="hover:text-luvia-mint transition-colors">Pháp lý & Quyền riêng tư</Link></li>
-              <li><Link to="/sitemap" className="hover:text-luvia-mint transition-colors">Sitemap</Link></li>
+              <li><Link to="/about" className="hover:text-lavia-mint transition-colors">Về LAVIA</Link></li>
+              <li><Link to="/careers" className="hover:text-lavia-mint transition-colors">Tuyển dụng</Link></li>
+              <li><Link to="/legal" className="hover:text-lavia-mint transition-colors">Pháp lý & Quyền riêng tư</Link></li>
+              <li><Link to="/sitemap" className="hover:text-lavia-mint transition-colors">Sitemap</Link></li>
             </ul>
           </div>
 
           <div className="md:col-span-1">
             <h4 className="font-bold text-sm uppercase tracking-widest mb-6">Đăng ký nhận tin</h4>
             <p className="text-xs text-gray-500 mb-4">
-              Cập nhật những thông tin mới nhất về dịch vụ và ưu đãi từ LUVIA.
+              Cập nhật những thông tin mới nhất về dịch vụ và ưu đãi từ LAVIA.
             </p>
             <div className="flex border-b border-gray-300 pb-2">
               <input 
                 type="email" 
                 placeholder="Địa chỉ Email" 
-                className="bg-transparent border-none outline-none text-luvia-blue w-full placeholder-gray-400 text-sm"
+                className="bg-transparent border-none outline-none text-lavia-blue w-full placeholder-gray-400 text-sm"
               />
-              <button className="text-xs font-bold uppercase tracking-widest hover:text-luvia-mint transition-colors">
+              <button className="text-xs font-bold uppercase tracking-widest hover:text-lavia-mint transition-colors">
                 Gửi
               </button>
             </div>
@@ -307,10 +327,10 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-center items-center gap-4">
-          <h1 className="text-4xl font-display font-bold tracking-[0.2em] text-gray-200 select-none">LUVIA</h1>
+          <h1 className="text-4xl font-display font-bold tracking-[0.2em] text-gray-200 select-none">LAVIA</h1>
         </div>
         <div className="text-center mt-4 text-[10px] text-gray-400 uppercase tracking-wider">
-          © {new Date().getFullYear()} LUVIA. All rights reserved.
+          © {new Date().getFullYear()} LAVIA. All rights reserved.
         </div>
       </div>
     </footer>
@@ -329,7 +349,7 @@ const HomePage = () => {
       <FullWidthSection category={categories[1]} />
       
       {/* Property - Visual */}
-      <SplitSection category={categories[2]} reverse />
+      <GridSection category={categories[2]} />
       
       {/* Family - Personal */}
       <GridSection category={categories[3]} />
@@ -361,39 +381,39 @@ export default function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={
-          <div className="min-h-screen bg-white font-sans selection:bg-luvia-mint selection:text-luvia-blue">
+          <div className="min-h-screen bg-white font-sans selection:bg-lavia-mint selection:text-lavia-blue">
             <Navbar />
             <HomePage />
             <Footer />
           </div>
         } />
         <Route path="/service/:categoryId/:serviceId" element={
-          <div className="min-h-screen bg-white font-sans selection:bg-luvia-mint selection:text-luvia-blue">
+          <div className="min-h-screen bg-white font-sans selection:bg-lavia-mint selection:text-lavia-blue">
             <Navbar />
             <ServiceDetail />
             <Footer />
           </div>
         } />
         <Route path="/about" element={
-          <div className="min-h-screen bg-white font-sans selection:bg-luvia-mint selection:text-luvia-blue">
+          <div className="min-h-screen bg-white font-sans selection:bg-lavia-mint selection:text-lavia-blue">
             <AboutPage />
             <Footer />
           </div>
         } />
         <Route path="/careers" element={
-          <div className="min-h-screen bg-white font-sans selection:bg-luvia-mint selection:text-luvia-blue">
+          <div className="min-h-screen bg-white font-sans selection:bg-lavia-mint selection:text-lavia-blue">
             <CareersPage />
             <Footer />
           </div>
         } />
         <Route path="/legal" element={
-          <div className="min-h-screen bg-white font-sans selection:bg-luvia-mint selection:text-luvia-blue">
+          <div className="min-h-screen bg-white font-sans selection:bg-lavia-mint selection:text-lavia-blue">
             <LegalPage />
             <Footer />
           </div>
         } />
         <Route path="/sitemap" element={
-          <div className="min-h-screen bg-white font-sans selection:bg-luvia-mint selection:text-luvia-blue">
+          <div className="min-h-screen bg-white font-sans selection:bg-lavia-mint selection:text-lavia-blue">
             <SitemapPage />
             <Footer />
           </div>

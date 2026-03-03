@@ -204,7 +204,7 @@ const ServicesPage = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-1">Tên dịch vụ</label>
                   <input 
                     type="text" 
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-luvia-blue"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-lavia-blue"
                     value={editingService.title}
                     onChange={(e) => setEditingService({...editingService, title: e.target.value})}
                   />
@@ -212,7 +212,7 @@ const ServicesPage = () => {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Mô tả ngắn</label>
                   <textarea 
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-luvia-blue"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-lavia-blue"
                     rows={3}
                     value={editingService.description}
                     onChange={(e) => setEditingService({...editingService, description: e.target.value})}
@@ -226,7 +226,7 @@ const ServicesPage = () => {
                   <label className="block text-sm font-medium text-gray-700">Bảng giá dịch vụ (Cập nhật theo thị trường)</label>
                   <button 
                     onClick={addPricingPackage}
-                    className="text-xs flex items-center gap-1 text-luvia-blue hover:bg-blue-50 px-2 py-1 rounded transition-colors"
+                    className="text-xs flex items-center gap-1 text-lavia-blue hover:bg-blue-50 px-2 py-1 rounded transition-colors"
                   >
                     <Plus size={14} /> Thêm gói
                   </button>
@@ -241,7 +241,7 @@ const ServicesPage = () => {
                         <label className="block text-xs font-medium text-gray-500 mb-1">Tên gói</label>
                         <input 
                           type="text"
-                          className="w-full px-3 py-1.5 border border-gray-200 rounded text-sm focus:outline-none focus:border-luvia-blue"
+                          className="w-full px-3 py-1.5 border border-gray-200 rounded text-sm focus:outline-none focus:border-lavia-blue"
                           value={pkg.title}
                           onChange={(e) => updatePricing(index, 'title', e.target.value)}
                           placeholder="Ví dụ: Gói Cơ bản"
@@ -251,7 +251,7 @@ const ServicesPage = () => {
                         <label className="block text-xs font-medium text-gray-500 mb-1">Giá (VNĐ)</label>
                         <input 
                           type="text"
-                          className="w-full px-3 py-1.5 border border-gray-200 rounded text-sm font-bold text-luvia-blue focus:outline-none focus:border-luvia-blue"
+                          className="w-full px-3 py-1.5 border border-gray-200 rounded text-sm font-bold text-lavia-blue focus:outline-none focus:border-lavia-blue"
                           value={pkg.price}
                           onChange={(e) => updatePricing(index, 'price', e.target.value)}
                           placeholder="1.000.000đ"
@@ -273,7 +273,7 @@ const ServicesPage = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Nội dung chi tiết (Mô tả dài)</label>
                 <textarea 
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-luvia-blue"
+                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-lavia-blue"
                   rows={5}
                   value={editingService.content.detailedDescription || ''}
                   onChange={(e) => setEditingService({
@@ -293,7 +293,7 @@ const ServicesPage = () => {
               </button>
               <button 
                 onClick={handleSaveService}
-                className="px-6 py-2 bg-luvia-blue text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2"
+                className="px-6 py-2 bg-lavia-blue text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2"
               >
                 <Save size={18} />
                 Lưu thay đổi

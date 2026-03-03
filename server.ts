@@ -15,7 +15,7 @@ import fs from 'fs';
 import { categories } from './src/data/services';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const db = new Database('luvia.db');
+const db = new Database('lavia.db');
 
 // Ensure uploads directory exists
 const uploadDir = path.join(__dirname, 'public', 'uploads');
@@ -65,6 +65,13 @@ try {
   // Column likely already exists
 }
 
+// Add details column if it doesn't exist (migration)
+try {
+  db.prepare("ALTER TABLE bookings ADD COLUMN details TEXT").run();
+} catch (error) {
+  // Column likely already exists
+}
+
 // Helper to send Telegram message
 async function sendTelegramMessage(message: string) {
   // Use provided credentials as defaults if env vars are missing
@@ -102,16 +109,66 @@ async function startServer() {
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static(path.join(__dirname, 'public')));
 
+  app.get('/api/stats', (req, res) => {
+    try {
+      const bookings = db.prepare('SELECT * FROM bookings').all() as any[];
+      
+      const counts = {
+        total: bookings.length,
+        new: bookings.filter(b => b.status === 'new').length,
+        completed: bookings.filter(b => b.status === 'completed').length,
+        revenue: bookings.reduce((sum, b) => sum + (parseFloat(b.package_price) || 0), 0)
+      };
+
+      // Chart data (last 7 days)
+      const chart = [];
+      for (let i = 6; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        const dateStr = date.toISOString().split('T')[0]; // YYYY-MM-DD
+        const count = bookings.filter(b => b.created_at && b.created_at.startsWith(dateStr)).length;
+        chart.push({ date: dateStr.split('-').slice(1).join('/'), bookings: count }); // MM/DD
+      }
+
+      res.json({ counts, chart });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to fetch stats' });
+    }
+  });
+
+  app.get('/api/bookings', (req, res) => {
+    try {
+      const bookings = db.prepare('SELECT * FROM bookings ORDER BY created_at DESC').all();
+      res.json(bookings);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to fetch bookings' });
+    }
+  });
+
+  app.patch('/api/bookings/:id/status', (req, res) => {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+      db.prepare('UPDATE bookings SET status = ? WHERE id = ?').run(status, id);
+      res.json({ success: true });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to update status' });
+    }
+  });
+
   app.post('/api/bookings', (req, res) => {
     try {
-      const { name, phone, note, service_id, service_name, package_name, package_price, booking_code } = req.body;
+      const { name, phone, note, service_id, service_name, package_name, package_price, booking_code, details } = req.body;
       
       // Create booking
       const stmt = db.prepare(`
-        INSERT INTO bookings (name, phone, note, service_id, service_name, package_name, package_price, booking_code)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO bookings (name, phone, note, service_id, service_name, package_name, package_price, booking_code, details)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
       `);
-      const info = stmt.run(name, phone, note, service_id, service_name, package_name, package_price, booking_code);
+      const info = stmt.run(name, phone, note, service_id, service_name, package_name, package_price, booking_code, JSON.stringify(details));
 
       // Create or update customer
       const upsertCustomer = db.prepare(`

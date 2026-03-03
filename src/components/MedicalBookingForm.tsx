@@ -144,7 +144,24 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
         console.log("Simulating Webhook call:", payload);
       }
 
-      // 3. Move to payment step
+      // 3. Save to local DB
+      await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.customerName,
+          phone: formData.customerPhone,
+          note: `[Trợ lý Y tế] Bệnh viện: ${HOSPITALS.find(h => h.id === formData.hospitalId)?.name}, Chuyên khoa: ${formData.specialty}, Ngày khám: ${formData.date}, Khẩn cấp: ${formData.isUrgent ? 'Có' : 'Không'}`,
+          service_id: 'medical-assistant',
+          service_name: 'Trợ lý Y tế & Khám bệnh',
+          package_name: formData.isUrgent ? 'Khám khẩn cấp' : 'Khám thường',
+          package_price: totalPrice.toString(),
+          booking_code: bookingCode,
+          details: formData
+        }),
+      });
+
+      // 4. Move to payment step
       setStep('payment');
     } catch (error) {
       console.error("Booking error:", error);
@@ -172,9 +189,9 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
 
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-      <div className="bg-luvia-blue p-6 text-white">
+      <div className="bg-lavia-blue p-6 text-white">
         <h3 className="text-xl font-display font-bold flex items-center gap-2">
-          <Calendar className="text-luvia-mint" />
+          <Calendar className="text-lavia-mint" />
           Đặt lịch khám bệnh
         </h3>
         <p className="text-blue-100 text-sm mt-1">Điền thông tin để lấy số thứ tự sớm nhất</p>
@@ -199,7 +216,7 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
                     type="text"
                     required
                     placeholder="Nguyễn Văn A"
-                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-luvia-blue outline-none"
+                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-lavia-blue outline-none"
                     value={formData.customerName}
                     onChange={(e) => setFormData({ ...formData, customerName: e.target.value })}
                   />
@@ -210,7 +227,7 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
                     type="tel"
                     required
                     placeholder="0909..."
-                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-luvia-blue outline-none"
+                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-lavia-blue outline-none"
                     value={formData.customerPhone}
                     onChange={(e) => setFormData({ ...formData, customerPhone: e.target.value })}
                   />
@@ -221,7 +238,7 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Chọn Bệnh viện</label>
                 <select
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-luvia-blue focus:border-transparent outline-none transition-all"
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-lavia-blue focus:border-transparent outline-none transition-all"
                   value={formData.hospitalId}
                   onChange={(e) => setFormData({ ...formData, hospitalId: e.target.value })}
                 >
@@ -238,7 +255,7 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
                   <input
                     type="date"
                     required
-                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-luvia-blue outline-none"
+                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-lavia-blue outline-none"
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                   />
@@ -249,7 +266,7 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
                     type="text"
                     placeholder="VD: Tim mạch, Tiêu hóa..."
                     required
-                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-luvia-blue outline-none"
+                    className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-lavia-blue outline-none"
                     value={formData.specialty}
                     onChange={(e) => setFormData({ ...formData, specialty: e.target.value })}
                   />
@@ -279,7 +296,7 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
                 <input
                   type="checkbox"
                   id="urgent"
-                  className="w-5 h-5 text-luvia-blue rounded focus:ring-luvia-blue"
+                  className="w-5 h-5 text-lavia-blue rounded focus:ring-lavia-blue"
                   checked={formData.isUrgent}
                   onChange={(e) => setFormData({ ...formData, isUrgent: e.target.checked })}
                 />
@@ -292,13 +309,13 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
               {/* Total Price */}
               <div className="flex justify-between items-center pt-4 border-t border-gray-100">
                 <span className="text-gray-600 font-medium">Tổng thanh toán:</span>
-                <span className="text-2xl font-display font-bold text-luvia-blue">{formatCurrency(totalPrice)}</span>
+                <span className="text-2xl font-display font-bold text-lavia-blue">{formatCurrency(totalPrice)}</span>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 bg-luvia-blue text-white font-bold uppercase tracking-widest rounded-xl hover:bg-luvia-mint hover:text-luvia-blue transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center gap-2"
+                className="w-full py-4 bg-lavia-blue text-white font-bold uppercase tracking-widest rounded-xl hover:bg-lavia-mint hover:text-lavia-blue transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center gap-2"
               >
                 {isSubmitting ? <Loader2 className="animate-spin" /> : 'Tiếp tục thanh toán'}
               </button>
@@ -321,7 +338,7 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
               </div>
 
               <div className="relative inline-block group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-luvia-blue to-luvia-mint rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-lavia-blue to-lavia-mint rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
                 <div className="relative bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
                   {/* Simulated QR Code - In real app, use a QR library or image from API */}
                   <div className="w-48 h-48 bg-gray-100 mx-auto flex items-center justify-center rounded-lg mb-2 overflow-hidden">
@@ -340,7 +357,7 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm border-b border-gray-100 pb-2">
                   <span className="text-gray-500">Số tiền:</span>
-                  <span className="font-bold text-luvia-blue">{formatCurrency(totalPrice)}</span>
+                  <span className="font-bold text-lavia-blue">{formatCurrency(totalPrice)}</span>
                 </div>
                 <div className="flex justify-between text-sm border-b border-gray-100 pb-2">
                   <span className="text-gray-500">Ngân hàng:</span>
@@ -354,7 +371,7 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
 
               {paymentStatus === 'pending' && (
                 <div className="space-y-3">
-                  <div className="flex items-center justify-center gap-2 text-luvia-blue animate-pulse">
+                  <div className="flex items-center justify-center gap-2 text-lavia-blue animate-pulse">
                     <Loader2 size={20} className="animate-spin" />
                     <span className="font-medium">Đang chờ hệ thống xác nhận thanh toán...</span>
                   </div>
@@ -371,7 +388,7 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
               )}
 
               {paymentStatus === 'checking' && (
-                <div className="flex flex-col items-center justify-center py-4 text-luvia-blue">
+                <div className="flex flex-col items-center justify-center py-4 text-lavia-blue">
                   <Loader2 size={32} className="animate-spin mb-2" />
                   <span className="text-sm font-medium">Đang kiểm tra giao dịch...</span>
                 </div>
@@ -403,11 +420,11 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
               <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
                 <CheckCircle size={40} />
               </div>
-              <h3 className="text-2xl font-display font-bold text-luvia-blue mb-2">Đã nhận đơn hàng!</h3>
+              <h3 className="text-2xl font-display font-bold text-lavia-blue mb-2">Đã nhận đơn hàng!</h3>
               <p className="text-gray-600 mb-6">
                 Chúng tôi đã nhận được thanh toán và đang sắp xếp nhân sự lấy số cho bạn.
                 <br />
-                Mã đơn hàng: <span className="font-bold text-luvia-blue">{bookingCode}</span>
+                Mã đơn hàng: <span className="font-bold text-lavia-blue">{bookingCode}</span>
               </p>
               
               <div className="bg-blue-50 p-4 rounded-xl text-left text-sm text-blue-800 mb-8">
@@ -421,7 +438,7 @@ const MedicalBookingForm: React.FC<MedicalBookingFormProps> = ({ onSuccess }) =>
 
               <button
                 onClick={() => window.location.reload()}
-                className="w-full py-3 border border-gray-200 text-gray-600 font-bold rounded-xl hover:border-luvia-blue hover:text-luvia-blue transition-colors"
+                className="w-full py-3 border border-gray-200 text-gray-600 font-bold rounded-xl hover:border-lavia-blue hover:text-lavia-blue transition-colors"
               >
                 Đặt thêm đơn khác
               </button>

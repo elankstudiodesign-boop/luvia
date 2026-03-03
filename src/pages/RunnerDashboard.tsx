@@ -38,10 +38,10 @@ const RunnerDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
-      <div className="bg-luvia-blue text-white p-4 shadow-md sticky top-0 z-10">
+      <div className="bg-lavia-blue text-white p-4 shadow-md sticky top-0 z-10">
         <h1 className="font-display font-bold text-lg flex items-center gap-2">
           <Camera size={20} />
-          Luvia Runner App
+          Lavia Runner App
         </h1>
       </div>
 
@@ -66,7 +66,7 @@ const RunnerDashboard = () => {
                       type="text"
                       required
                       placeholder="VD: CB1234"
-                      className="w-full p-4 pl-12 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-luvia-blue outline-none text-lg font-mono uppercase"
+                      className="w-full p-4 pl-12 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-lavia-blue outline-none text-lg font-mono uppercase"
                       value={bookingCode}
                       onChange={(e) => setBookingCode(e.target.value.toUpperCase())}
                     />
@@ -76,7 +76,7 @@ const RunnerDashboard = () => {
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-luvia-blue text-white font-bold rounded-xl hover:bg-luvia-dark transition-colors"
+                  className="w-full py-4 bg-lavia-blue text-white font-bold rounded-xl hover:bg-lavia-dark transition-colors"
                 >
                   Tiếp tục
                 </button>
@@ -89,7 +89,7 @@ const RunnerDashboard = () => {
               <div className="flex items-center justify-between border-b border-gray-100 pb-4">
                 <div>
                   <p className="text-xs text-gray-500 uppercase font-bold">Đơn hàng</p>
-                  <p className="text-xl font-mono font-bold text-luvia-blue">{bookingCode}</p>
+                  <p className="text-xl font-mono font-bold text-lavia-blue">{bookingCode}</p>
                 </div>
                 <button 
                   onClick={() => setStep('search')}
@@ -123,7 +123,7 @@ const RunnerDashboard = () => {
                       </div>
                     ) : (
                       <div className="relative z-10">
-                        <div className="w-16 h-16 bg-blue-100 text-luvia-blue rounded-full flex items-center justify-center mx-auto mb-3">
+                        <div className="w-16 h-16 bg-blue-100 text-lavia-blue rounded-full flex items-center justify-center mx-auto mb-3">
                           <Camera size={32} />
                         </div>
                         <p className="font-medium text-gray-700">Chụp ảnh phiếu</p>
@@ -172,7 +172,7 @@ const RunnerDashboard = () => {
                   setBookingCode('');
                   setFile(null);
                 }}
-                className="w-full py-3 border border-gray-200 text-gray-600 font-bold rounded-xl hover:border-luvia-blue hover:text-luvia-blue transition-colors"
+                className="w-full py-3 border border-gray-200 text-gray-600 font-bold rounded-xl hover:border-lavia-blue hover:text-lavia-blue transition-colors"
               >
                 Làm đơn tiếp theo
               </button>
@@ -181,7 +181,7 @@ const RunnerDashboard = () => {
         </motion.div>
 
         <p className="text-center text-xs text-gray-400 mt-8">
-          © 2024 Luvia Medical Runner System
+          © 2024 Lavia Medical Runner System
         </p>
       </div>
     </div>

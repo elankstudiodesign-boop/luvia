@@ -65,7 +65,7 @@ const SettingsPage = () => {
         <button 
           onClick={handleSave}
           disabled={saving}
-          className="flex items-center gap-2 px-6 py-2 bg-luvia-blue text-white rounded-lg font-medium hover:bg-blue-700 transition-colors disabled:opacity-50"
+          className="flex items-center gap-2 px-6 py-2 bg-lavia-blue text-white rounded-lg font-medium hover:bg-blue-700 transition-colors disabled:opacity-50"
         >
           {saving ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
           Lưu thay đổi
@@ -79,7 +79,7 @@ const SettingsPage = () => {
             <label className="block text-sm font-medium text-gray-700 mb-1">Tên Website / Thương hiệu</label>
             <input 
               type="text" 
-              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-luvia-blue"
+              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-lavia-blue"
               value={settings.site_info.name}
               onChange={(e) => handleChange('site_info', 'name', e.target.value)}
             />
@@ -88,7 +88,7 @@ const SettingsPage = () => {
             <label className="block text-sm font-medium text-gray-700 mb-1">Số điện thoại Hotline</label>
             <input 
               type="text" 
-              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-luvia-blue"
+              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-lavia-blue"
               value={settings.site_info.phone}
               onChange={(e) => handleChange('site_info', 'phone', e.target.value)}
             />
@@ -97,7 +97,7 @@ const SettingsPage = () => {
             <label className="block text-sm font-medium text-gray-700 mb-1">Email liên hệ</label>
             <input 
               type="email" 
-              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-luvia-blue"
+              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-lavia-blue"
               value={settings.site_info.email}
               onChange={(e) => handleChange('site_info', 'email', e.target.value)}
             />
@@ -106,7 +106,7 @@ const SettingsPage = () => {
             <label className="block text-sm font-medium text-gray-700 mb-1">Link Zalo</label>
             <input 
               type="text" 
-              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-luvia-blue"
+              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-lavia-blue"
               value={settings.site_info.zaloUrl}
               onChange={(e) => handleChange('site_info', 'zaloUrl', e.target.value)}
             />
@@ -115,7 +115,7 @@ const SettingsPage = () => {
             <label className="block text-sm font-medium text-gray-700 mb-1">Địa chỉ</label>
             <input 
               type="text" 
-              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-luvia-blue"
+              className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-lavia-blue"
               value={settings.site_info.address}
               onChange={(e) => handleChange('site_info', 'address', e.target.value)}
             />
