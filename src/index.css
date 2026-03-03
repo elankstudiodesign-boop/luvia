@@ -25,3 +25,16 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Mask for horizontal scroll fade effect if needed */
+.mask-gradient-x {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}

@@ -17,7 +17,7 @@ const SearchOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
   }, []);
 
   const filteredServices = useMemo(() => {
-    if (!query) return [];
+    if (!query) return allServices.slice(0, 4); // Default to first 4 services
     const lowerQuery = query.toLowerCase();
     return allServices.filter(service => 
       service.title.toLowerCase().includes(lowerQuery) || 
@@ -34,6 +34,8 @@ const SearchOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
     return () => { document.body.style.overflow = 'unset'; };
   }, [isOpen]);
 
+  const popularKeywords = ["Visa", "Hộ chiếu", "Khám bệnh", "Vé máy bay", "Thành lập công ty"];
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -41,61 +43,240 @@ const SearchOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[60] bg-white/98 backdrop-blur-xl flex flex-col"
+          className="fixed inset-0 z-[60] bg-white flex flex-col"
         >
-          <div className="container mx-auto px-6 py-8">
-            <div className="flex justify-end mb-8">
-              <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                <X size={32} className="text-lavia-blue" strokeWidth={1} />
-              </button>
-            </div>
-            
-            <div className="max-w-4xl mx-auto w-full">
-              <div className="relative mb-12">
-                <input 
-                  type="text" 
-                  placeholder="Tìm kiếm dịch vụ..." 
-                  className="w-full text-3xl md:text-5xl font-display font-bold text-lavia-blue placeholder-gray-200 border-b-2 border-gray-100 pb-4 focus:outline-none focus:border-lavia-blue bg-transparent transition-colors"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  autoFocus
-                />
-                <Search className="absolute right-0 top-2 text-gray-400" size={32} />
-              </div>
+          {/* Header */}
+          <div className="relative flex items-center justify-center p-6 border-b border-gray-50">
+            <h2 className="text-2xl font-display font-bold tracking-[0.2em] text-lavia-blue">LAVIA</h2>
+            <button 
+              onClick={onClose} 
+              className="absolute right-6 top-1/2 -translate-y-1/2 p-2 hover:bg-gray-50 rounded-full transition-colors"
+            >
+              <X size={24} className="text-gray-500" strokeWidth={1.5} />
+            </button>
+          </div>
 
-              <div className="overflow-y-auto max-h-[60vh] pr-4">
-                {query && filteredServices.length === 0 && (
-                  <p className="text-gray-400 text-center text-lg">Không tìm thấy kết quả phù hợp.</p>
-                )}
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {filteredServices.map((service, idx) => (
-                    <motion.div 
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: idx * 0.05 }}
-                      className="group cursor-pointer border-b border-gray-50 pb-6 hover:border-gray-200 transition-colors"
-                      onClick={() => {
-                        navigate(`/service/${service.categoryId}/${service.id}`);
-                        onClose();
-                      }}
-                    >
-                      <div className="flex gap-4">
-                        <div className="w-16 h-16 flex-shrink-0 overflow-hidden rounded-md">
-                          <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                        </div>
-                        <div>
-                          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">{service.categoryName}</p>
-                          <h4 className="text-lg font-bold text-lavia-blue group-hover:text-lavia-mint transition-colors">{service.title}</h4>
-                          <p className="text-sm text-gray-500 line-clamp-2 mt-1">{service.description}</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
+          <div className="flex-1 overflow-y-auto">
+            <div className="container mx-auto px-6 py-12 max-w-7xl">
+              {/* Search Input */}
+              <div className="max-w-3xl mx-auto mb-16">
+                <div className="relative group mb-8">
+                  <input 
+                    type="text" 
+                    placeholder="Tìm kiếm dịch vụ..." 
+                    className="w-full text-lg py-3 pl-12 pr-4 rounded-full border border-gray-300 focus:outline-none focus:border-lavia-blue focus:ring-1 focus:ring-lavia-blue transition-all placeholder:text-gray-400 text-center group-focus-within:text-left group-focus-within:placeholder:text-gray-300"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    autoFocus
+                  />
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-lavia-blue transition-colors" size={20} />
                 </div>
+
+                {/* Popular Keywords */}
+                {!query && (
+                  <div className="text-center">
+                    <span className="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-4">Các từ khóa phổ biến</span>
+                    <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
+                      {popularKeywords.map(keyword => (
+                        <button 
+                          key={keyword}
+                          onClick={() => setQuery(keyword)}
+                          className="text-sm text-gray-600 hover:text-lavia-blue hover:underline decoration-1 underline-offset-4 transition-all"
+                        >
+                          {keyword}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+              
+              {/* Results Grid - Louis Vuitton Style */}
+              <div>
+                <h3 className="text-sm font-medium text-gray-500 mb-8 uppercase tracking-widest border-b border-gray-100 pb-2">
+                  {query ? `Kết quả cho "${query}"` : "Dịch vụ nổi bật"}
+                </h3>
+                
+                {query && filteredServices.length === 0 ? (
+                  <div className="text-center py-20">
+                    <p className="text-gray-400 text-lg">Không tìm thấy kết quả phù hợp.</p>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
+                    {filteredServices.map((service, idx) => (
+                      <motion.div 
+                        key={idx}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: idx * 0.05 }}
+                        className="group cursor-pointer"
+                        onClick={() => {
+                          navigate(`/service/${service.categoryId}/${service.id}`);
+                          onClose();
+                        }}
+                      >
+                        <div className="aspect-[3/4] overflow-hidden bg-gray-50 mb-4 relative">
+                          <img 
+                            src={service.image} 
+                            alt={service.title} 
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+                          />
+                          <button className="absolute top-3 right-3 p-2 bg-white/0 group-hover:bg-white rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 shadow-sm">
+                             <Heart size={16} className="text-lavia-blue" />
+                          </button>
+                        </div>
+                        <div className="space-y-1 text-center sm:text-left">
+                          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{service.categoryName}</p>
+                          <h4 className="text-base font-medium text-lavia-blue group-hover:underline decoration-1 underline-offset-4 transition-all line-clamp-1">
+                            {service.title}
+                          </h4>
+                          {service.pricing && service.pricing[0] && (
+                             <p className="text-sm text-gray-900 font-medium mt-1">{service.pricing[0].price}</p>
+                          )}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
+const MenuOverlay = ({ isOpen, onClose, onOpenContact }: { isOpen: boolean; onClose: () => void; onOpenContact: () => void }) => {
+  const [activeCategory, setActiveCategory] = useState<string>(categories[0].id);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isOpen]);
+
+  const selectedCategoryData = useMemo(() => 
+    categories.find(c => c.id === activeCategory) || categories[0]
+  , [activeCategory]);
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-[60] bg-white text-lavia-blue flex flex-col"
+        >
+          {/* Top Bar: Close Button */}
+          <div className="flex justify-between items-center px-8 py-6 border-b border-gray-50">
+             <button 
+              onClick={onClose}
+              className="flex items-center gap-2 text-sm font-medium hover:opacity-70 transition-opacity"
+            >
+              <X size={20} strokeWidth={1} />
+              <span>Đóng</span>
+            </button>
+            <span className="font-display font-bold text-xl tracking-[0.2em]">LAVIA</span>
+            <div className="w-20"></div> {/* Spacer for centering logo */}
+          </div>
+
+          {/* Main Content: 3 Columns */}
+          <div className="flex-1 flex overflow-hidden">
+            {/* Column 1: Main Categories */}
+            <div className="w-1/4 border-r border-gray-50 overflow-y-auto py-8 px-8 flex flex-col gap-6">
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`text-left text-lg font-medium transition-colors flex justify-between items-center group ${
+                    activeCategory === cat.id ? 'text-lavia-blue font-bold underline decoration-1 underline-offset-8' : 'text-gray-400 hover:text-gray-600'
+                  }`}
+                >
+                  {cat.shortTitle || cat.title}
+                  {activeCategory === cat.id && (
+                    <ChevronRight size={16} className="text-lavia-blue" />
+                  )}
+                </button>
+              ))}
+              
+              {/* Extra Links */}
+              <div className="mt-8 pt-8 border-t border-gray-50 flex flex-col gap-4">
+                 <button 
+                   onClick={() => { navigate('/about'); onClose(); }}
+                   className="text-left text-gray-500 hover:text-lavia-blue transition-colors"
+                 >
+                   Về LAVIA
+                 </button>
+                 <button 
+                   onClick={() => { navigate('/careers'); onClose(); }}
+                   className="text-left text-gray-500 hover:text-lavia-blue transition-colors"
+                 >
+                   Tuyển dụng
+                 </button>
+                 <button 
+                   onClick={() => { onOpenContact(); onClose(); }}
+                   className="text-left text-gray-500 hover:text-lavia-blue transition-colors"
+                 >
+                   Liên hệ
+                 </button>
+              </div>
+            </div>
+
+            {/* Column 2: Sub Items */}
+            <div className="w-1/4 border-r border-gray-50 overflow-y-auto py-8 px-8 bg-gray-50/30">
+              <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8 border-b border-gray-200 pb-2">
+                Dịch vụ
+              </h3>
+              <div className="flex flex-col gap-4">
+                {selectedCategoryData.items.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      navigate(`/service/${selectedCategoryData.id}/${item.id}`);
+                      onClose();
+                    }}
+                    className="text-left text-base text-gray-600 hover:text-lavia-blue transition-colors py-1 hover:translate-x-1 duration-300"
+                  >
+                    {item.title}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Column 3: Featured Content */}
+            <div className="w-1/2 relative overflow-hidden bg-gray-100 group cursor-pointer" onClick={() => navigate(`/service/${selectedCategoryData.id}/${selectedCategoryData.items[0].id}`)}>
+               <img 
+                 src={selectedCategoryData.image} 
+                 alt={selectedCategoryData.title}
+                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
+               />
+               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
+               
+               <div className="absolute bottom-12 left-12 text-white">
+                 <p className="text-xs font-bold uppercase tracking-widest mb-2 opacity-90">Nổi bật</p>
+                 <h2 className="text-3xl font-display font-bold mb-4">{selectedCategoryData.title}</h2>
+                 <button className="text-sm font-bold border-b border-white pb-1 hover:text-lavia-mint hover:border-lavia-mint transition-colors">
+                   Khám phá ngay
+                 </button>
+               </div>
+            </div>
+          </div>
+
+          {/* Footer of Menu */}
+          <div className="px-8 py-6 border-t border-gray-50 bg-white">
+            <p 
+              onClick={() => { onOpenContact(); onClose(); }}
+              className="text-sm text-gray-500 font-medium cursor-pointer hover:underline underline-offset-4 decoration-gray-300"
+            >
+              Chúng tôi có thể giúp gì cho bạn?
+            </p>
           </div>
         </motion.div>
       )}
@@ -147,6 +328,7 @@ const Navbar = () => {
   return (
     <>
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} onOpenContact={() => setIsContactOpen(true)} />
       
       <nav 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 group hover:bg-white hover:text-lavia-blue ${
@@ -294,72 +476,6 @@ const Navbar = () => {
 
       {/* Menu Drawer */}
       <ContactDrawer isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
-      
-      <AnimatePresence>
-        {isMenuOpen && (
-          <>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsMenuOpen(false)}
-              className="fixed inset-0 bg-black/50 z-50"
-            />
-            <motion.div 
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 left-0 bottom-0 w-[85%] max-w-sm bg-white z-50 overflow-y-auto"
-            >
-              <div className="p-6 flex justify-between items-center border-b border-gray-100">
-                <span className="font-display font-bold text-xl tracking-widest text-lavia-blue">LAVIA</span>
-                <button onClick={() => setIsMenuOpen(false)}>
-                  <X size={24} strokeWidth={1.5} className="text-gray-500" />
-                </button>
-              </div>
-              <div className="py-4">
-                <div 
-                  className="px-6 py-4 border-b border-gray-50 flex items-center gap-3 cursor-pointer hover:bg-gray-50"
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    setIsSearchOpen(true);
-                  }}
-                >
-                  <Search size={20} className="text-gray-500" />
-                  <span className="text-sm font-medium text-gray-600">Tìm kiếm</span>
-                </div>
-                {categories.map((cat) => (
-                  <button 
-                    key={cat.id} 
-                    onClick={() => {
-                      scrollToSection(cat.id);
-                      setIsMenuOpen(false);
-                    }}
-                    className="w-full px-6 py-4 text-sm font-semibold uppercase tracking-wider border-b border-gray-50 hover:bg-gray-50 flex justify-between items-center text-left text-gray-800"
-                  >
-                    {cat.shortTitle}
-                    <ChevronRight size={16} className="text-gray-400" />
-                  </button>
-                ))}
-                <div className="mt-8 px-6 space-y-4 text-sm text-gray-600">
-                  <p 
-                    className="cursor-pointer hover:text-lavia-blue"
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      setIsContactOpen(true);
-                    }}
-                  >
-                    Dịch vụ Khách hàng
-                  </p>
-                  <p className="cursor-pointer hover:text-lavia-blue">Tuyển dụng</p>
-                  <p className="cursor-pointer hover:text-lavia-blue">Pháp lý & Quyền riêng tư</p>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </>
   );
 };

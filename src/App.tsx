@@ -8,6 +8,7 @@ import { categories, ServiceCategory } from './data/services';
 import ServiceDetail from './pages/ServiceDetail';
 import Navbar from './components/Navbar';
 import UtilityBar from './components/UtilityBar';
+import FeaturedServices from './components/FeaturedServices';
 
 // --- Components ---
 
@@ -342,6 +343,10 @@ const HomePage = () => {
     <>
       <Hero />
       <SocialProof />
+      
+      {/* Featured Services - Louis Vuitton Style */}
+      <FeaturedServices />
+
       {/* Legal - High Trust - First (Halo Effect) */}
       <SplitSection category={categories[0]} />
       
