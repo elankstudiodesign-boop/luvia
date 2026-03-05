@@ -148,7 +148,7 @@ const SearchOverlay = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
 };
 
 const MenuOverlay = ({ isOpen, onClose, onOpenContact }: { isOpen: boolean; onClose: () => void; onOpenContact: () => void }) => {
-  const [activeCategory, setActiveCategory] = useState<string>(categories[0].id);
+  const [activeCategory, setActiveCategory] = useState<string | null>(categories[0].id);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -175,102 +175,195 @@ const MenuOverlay = ({ isOpen, onClose, onOpenContact }: { isOpen: boolean; onCl
           className="fixed inset-0 z-[60] bg-white text-lavia-blue flex flex-col"
         >
           {/* Top Bar: Close Button */}
-          <div className="flex justify-between items-center px-8 py-6 border-b border-gray-50">
+          <div className="flex justify-between items-center px-6 py-6 border-b border-gray-50">
              <button 
               onClick={onClose}
               className="flex items-center gap-2 text-sm font-medium hover:opacity-70 transition-opacity"
             >
               <X size={20} strokeWidth={1} />
-              <span>Đóng</span>
+              <span className="hidden md:inline">Đóng</span>
             </button>
             <span className="font-display font-bold text-xl tracking-[0.2em]">LAVIA</span>
-            <div className="w-20"></div> {/* Spacer for centering logo */}
+            <div className="w-5 md:w-20"></div> {/* Spacer for centering logo */}
           </div>
 
-          {/* Main Content: 3 Columns */}
-          <div className="flex-1 flex overflow-hidden">
-            {/* Column 1: Main Categories */}
-            <div className="w-1/4 border-r border-gray-50 overflow-y-auto py-8 px-8 flex flex-col gap-6">
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`text-left text-lg font-medium transition-colors flex justify-between items-center group ${
-                    activeCategory === cat.id ? 'text-lavia-blue font-bold underline decoration-1 underline-offset-8' : 'text-gray-400 hover:text-gray-600'
-                  }`}
-                >
-                  {cat.shortTitle || cat.title}
-                  {activeCategory === cat.id && (
-                    <ChevronRight size={16} className="text-lavia-blue" />
-                  )}
-                </button>
-              ))}
-              
-              {/* Extra Links */}
-              <div className="mt-8 pt-8 border-t border-gray-50 flex flex-col gap-4">
+          {/* Content Container */}
+          <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
+            
+            {/* Mobile View: Accordion Menu */}
+            <div className="md:hidden flex-1 overflow-y-auto py-8 px-6 flex flex-col scrollbar-hide">
+              <div className="flex flex-col gap-2">
+                {categories.map((cat) => (
+                  <div key={cat.id} className="border-b border-gray-100 last:border-none">
+                    <button
+                      onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
+                      className={`w-full text-left py-5 text-lg font-display uppercase tracking-[0.15em] flex justify-between items-center transition-all duration-300 ${
+                        activeCategory === cat.id ? 'text-lavia-blue font-semibold' : 'text-gray-400 font-light'
+                      }`}
+                    >
+                      {cat.shortTitle || cat.title}
+                      <motion.div 
+                        animate={{ rotate: activeCategory === cat.id ? 90 : 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                      >
+                        <ChevronRight size={18} className={activeCategory === cat.id ? "text-lavia-blue" : "text-gray-300"} strokeWidth={1.5} />
+                      </motion.div>
+                    </button>
+                    
+                    <AnimatePresence>
+                      {activeCategory === cat.id && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.4, ease: "circOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pb-6 pt-2 pl-4 flex flex-col gap-3">
+                            {cat.items.map((item, idx) => (
+                              <motion.button
+                                key={item.id}
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: idx * 0.05, duration: 0.3 }}
+                                onClick={() => { 
+                                  navigate(`/service/${cat.id}/${item.id}`); 
+                                  onClose(); 
+                                }}
+                                className="text-left text-base text-gray-600 font-light hover:text-lavia-blue py-1 transition-colors"
+                              >
+                                {item.title}
+                              </motion.button>
+                            ))}
+                            <motion.button 
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: cat.items.length * 0.05 + 0.1 }}
+                              onClick={() => { 
+                                navigate(`/category/${cat.id}`); 
+                                onClose(); 
+                              }}
+                              className="text-left text-xs font-bold uppercase tracking-[0.2em] text-lavia-blue mt-4 flex items-center gap-2 group"
+                            >
+                              Xem tất cả 
+                              <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                            </motion.button>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+              </div>
+
+              {/* Mobile Extra Links */}
+              <div className="mt-8 pt-8 border-t border-gray-100 flex flex-col gap-6 pb-10">
                  <button 
                    onClick={() => { navigate('/about'); onClose(); }}
-                   className="text-left text-gray-500 hover:text-lavia-blue transition-colors"
+                   className="text-left text-lg text-gray-800 font-light hover:text-lavia-blue transition-colors uppercase tracking-widest"
                  >
                    Về LAVIA
                  </button>
                  <button 
                    onClick={() => { navigate('/careers'); onClose(); }}
-                   className="text-left text-gray-500 hover:text-lavia-blue transition-colors"
+                   className="text-left text-lg text-gray-800 font-light hover:text-lavia-blue transition-colors uppercase tracking-widest"
                  >
                    Tuyển dụng
                  </button>
                  <button 
                    onClick={() => { onOpenContact(); onClose(); }}
-                   className="text-left text-gray-500 hover:text-lavia-blue transition-colors"
+                   className="text-left text-lg text-gray-800 font-light hover:text-lavia-blue transition-colors uppercase tracking-widest"
                  >
                    Liên hệ
                  </button>
               </div>
             </div>
 
-            {/* Column 2: Sub Items */}
-            <div className="w-1/4 border-r border-gray-50 overflow-y-auto py-8 px-8 bg-gray-50/30">
-              <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8 border-b border-gray-200 pb-2">
-                Dịch vụ
-              </h3>
-              <div className="flex flex-col gap-4">
-                {selectedCategoryData.items.map((item) => (
+            {/* Desktop View: 3 Columns (Original) */}
+            <div className="hidden md:flex flex-1 overflow-hidden">
+              {/* Column 1: Main Categories */}
+              <div className="w-1/4 border-r border-gray-50 overflow-y-auto py-8 px-8 flex flex-col gap-6">
+                {categories.map((cat) => (
                   <button
-                    key={item.id}
-                    onClick={() => {
-                      navigate(`/service/${selectedCategoryData.id}/${item.id}`);
-                      onClose();
-                    }}
-                    className="text-left text-base text-gray-600 hover:text-lavia-blue transition-colors py-1 hover:translate-x-1 duration-300"
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={`text-left text-lg font-medium transition-colors flex justify-between items-center group ${
+                      activeCategory === cat.id ? 'text-lavia-blue font-bold underline decoration-1 underline-offset-8' : 'text-gray-400 hover:text-gray-600'
+                    }`}
                   >
-                    {item.title}
+                    {cat.shortTitle || cat.title}
+                    {activeCategory === cat.id && (
+                      <ChevronRight size={16} className="text-lavia-blue" />
+                    )}
                   </button>
                 ))}
+                
+                {/* Extra Links */}
+                <div className="mt-8 pt-8 border-t border-gray-50 flex flex-col gap-4">
+                   <button 
+                     onClick={() => { navigate('/about'); onClose(); }}
+                     className="text-left text-gray-500 hover:text-lavia-blue transition-colors"
+                   >
+                     Về LAVIA
+                   </button>
+                   <button 
+                     onClick={() => { navigate('/careers'); onClose(); }}
+                     className="text-left text-gray-500 hover:text-lavia-blue transition-colors"
+                   >
+                     Tuyển dụng
+                   </button>
+                   <button 
+                     onClick={() => { onOpenContact(); onClose(); }}
+                     className="text-left text-gray-500 hover:text-lavia-blue transition-colors"
+                   >
+                     Liên hệ
+                   </button>
+                </div>
               </div>
-            </div>
 
-            {/* Column 3: Featured Content */}
-            <div className="w-1/2 relative overflow-hidden bg-gray-100 group cursor-pointer" onClick={() => navigate(`/service/${selectedCategoryData.id}/${selectedCategoryData.items[0].id}`)}>
-               <img 
-                 src={selectedCategoryData.image} 
-                 alt={selectedCategoryData.title}
-                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
-               />
-               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
-               
-               <div className="absolute bottom-12 left-12 text-white">
-                 <p className="text-xs font-bold uppercase tracking-widest mb-2 opacity-90">Nổi bật</p>
-                 <h2 className="text-3xl font-display font-bold mb-4">{selectedCategoryData.title}</h2>
-                 <button className="text-sm font-bold border-b border-white pb-1 hover:text-lavia-mint hover:border-lavia-mint transition-colors">
-                   Khám phá ngay
-                 </button>
-               </div>
+              {/* Column 2: Sub Items */}
+              <div className="w-1/4 border-r border-gray-50 overflow-y-auto py-8 px-8 bg-gray-50/30">
+                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8 border-b border-gray-200 pb-2">
+                  Dịch vụ
+                </h3>
+                <div className="flex flex-col gap-4">
+                  {selectedCategoryData.items.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        navigate(`/service/${selectedCategoryData.id}/${item.id}`);
+                        onClose();
+                      }}
+                      className="text-left text-base text-gray-600 hover:text-lavia-blue transition-colors py-1 hover:translate-x-1 duration-300"
+                    >
+                      {item.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Column 3: Featured Content */}
+              <div className="w-1/2 relative overflow-hidden bg-gray-100 group cursor-pointer" onClick={() => navigate(`/service/${selectedCategoryData.id}/${selectedCategoryData.items[0].id}`)}>
+                 <img 
+                   src={selectedCategoryData.image} 
+                   alt={selectedCategoryData.title}
+                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
+                 />
+                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
+                 
+                 <div className="absolute bottom-12 left-12 text-white">
+                   <p className="text-xs font-bold uppercase tracking-widest mb-2 opacity-90">Nổi bật</p>
+                   <h2 className="text-3xl font-display font-bold mb-4">{selectedCategoryData.title}</h2>
+                   <button className="text-sm font-bold border-b border-white pb-1 hover:text-lavia-mint hover:border-lavia-mint transition-colors">
+                     Khám phá ngay
+                   </button>
+                 </div>
+              </div>
             </div>
           </div>
 
           {/* Footer of Menu */}
-          <div className="px-8 py-6 border-t border-gray-50 bg-white">
+          <div className="px-8 py-6 border-t border-gray-50 bg-white hidden md:block">
             <p 
               onClick={() => { onOpenContact(); onClose(); }}
               className="text-sm text-gray-500 font-medium cursor-pointer hover:underline underline-offset-4 decoration-gray-300"

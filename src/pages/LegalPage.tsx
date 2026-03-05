@@ -11,7 +11,7 @@ const LegalPage = () => {
       <section className="relative h-[60vh] w-full overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://picsum.photos/seed/legal_document/1920/1080" 
+            src="/images/legal-bg.jpg" 
             alt="Legal & Privacy" 
             className="w-full h-full object-cover"
           />

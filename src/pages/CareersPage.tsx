@@ -11,7 +11,7 @@ const CareersPage = () => {
       <section className="relative h-[60vh] w-full overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://picsum.photos/seed/luxury_team/1920/1080" 
+            src="/images/careers-bg.jpg" 
             alt="LAVIA Team" 
             className="w-full h-full object-cover"
           />

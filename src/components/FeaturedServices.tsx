@@ -62,32 +62,32 @@ const FeaturedServices = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="min-w-[280px] md:min-w-[320px] snap-start border-r border-gray-100 last:border-r-0 flex-shrink-0 group cursor-pointer bg-[#F9F9F9] relative transition-colors hover:bg-[#F0F0F0]"
+              className="min-w-[220px] md:min-w-[260px] snap-start border-r border-gray-100 last:border-r-0 flex-shrink-0 group cursor-pointer bg-white relative transition-colors hover:bg-gray-50"
               onClick={() => navigate(`/service/${service.categoryId}/${service.id}`)}
             >
               {/* Heart Icon */}
-              <button className="absolute top-4 right-4 z-10 p-2 text-gray-400 hover:text-gray-900 transition-colors">
-                <Heart size={20} strokeWidth={1.5} />
+              <button className="absolute top-3 right-3 z-10 p-1.5 text-gray-300 hover:text-red-500 transition-colors">
+                <Heart size={18} strokeWidth={1.5} />
               </button>
 
               {/* Image Container */}
-              <div className="aspect-[4/5] w-full p-8 flex items-center justify-center relative overflow-hidden">
+              <div className="aspect-[3/4] w-full p-6 flex items-center justify-center relative overflow-hidden">
                 <img 
                   src={service.image} 
                   alt={service.title} 
-                  className="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
               </div>
 
               {/* Info Container */}
-              <div className="px-6 pb-8 pt-2">
-                <p className="text-[10px] text-gray-500 mb-2 uppercase tracking-widest font-bold">
+              <div className="px-5 pb-6 pt-0 text-center">
+                <p className="text-[10px] text-gray-400 mb-2 uppercase tracking-widest font-medium">
                   {service.categoryName}
                 </p>
-                <h3 className="text-base text-gray-900 font-medium mb-1 line-clamp-1">
+                <h3 className="text-sm text-gray-900 font-medium mb-1 line-clamp-1 font-display">
                   {service.title}
                 </h3>
-                <p className="text-sm text-gray-900 font-medium tracking-wide">
+                <p className="text-xs text-gray-500 font-medium tracking-wide">
                   {service.price}
                 </p>
               </div>

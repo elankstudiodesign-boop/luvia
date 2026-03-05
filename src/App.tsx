@@ -2,13 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { 
-  Globe, Phone, ArrowRight, CheckCircle, ShieldCheck, Star, Clock, Users 
+  Globe, Phone, ArrowRight, CheckCircle, ShieldCheck, Star, Clock, Users, ChevronDown 
 } from 'lucide-react';
 import { categories, ServiceCategory } from './data/services';
 import ServiceDetail from './pages/ServiceDetail';
+import CategoryDetail from './pages/CategoryDetail';
 import Navbar from './components/Navbar';
 import UtilityBar from './components/UtilityBar';
-import FeaturedServices from './components/FeaturedServices';
 
 // --- Components ---
 
@@ -17,11 +17,11 @@ const Hero = () => {
     <section className="relative h-screen w-full overflow-hidden">
       <div className="absolute inset-0">
         <img 
-          src="https://picsum.photos/seed/luxury_hero_lv/1920/1080" 
+          src="/images/hero-bg.jpg" 
           alt="LAVIA Hero" 
           className="w-full h-full object-cover animate-ken-burns"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
       </div>
       
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4 z-10">
@@ -68,6 +68,28 @@ const Hero = () => {
           </p>
         </motion.div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 cursor-pointer"
+        onClick={() => {
+          const nextSection = document.getElementById('partners-section');
+          if (nextSection) {
+            nextSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
+      >
+        <span className="text-[10px] font-bold text-white/60 uppercase tracking-[0.3em]">Khám phá</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          <ChevronDown size={20} className="text-lavia-mint" strokeWidth={1.5} />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
@@ -80,7 +102,7 @@ const PARTNERS = [
 ];
 
 const SocialProof = () => (
-  <section className="bg-lavia-light py-12 border-b border-gray-200 overflow-hidden">
+  <section id="partners-section" className="bg-lavia-light py-12 border-b border-gray-200 overflow-hidden">
     <div className="container mx-auto px-4 text-center mb-10">
       <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em]">
         Được tin tưởng bởi 500+ Gia đình & Doanh nghiệp
@@ -143,30 +165,30 @@ const RiskReversal = () => (
 );
 
 const FullWidthSection = ({ category }: { category: ServiceCategory }) => (
-  <section id={category.id} className="relative w-full min-h-[80vh] md:min-h-screen overflow-hidden group flex items-center justify-center">
+  <section id={category.id} className="relative w-full min-h-[60vh] md:min-h-[85vh] overflow-hidden group flex items-center justify-center">
     <div className="absolute inset-0 z-0">
       <img 
         src={category.image} 
         alt={category.title} 
-        className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-105"
+        className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-700" />
     </div>
     <motion.div 
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 0.8 }}
       className="relative z-10 flex flex-col items-center justify-center text-center text-white p-8 md:p-16 max-w-4xl mx-auto"
     >
-      <h3 className="text-sm md:text-base font-medium tracking-[0.3em] uppercase mb-6 opacity-90 drop-shadow-md">{category.subtitle}</h3>
-      <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 leading-tight drop-shadow-lg">{category.title}</h2>
-      <a 
-        href={`#${category.id}`}
-        className="inline-block border-b border-white pb-1 text-sm font-semibold uppercase tracking-widest hover:text-lavia-mint hover:border-lavia-mint transition-colors drop-shadow-md"
+      <h3 className="text-xs md:text-sm font-medium tracking-[0.4em] uppercase mb-6 opacity-90 drop-shadow-md">{category.subtitle}</h3>
+      <h2 className="text-3xl md:text-5xl font-display font-medium mb-8 leading-tight drop-shadow-lg">{category.title}</h2>
+      <Link 
+        to={`/category/${category.id}`}
+        className="inline-block border-b border-white/50 pb-1 text-xs font-semibold uppercase tracking-[0.2em] hover:text-white hover:border-white transition-all duration-300 drop-shadow-md"
       >
         Xem chi tiết
-      </a>
+      </Link>
     </motion.div>
   </section>
 );
@@ -174,45 +196,45 @@ const FullWidthSection = ({ category }: { category: ServiceCategory }) => (
 const SplitSection = ({ category, reverse }: { category: ServiceCategory, reverse?: boolean }) => {
   const navigate = useNavigate();
   return (
-    <section id={category.id} className="w-full flex flex-col md:flex-row min-h-screen">
-      <div className={`w-full md:w-1/2 min-h-[50vh] md:min-h-screen relative overflow-hidden ${reverse ? 'md:order-2' : ''}`}>
+    <section id={category.id} className="w-full flex flex-col md:flex-row min-h-[50vh] md:min-h-[85vh]">
+      <div className={`w-full md:w-1/2 min-h-[40vh] md:min-h-full relative overflow-hidden ${reverse ? 'md:order-2' : ''}`}>
         <img 
           src={category.image} 
           alt={category.title} 
-          className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-[1.5s]"
+          className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-[2s] ease-out"
         />
       </div>
-      <div className={`w-full md:w-1/2 bg-white flex flex-col items-center justify-center p-12 md:p-24 text-center ${reverse ? 'md:order-1' : ''}`}>
+      <div className={`w-full md:w-1/2 bg-white flex flex-col items-center justify-center p-8 md:p-20 text-center ${reverse ? 'md:order-1' : ''}`}>
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.8 }}
-          className="max-w-xl mx-auto"
+          className="max-w-lg mx-auto"
         >
-          <h3 className="text-xs font-bold text-gray-400 tracking-[0.25em] uppercase mb-6">{category.subtitle}</h3>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-lavia-blue mb-8 leading-tight">{category.title}</h2>
-          <p className="text-gray-600 font-light leading-relaxed mb-10 text-lg">
+          <h3 className="text-[10px] md:text-xs font-bold text-gray-400 tracking-[0.3em] uppercase mb-6">{category.subtitle}</h3>
+          <h2 className="text-3xl md:text-4xl font-display font-medium text-gray-900 mb-6 leading-tight">{category.title}</h2>
+          <p className="text-gray-500 font-light leading-relaxed mb-10 text-base md:text-lg">
             {category.description}
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8 w-full text-left mt-8">
+          <div className="grid grid-cols-1 gap-6 w-full text-left mt-4">
             {category.items.map((item, idx) => (
               <div 
                 key={idx} 
-                className="border-t border-gray-100 pt-4 cursor-pointer group hover:bg-gray-50 p-3 rounded-lg transition-all duration-300"
+                className="border-t border-gray-100 pt-4 cursor-pointer group hover:bg-gray-50 p-4 rounded-lg transition-all duration-300"
                 onClick={() => navigate(`/service/${category.id}/${item.id}`)}
               >
-                <div className="flex justify-between items-start mb-2 gap-2">
-                  <h4 className="font-display font-semibold text-lavia-blue text-base group-hover:text-lavia-mint transition-colors leading-tight">{item.title}</h4>
-                  <ArrowRight size={16} className="text-gray-300 group-hover:text-lavia-mint flex-shrink-0 mt-1 -translate-x-2 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                <div className="flex justify-between items-start mb-1 gap-2">
+                  <h4 className="font-display font-medium text-gray-900 text-sm md:text-base group-hover:text-lavia-blue transition-colors leading-tight tracking-wide">{item.title}</h4>
+                  <ArrowRight size={14} className="text-gray-300 group-hover:text-lavia-blue flex-shrink-0 mt-1 -translate-x-2 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-300" />
                 </div>
-                <p className="text-sm text-gray-500 font-light line-clamp-3 leading-relaxed">{item.description}</p>
+                <p className="text-xs text-gray-500 font-light line-clamp-2 leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
           <button 
             onClick={() => navigate(`/service/${category.id}/${category.items[0].id}`)}
-            className="mt-12 inline-block border border-lavia-blue px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-lavia-blue hover:text-white transition-all duration-300"
+            className="mt-10 inline-block border border-gray-200 px-8 py-3 text-[10px] font-bold uppercase tracking-[0.25em] text-gray-500 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300"
           >
             Khám phá dịch vụ
           </button>
@@ -225,41 +247,41 @@ const SplitSection = ({ category, reverse }: { category: ServiceCategory, revers
 const GridSection = ({ category }: { category: ServiceCategory }) => {
   const navigate = useNavigate();
   return (
-    <section id={category.id} className="py-24 px-4 md:px-12 bg-white">
+    <section id={category.id} className="py-20 px-4 md:px-12 bg-white">
       <motion.div 
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-20 max-w-3xl mx-auto"
+        className="text-center mb-16 max-w-2xl mx-auto"
       >
-        <h3 className="text-xs font-bold text-gray-400 tracking-[0.25em] uppercase mb-4">{category.subtitle}</h3>
-        <h2 className="text-3xl md:text-5xl font-display font-bold text-lavia-blue mb-6">{category.title}</h2>
-        <p className="text-gray-500 font-light text-lg leading-relaxed">{category.description}</p>
+        <h3 className="text-[10px] font-bold text-gray-400 tracking-[0.3em] uppercase mb-4">{category.subtitle}</h3>
+        <h2 className="text-3xl md:text-4xl font-display font-medium text-gray-900 mb-6">{category.title}</h2>
+        <p className="text-gray-500 font-light text-base leading-relaxed">{category.description}</p>
       </motion.div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16 container mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12 container mx-auto">
         {category.items.map((item, idx) => (
           <motion.div 
             key={idx} 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-5%" }}
-            transition={{ duration: 0.8, delay: idx * 0.1 }}
-            className="group cursor-pointer flex flex-col items-center"
+            transition={{ duration: 0.6, delay: idx * 0.1 }}
+            className="group cursor-pointer flex flex-col"
             onClick={() => navigate(`/service/${category.id}/${item.id}`)}
           >
-            <div className="w-full aspect-[4/5] overflow-hidden mb-8 relative bg-gray-100">
+            <div className="w-full aspect-[3/4] overflow-hidden mb-6 relative bg-gray-50">
               <img 
                 src={item.image} 
                 alt={item.title} 
-                className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105 ease-out"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
             </div>
-            <h4 className="text-xl font-display font-bold text-lavia-blue mb-3 text-center uppercase tracking-wider group-hover:text-lavia-mint transition-colors duration-300 px-2">
+            <h4 className="text-sm font-display font-bold text-gray-900 mb-2 uppercase tracking-wider group-hover:text-lavia-blue transition-colors duration-300">
               {item.title}
             </h4>
-            <p className="text-sm text-gray-500 text-center font-light px-4 leading-relaxed">
+            <p className="text-xs text-gray-500 font-light leading-relaxed line-clamp-2">
               {item.description}
             </p>
           </motion.div>
@@ -344,9 +366,6 @@ const HomePage = () => {
       <Hero />
       <SocialProof />
       
-      {/* Featured Services - Louis Vuitton Style */}
-      <FeaturedServices />
-
       {/* Legal - High Trust - First (Halo Effect) */}
       <SplitSection category={categories[0]} />
       
@@ -396,6 +415,13 @@ export default function App() {
           <div className="min-h-screen bg-white font-sans selection:bg-lavia-mint selection:text-lavia-blue">
             <Navbar />
             <ServiceDetail />
+            <Footer />
+          </div>
+        } />
+        <Route path="/category/:categoryId" element={
+          <div className="min-h-screen bg-white font-sans selection:bg-lavia-mint selection:text-lavia-blue">
+            <Navbar />
+            <CategoryDetail />
             <Footer />
           </div>
         } />

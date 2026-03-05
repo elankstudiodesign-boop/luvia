@@ -88,6 +88,51 @@ const BookingModal = ({
   const [flightServiceFee, setFlightServiceFee] = useState(200000);
   const isSingleFlight = serviceId === 'global-booking' && pkg?.name?.toLowerCase().includes('lẻ');
 
+  // Variable Price Logic
+  const [variableInputs, setVariableInputs] = useState({
+    medicineValue: '',
+    distance: '',
+    genericInput: ''
+  });
+  const [calculatedFee, setCalculatedFee] = useState(0);
+  
+  const isVariablePrice = pkg?.price?.includes('-') || pkg?.price?.toLowerCase().includes('tuỳ');
+
+  useEffect(() => {
+    if (isVariablePrice) {
+      if (serviceId === 'medicine-delivery') {
+        let fee = 100000; // Base fee
+        const val = parseInt(variableInputs.medicineValue.replace(/\D/g, '') || '0');
+        const dist = parseInt(variableInputs.distance || '0');
+        
+        // Fee calculation rule:
+        // Base 100k
+        // +50k if value > 2M
+        // +100k if value > 5M
+        // +10k per km if distance > 5km
+        
+        if (val > 5000000) fee += 100000;
+        else if (val > 2000000) fee += 50000;
+        
+        if (dist > 5) {
+          fee += (dist - 5) * 10000;
+        }
+        
+        // Cap at 300k as per service description
+        if (fee > 300000) fee = 300000;
+        
+        setCalculatedFee(fee);
+      } else {
+        // For other variable services, try to parse the min price
+        if (pkg?.price) {
+            const digits = pkg.price.split('-')[0].replace(/\D/g, '');
+            if (digits) setCalculatedFee(parseInt(digits));
+        }
+      }
+    }
+  }, [variableInputs, serviceId, isVariablePrice, pkg]);
+
+
   useEffect(() => {
     if (isSingleFlight) {
       if (formData.departDate) {
@@ -130,6 +175,9 @@ const BookingModal = ({
 
   // Helper to determine actual payment amount
   const getBasePaymentAmount = () => {
+    if (isVariablePrice) {
+        return calculatedFee;
+    }
     if (isSingleFlight) {
         return flightServiceFee;
     }
@@ -281,6 +329,23 @@ const BookingModal = ({
           - Phí di chuyển: ${isNegotiableFee ? 'Thương lượng' : formatCurrency(shippingFee)}
           - Ghi chú: ${formData.note}
         `.trim();
+      }
+
+      if (isVariablePrice) {
+         if (serviceId === 'medicine-delivery') {
+             detailedNote += `
+             [Chi tiết Đơn thuốc]
+             - Giá trị thuốc dự kiến: ${parseInt(variableInputs.medicineValue || '0').toLocaleString('vi-VN')} đ
+             - Khoảng cách mua hàng: ${variableInputs.distance} km
+             - Phí dịch vụ tạm tính: ${formatCurrency(calculatedFee)}
+             `.trim();
+         } else {
+             detailedNote += `
+             [Yêu cầu Báo giá]
+             - Nhu cầu/Ngân sách: ${variableInputs.genericInput}
+             - Giá tham khảo: ${formatCurrency(calculatedFee)}
+             `.trim();
+         }
       }
 
       // 1. Send to Make.com Webhook
@@ -720,6 +785,82 @@ const BookingModal = ({
     );
   };
 
+  const renderVariablePriceForm = () => {
+    if (serviceId === 'medicine-delivery') {
+      return (
+        <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
+          <h4 className="font-bold text-lavia-blue text-sm uppercase">Thông tin đơn hàng & Vận chuyển</h4>
+          <p className="text-xs text-gray-500 italic mb-2">
+            * Phí dịch vụ thay đổi tùy theo giá trị đơn thuốc và khoảng cách mua hàng.
+            <br/>* Chưa bao gồm phí vận chuyển (thanh toán khi nhận hàng).
+          </p>
+          
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Giá trị thuốc dự kiến (VNĐ) <span className="text-red-500">*</span></label>
+              <input 
+                required 
+                type="text" 
+                placeholder="VD: 500.000" 
+                className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+                value={variableInputs.medicineValue ? parseInt(variableInputs.medicineValue).toLocaleString('vi-VN') : ''}
+                onChange={e => {
+                  const val = e.target.value.replace(/\D/g, '');
+                  setVariableInputs({...variableInputs, medicineValue: val});
+                }} 
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Khoảng cách mua hàng (km) <span className="text-red-500">*</span></label>
+              <input 
+                required 
+                type="number" 
+                placeholder="VD: 5" 
+                min="0"
+                className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
+                value={variableInputs.distance} 
+                onChange={e => setVariableInputs({...variableInputs, distance: e.target.value})} 
+              />
+              <p className="text-[10px] text-gray-400 mt-1">Ước tính từ nhà thuốc đến địa chỉ của bạn.</p>
+            </div>
+          </div>
+          
+          <div className="bg-blue-50 p-3 rounded-lg border border-blue-100 mt-2 flex justify-between items-center">
+             <span className="text-blue-800 font-medium text-sm">Phí dịch vụ tạm tính:</span>
+             <span className="font-bold text-blue-900 text-lg">
+                {formatCurrency(calculatedFee)}
+             </span>
+          </div>
+        </div>
+      );
+    }
+
+    // Generic form for other variable price services
+    return (
+        <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
+          <h4 className="font-bold text-lavia-blue text-sm uppercase">Thông tin dịch vụ</h4>
+          <p className="text-xs text-gray-500 italic mb-2">
+            * Dịch vụ này có giá thay đổi tùy theo nhu cầu cụ thể.
+          </p>
+          <div>
+              <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Mô tả nhu cầu / Ngân sách dự kiến</label>
+              <textarea 
+                className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg h-20 resize-none text-sm"
+                placeholder="Mô tả chi tiết yêu cầu của bạn..."
+                value={variableInputs.genericInput}
+                onChange={e => setVariableInputs({...variableInputs, genericInput: e.target.value})}
+              />
+          </div>
+           <div className="bg-blue-50 p-3 rounded-lg border border-blue-100 mt-2 flex justify-between items-center">
+             <span className="text-blue-800 font-medium text-sm">Giá tham khảo từ:</span>
+             <span className="font-bold text-blue-900 text-lg">
+                {formatCurrency(calculatedFee)}
+             </span>
+          </div>
+        </div>
+    );
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -783,6 +924,7 @@ const BookingModal = ({
                 {serviceId === 'business-license' && renderBusinessLicenseForm()}
                 {serviceId === 'verification' && renderVerificationForm()}
                 {serviceId === 'global-booking' && renderGlobalBookingForm()}
+                {isVariablePrice && renderVariablePriceForm()}
 
                 <div>
                   <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ghi chú thêm</label>

@@ -61,14 +61,14 @@ export const categories: ServiceCategory[] = [
     shortTitle: 'PHÁP LÝ',
     subtitle: 'HỖ TRỢ HÀNH CHÍNH',
     description: 'Dịch vụ hỗ trợ thực hiện các thủ tục hành chính, giấy tờ với sự tận tâm và bảo mật.',
-    image: 'https://picsum.photos/seed/legal_lv/1200/1600',
+    image: '/images/categories/legal-cover.jpg',
     layout: 'split',
     items: [
       { 
         id: 'business-license',
         title: 'Giấy phép kinh doanh', 
         description: 'Chuẩn bị bộ hồ sơ đăng ký kinh doanh hộ cá thể, điền sẵn thông tin và thay bạn đi nộp để sớm có giấy phép hoạt động.', 
-        image: 'https://picsum.photos/seed/business_license/800/600',
+        image: '/images/services/business-license-cover.jpg',
         detailedDescription: 'Hỗ trợ nộp hồ sơ đăng ký kinh doanh cho hộ cá thể và doanh nghiệp nhỏ. Chúng tôi giúp bạn chuẩn bị bộ hồ sơ theo mẫu có sẵn, điền thông tin và thay mặt nộp tại cơ quan đăng ký kinh doanh, giúp bạn khởi đầu thuận lợi.',
         features: [
           'Cung cấp biểu mẫu đăng ký chuẩn',
@@ -121,7 +121,7 @@ export const categories: ServiceCategory[] = [
         id: 'legal-draft',
         title: 'Soạn thảo đơn từ', 
         description: 'Đánh máy và soạn thảo các loại đơn từ, văn bản hành chính theo mẫu chuẩn, trình bày đẹp và rõ ràng nội dung bạn mong muốn.', 
-        image: 'https://picsum.photos/seed/legal_draft/800/600',
+        image: '/images/services/legal-draft-cover.jpg',
         detailedDescription: 'Dịch vụ hỗ trợ đánh máy và soạn thảo văn bản hành chính theo mẫu. Nếu bạn không rành vi tính hoặc không biết trình bày văn bản, chúng tôi sẽ giúp bạn soạn thảo các lá đơn, công văn dựa trên nội dung bạn cung cấp một cách chỉn chu nhất.',
         features: [
           'Đánh máy văn bản nhanh, chuẩn chính tả',
@@ -161,7 +161,7 @@ export const categories: ServiceCategory[] = [
         id: 'verification',
         title: 'Chuyển phát & Xác minh', 
         description: 'Thay bạn đến tận nơi để gửi đơn từ, chụp ảnh hiện trạng nhà đất hoặc xác minh địa chỉ thực tế một cách khách quan.', 
-        image: 'https://picsum.photos/seed/verification/800/600',
+        image: '/images/services/verification-cover.jpg',
         detailedDescription: 'Dịch vụ xác minh thực địa và thu thập thông tin theo yêu cầu. Chúng tôi thay bạn đến tận nơi để kiểm tra hiện trạng nhà đất, xác minh địa chỉ, hoặc thu thập các bằng chứng hình ảnh/video cần thiết một cách khách quan và bảo mật.\n\nLưu ý về phí di chuyển:\n- Miễn phí: Quận 1, 3, 5, 6, 8.\n- Phí 100.000đ: Các quận khác.\n- Đi tỉnh: Phí thương lượng.',
         features: [
           'Miễn phí di chuyển tại Quận 1, 3, 5, 6, 8',
@@ -213,14 +213,14 @@ export const categories: ServiceCategory[] = [
     shortTitle: 'DI TRÚ',
     subtitle: 'TRỢ LÝ DU LỊCH TẬN TÂM',
     description: 'Đội ngũ trợ lý nữ chu đáo hỗ trợ chuẩn bị hồ sơ, đặt vé và sắp xếp lịch trình tỉ mỉ cho từng chuyến đi.',
-    image: 'https://picsum.photos/seed/travel_lv/1920/1080',
+    image: '/images/categories/travel-cover.jpg',
     layout: 'full',
     items: [
       { 
         id: 'passport',
         title: 'Làm Passport (Hộ chiếu)', 
         description: 'Dịch vụ làm hộ chiếu nhanh chóng, hỗ trợ điền tờ khai online và nộp hồ sơ, giúp bạn tiết kiệm thời gian.', 
-        image: 'https://picsum.photos/seed/passport_new/800/600',
+        image: '/images/services/passport-cover.jpg',
         detailedDescription: 'Dịch vụ hỗ trợ làm hộ chiếu (passport) trọn gói. Chúng tôi hướng dẫn bạn chuẩn bị hồ sơ, điền tờ khai trực tuyến trên Cổng dịch vụ công và hỗ trợ các thủ tục liên quan để bạn nhận được hộ chiếu sớm nhất.',
         features: [
           'Hướng dẫn chụp ảnh chân dung đúng quy định',
@@ -273,7 +273,7 @@ export const categories: ServiceCategory[] = [
         id: 'visa',
         title: 'Làm Visa (Thị thực)', 
         description: 'Tư vấn và xử lý hồ sơ xin Visa các nước, tỷ lệ đậu cao, thủ tục đơn giản hóa tối đa cho khách hàng.', 
-        image: 'https://picsum.photos/seed/visa_new/800/600',
+        image: '/images/services/visa-cover.jpg',
         detailedDescription: 'Chuyên cung cấp dịch vụ xin Visa du lịch, công tác, thăm thân các nước. Đội ngũ chuyên viên giàu kinh nghiệm sẽ đánh giá hồ sơ, tư vấn giải pháp tối ưu để tăng tỷ lệ đậu Visa cho bạn.',
         features: [
           'Tư vấn hồ sơ theo từng trường hợp cụ thể',
@@ -332,7 +332,7 @@ export const categories: ServiceCategory[] = [
         id: 'global-booking',
         title: 'Vé máy bay & Khách sạn',
         description: 'Tìm kiếm vé máy bay giá tốt nhất và đặt phòng khách sạn phù hợp ngân sách, giúp bạn có chuyến đi tiết kiệm và thoải mái.',
-        image: 'https://picsum.photos/seed/flight_hotel/800/600',
+        image: '/images/services/global-booking-cover.jpg',
         detailedDescription: 'Dịch vụ đặt vé máy bay và phòng khách sạn trọn gói trên toàn thế giới. Chúng tôi kết nối trực tiếp với các hãng hàng không và hệ thống khách sạn toàn cầu để mang đến cho bạn mức giá cạnh tranh nhất. Dù là chuyến công tác gấp hay kỳ nghỉ dưỡng trong mơ, chúng tôi đều có phương án tối ưu cho bạn.',
         features: [
           'Đại lý cấp 1 của Vietnam Airlines, Vietjet, Bamboo và các hãng quốc tế',
@@ -391,7 +391,7 @@ export const categories: ServiceCategory[] = [
         id: 'consular',
         title: 'Hợp pháp hóa lãnh sự', 
         description: 'Nhận hồ sơ tận nhà, mang đi dịch thuật công chứng và đại diện nộp lên Cục Lãnh sự, giúp bạn không phải đi lại nhiều lần.', 
-        image: 'https://picsum.photos/seed/consular/800/600',
+        image: '/images/services/consular-cover.jpg',
         detailedDescription: 'Chúng tôi đóng vai trò là người kết nối và chạy việc giúp bạn. Thay vì tự mình tìm kiếm đơn vị dịch thuật và xếp hàng tại Cục Lãnh sự, chúng tôi sẽ thay bạn mang hồ sơ đi dịch thuật tại các văn phòng uy tín và đại diện nộp hồ sơ hợp pháp hóa.',
         features: [
           'Kết nối với các văn phòng dịch thuật công chứng uy tín',
@@ -444,7 +444,7 @@ export const categories: ServiceCategory[] = [
         id: 'license',
         title: 'Đổi bằng lái xe (IAA/VN)', 
         description: 'Hướng dẫn thủ tục đổi bằng lái xe quốc tế/nước ngoài sang Việt Nam và ngược lại, hỗ trợ nộp hồ sơ online nhanh chóng.', 
-        image: 'https://picsum.photos/seed/license/800/600',
+        image: '/images/services/license-cover.jpg',
         detailedDescription: 'Hỗ trợ các thủ tục hành chính liên quan đến giấy phép lái xe. Với sự tỉ mỉ và cẩn thận, chúng tôi giúp bạn chuẩn bị hồ sơ, dịch thuật và nộp đơn đề nghị đổi bằng lái một cách chính xác, giúp bạn không phải lo lắng về các thủ tục phức tạp.',
         features: [
           'Hướng dẫn chuẩn bị hồ sơ đơn giản, dễ hiểu',
@@ -497,7 +497,7 @@ export const categories: ServiceCategory[] = [
         id: 'fast-track',
         title: 'Fast-track Sân bay', 
         description: 'Nhân viên sẽ xếp hàng sẵn đợi giúp quý khách làm thủ tục xuất nhập cảnh nhanh chóng, không cần chờ đợi mệt mỏi.', 
-        image: 'https://picsum.photos/seed/fasttrack/800/600',
+        image: '/images/services/fast-track-cover.jpg',
         detailedDescription: 'Dịch vụ đón tiễn ưu tiên tại sân bay (Fast-track) giúp khách hàng bỏ qua nỗi lo xếp hàng chờ đợi. Nhân viên của chúng tôi sẽ đón bạn ngay tại ống lồng/cửa máy bay, hỗ trợ làm thủ tục xuất nhập cảnh và lấy hành lý nhanh nhất.',
         features: [
           'Đón khách ngay tại cửa máy bay',
@@ -550,7 +550,7 @@ export const categories: ServiceCategory[] = [
         id: 'travel-portal',
         title: 'Hồ sơ du lịch cá nhân', 
         description: 'Tạo trang web cá nhân lưu trữ toàn bộ vé máy bay, booking khách sạn và lịch trình, giúp bạn tra cứu dễ dàng ngay cả khi không có mạng.', 
-        image: 'https://picsum.photos/seed/travel_portal/800/600',
+        image: '/images/services/travel-portal-cover.jpg',
         detailedDescription: 'Sổ tay du lịch kỹ thuật số "All-in-one" dành cho người hay di chuyển. Ngoài việc lưu trữ vé và booking, hệ thống còn tự động cập nhật thời tiết, tỷ giá ngoại tệ, nhắc nhở thủ tục nhập cảnh và lưu trữ lịch sử tiêm chủng/bảo hiểm du lịch, giúp bạn hoàn toàn chủ động trong mọi chuyến đi.',
         features: [
           'Truy cập vé, booking khách sạn Offline',
@@ -596,14 +596,14 @@ export const categories: ServiceCategory[] = [
     shortTitle: 'BẤT ĐỘNG SẢN',
     subtitle: 'GIAO DỊCH - QUẢN LÝ - TIỆN ÍCH',
     description: 'Hệ sinh thái dịch vụ bất động sản toàn diện: Từ môi giới không hoa hồng, quản lý vận hành đến các tiện ích hỗ trợ cư dân và chủ nhà.',
-    image: 'https://picsum.photos/seed/real_estate/1920/1080',
+    image: '/images/categories/real-estate-cover.jpg',
     layout: 'grid',
     items: [
       {
         id: 'buy-sell-house',
         title: 'Mua bán Nhà đất & Căn hộ',
         description: 'Kết nối người mua và người bán trực tiếp, hỗ trợ đàm phán giá gốc và lo trọn gói thủ tục pháp lý sang tên.',
-        image: 'https://picsum.photos/seed/house_buy_sell/800/600',
+        image: '/images/services/buy-sell-house-cover.jpg',
         detailedDescription: 'Dịch vụ môi giới Bất động sản kiểu mới: KHÔNG thu hoa hồng % trên giá trị tài sản. Chúng tôi chỉ thu một khoản phí dịch vụ cố định để hỗ trợ tìm kiếm, thẩm định, đàm phán và hoàn tất thủ tục pháp lý, giúp bạn tiết kiệm hàng trăm triệu đồng.',
         features: [
           'Tìm kiếm khách mua/nhà bán theo đúng nhu cầu',
@@ -656,7 +656,7 @@ export const categories: ServiceCategory[] = [
         id: 'rent-house',
         title: 'Cho thuê Mặt bằng & Căn hộ',
         description: 'Tìm kiếm khách thuê hoặc mặt bằng kinh doanh ưng ý với chi phí dịch vụ cố định, không thu phí tháng tiền nhà đầu tiên.',
-        image: 'https://picsum.photos/seed/house_rent/800/600',
+        image: '/images/services/rent-house-cover.jpg',
         detailedDescription: 'Giải pháp cho thuê Bất động sản tiết kiệm. Thay vì mất 1 tháng tiền nhà cho môi giới, bạn chỉ cần trả phí dịch vụ cố định để chúng tôi tìm khách thuê uy tín, hỗ trợ soạn thảo hợp đồng và bàn giao nhà.',
         features: [
           'Tìm kiếm khách thuê văn minh, lịch sự',
@@ -677,7 +677,7 @@ export const categories: ServiceCategory[] = [
         id: 'room-hunt',
         title: 'Tìm trọ theo yêu cầu', 
         description: 'Lắng nghe nhu cầu của bạn để tìm kiếm phòng trọ/căn hộ ưng ý nhất và trực tiếp dẫn bạn đi xem, giúp bạn sớm an cư lạc nghiệp.', 
-        image: 'https://picsum.photos/seed/room_hunt/800/600',
+        image: '/images/services/room-hunt-cover.jpg',
         detailedDescription: 'Dịch vụ tìm nhà trọ, căn hộ dịch vụ theo yêu cầu riêng biệt. Thay vì mất hàng giờ lướt web ảo, chúng tôi lọc ra những căn phòng "thực" phù hợp nhất với ngân sách và tiêu chí của bạn, sau đó dẫn đi xem trực tiếp.',
         features: [
           'Kho dữ liệu 5000+ phòng xác thực',
@@ -723,7 +723,7 @@ export const categories: ServiceCategory[] = [
         id: 'legal-check',
         title: 'Thẩm định & Kiểm tra Quy hoạch',
         description: 'Dịch vụ kiểm tra quy hoạch và pháp lý bất động sản nhanh chóng, chính xác để tránh rủi ro "tiền mất tật mang".',
-        image: 'https://picsum.photos/seed/legal_check/800/600',
+        image: '/images/services/legal-check-cover.jpg',
         detailedDescription: 'Kiểm tra chi tiết tình trạng pháp lý và quy hoạch của bất động sản trước khi xuống tiền. Chúng tôi giúp bạn xác minh sổ đỏ thật/giả, kiểm tra tranh chấp, quy hoạch treo, đảm bảo an toàn tuyệt đối cho dòng vốn của bạn.',
         features: [
           'Tra cứu thông tin quy hoạch mới nhất',
@@ -744,7 +744,7 @@ export const categories: ServiceCategory[] = [
         id: 'property-mgmt',
         title: 'Quản lý & Vận hành Nhà trọ', 
         description: 'Giải pháp quản lý toàn diện từ Ứng dụng tính tiền tự động đến Dịch vụ quản gia thay mặt chủ nhà xử lý mọi vấn đề, giúp bạn thảnh thơi tận hưởng cuộc sống.', 
-        image: 'https://picsum.photos/seed/property_mgmt/800/600',
+        image: '/images/services/property-mgmt-cover.jpg',
         detailedDescription: 'Dịch vụ Quản lý Bất động sản linh hoạt theo nhu cầu của bạn. Bạn có thể chọn tự quản lý bằng App thông minh của chúng tôi để tiết kiệm chi phí, hoặc ủy thác toàn bộ việc vận hành (thu tiền, bảo trì, xử lý sự cố) cho đội ngũ chuyên nghiệp của LAVIA.',
         features: [
           'App tính tiền & Gửi hóa đơn Zalo tự động',
@@ -794,50 +794,10 @@ export const categories: ServiceCategory[] = [
         ]
       },
       { 
-        id: 'landing-rent',
-        title: 'Landing Page Cho thuê', 
-        description: 'Thiết kế website giới thiệu căn hộ với hình ảnh đẹp và tour 360 độ, giúp khách thuê ấn tượng và chốt phòng nhanh hơn.', 
-        image: 'https://picsum.photos/seed/landing_rent/800/600',
-        detailedDescription: 'Nâng tầm hình ảnh căn hộ của bạn với một website giới thiệu chuyên nghiệp. Tích hợp hình ảnh 360 độ, video tour và thông tin chi tiết, giúp khách thuê hình dung rõ ràng không gian sống và ra quyết định đặt cọc nhanh chóng hơn.',
-        features: [
-          'Giao diện sang trọng, tôn vinh vẻ đẹp căn hộ',
-          'Tích hợp xem phòng 360 độ thực tế ảo',
-          'Nút kêu gọi hành động (Đặt lịch/Đặt cọc) nổi bật',
-          'Tối ưu hiển thị trên mọi thiết bị di động'
-        ],
-        psychology: {
-          hoursSaved: '30.0 giờ',
-          painPoints: [
-            'Đăng tin rao vặt mãi không ai hỏi, trôi bài liên tục',
-            'Khách đến xem rồi đi vì hình ảnh không giống thực tế',
-            'Mất thời gian dẫn khách đi xem phòng nhiều lần'
-          ],
-          gainPoints: [
-            'Web đẹp lung linh, khách xem là muốn thuê ngay',
-            'Tour 360 độ giúp khách chốt online không cần đến nơi',
-            'Tăng uy tín và giá trị cho căn hộ của bạn'
-          ],
-          authoritySignals: ['Cộng đồng Marketing Bất động sản'],
-          highEndTestimonial: {
-            name: 'Chị Mai Anh',
-            role: 'Môi giới BĐS',
-            content: 'Có cái landing page này, khách hàng tin tưởng hơn hẳn. Mình chốt cọc online được mấy căn rồi.'
-          }
-        },
-        pricing: [
-            {
-                name: 'Thiết kế Web',
-                price: '3.000.000 VNĐ',
-                description: 'Trang giới thiệu căn hộ chuyên nghiệp.',
-                features: ['Giao diện sang trọng', 'Tích hợp hình ảnh 360', 'Form đặt lịch xem', 'Tối ưu SEO']
-            }
-        ]
-      },
-      { 
         id: 'residence',
         title: 'Đăng ký Tạm trú / Tạm vắng', 
         description: 'Soạn thảo sẵn các mẫu đơn cư trú và thay mặt bạn đến cơ quan công an để nộp hồ sơ đúng quy định.', 
-        image: 'https://picsum.photos/seed/residence/800/600',
+        image: '/images/services/residence-cover.jpg',
         detailedDescription: 'Trợ lý hành chính giúp bạn hoàn thành nghĩa vụ khai báo cư trú. Chúng tôi hỗ trợ chuẩn bị các mẫu đơn, sắp xếp hồ sơ gọn gàng và thay mặt bạn đến cơ quan công an để nộp hồ sơ, giúp bạn tránh những phiền toái không đáng có.',
         features: [
           'Hướng dẫn chuẩn bị giấy tờ đơn giản',
@@ -891,7 +851,7 @@ export const categories: ServiceCategory[] = [
         id: 'moving',
         title: 'Chuyển trọ rảnh tay', 
         description: 'Hỗ trợ đóng gói đồ đạc cẩn thận và liên hệ xe ba gác/xe tải giúp bạn, để việc chuyển nhà không còn là nỗi ám ảnh.', 
-        image: 'https://picsum.photos/seed/moving/800/600',
+        image: '/images/services/moving-cover.jpg',
         detailedDescription: 'Dịch vụ chuyển nhà trọn gói "Rảnh tay" - Bạn chỉ cần giám sát, mọi việc nặng nhọc đã có chúng tôi lo. Từ tháo dỡ, đóng gói, vận chuyển đến lắp đặt lại tại nhà mới, tất cả đều được thực hiện chuyên nghiệp.',
         features: [
           'Cung cấp thùng carton, băng keo, màng PE',
@@ -944,7 +904,7 @@ export const categories: ServiceCategory[] = [
         id: 'cleaning',
         title: 'Vệ sinh & Dọn dẹp', 
         description: 'Cung cấp dịch vụ dọn dẹp nhà cửa, vệ sinh máy lạnh sạch sẽ, gọn gàng, mang lại không gian sống trong lành cho gia đình bạn.', 
-        image: 'https://picsum.photos/seed/cleaning/800/600',
+        image: '/images/services/cleaning-cover.jpg',
         detailedDescription: 'Dịch vụ vệ sinh công nghiệp và dọn dẹp nhà cửa chuyên sâu. Chúng tôi sử dụng máy móc hiện đại và hóa chất chuyên dụng an toàn để làm sạch mọi ngóc ngách, trả lại không gian sống trong lành cho bạn.',
         features: [
           'Máy hút bụi công nghiệp, máy chà sàn',
@@ -1001,7 +961,7 @@ export const categories: ServiceCategory[] = [
     shortTitle: 'GIA ĐÌNH',
     subtitle: 'NGƯỜI BẠN ĐỒNG HÀNH',
     description: 'Sự chăm sóc ân cần từ những người phụ nữ của gia đình, giúp bạn an tâm công tác.',
-    image: 'https://picsum.photos/seed/family_lv/1600/900',
+    image: '/images/categories/family-cover.jpg',
     layout: 'grid',
     items: [
       { 
@@ -1062,7 +1022,7 @@ export const categories: ServiceCategory[] = [
         id: 'elderly-care',
         title: 'Chăm sóc người già từ xa', 
         description: 'Thay bạn ghé thăm, trò chuyện và đưa bố mẹ đi khám bệnh định kỳ, giúp người già vui vẻ và con cái yên tâm công tác xa.', 
-        image: 'https://picsum.photos/seed/elderly_care/800/800',
+        image: '/images/services/elderly-care-cover.jpg',
         detailedDescription: 'Người bạn đồng hành tin cậy chăm sóc cha mẹ già khi bạn ở xa. Chúng tôi không chỉ hỗ trợ mua sắm nhu yếu phẩm mà còn đóng vai trò như một người con, người cháu: trò chuyện, đưa đi dạo và đồng hành cùng các cụ trong các buổi khám bệnh định kỳ.',
         features: [
           'Nhân viên được đào tạo kỹ năng chăm sóc người cao tuổi',
@@ -1102,7 +1062,7 @@ export const categories: ServiceCategory[] = [
         id: 'family-tree',
         title: 'Gia phả Điện tử', 
         description: 'Thiết kế website gia phả dòng họ hiện đại, lưu giữ hình ảnh và tiểu sử tổ tiên để con cháu đời sau luôn ghi nhớ cội nguồn.', 
-        image: 'https://picsum.photos/seed/family_tree/800/800',
+        image: '/images/services/family-tree-cover.jpg',
         detailedDescription: 'Lưu giữ cội nguồn gia đình với website Gia phả dòng họ hiện đại. Kết hợp giữa truyền thống và công nghệ, chúng tôi giúp bạn xây dựng cây gia phả tương tác, lưu trữ tiểu sử, hình ảnh và video của từng thành viên, để con cháu đời sau luôn nhớ về tổ tiên.',
         features: [
           'Cây gia phả trực quan, dễ dàng cập nhật thành viên mới',
@@ -1142,7 +1102,7 @@ export const categories: ServiceCategory[] = [
         id: 'asset-vault',
         title: 'Két sắt tài sản số', 
         description: 'Hệ thống két sắt số bảo mật giúp bạn thống kê và lưu trữ thông tin tài sản, giấy tờ quan trọng của gia đình một cách an toàn.', 
-        image: 'https://picsum.photos/seed/asset_vault/800/800',
+        image: '/images/services/asset-vault-cover.jpg',
         detailedDescription: 'Két sắt số bảo mật tuyệt đối dành cho tài sản gia đình. Nơi lưu trữ và thống kê toàn bộ thông tin về bất động sản, sổ tiết kiệm, hợp đồng bảo hiểm... giúp bạn quản lý tài sản tập trung và có kế hoạch thừa kế rõ ràng.',
         features: [
           'Mã hóa dữ liệu chuẩn quân sự, bảo mật 2 lớp',
@@ -1182,7 +1142,7 @@ export const categories: ServiceCategory[] = [
         id: 'medical-assistant',
         title: 'Trợ lý Y tế & Khám bệnh', 
         description: 'Hỗ trợ lấy số thứ tự khám bệnh từ sáng sớm và hướng dẫn quy trình khám, giúp bạn giảm bớt mệt mỏi khi đi bệnh viện.', 
-        image: 'https://picsum.photos/seed/medical_assistant/800/800',
+        image: '/images/services/medical-assistant-cover.jpg',
         detailedDescription: 'Trợ lý y tế cá nhân giúp việc khám chữa bệnh trở nên nhẹ nhàng hơn. Chúng tôi hỗ trợ lấy số thứ tự khám bệnh từ sáng sớm, mua sổ khám bệnh và hướng dẫn quy trình, giúp bạn tiết kiệm hàng giờ đồng hồ chờ đợi mệt mỏi tại bệnh viện.',
         features: [
           'Lấy số khám bệnh sớm nhất, không cần dậy sớm xếp hàng',
@@ -1222,7 +1182,7 @@ export const categories: ServiceCategory[] = [
         id: 'shopper',
         title: 'Mua sắm Cá nhân & Hàng hiệu', 
         description: 'Dịch vụ Personal Shopper chuyên nghiệp: Mua sắm quần áo, mỹ phẩm, nước hoa theo gu thẩm mỹ và săn hàng hiệu (Luxury) chính hãng.', 
-        image: 'https://picsum.photos/seed/shopper/800/800',
+        image: '/images/services/shopper-cover.jpg',
         detailedDescription: 'Trợ lý mua sắm cá nhân (Personal Shopper) đắc lực của bạn. Chúng tôi không chỉ giúp bạn mua quà tặng mà còn tư vấn, tìm mua các sản phẩm thời trang, mỹ phẩm, nước hoa... phù hợp với phong cách và nhu cầu riêng. Đặc biệt là dịch vụ săn hàng hiệu (Luxury) hiếm có, đảm bảo chính hãng 100%.',
         features: [
           'Mua sắm theo yêu cầu: Quần áo, Mỹ phẩm, Nước hoa...',
@@ -1281,7 +1241,7 @@ export const categories: ServiceCategory[] = [
         id: 'memories',
         title: 'Số hóa Kỷ niệm', 
         description: 'Phục hồi ảnh cũ và biên tập thành video câu chuyện gia đình, giúp lưu giữ những khoảnh khắc quý giá không bị phai mờ theo thời gian.', 
-        image: 'https://picsum.photos/seed/memories/800/800',
+        image: '/images/services/memories-cover.jpg',
         detailedDescription: 'Phục dựng và lưu giữ những ký ức vô giá của gia đình. Chúng tôi số hóa những bức ảnh cũ ố vàng, phục hồi màu sắc và biên tập lại thành những câu chuyện, video clip cảm động để lưu giữ mãi mãi trên không gian số.',
         features: [
           'Công nghệ phục hồi ảnh cũ sắc nét',
@@ -1316,6 +1276,133 @@ export const categories: ServiceCategory[] = [
                 features: ['Scan 100 ảnh chất lượng cao', 'Phục hồi ảnh hư hỏng', 'Tạo album online', 'Video trình chiếu']
             }
         ]
+      },
+      {
+        id: 'passport-photo',
+        title: 'Dịch vụ làm ảnh thẻ',
+        description: 'Chụp và chỉnh sửa ảnh thẻ chuẩn quốc tế (Passport, Visa, Hồ sơ) ngay tại nhà, lấy ngay file mềm và bản cứng.',
+        image: '/images/services/passport-photo-cover.jpg',
+        detailedDescription: 'Dịch vụ chụp ảnh thẻ chuyên nghiệp tận nơi hoặc chỉnh sửa ảnh có sẵn. Chúng tôi đảm bảo ảnh đúng quy chuẩn khắt khe của các loại hồ sơ (Visa Mỹ, Châu Âu, Passport...), chỉnh sửa Photoshop đẹp tự nhiên và giao ảnh tận nơi.',
+        features: [
+          'Chụp ảnh thẻ tận nhà/văn phòng (khu vực HCM)',
+          'Chỉnh sửa Photoshop đẹp, da sáng, tóc gọn',
+          'Đúng chuẩn kích thước và phông nền mọi loại hồ sơ',
+          'Gửi file mềm chất lượng cao qua Email/Zalo'
+        ],
+        psychology: {
+          hoursSaved: '2.0 giờ',
+          painPoints: [
+            'Ra tiệm chụp xấu, không ưng ý nhưng ngại nói',
+            'Ảnh tự chụp bị trả về do sai quy chuẩn phông nền/kích thước',
+            'Cần file ảnh gốc chất lượng cao để nộp online'
+          ],
+          gainPoints: [
+            'Được chỉnh sửa đến khi ưng ý mới thôi',
+            'Ảnh chuẩn 100%, không lo bị hồ sơ trả về',
+            'Lưu file dùng trọn đời cho nhiều mục đích'
+          ],
+          authoritySignals: ['Studio Nhiếp ảnh', 'Chuẩn ICAO'],
+          highEndTestimonial: {
+            name: 'Chị Minh Thư',
+            role: 'Tiếp viên hàng không',
+            content: 'Ảnh thẻ rất quan trọng với nghề của mình. Các bạn chỉnh sửa rất có tâm, nhìn chuyên nghiệp mà vẫn tự nhiên, không bị ảo quá.'
+          }
+        },
+        pricing: [
+          {
+            name: 'Chỉnh sửa ảnh',
+            price: '100.000 VNĐ',
+            description: 'Chỉnh sửa từ ảnh chụp điện thoại.',
+            features: ['Chỉnh sửa da/tóc', 'Thay phông nền', 'Cắt đúng kích thước', 'Gửi file in ấn']
+          },
+          {
+            name: 'Chụp tận nơi',
+            price: '300.000 VNĐ',
+            description: 'Thợ chụp mang máy đến tận nhà.',
+            features: ['Setup đèn/phông', 'Chụp nhiều kiểu', 'Chỉnh sửa cao cấp', 'In và giao ảnh'],
+            recommended: true
+          }
+        ]
+      },
+      {
+        id: 'medicine-delivery',
+        title: 'Dịch vụ mua thuốc theo đơn',
+        description: 'Dược sĩ mua thuốc theo đơn tại các nhà thuốc lớn và giao tận tay bạn, đảm bảo đúng thuốc, đúng giá, có hóa đơn.',
+        image: '/images/services/medicine-delivery-cover.jpg',
+        detailedDescription: 'Giải pháp mua thuốc an toàn và tiện lợi. Bạn chỉ cần chụp ảnh đơn thuốc, dược sĩ của chúng tôi sẽ đến các nhà thuốc lớn (Long Châu, Pharmacity...) để mua đúng loại thuốc bác sĩ kê, kiểm tra kỹ hạn sử dụng và giao đến tận nhà cho bạn.',
+        features: [
+          'Mua đúng thuốc theo đơn bác sĩ (hoặc tư vấn thuốc tương đương)',
+          'Mua tại các hệ thống nhà thuốc uy tín, có hóa đơn',
+          'Dược sĩ tư vấn cách dùng thuốc chi tiết',
+          'Giao thuốc hỏa tốc trong 2 giờ'
+        ],
+        psychology: {
+          hoursSaved: '3.0 giờ',
+          painPoints: [
+            'Nhà thuốc gần nhà không đủ thuốc theo đơn',
+            'Xếp hàng chờ mua thuốc tại bệnh viện quá lâu',
+            'Không rành về thuốc, sợ mua nhầm thuốc giả/kém chất lượng'
+          ],
+          gainPoints: [
+            'Thuốc chuẩn chính hãng, đầy đủ hóa đơn',
+            'Được dược sĩ tư vấn tận tình, an tâm sử dụng',
+            'Nghỉ ngơi tại nhà, thuốc giao tận cửa'
+          ],
+          authoritySignals: ['Dược sĩ Đại học', 'Nhà thuốc đạt chuẩn GPP'],
+          highEndTestimonial: {
+            name: 'Cô Thanh',
+            role: 'Hưu trí',
+            content: 'Cô bị khớp đi lại khó khăn, mỗi lần hết thuốc lại phải nhờ con cháu đi mua. Giờ có dịch vụ này tiện quá, các cháu dược sĩ tư vấn rất kỹ.'
+          }
+        },
+        pricing: [
+          {
+            name: 'Phí mua hộ',
+            price: '100.000 - 300.000 VNĐ',
+            description: 'Tùy giá trị đơn thuốc và quãng đường (chưa tính phí vận chuyển giao hàng tận nơi).',
+            features: ['Mua đúng đơn', 'Gửi hóa đơn gốc', 'Tư vấn dùng thuốc', 'Giao tận nơi']
+          }
+        ]
+      },
+      {
+        id: 'medical-records-pickup',
+        title: 'Lấy hộ kết quả xét nghiệm',
+        description: 'Nhân viên y tế lấy hộ và gửi kết quả xét nghiệm/hồ sơ bệnh án về tận nhà, giúp bạn không phải chờ đợi mệt mỏi tại bệnh viện.',
+        image: '/images/services/medical-records-cover.jpg',
+        detailedDescription: 'Dịch vụ hỗ trợ lấy kết quả cận lâm sàng (xét nghiệm máu, X-quang, MRI...) và hồ sơ bệnh án. Thay vì phải ngồi chờ hàng tiếng đồng hồ hoặc quay lại bệnh viện vào buổi chiều để lấy kết quả, bạn có thể về nhà nghỉ ngơi, chúng tôi sẽ lấy và gửi kết quả về tận tay bạn.',
+        features: [
+          'Lấy kết quả tại các bệnh viện lớn TP.HCM',
+          'Bảo mật thông tin y tế tuyệt đối',
+          'Gửi bản chụp qua Zalo ngay khi có kết quả',
+          'Giao bản gốc về tận nhà hoặc văn phòng'
+        ],
+        psychology: {
+          hoursSaved: '4.0 giờ',
+          painPoints: [
+            'Khám xong mệt lả nhưng phải vạ vật chờ lấy kết quả',
+            'Nhà xa bệnh viện, đi đi về về rất bất tiện',
+            'Xin nghỉ làm đi khám bệnh, không thể chờ đến chiều'
+          ],
+          gainPoints: [
+            'Khám xong về ngay, không cần chờ đợi',
+            'Nhận kết quả bản mềm sớm nhất để gửi bác sĩ xem',
+            'Tiết kiệm thời gian và công sức đi lại'
+          ],
+          authoritySignals: ['Nhân viên Y tế', 'Bảo mật thông tin'],
+          highEndTestimonial: {
+            name: 'Anh Đức Minh',
+            role: 'Nhân viên IT',
+            content: 'Mình đi khám tổng quát, xét nghiệm nhiều nên chờ kết quả rất lâu. Dịch vụ này giúp mình về công ty làm việc tiếp, chiều có người mang kết quả đến, quá tiện.'
+          }
+        },
+        pricing: [
+          {
+            name: 'Lấy kết quả',
+            price: '150.000 VNĐ/lần',
+            description: 'Lấy và giao kết quả tận nơi.',
+            features: ['Lấy kết quả', 'Chụp gửi Zalo', 'Giao bản gốc', 'Bảo mật tuyệt đối']
+          }
+        ]
       }
     ]
   },
@@ -1325,14 +1412,14 @@ export const categories: ServiceCategory[] = [
     shortTitle: 'DOANH NGHIỆP',
     subtitle: 'TRỢ LÝ ẢO ĐA NĂNG',
     description: 'Đội ngũ trợ lý ảo hỗ trợ các công việc hành chính văn phòng, giúp doanh nghiệp vận hành trơn tru.',
-    image: 'https://picsum.photos/seed/business_lv/1920/1080',
+    image: '/images/categories/business-cover.jpg',
     layout: 'full',
     items: [
       { 
         id: 'qr-menu',
         title: 'Menu QR Code', 
         description: 'Tạo menu điện tử quét mã QR cho quán, khách tự gọi món trên điện thoại giúp giảm tải cho nhân viên và không lo in lại menu.', 
-        image: 'https://picsum.photos/seed/qr_menu/800/600',
+        image: '/images/services/qr-menu-cover.jpg',
         formUrl: 'https://tally.so/r/w7XjK9', // Example form URL
         detailedDescription: 'Giải pháp Menu điện tử thông minh cho quán Cafe, Nhà hàng. Khách hàng chỉ cần quét mã QR tại bàn để xem thực đơn và gọi món, giúp giảm tải cho nhân viên phục vụ và mang lại trải nghiệm hiện đại, chuyên nghiệp.',
         features: [
@@ -1354,7 +1441,7 @@ export const categories: ServiceCategory[] = [
         id: 'landing-sales',
         title: 'Landing Page Bán hàng', 
         description: 'Thiết kế trang web bán hàng đơn giản hoặc thiệp cưới online đẹp mắt, dễ dàng chia sẻ qua Zalo/Facebook để mời khách.', 
-        image: 'https://picsum.photos/seed/landing_sales/800/600',
+        image: '/images/services/landing-sales-cover.jpg',
         detailedDescription: 'Website bán hàng và giới thiệu sản phẩm tinh gọn, hiệu quả. Phù hợp cho các shop online, mẹ bỉm sữa kinh doanh muốn có một "cửa hàng online" chuyên nghiệp để tăng uy tín và tỷ lệ chốt đơn mà không tốn quá nhiều chi phí.',
         features: [
           'Giao diện đẹp mắt, tối ưu cho điện thoại',
@@ -1381,7 +1468,7 @@ export const categories: ServiceCategory[] = [
         id: 'google-maps',
         title: 'Google Maps Business', 
         description: 'Đưa cửa hàng của bạn lên bản đồ Google, xác minh chính chủ và chụp ảnh đẹp để khách hàng dễ dàng tìm thấy và tin tưởng.', 
-        image: 'https://picsum.photos/seed/google_maps/800/600',
+        image: '/images/services/google-maps-cover.jpg',
         detailedDescription: 'Đưa thương hiệu của bạn lên bản đồ Google Maps một cách chuyên nghiệp. Chúng tôi giúp xác minh địa điểm, tối ưu hóa thông tin và hình ảnh, giúp khách hàng dễ dàng tìm thấy cửa hàng của bạn khi tìm kiếm trên Google.',
         features: [
           'Xác minh chủ sở hữu địa điểm (Tick xanh)',
@@ -1402,7 +1489,7 @@ export const categories: ServiceCategory[] = [
         id: 'mini-erp',
         title: 'Mini-ERP cho Shop', 
         description: 'Cài đặt ứng dụng quản lý kho và thu chi trên điện thoại, giúp chủ shop nhỏ kiểm soát hàng hóa và tiền nong dễ dàng.', 
-        image: 'https://picsum.photos/seed/mini_erp/800/600',
+        image: '/images/services/mini-erp-cover.jpg',
         detailedDescription: 'Phần mềm quản lý bán hàng "bỏ túi" dành cho chủ shop nhỏ. Quản lý kho hàng, theo dõi thu chi, công nợ và đơn hàng mọi lúc mọi nơi ngay trên chiếc điện thoại của bạn, giúp việc kinh doanh trở nên nhẹ nhàng và kiểm soát tốt hơn.',
         features: [
           'Quản lý tồn kho chính xác theo thời gian thực',
@@ -1423,7 +1510,7 @@ export const categories: ServiceCategory[] = [
         id: 'loyalty',
         title: 'Loyalty Web', 
         description: 'Tạo thẻ thành viên tích điểm online qua số điện thoại, giúp giữ chân khách quen mà không cần in thẻ cứng tốn kém.', 
-        image: 'https://picsum.photos/seed/loyalty/800/600',
+        image: '/images/services/loyalty-cover.jpg',
         detailedDescription: 'Hệ thống chăm sóc khách hàng thân thiết thời đại 4.0. Tích điểm, đổi quà và gửi ưu đãi cho khách hàng qua Zalo/QR Code mà không cần phát hành thẻ cứng hay yêu cầu khách tải App phức tạp.',
         features: [
           'Tích điểm tự động theo số điện thoại',
@@ -1450,14 +1537,14 @@ export const categories: ServiceCategory[] = [
     shortTitle: 'THIẾT KẾ',
     subtitle: 'SÁNG TẠO KHÔNG GIỚI HẠN',
     description: 'Dịch vụ thiết kế đồ họa, chỉnh sửa ảnh và video chuyên nghiệp, giúp bạn có những sản phẩm truyền thông ấn tượng.',
-    image: 'https://picsum.photos/seed/creative_design/1920/1080',
+    image: '/images/categories/design-cover.jpg',
     layout: 'grid',
     items: [
       {
         id: 'photo-editing',
         title: 'Chỉnh sửa & Phục hồi Ảnh',
         description: 'Dịch vụ chỉnh sửa ảnh chuyên nghiệp: Retouch ảnh chân dung, phục hồi ảnh cũ, chỉnh màu nghệ thuật và cắt ghép theo yêu cầu.',
-        image: 'https://picsum.photos/seed/photo_edit/800/600',
+        image: '/images/services/photo-editing-cover.jpg',
         detailedDescription: 'Biến những bức ảnh bình thường trở nên lung linh và chuyên nghiệp. Đội ngũ designer giàu kinh nghiệm của chúng tôi sẽ giúp bạn retouch ảnh chân dung, phục hồi những tấm ảnh cũ quý giá, hay chỉnh màu nghệ thuật cho bộ ảnh du lịch của bạn.',
         features: [
           'Retouch ảnh chân dung, làm đẹp da tự nhiên',
@@ -1510,7 +1597,7 @@ export const categories: ServiceCategory[] = [
         id: 'video-editing',
         title: 'Edit Video theo yêu cầu',
         description: 'Dựng video chuyên nghiệp từ source quay sẵn: Vlog du lịch, Video cưới, TikTok/Reels, Video doanh nghiệp...',
-        image: 'https://picsum.photos/seed/video_edit/800/600',
+        image: '/images/services/video-editing-cover.jpg',
         detailedDescription: 'Dịch vụ dựng phim (Video Editing) theo yêu cầu. Bạn chỉ cần gửi source quay thô, chúng tôi sẽ biên tập thành những video clip ấn tượng với âm nhạc, hiệu ứng và màu sắc chuyên nghiệp, phù hợp cho mọi nền tảng từ Youtube, TikTok đến màn hình tiệc cưới.',
         features: [
           'Dựng Vlog du lịch, video kỷ niệm gia đình',
@@ -1563,7 +1650,7 @@ export const categories: ServiceCategory[] = [
         id: 'graphic-design',
         title: 'Thiết kế Đồ họa & Ấn phẩm',
         description: 'Thiết kế các ấn phẩm nhận diện thương hiệu và quảng cáo: Logo, Banner, Poster, Menu, Name card, Standee...',
-        image: 'https://picsum.photos/seed/graphic_design/800/600',
+        image: '/images/services/graphic-design-cover.jpg',
         detailedDescription: 'Giải pháp thiết kế đồ họa trọn gói cho cá nhân và doanh nghiệp nhỏ. Từ chiếc danh thiếp nhỏ gọn, menu quán cafe đến những tấm banner quảng cáo thu hút, chúng tôi giúp ý tưởng của bạn được thể hiện một cách chuyên nghiệp và thẩm mỹ nhất.',
         features: [
           'Thiết kế Logo và bộ nhận diện thương hiệu cơ bản',
@@ -1590,7 +1677,7 @@ export const categories: ServiceCategory[] = [
         id: 'presentation',
         title: 'Thiết kế Slide & Presentation',
         description: 'Thiết kế Slide PowerPoint, Pitch Deck chuyên nghiệp, ấn tượng giúp bạn tự tin thuyết trình và chinh phục người nghe.',
-        image: 'https://picsum.photos/seed/presentation/800/600',
+        image: '/images/services/presentation-cover.jpg',
         detailedDescription: 'Nâng tầm bài thuyết trình của bạn với dịch vụ thiết kế Slide chuyên nghiệp. Chúng tôi biến những nội dung khô khan thành những slide trình chiếu trực quan, sinh động và thuyết phục, giúp bạn ghi điểm tuyệt đối trong mắt đối tác và khán giả.',
         features: [
           'Thiết kế Template PowerPoint theo brand',
@@ -1615,14 +1702,14 @@ export const categories: ServiceCategory[] = [
     shortTitle: 'SOẠN THẢO',
     subtitle: 'CHUẨN HÓA VĂN BẢN - NÂNG TẦM TÁC PHẨM',
     description: 'Dịch vụ đánh máy, dàn trang sách, thơ ca, luận án và các loại văn bản hành chính chuyên nghiệp.',
-    image: 'https://picsum.photos/seed/writing_publishing/1920/1080',
+    image: '/images/categories/drafting-cover.jpg',
     layout: 'grid',
     items: [
       {
         id: 'typing-service',
         title: 'Đánh máy & Soạn thảo Văn bản',
         description: 'Dịch vụ đánh máy văn bản từ bản viết tay, hình ảnh, file ghi âm với tốc độ nhanh và độ chính xác tuyệt đối.',
-        image: 'https://picsum.photos/seed/typing_service/800/600',
+        image: '/images/services/typing-service-cover.jpg',
         detailedDescription: 'Giải phóng bạn khỏi công việc gõ máy nhàm chán. Chúng tôi nhận đánh máy lại các tài liệu từ bản viết tay, file PDF không copy được, hình ảnh chụp hoặc file ghi âm cuộc họp. Cam kết đúng chính tả, trình bày văn bản theo chuẩn hành chính.',
         features: [
           'Đánh máy từ bản viết tay, hình ảnh, PDF scan',
@@ -1668,7 +1755,7 @@ export const categories: ServiceCategory[] = [
         id: 'book-layout',
         title: 'Dàn trang Sách & Thơ ca',
         description: 'Dịch vụ dàn trang sách, tập thơ, kỷ yếu chuyên nghiệp, đảm bảo tính thẩm mỹ và chuẩn in ấn xuất bản.',
-        image: 'https://picsum.photos/seed/book_layout/800/600',
+        image: '/images/services/book-layout-cover.jpg',
         detailedDescription: 'Biến bản thảo của bạn thành những cuốn sách, tập thơ đẹp mắt. Chúng tôi cung cấp dịch vụ dàn trang (layout) chuyên nghiệp cho sách in, ebook, tập thơ, kỷ yếu, tạp chí... với phong cách trình bày tinh tế, tôn vinh giá trị nội dung.',
         features: [
           'Dàn trang sách chữ, sách ảnh, tạp chí',
@@ -1715,7 +1802,7 @@ export const categories: ServiceCategory[] = [
         id: 'academic-format',
         title: 'Luận văn & Đồ án Tốt nghiệp',
         description: 'Chỉnh sửa format luận văn, đồ án, khóa luận tốt nghiệp theo đúng quy chuẩn của từng trường Đại học.',
-        image: 'https://picsum.photos/seed/academic_format/800/600',
+        image: '/images/services/academic-format-cover.jpg',
         detailedDescription: 'Đừng để lỗi trình bày làm mất điểm bài khóa luận tâm huyết của bạn. Chúng tôi hỗ trợ chỉnh sửa format (định dạng) luận văn, đồ án, tiểu luận theo đúng quy định chuẩn của trường, tạo mục lục tự động, danh mục tài liệu tham khảo chuẩn APA/Harvard...',
         features: [
           'Chỉnh sửa format theo quy định của trường',
@@ -1742,7 +1829,7 @@ export const categories: ServiceCategory[] = [
         id: 'music-lyrics',
         title: 'Chép nhạc & Lời bài hát',
         description: 'Dịch vụ chép nhạc (ký âm), dàn trang bản nhạc và làm video lyric cho nhạc sĩ, ca sĩ.',
-        image: 'https://picsum.photos/seed/music_score/800/600',
+        image: '/images/services/music-lyrics-cover.jpg',
         detailedDescription: 'Lưu giữ những giai điệu của bạn bằng văn bản chuyên nghiệp. Chúng tôi nhận chép nhạc (ký âm) từ bản demo audio, dàn trang tập nhạc (Sheet music) để in ấn, hoặc làm video chạy lời bài hát (Lyric Video) để đăng tải Youtube.',
         features: [
           'Ký âm (Chép nhạc) từ file audio demo',
@@ -1769,7 +1856,7 @@ export const categories: ServiceCategory[] = [
         id: 'freelancer-admin',
         title: 'Admin cho Freelancer', 
         description: 'Trợ lý ảo giúp freelancer soạn hợp đồng, nhắc khách thanh toán đúng hạn và ghi chép thu chi rõ ràng.', 
-        image: 'https://picsum.photos/seed/freelancer_admin/800/600',
+        image: '/images/services/freelancer-admin-cover.jpg',
         detailedDescription: 'Trợ lý ảo hành chính dành riêng cho Freelancer và người làm tự do. Chúng tôi giúp bạn xử lý các công việc "không tên" nhưng tốn thời gian như soạn hợp đồng, nhắc nợ khách hàng, theo dõi thu chi cá nhân, để bạn tập trung hoàn toàn vào chuyên môn.',
         features: [
           'Soạn thảo hợp đồng dịch vụ chặt chẽ',
