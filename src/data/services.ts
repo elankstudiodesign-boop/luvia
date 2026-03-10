@@ -218,53 +218,53 @@ export const categories: ServiceCategory[] = [
     items: [
       { 
         id: 'passport',
-        title: 'Làm Passport (Hộ chiếu)', 
-        description: 'Dịch vụ làm hộ chiếu nhanh chóng, hỗ trợ điền tờ khai online và nộp hồ sơ, giúp bạn tiết kiệm thời gian.', 
+        title: 'Đặc quyền Làm Passport (Hộ chiếu) VIP', 
+        description: 'Trải nghiệm làm hộ chiếu "không chạm": Không xếp hàng, không thao tác, chỉ cần gửi ảnh và nhận kết quả tận tay.', 
         image: '/images/services/passport-cover.jpg',
-        detailedDescription: 'Dịch vụ hỗ trợ làm hộ chiếu (passport) trọn gói. Chúng tôi hướng dẫn bạn chuẩn bị hồ sơ, điền tờ khai trực tuyến trên Cổng dịch vụ công và hỗ trợ các thủ tục liên quan để bạn nhận được hộ chiếu sớm nhất.',
+        detailedDescription: 'Đừng để thủ tục hành chính làm gián đoạn kế hoạch của bạn. Với dịch vụ Passport VIP của LAVIA, bạn được giải phóng hoàn toàn khỏi quy trình khai báo phức tạp và lỗi hệ thống. Chúng tôi thay bạn thực hiện mọi thao tác kỹ thuật với độ chính xác tuyệt đối, đảm bảo tấm hộ chiếu quyền lực sẽ nằm trên tay bạn đúng hẹn.',
         features: [
-          'Hướng dẫn chụp ảnh chân dung đúng quy định',
-          'Đăng ký tài khoản và nộp hồ sơ trên Cổng Dịch vụ công',
-          'Thanh toán lệ phí nhà nước thay khách hàng',
-          'Theo dõi tiến độ và thông báo kết quả'
+          'Ủy thác 100%: Bạn không cần thao tác bất cứ điều gì trên cổng Dịch vụ công',
+          'Chuyên viên riêng theo dõi hồ sơ 24/7, xử lý sự cố ngay lập tức',
+          'Cam kết bảo mật danh tính và thông tin cá nhân tuyệt đối',
+          'Giao hộ chiếu tận nhà, được đóng gói trang trọng'
         ],
         process: [
-          { step: '01', title: 'Tiếp nhận', description: 'Kiểm tra CCCD và sim chính chủ.' },
-          { step: '02', title: 'Xử lý hồ sơ', description: 'Chụp ảnh, điền tờ khai online.' },
-          { step: '03', title: 'Thanh toán', description: 'Nộp lệ phí nhà nước.' },
-          { step: '04', title: 'Nhận kết quả', description: 'Hộ chiếu gửi về tận nhà qua bưu điện.' }
+          { step: '01', title: 'Ủy thác', description: 'Gửi ảnh CCCD và ảnh chân dung qua Zalo bảo mật.' },
+          { step: '02', title: 'Xử lý ưu tiên', description: 'Chuyên viên hoàn thiện tờ khai và nộp lệ phí ngay lập tức.' },
+          { step: '03', title: 'Theo dõi', description: 'Cập nhật trạng thái hồ sơ liên tục cho khách hàng.' },
+          { step: '04', title: 'Tận hưởng', description: 'Nhận hộ chiếu tại nhà và sẵn sàng bay.' }
         ],
         psychology: {
-          hoursSaved: '15.5 giờ',
+          hoursSaved: '20.0 giờ',
           painPoints: [
-            'Chen chúc xếp hàng chụp ảnh tại Phòng XNC',
-            'Khai báo online phức tạp, lỗi hệ thống liên tục',
-            'Lo lắng vì không biết khi nào có kết quả'
+            'Mệt mỏi vì lỗi hệ thống "treo" liên tục khi đang khai báo',
+            'Ám ảnh cảnh chen chúc, chờ đợi mòn mỏi tại cơ quan XNC',
+            'Lo âu vì không biết hồ sơ có hợp lệ hay bị trả về không'
           ],
           gainPoints: [
-            'Không cần xếp hàng, xử lý online 100%',
-            'Được hướng dẫn chụp ảnh chuẩn đẹp ngay tại nhà',
-            'Cập nhật tiến độ mỗi ngày qua Zalo'
+            'Cảm giác được phục vụ như thượng khách, mọi việc đã có trợ lý lo',
+            'Sở hữu hộ chiếu nhanh chóng để kịp chuyến bay quan trọng',
+            'Tự hào vì không tốn một giây nào cho thủ tục hành chính'
           ],
           authoritySignals: ['Cục Quản lý Xuất nhập cảnh', 'Cổng Dịch vụ công Quốc gia'],
           highEndTestimonial: {
             name: 'Chị Trần Thị Bích Ngọc',
             role: 'Giám đốc Nhân sự - Tập đoàn FPT',
-            content: 'Dịch vụ rất chuyên nghiệp. Tôi làm hộ chiếu cho cả gia đình 5 người để đi du lịch hè, chỉ mất đúng 15 phút gửi thông tin là xong tất cả.'
+            content: 'Tôi chưa bao giờ nghĩ làm hộ chiếu lại đơn giản đến thế. Chỉ gửi ảnh qua Zalo, 2 tuần sau hộ chiếu về tận bàn làm việc. Dịch vụ quá đẳng cấp!'
           }
         },
         pricing: [
           {
-            name: 'Gói Cơ bản',
+            name: 'Gói Ủy Thác (Standard)',
             price: '300.000 VNĐ',
-            description: 'Khai form, nộp hồ sơ trực tuyến.',
-            features: ['Khai form chuẩn', 'Nộp hồ sơ trực tuyến', 'Hướng dẫn chi tiết']
+            description: 'Dành cho người bận rộn muốn tiết kiệm thời gian khai báo.',
+            features: ['Khai form chuẩn xác 100%', 'Nộp hồ sơ trực tuyến', 'Hướng dẫn chụp ảnh tại nhà']
           },
           {
-            name: 'Gói Trọn gói',
+            name: 'Gói VIP (All-inclusive)',
             price: '800.000 VNĐ',
-            description: 'Bao gồm lệ phí nhà nước.',
-            features: ['Bao gồm lệ phí', 'Chụp ảnh thẻ', 'Sim chính chủ (nếu cần)', 'Theo dõi kết quả'],
+            description: 'Dành cho Doanh nhân cần sự an tâm tuyệt đối.',
+            features: ['Bao gồm lệ phí nhà nước', 'Ưu tiên xử lý hồ sơ ngay', 'Sim chính chủ (nếu cần)', 'Bảo hiểm sai sót hồ sơ'],
             recommended: true
           }
         ]

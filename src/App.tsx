@@ -25,47 +25,83 @@ const Hero = () => {
       </div>
       
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4 z-10">
-        <motion.h2 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-sm md:text-base font-medium tracking-[0.3em] uppercase mb-6 drop-shadow-md text-lavia-mint"
+          className="flex items-center gap-3 mb-6"
         >
-          QUẢN GIA CAO CẤP & TRỢ LÝ TOÀN NĂNG
-        </motion.h2>
+          <span className="h-[1px] w-8 md:w-12 bg-lavia-gold/60"></span>
+          <h2 className="text-xs md:text-sm font-medium tracking-[0.4em] uppercase text-lavia-gold drop-shadow-md">
+            HỆ SINH THÁI ĐA NGÀNH
+          </h2>
+          <span className="h-[1px] w-8 md:w-12 bg-lavia-gold/60"></span>
+        </motion.div>
+
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl md:text-7xl font-display font-bold mb-6 tracking-wide drop-shadow-lg"
+          className="text-4xl md:text-7xl font-display font-bold mb-8 tracking-wide drop-shadow-lg"
         >
-          HỆ SINH THÁI LAVIA
+          KHÔNG XẾP HÀNG.
         </motion.h1>
-        <motion.p
+
+        <motion.div
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8, delay: 0.3 }}
-           className="text-lg md:text-2xl font-light mb-10 max-w-3xl leading-relaxed text-gray-200 drop-shadow-md"
+           className="relative mb-10 group"
         >
-          Tiết kiệm 20 giờ xếp hàng chỉ với một lần chạm.
-        </motion.p>
+          <div className="absolute -inset-4 bg-white/5 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          <p className="relative text-lg md:text-2xl font-light text-gray-100 drop-shadow-md">
+            Trải nghiệm <span className="font-medium text-white border-b border-lavia-gold/50 pb-1">Làm Passport VIP</span> & Dịch vụ Trợ lý Toàn năng
+          </p>
+        </motion.div>
 
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col items-center gap-6"
+          className="flex flex-col items-center gap-8"
         >
-          <a 
-            href="#legal" 
-            className="inline-block px-12 py-5 bg-lavia-emerald text-white text-sm font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-lavia-emerald transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-          >
-            Ủy thác ngay
-          </a>
-          <p className="text-xs text-gray-300 italic tracking-wider flex items-center gap-2">
-            <Users size={12} className="text-lavia-gold" />
-            Chỉ nhận tối đa 5 khách hàng ủy thác/tháng
-          </p>
+          <div className="flex flex-col md:flex-row gap-5 items-center">
+            <Link 
+              to="/service/travel/passport" 
+              className="group relative overflow-hidden inline-flex items-center justify-center px-10 py-4 bg-lavia-emerald text-white min-w-[260px] shadow-lg hover:shadow-emerald-900/30 transition-all duration-300 hover:-translate-y-1"
+            >
+              <span className="relative z-10 text-xs md:text-sm font-bold uppercase tracking-[0.2em] group-hover:tracking-[0.25em] transition-all">
+                Đăng ký Passport
+              </span>
+              <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+            </Link>
+            
+            <button 
+              onClick={() => {
+                const nextSection = document.getElementById('legal');
+                if (nextSection) {
+                  // Scroll to center the section in viewport if possible, or top
+                  nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 text-white/80 hover:text-white transition-colors duration-300 min-w-[260px]"
+            >
+              <span className="text-xs md:text-sm font-medium uppercase tracking-[0.2em] border-b border-transparent group-hover:border-white/50 pb-1 transition-all">
+                Khám phá các dịch vụ khác
+              </span>
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+          </div>
+          
+          <div className="flex items-center gap-6 text-[10px] md:text-xs font-light tracking-widest text-gray-400 uppercase opacity-90">
+             <span className="hover:text-white transition-colors cursor-default">Pháp lý</span>
+             <span className="w-1 h-1 rounded-full bg-lavia-gold"></span>
+             <span className="hover:text-white transition-colors cursor-default">Bất động sản</span>
+             <span className="w-1 h-1 rounded-full bg-lavia-gold"></span>
+             <span className="hover:text-white transition-colors cursor-default">Gia đình</span>
+             <span className="w-1 h-1 rounded-full bg-lavia-gold"></span>
+             <span className="hover:text-white transition-colors cursor-default">Doanh nghiệp</span>
+          </div>
         </motion.div>
       </div>
 
