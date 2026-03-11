@@ -66,7 +66,7 @@ export const categories: ServiceCategory[] = [
     items: [
       { 
         id: 'business-license',
-        title: 'Giấy phép kinh doanh', 
+        title: 'Đăng ký kinh doanh trọn gói', 
         description: 'Chuẩn bị bộ hồ sơ đăng ký kinh doanh hộ cá thể, điền sẵn thông tin và thay bạn đi nộp để sớm có giấy phép hoạt động.', 
         image: '/images/services/business-license-cover.jpg',
         detailedDescription: 'Hỗ trợ nộp hồ sơ đăng ký kinh doanh cho hộ cá thể và doanh nghiệp nhỏ. Chúng tôi giúp bạn chuẩn bị bộ hồ sơ theo mẫu có sẵn, điền thông tin và thay mặt nộp tại cơ quan đăng ký kinh doanh, giúp bạn khởi đầu thuận lợi.',
@@ -119,7 +119,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'legal-draft',
-        title: 'Soạn thảo đơn từ', 
+        title: 'Soạn thảo văn bản hành chính', 
         description: 'Đánh máy và soạn thảo các loại đơn từ, văn bản hành chính theo mẫu chuẩn, trình bày đẹp và rõ ràng nội dung bạn mong muốn.', 
         image: '/images/services/legal-draft-cover.jpg',
         detailedDescription: 'Dịch vụ hỗ trợ đánh máy và soạn thảo văn bản hành chính theo mẫu. Nếu bạn không rành vi tính hoặc không biết trình bày văn bản, chúng tôi sẽ giúp bạn soạn thảo các lá đơn, công văn dựa trên nội dung bạn cung cấp một cách chỉn chu nhất.',
@@ -159,7 +159,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'verification',
-        title: 'Chuyển phát & Xác minh', 
+        title: 'Trợ lý hiện trường & Thủ tục', 
         description: 'Thay bạn đến tận nơi để gửi đơn từ, chụp ảnh hiện trạng nhà đất hoặc xác minh địa chỉ thực tế một cách khách quan.', 
         image: '/images/services/verification-cover.jpg',
         detailedDescription: 'Dịch vụ xác minh thực địa và thu thập thông tin theo yêu cầu. Chúng tôi thay bạn đến tận nơi để kiểm tra hiện trạng nhà đất, xác minh địa chỉ, hoặc thu thập các bằng chứng hình ảnh/video cần thiết một cách khách quan và bảo mật.\n\nLưu ý về phí di chuyển:\n- Miễn phí: Quận 1, 3, 5, 6, 8.\n- Phí 100.000đ: Các quận khác.\n- Đi tỉnh: Phí thương lượng.',
@@ -218,7 +218,7 @@ export const categories: ServiceCategory[] = [
     items: [
       { 
         id: 'passport',
-        title: 'Đặc quyền Làm Passport (Hộ chiếu) VIP', 
+        title: 'Hộ chiếu tận tay (Không xếp hàng)', 
         description: 'Trải nghiệm làm hộ chiếu "không chạm": Không xếp hàng, không thao tác, chỉ cần gửi ảnh và nhận kết quả tận tay.', 
         image: '/images/services/passport-cover.jpg',
         detailedDescription: 'Đừng để thủ tục hành chính làm gián đoạn kế hoạch của bạn. Với dịch vụ Passport VIP của LAVIA, bạn được giải phóng hoàn toàn khỏi quy trình khai báo phức tạp và lỗi hệ thống. Chúng tôi thay bạn thực hiện mọi thao tác kỹ thuật với độ chính xác tuyệt đối, đảm bảo tấm hộ chiếu quyền lực sẽ nằm trên tay bạn đúng hẹn.',
@@ -271,7 +271,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'visa',
-        title: 'Làm Visa (Thị thực)', 
+        title: 'Dịch vụ Visa tỷ lệ đậu cao', 
         description: 'Tư vấn và xử lý hồ sơ xin Visa các nước, tỷ lệ đậu cao, thủ tục đơn giản hóa tối đa cho khách hàng.', 
         image: '/images/services/visa-cover.jpg',
         detailedDescription: 'Chuyên cung cấp dịch vụ xin Visa du lịch, công tác, thăm thân các nước. Đội ngũ chuyên viên giàu kinh nghiệm sẽ đánh giá hồ sơ, tư vấn giải pháp tối ưu để tăng tỷ lệ đậu Visa cho bạn.',
@@ -330,7 +330,7 @@ export const categories: ServiceCategory[] = [
       },
       {
         id: 'global-booking',
-        title: 'Vé máy bay & Khách sạn',
+        title: 'Săn vé & Đặt phòng giá tốt',
         description: 'Tìm kiếm vé máy bay giá tốt nhất và đặt phòng khách sạn phù hợp ngân sách, giúp bạn có chuyến đi tiết kiệm và thoải mái.',
         image: '/images/services/global-booking-cover.jpg',
         detailedDescription: 'Dịch vụ đặt vé máy bay và phòng khách sạn trọn gói trên toàn thế giới. Chúng tôi kết nối trực tiếp với các hãng hàng không và hệ thống khách sạn toàn cầu để mang đến cho bạn mức giá cạnh tranh nhất. Dù là chuyến công tác gấp hay kỳ nghỉ dưỡng trong mơ, chúng tôi đều có phương án tối ưu cho bạn.',
@@ -389,7 +389,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'consular',
-        title: 'Hợp pháp hóa lãnh sự', 
+        title: 'Ủy quyền hợp pháp hóa lãnh sự', 
         description: 'Nhận hồ sơ tận nhà, mang đi dịch thuật công chứng và đại diện nộp lên Cục Lãnh sự, giúp bạn không phải đi lại nhiều lần.', 
         image: '/images/services/consular-cover.jpg',
         detailedDescription: 'Chúng tôi đóng vai trò là người kết nối và chạy việc giúp bạn. Thay vì tự mình tìm kiếm đơn vị dịch thuật và xếp hàng tại Cục Lãnh sự, chúng tôi sẽ thay bạn mang hồ sơ đi dịch thuật tại các văn phòng uy tín và đại diện nộp hồ sơ hợp pháp hóa.',
@@ -442,7 +442,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'license',
-        title: 'Đổi bằng lái xe (IAA/VN)', 
+        title: 'Đổi bằng lái quốc tế nhanh', 
         description: 'Hướng dẫn thủ tục đổi bằng lái xe quốc tế/nước ngoài sang Việt Nam và ngược lại, hỗ trợ nộp hồ sơ online nhanh chóng.', 
         image: '/images/services/license-cover.jpg',
         detailedDescription: 'Hỗ trợ các thủ tục hành chính liên quan đến giấy phép lái xe. Với sự tỉ mỉ và cẩn thận, chúng tôi giúp bạn chuẩn bị hồ sơ, dịch thuật và nộp đơn đề nghị đổi bằng lái một cách chính xác, giúp bạn không phải lo lắng về các thủ tục phức tạp.',
@@ -495,7 +495,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'fast-track',
-        title: 'Fast-track Sân bay', 
+        title: 'Thủ tục sân bay ưu tiên (VIP)', 
         description: 'Nhân viên sẽ xếp hàng sẵn đợi giúp quý khách làm thủ tục xuất nhập cảnh nhanh chóng, không cần chờ đợi mệt mỏi.', 
         image: '/images/services/fast-track-cover.jpg',
         detailedDescription: 'Dịch vụ đón tiễn ưu tiên tại sân bay (Fast-track) giúp khách hàng bỏ qua nỗi lo xếp hàng chờ đợi. Nhân viên của chúng tôi sẽ đón bạn ngay tại ống lồng/cửa máy bay, hỗ trợ làm thủ tục xuất nhập cảnh và lấy hành lý nhanh nhất.',
@@ -548,7 +548,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'travel-portal',
-        title: 'Hồ sơ du lịch cá nhân', 
+        title: 'Sổ tay lịch trình du lịch cá nhân', 
         description: 'Tạo trang web cá nhân lưu trữ toàn bộ vé máy bay, booking khách sạn và lịch trình, giúp bạn tra cứu dễ dàng ngay cả khi không có mạng.', 
         image: '/images/services/travel-portal-cover.jpg',
         detailedDescription: 'Sổ tay du lịch kỹ thuật số "All-in-one" dành cho người hay di chuyển. Ngoài việc lưu trữ vé và booking, hệ thống còn tự động cập nhật thời tiết, tỷ giá ngoại tệ, nhắc nhở thủ tục nhập cảnh và lưu trữ lịch sử tiêm chủng/bảo hiểm du lịch, giúp bạn hoàn toàn chủ động trong mọi chuyến đi.',
@@ -721,7 +721,7 @@ export const categories: ServiceCategory[] = [
       },
        {
         id: 'legal-check',
-        title: 'Thẩm định & Kiểm tra Quy hoạch',
+        title: 'Kiểm tra quy hoạch & Pháp lý BĐS',
         description: 'Dịch vụ kiểm tra quy hoạch và pháp lý bất động sản nhanh chóng, chính xác để tránh rủi ro "tiền mất tật mang".',
         image: '/images/services/legal-check-cover.jpg',
         detailedDescription: 'Kiểm tra chi tiết tình trạng pháp lý và quy hoạch của bất động sản trước khi xuống tiền. Chúng tôi giúp bạn xác minh sổ đỏ thật/giả, kiểm tra tranh chấp, quy hoạch treo, đảm bảo an toàn tuyệt đối cho dòng vốn của bạn.',
@@ -849,7 +849,7 @@ export const categories: ServiceCategory[] = [
 
       { 
         id: 'moving',
-        title: 'Chuyển trọ rảnh tay', 
+        title: 'Chuyển nhà/trọ trọn gói', 
         description: 'Hỗ trợ đóng gói đồ đạc cẩn thận và liên hệ xe ba gác/xe tải giúp bạn, để việc chuyển nhà không còn là nỗi ám ảnh.', 
         image: '/images/services/moving-cover.jpg',
         detailedDescription: 'Dịch vụ chuyển nhà trọn gói "Rảnh tay" - Bạn chỉ cần giám sát, mọi việc nặng nhọc đã có chúng tôi lo. Từ tháo dỡ, đóng gói, vận chuyển đến lắp đặt lại tại nhà mới, tất cả đều được thực hiện chuyên nghiệp.',
@@ -966,7 +966,7 @@ export const categories: ServiceCategory[] = [
     items: [
       { 
         id: 'insurance',
-        title: 'Hồ sơ BHXH & Giải quyết Quyền lợi Bảo hiểm', 
+        title: 'Quyết toán BHXH & Thai sản', 
         description: 'Hỗ trợ mẹ bỉm sữa làm hồ sơ thai sản, BHXH và đại diện giải quyết quyền lợi bảo hiểm (Claim tiền) nhanh chóng, tối đa hóa quyền lợi.', 
         image: '/images/services/bhxh-cover.jpg',
         detailedDescription: 'Dịch vụ hỗ trợ trọn gói các thủ tục BHXH và Giải quyết quyền lợi bảo hiểm (Claim). Chúng tôi thay bạn làm việc với cơ quan BHXH và các công ty bảo hiểm nhân thọ/phi nhân thọ để giải quyết các quyền lợi: Thai sản, Trợ cấp y tế, Tai nạn, Viện phí... đảm bảo hồ sơ chuẩn xác và tiền về tài khoản nhanh nhất.',
@@ -1140,7 +1140,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'medical-assistant',
-        title: 'Trợ lý Y tế & Khám bệnh', 
+        title: 'Hỗ trợ khám bệnh & Lấy số ưu tiên', 
         description: 'Hỗ trợ lấy số thứ tự khám bệnh từ sáng sớm và hướng dẫn quy trình khám, giúp bạn giảm bớt mệt mỏi khi đi bệnh viện.', 
         image: '/images/services/medical-assistant-cover.jpg',
         detailedDescription: 'Trợ lý y tế cá nhân giúp việc khám chữa bệnh trở nên nhẹ nhàng hơn. Chúng tôi hỗ trợ lấy số thứ tự khám bệnh từ sáng sớm, mua sổ khám bệnh và hướng dẫn quy trình, giúp bạn tiết kiệm hàng giờ đồng hồ chờ đợi mệt mỏi tại bệnh viện.',
@@ -1239,7 +1239,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'memories',
-        title: 'Số hóa Kỷ niệm', 
+        title: 'Phục chế ảnh & Làm video gia đình', 
         description: 'Phục hồi ảnh cũ và biên tập thành video câu chuyện gia đình, giúp lưu giữ những khoảnh khắc quý giá không bị phai mờ theo thời gian.', 
         image: '/images/services/memories-cover.jpg',
         detailedDescription: 'Phục dựng và lưu giữ những ký ức vô giá của gia đình. Chúng tôi số hóa những bức ảnh cũ ố vàng, phục hồi màu sắc và biên tập lại thành những câu chuyện, video clip cảm động để lưu giữ mãi mãi trên không gian số.',
@@ -1279,7 +1279,7 @@ export const categories: ServiceCategory[] = [
       },
       {
         id: 'passport-photo',
-        title: 'Dịch vụ làm ảnh thẻ',
+        title: 'Ảnh thẻ chuẩn quốc tế tại nhà',
         description: 'Chụp và chỉnh sửa ảnh thẻ chuẩn quốc tế (Passport, Visa, Hồ sơ) ngay tại nhà, lấy ngay file mềm và bản cứng.',
         image: '/images/services/passport-photo-cover.jpg',
         detailedDescription: 'Dịch vụ chụp ảnh thẻ chuyên nghiệp tận nơi hoặc chỉnh sửa ảnh có sẵn. Chúng tôi đảm bảo ảnh đúng quy chuẩn khắt khe của các loại hồ sơ (Visa Mỹ, Châu Âu, Passport...), chỉnh sửa Photoshop đẹp tự nhiên và giao ảnh tận nơi.',
@@ -1326,7 +1326,7 @@ export const categories: ServiceCategory[] = [
       },
       {
         id: 'medicine-delivery',
-        title: 'Dịch vụ mua thuốc theo đơn',
+        title: 'Mua & Giao thuốc theo đơn tận nhà',
         description: 'Dược sĩ mua thuốc theo đơn tại các nhà thuốc lớn và giao tận tay bạn, đảm bảo đúng thuốc, đúng giá, có hóa đơn.',
         image: '/images/services/medicine-delivery-cover.jpg',
         detailedDescription: 'Giải pháp mua thuốc an toàn và tiện lợi. Bạn chỉ cần chụp ảnh đơn thuốc, dược sĩ của chúng tôi sẽ đến các nhà thuốc lớn (Long Châu, Pharmacity...) để mua đúng loại thuốc bác sĩ kê, kiểm tra kỹ hạn sử dụng và giao đến tận nhà cho bạn.',
@@ -1417,7 +1417,7 @@ export const categories: ServiceCategory[] = [
     items: [
       { 
         id: 'qr-menu',
-        title: 'Menu QR Code', 
+        title: 'Thực đơn điện tử (QR Menu)', 
         description: 'Tạo menu điện tử quét mã QR cho quán, khách tự gọi món trên điện thoại giúp giảm tải cho nhân viên và không lo in lại menu.', 
         image: '/images/services/qr-menu-cover.jpg',
         formUrl: 'https://tally.so/r/w7XjK9', // Example form URL
@@ -1439,7 +1439,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'landing-sales',
-        title: 'Landing Page Bán hàng', 
+        title: 'Thiết kế Landing Page/Thiệp Online', 
         description: 'Thiết kế trang web bán hàng đơn giản hoặc thiệp cưới online đẹp mắt, dễ dàng chia sẻ qua Zalo/Facebook để mời khách.', 
         image: '/images/services/landing-sales-cover.jpg',
         detailedDescription: 'Website bán hàng và giới thiệu sản phẩm tinh gọn, hiệu quả. Phù hợp cho các shop online, mẹ bỉm sữa kinh doanh muốn có một "cửa hàng online" chuyên nghiệp để tăng uy tín và tỷ lệ chốt đơn mà không tốn quá nhiều chi phí.',
@@ -1466,7 +1466,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'google-maps',
-        title: 'Google Maps Business', 
+        title: 'Định vị cửa hàng trên Google Maps', 
         description: 'Đưa cửa hàng của bạn lên bản đồ Google, xác minh chính chủ và chụp ảnh đẹp để khách hàng dễ dàng tìm thấy và tin tưởng.', 
         image: '/images/services/google-maps-cover.jpg',
         detailedDescription: 'Đưa thương hiệu của bạn lên bản đồ Google Maps một cách chuyên nghiệp. Chúng tôi giúp xác minh địa điểm, tối ưu hóa thông tin và hình ảnh, giúp khách hàng dễ dàng tìm thấy cửa hàng của bạn khi tìm kiếm trên Google.',
@@ -1487,7 +1487,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'mini-erp',
-        title: 'Mini-ERP cho Shop', 
+        title: 'App quản lý kho & Thu chi', 
         description: 'Cài đặt ứng dụng quản lý kho và thu chi trên điện thoại, giúp chủ shop nhỏ kiểm soát hàng hóa và tiền nong dễ dàng.', 
         image: '/images/services/mini-erp-cover.jpg',
         detailedDescription: 'Phần mềm quản lý bán hàng "bỏ túi" dành cho chủ shop nhỏ. Quản lý kho hàng, theo dõi thu chi, công nợ và đơn hàng mọi lúc mọi nơi ngay trên chiếc điện thoại của bạn, giúp việc kinh doanh trở nên nhẹ nhàng và kiểm soát tốt hơn.',
@@ -1508,7 +1508,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'loyalty',
-        title: 'Loyalty Web', 
+        title: 'Hệ thống tích điểm thành viên', 
         description: 'Tạo thẻ thành viên tích điểm online qua số điện thoại, giúp giữ chân khách quen mà không cần in thẻ cứng tốn kém.', 
         image: '/images/services/loyalty-cover.jpg',
         detailedDescription: 'Hệ thống chăm sóc khách hàng thân thiết thời đại 4.0. Tích điểm, đổi quà và gửi ưu đãi cho khách hàng qua Zalo/QR Code mà không cần phát hành thẻ cứng hay yêu cầu khách tải App phức tạp.',
@@ -1595,7 +1595,7 @@ export const categories: ServiceCategory[] = [
       },
       {
         id: 'video-editing',
-        title: 'Edit Video theo yêu cầu',
+        title: 'Dựng video đa nền tảng (TikTok/Reels/Vlog)',
         description: 'Dựng video chuyên nghiệp từ source quay sẵn: Vlog du lịch, Video cưới, TikTok/Reels, Video doanh nghiệp...',
         image: '/images/services/video-editing-cover.jpg',
         detailedDescription: 'Dịch vụ dựng phim (Video Editing) theo yêu cầu. Bạn chỉ cần gửi source quay thô, chúng tôi sẽ biên tập thành những video clip ấn tượng với âm nhạc, hiệu ứng và màu sắc chuyên nghiệp, phù hợp cho mọi nền tảng từ Youtube, TikTok đến màn hình tiệc cưới.',
@@ -1648,7 +1648,7 @@ export const categories: ServiceCategory[] = [
       },
       {
         id: 'graphic-design',
-        title: 'Thiết kế Đồ họa & Ấn phẩm',
+        title: 'Thiết kế Logo & Bộ nhận diện thương hiệu & Ấn phẩm quảng cáo',
         description: 'Thiết kế các ấn phẩm nhận diện thương hiệu và quảng cáo: Logo, Banner, Poster, Menu, Name card, Standee...',
         image: '/images/services/graphic-design-cover.jpg',
         detailedDescription: 'Giải pháp thiết kế đồ họa trọn gói cho cá nhân và doanh nghiệp nhỏ. Từ chiếc danh thiếp nhỏ gọn, menu quán cafe đến những tấm banner quảng cáo thu hút, chúng tôi giúp ý tưởng của bạn được thể hiện một cách chuyên nghiệp và thẩm mỹ nhất.',
@@ -1800,7 +1800,7 @@ export const categories: ServiceCategory[] = [
       },
       {
         id: 'academic-format',
-        title: 'Luận văn & Đồ án Tốt nghiệp',
+        title: 'Trình bày luận văn/Đồ án chuẩn quy chuẩn',
         description: 'Chỉnh sửa format luận văn, đồ án, khóa luận tốt nghiệp theo đúng quy chuẩn của từng trường Đại học.',
         image: '/images/services/academic-format-cover.jpg',
         detailedDescription: 'Đừng để lỗi trình bày làm mất điểm bài khóa luận tâm huyết của bạn. Chúng tôi hỗ trợ chỉnh sửa format (định dạng) luận văn, đồ án, tiểu luận theo đúng quy định chuẩn của trường, tạo mục lục tự động, danh mục tài liệu tham khảo chuẩn APA/Harvard...',
@@ -1854,7 +1854,7 @@ export const categories: ServiceCategory[] = [
       },
       { 
         id: 'freelancer-admin',
-        title: 'Admin cho Freelancer', 
+        title: 'Trợ lý online cho Freelancer', 
         description: 'Trợ lý ảo giúp freelancer soạn hợp đồng, nhắc khách thanh toán đúng hạn và ghi chép thu chi rõ ràng.', 
         image: '/images/services/freelancer-admin-cover.jpg',
         detailedDescription: 'Trợ lý ảo hành chính dành riêng cho Freelancer và người làm tự do. Chúng tôi giúp bạn xử lý các công việc "không tên" nhưng tốn thời gian như soạn hợp đồng, nhắc nợ khách hàng, theo dõi thu chi cá nhân, để bạn tập trung hoàn toàn vào chuyên môn.',
