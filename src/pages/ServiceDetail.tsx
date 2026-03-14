@@ -430,7 +430,7 @@ const BookingModal = ({
 
   const renderPassportForm = () => (
     <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
-      <h4 className="font-bold text-lavia-blue text-sm uppercase">Thông tin tờ khai Hộ chiếu</h4>
+      <h4 className="font-bold text-[#0f8f77] text-sm uppercase">Thông tin tờ khai Hộ chiếu</h4>
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ngày sinh <span className="text-red-500">*</span></label>
@@ -478,7 +478,7 @@ const BookingModal = ({
 
   const renderVisaForm = () => (
     <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
-      <h4 className="font-bold text-lavia-blue text-sm uppercase">Thông tin xin Visa</h4>
+      <h4 className="font-bold text-[#0f8f77] text-sm uppercase">Thông tin xin Visa</h4>
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Nước muốn đến <span className="text-red-500">*</span></label>
@@ -518,7 +518,7 @@ const BookingModal = ({
 
   const renderBusinessLicenseForm = () => (
     <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
-      <h4 className="font-bold text-lavia-blue text-sm uppercase">Thông tin Đăng ký Kinh doanh</h4>
+      <h4 className="font-bold text-[#0f8f77] text-sm uppercase">Thông tin Đăng ký Kinh doanh</h4>
       <div>
         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Tên HKD/Công ty dự kiến <span className="text-red-500">*</span></label>
         <input required type="text" placeholder="VD: Hộ Kinh Doanh Nguyễn Văn A / Công ty TNHH..." className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg text-sm"
@@ -551,7 +551,7 @@ const BookingModal = ({
 
   const renderVerificationForm = () => (
     <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
-      <h4 className="font-bold text-lavia-blue text-sm uppercase">Thông tin địa điểm xác minh</h4>
+      <h4 className="font-bold text-[#0f8f77] text-sm uppercase">Thông tin địa điểm xác minh</h4>
       
       <div>
         <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Địa chỉ cụ thể <span className="text-red-500">*</span></label>
@@ -634,7 +634,7 @@ const BookingModal = ({
               onClick={() => setFormData({ ...formData, bookingType: type })}
               className={`flex-1 py-2 text-xs font-bold uppercase rounded-md transition-all ${
                 formData.bookingType === type 
-                  ? 'bg-white text-lavia-blue shadow-sm' 
+                  ? 'bg-white text-[#0f8f77] shadow-sm' 
                   : 'text-gray-500 hover:text-gray-700'
               }`}
             >
@@ -645,7 +645,7 @@ const BookingModal = ({
 
         {isFlight && (
           <div className="space-y-3 animate-in fade-in slide-in-from-top-2 duration-300">
-            <h4 className="font-bold text-lavia-blue text-sm uppercase flex items-center gap-2">
+            <h4 className="font-bold text-[#0f8f77] text-sm uppercase flex items-center gap-2">
               <Plane size={16} /> Thông tin chuyến bay
             </h4>
             
@@ -654,7 +654,7 @@ const BookingModal = ({
                 <input type="radio" name="flightType" value="roundtrip" 
                   checked={formData.flightType === 'roundtrip'}
                   onChange={() => setFormData({...formData, flightType: 'roundtrip'})}
-                  className="text-lavia-blue focus:ring-lavia-blue"
+                  className="text-[#0f8f77] focus:ring-[#0f8f77]"
                 />
                 Khứ hồi
               </label>
@@ -662,7 +662,7 @@ const BookingModal = ({
                 <input type="radio" name="flightType" value="oneway" 
                   checked={formData.flightType === 'oneway'}
                   onChange={() => setFormData({...formData, flightType: 'oneway'})}
-                  className="text-lavia-blue focus:ring-lavia-blue"
+                  className="text-[#0f8f77] focus:ring-[#0f8f77]"
                 />
                 Một chiều
               </label>
@@ -724,7 +724,7 @@ const BookingModal = ({
 
         {isHotel && (
           <div className="space-y-3 animate-in fade-in slide-in-from-top-2 duration-300 border-t border-dashed border-gray-200 pt-3">
-            <h4 className="font-bold text-lavia-blue text-sm uppercase flex items-center gap-2">
+            <h4 className="font-bold text-[#0f8f77] text-sm uppercase flex items-center gap-2">
               <Home size={16} /> Thông tin Khách sạn
             </h4>
             
@@ -789,7 +789,7 @@ const BookingModal = ({
     if (serviceId === 'medicine-delivery') {
       return (
         <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
-          <h4 className="font-bold text-lavia-blue text-sm uppercase">Thông tin đơn hàng & Vận chuyển</h4>
+          <h4 className="font-bold text-[#0f8f77] text-sm uppercase">Thông tin đơn hàng & Vận chuyển</h4>
           <p className="text-xs text-gray-500 italic mb-2">
             * Phí dịch vụ thay đổi tùy theo giá trị đơn thuốc và khoảng cách mua hàng.
             <br/>* Chưa bao gồm phí vận chuyển (thanh toán khi nhận hàng).
@@ -838,7 +838,7 @@ const BookingModal = ({
     // Generic form for other variable price services
     return (
         <div className="space-y-4 border-t border-gray-100 pt-4 mt-4">
-          <h4 className="font-bold text-lavia-blue text-sm uppercase">Thông tin dịch vụ</h4>
+          <h4 className="font-bold text-[#0f8f77] text-sm uppercase">Thông tin dịch vụ</h4>
           <p className="text-xs text-gray-500 italic mb-2">
             * Dịch vụ này có giá thay đổi tùy theo nhu cầu cụ thể.
           </p>
@@ -885,9 +885,9 @@ const BookingModal = ({
 
           {step === 'form' && (
             <div className="p-8">
-              <h3 className="text-2xl font-display font-bold text-lavia-blue mb-2">Đăng ký dịch vụ</h3>
+              <h3 className="text-2xl font-display font-bold text-[#0f8f77] mb-2">Đăng ký dịch vụ</h3>
               <p className="text-gray-500 text-sm mb-6">
-                Bạn đang chọn gói <span className="font-bold text-lavia-blue">{pkg?.name}</span>
+                Bạn đang chọn gói <span className="font-bold text-[#0f8f77]">{pkg?.name}</span>
                 <br/>cho dịch vụ {serviceTitle}
               </p>
 
@@ -899,7 +899,7 @@ const BookingModal = ({
                     <input 
                       required
                       type="text" 
-                      className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-lavia-blue transition-colors text-sm" 
+                      className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-[#0f8f77] focus:ring-1 focus:ring-[#0f8f77] transition-colors text-sm" 
                       placeholder="Nguyễn Văn A"
                       value={formData.name}
                       onChange={e => setFormData({...formData, name: e.target.value})}
@@ -910,7 +910,7 @@ const BookingModal = ({
                     <input 
                       required
                       type="tel" 
-                      className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-lavia-blue transition-colors text-sm" 
+                      className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-[#0f8f77] focus:ring-1 focus:ring-[#0f8f77] transition-colors text-sm" 
                       placeholder="0909xxxxxx"
                       value={formData.phone}
                       onChange={e => setFormData({...formData, phone: e.target.value})}
@@ -929,7 +929,7 @@ const BookingModal = ({
                 <div>
                   <label className="block text-xs font-bold text-gray-500 uppercase mb-1">Ghi chú thêm</label>
                   <textarea 
-                    className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-lavia-blue transition-colors h-20 resize-none text-sm" 
+                    className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg focus:outline-none focus:border-[#0f8f77] focus:ring-1 focus:ring-[#0f8f77] transition-colors h-20 resize-none text-sm" 
                     placeholder="Bạn cần hỗ trợ gì thêm không?"
                     value={formData.note}
                     onChange={e => setFormData({...formData, note: e.target.value})}
@@ -938,7 +938,7 @@ const BookingModal = ({
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-full bg-lavia-blue text-white py-4 font-bold uppercase tracking-widest hover:bg-lavia-mint hover:text-lavia-blue transition-colors rounded-lg mt-4 flex justify-center items-center gap-2"
+                  className="w-full bg-[#0f8f77] text-white py-4 font-bold uppercase tracking-widest hover:bg-[#0c7a66] transition-colors rounded-lg mt-4 flex justify-center items-center gap-2"
                 >
                   {isSubmitting ? <Loader2 className="animate-spin" /> : 'Tiếp tục thanh toán'}
                 </button>
@@ -948,7 +948,7 @@ const BookingModal = ({
 
           {step === 'payment' && (
             <div className="p-8 text-center space-y-6">
-              <h3 className="text-xl font-display font-bold text-lavia-blue">Thanh toán đơn hàng</h3>
+              <h3 className="text-xl font-display font-bold text-[#0f8f77]">Thanh toán đơn hàng</h3>
               
               <div className="bg-green-50 text-green-800 p-4 rounded-lg text-sm flex items-start gap-2 text-left">
                 <AlertCircle size={16} className="mt-0.5 flex-shrink-0" />
@@ -958,7 +958,7 @@ const BookingModal = ({
               </div>
 
               <div className="relative inline-block group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-lavia-blue to-lavia-mint rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#0f8f77] to-[#22c55e] rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
                 <div className="relative bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
                   <div className="w-48 h-48 bg-gray-100 mx-auto flex items-center justify-center rounded-lg mb-2 overflow-hidden">
                     <img 
@@ -975,7 +975,7 @@ const BookingModal = ({
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between border-b border-gray-100 pb-2">
                   <span className="text-gray-500">Số tiền:</span>
-                  <span className="font-bold text-lavia-blue">{formatCurrency(paymentAmount)}</span>
+                  <span className="font-bold text-[#0f8f77]">{formatCurrency(paymentAmount)}</span>
                 </div>
                 {paymentAmount === 50000 && (
                    <div className="text-xs text-orange-500 italic text-right">
@@ -990,7 +990,7 @@ const BookingModal = ({
 
               {paymentStatus === 'pending' && (
                 <div className="space-y-3">
-                  <div className="flex items-center justify-center gap-2 text-lavia-blue animate-pulse">
+                  <div className="flex items-center justify-center gap-2 text-[#0f8f77] animate-pulse">
                     <Loader2 size={20} className="animate-spin" />
                     <span className="font-medium">Đang chờ hệ thống xác nhận...</span>
                   </div>
@@ -1004,7 +1004,7 @@ const BookingModal = ({
               )}
 
               {paymentStatus === 'checking' && (
-                <div className="flex flex-col items-center justify-center py-4 text-lavia-blue">
+                <div className="flex flex-col items-center justify-center py-4 text-[#0f8f77]">
                   <Loader2 size={32} className="animate-spin mb-2" />
                   <span className="text-sm font-medium">Đang kiểm tra giao dịch...</span>
                 </div>
@@ -1024,9 +1024,9 @@ const BookingModal = ({
               <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle size={32} />
               </div>
-              <h3 className="text-2xl font-display font-bold text-lavia-blue mb-4">Đã nhận đơn hàng!</h3>
+              <h3 className="text-2xl font-display font-bold text-[#0f8f77] mb-4">Đã nhận đơn hàng!</h3>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Cảm ơn bạn đã thanh toán. Mã đơn hàng của bạn là <span className="font-bold text-lavia-blue">{bookingCode}</span>.
+                Cảm ơn bạn đã thanh toán. Mã đơn hàng của bạn là <span className="font-bold text-[#0f8f77]">{bookingCode}</span>.
                 <br/>
                 Chúng tôi sẽ liên hệ với bạn qua zalo trong vòng 3-5 phút...
                 <br/>
@@ -1038,7 +1038,7 @@ const BookingModal = ({
                   href={formUrl}
                   target="_blank" 
                   rel="noreferrer"
-                  className="flex items-center justify-center gap-3 w-full bg-lavia-blue text-white py-4 font-bold uppercase tracking-widest hover:bg-lavia-mint hover:text-lavia-blue transition-colors rounded-lg shadow-lg shadow-blue-200 mb-4"
+                  className="flex items-center justify-center gap-3 w-full bg-[#0f8f77] text-white py-4 font-bold uppercase tracking-widest hover:bg-[#0c7a66] transition-colors rounded-lg shadow-lg shadow-emerald-200 mb-4"
                 >
                   <CheckCircle size={20} />
                   Điền thông tin bổ sung
@@ -1069,36 +1069,65 @@ const BookingModal = ({
   );
 };
 
-const PsychologyTimeline = ({ steps }: { steps: { step: string; title: string; description: string }[] }) => (
-  <div className="py-8">
-    <h3 className="text-2xl font-bold text-gray-900 mb-10 tracking-tight">Quy trình tinh gọn</h3>
-    <div className="relative">
-      {/* Connector Line (Desktop) */}
-      <div className="hidden md:block absolute top-6 left-0 right-0 h-0.5 bg-gray-100 -z-10"></div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {steps.map((item, idx) => (
-          <div key={idx} className="relative bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 bg-lavia-blue text-white rounded-full flex items-center justify-center text-xl font-bold mb-4 shadow-lg shadow-blue-200">
-              {idx + 1}
+const PsychologyTimeline = ({ steps }: { steps: { step: string; title: string; description: string }[] }) => {
+  if (!steps || steps.length === 0) return null;
+
+  const palettes = [
+    { gradient: 'from-lime-300 via-lime-400 to-lime-600' },
+    { gradient: 'from-emerald-300 via-teal-400 to-teal-600' },
+    { gradient: 'from-rose-300 via-orange-300 to-orange-500' },
+    { gradient: 'from-amber-700 via-amber-800 to-stone-800' },
+  ];
+
+  const icons = [Users, FileCheck, ShieldCheck, Award, Star, Home];
+
+  return (
+    <div className="py-10 md:py-14 not-prose">
+      <div className="text-center">
+        <div className="flex items-center justify-center gap-3">
+          <span className="text-xs md:text-sm uppercase tracking-[0.35em] text-gray-500">Quy trình</span>
+          <span className="text-xs md:text-sm uppercase tracking-[0.35em] font-bold text-gray-900">tinh gọn</span>
+        </div>
+      </div>
+
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+        {steps.map((item, idx) => {
+          const palette = palettes[idx] || palettes[idx % palettes.length];
+          const Icon = icons[idx % icons.length];
+          const number = String(idx + 1).padStart(2, '0');
+
+          return (
+            <div key={`${item.step}-${idx}`} className="text-center">
+              <div
+                className={`text-7xl md:text-8xl font-extrabold leading-none tracking-tight bg-gradient-to-b ${palette.gradient} bg-clip-text text-transparent`}
+              >
+                {number}
+              </div>
+              <div className="mt-6 text-xs font-bold uppercase tracking-[0.18em] text-gray-900">
+                {item.title}
+              </div>
+              <p className="mt-3 text-sm text-gray-600 leading-relaxed">
+                {item.description}
+              </p>
+              <div className="mt-8 flex justify-center">
+                <Icon className="text-gray-900" size={28} strokeWidth={2.5} />
+              </div>
             </div>
-            <h4 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h4>
-            <p className="text-sm text-gray-500 leading-relaxed">{item.description}</p>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const ContrastSection = ({ psychology }: { psychology?: ServicePsychology }) => {
   if (!psychology) return null;
 
   return (
-    <div className="my-16 bg-gray-50 rounded-3xl p-8 md:p-12 overflow-hidden relative">
+    <div className="my-16 bg-white rounded-3xl p-8 md:p-12 overflow-hidden relative border border-gray-100 shadow-sm">
       <div className="text-center mb-12">
-        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Sự lựa chọn của bạn</h3>
-        <p className="text-gray-500">Tại sao phải tự làm khổ mình trong khi có thể thảnh thơi?</p>
+        <h3 className="text-2xl md:text-3xl font-black text-[#113a2b] mb-3">Sự lựa chọn của bạn</h3>
+        <p className="text-gray-600">Tại sao phải tự làm khổ mình trong khi có thể thảnh thơi?</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
@@ -1123,13 +1152,13 @@ const ContrastSection = ({ psychology }: { psychology?: ServicePsychology }) => 
         </div>
 
         {/* Gain Side */}
-        <div className="bg-white p-8 rounded-2xl border-2 border-lavia-blue shadow-xl transform md:scale-105 relative z-20">
-          <div className="absolute top-0 right-0 bg-lavia-blue text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg uppercase tracking-wider">
+        <div className="bg-white p-8 rounded-2xl border-2 border-[#0f8f77] shadow-[0_18px_50px_rgba(0,0,0,0.10)] transform md:scale-105 relative z-20">
+          <div className="absolute top-0 right-0 bg-[#0f8f77] text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg uppercase tracking-wider">
             Khuyên dùng
           </div>
           <div className="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
             <CheckCircle className="text-green-500" size={32} />
-            <h4 className="text-xl font-bold text-lavia-blue">Ủy thác LAVIA</h4>
+            <h4 className="text-xl font-black text-[#0f8f77]">Ủy thác LAVIA</h4>
           </div>
           <ul className="space-y-4">
             {psychology.gainPoints.map((point, idx) => (
@@ -1138,7 +1167,7 @@ const ContrastSection = ({ psychology }: { psychology?: ServicePsychology }) => 
                 <span className="font-medium">{point}</span>
               </li>
             ))}
-            <li className="flex items-start gap-3 text-lavia-blue font-bold mt-6 pt-4 border-t border-gray-100">
+            <li className="flex items-start gap-3 text-[#0f8f77] font-bold mt-6 pt-4 border-t border-gray-100">
               <Coffee size={18} className="flex-shrink-0 mt-1" />
               <span>Tiết kiệm {psychology.hoursSaved} cuộc đời</span>
             </li>
@@ -1170,7 +1199,7 @@ const AuthoritySection = ({ signals }: { signals?: string[] }) => {
 
 const SeniorSupport = () => (
   <div className="flex items-center justify-between gap-3 group cursor-pointer hover:bg-white/50 transition-colors rounded-lg p-1">
-    <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-lavia-blue flex-shrink-0 group-hover:scale-110 transition-transform">
+    <div className="w-8 h-8 rounded-full bg-[#daf4ff] flex items-center justify-center text-[#0f8f77] flex-shrink-0 group-hover:scale-110 transition-transform">
       <HeartHandshake size={16} />
     </div>
     <div className="text-left flex-1">
@@ -1185,13 +1214,22 @@ const ServiceDetail = () => {
   const { categoryId, serviceId } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState<PricingPackage | null>(null);
+  const [brokenGalleryIndexes, setBrokenGalleryIndexes] = useState<Set<number>>(() => new Set());
   
   // Find the category and service item
   const category = categories.find(c => c.id === categoryId);
   const service = category?.items.find(i => i.id === serviceId);
+  const serviceGallery = service?.galleryImages && service.galleryImages.length > 0
+    ? service.galleryImages
+    : Array.from({ length: 6 }, (_, index) => `/images/services/${service?.id}/gallery-${index + 1}.jpg`);
+  const hasVisibleGallery = serviceGallery.some((_, idx) => !brokenGalleryIndexes.has(idx));
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, [categoryId, serviceId]);
+
+  useEffect(() => {
+    setBrokenGalleryIndexes(new Set());
   }, [categoryId, serviceId]);
 
   const handleSelectPackage = (pkg: PricingPackage) => {
@@ -1201,17 +1239,17 @@ const ServiceDetail = () => {
 
   if (!category || !service) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="min-h-screen flex items-center justify-center bg-[#fbfdf9] text-[#143a2a]">
         <div className="text-center">
-          <h2 className="text-2xl font-display font-bold text-lavia-blue mb-4">Dịch vụ không tồn tại</h2>
-          <Link to="/" className="text-lavia-mint hover:underline">Quay lại trang chủ</Link>
+          <h2 className="text-2xl md:text-3xl font-black text-[#113a2b] mb-4">Dịch vụ không tồn tại</h2>
+          <Link to="/" className="text-[#0f8f77] font-semibold hover:underline">Quay lại trang chủ</Link>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#fbfdf9] text-[#143a2a]">
       <BookingModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
@@ -1222,114 +1260,190 @@ const ServiceDetail = () => {
         formUrl={service.formUrl}
       />
 
-      {/* Hero Section */}
-      <section className="relative h-[60vh] w-full overflow-hidden">
-        <img 
-          src={service.image} 
-          alt={service.title} 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
-        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 text-white container mx-auto">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-display font-bold mb-4 drop-shadow-lg"
+      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-4 md:px-8 h-14 flex items-center justify-between">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-[#0f8f77] transition-colors"
           >
-            {service.title}
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-lg md:text-xl font-light opacity-90 max-w-2xl drop-shadow-md"
-          >
-            {service.description}
-          </motion.p>
-        </div>
-      </section>
-
-      {/* Breadcrumb & Back */}
-      <div className="container mx-auto px-6 py-8">
-        <Link to="/" className="inline-flex items-center text-gray-500 hover:text-lavia-blue transition-colors mb-6">
-          <ArrowLeft size={20} className="mr-2" />
-          Quay lại trang chủ
-        </Link>
-        <div className="flex items-center text-sm text-gray-400 uppercase tracking-wider mb-2">
-          <span>{category.title}</span>
-          <span className="mx-2">/</span>
-          <span className="text-lavia-blue font-semibold">{service.title}</span>
+            <ArrowLeft size={18} />
+            Trang chủ
+          </Link>
+          <Link to="/" className="select-none">
+            <span className="font-display font-bold uppercase tracking-[0.2em] text-[#061b49] text-lg md:text-xl">
+              LAVIA
+            </span>
+          </Link>
+          <div className="w-[96px]" />
         </div>
       </div>
 
+      {/* Hero Section */}
+      <section className="relative bg-white overflow-hidden border-b border-gray-200">
+        <div className="absolute -left-24 top-24 w-56 h-56 rounded-full bg-gradient-to-br from-[#60a5fa] to-[#14b8a6] opacity-95"></div>
+        <div className="absolute -right-20 -top-16 w-80 h-80 rounded-full bg-gradient-to-br from-[#0ea5e9] to-[#22c55e] opacity-90"></div>
+        <div className="absolute right-16 top-8 w-56 h-56 rounded-full bg-gradient-to-br from-[#93c5fd] to-[#6ee7b7] opacity-85"></div>
+        <div className="absolute right-0 top-20 w-36 h-36 rounded-full bg-gradient-to-br from-[#2563eb] to-[#16a34a] opacity-80"></div>
+        <div className="absolute -left-6 bottom-10 w-28 h-28 rounded-full border-[6px] border-[#60a5fa]/50"></div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 pt-10 md:pt-14 pb-10">
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-xs font-semibold text-gray-500">
+            <Link to={`/category/${category.id}`} className="hover:text-[#0f8f77] transition-colors">
+              {category.shortTitle || category.title}
+            </Link>
+            <span className="text-gray-300">/</span>
+            <span className="text-[#0f8f77]">{service.title}</span>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div className="max-w-xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0f8f77]">Dịch vụ</p>
+              <motion.h1
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-3 text-4xl md:text-6xl font-black leading-tight text-[#113a2b]"
+              >
+                {service.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.08 }}
+                className="mt-5 text-lg md:text-xl text-gray-700 leading-relaxed"
+              >
+                {service.description}
+              </motion.p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <a
+                  href={serviceId === 'medical-assistant' ? '#booking-form' : '#pricing'}
+                  className="inline-flex items-center gap-2 rounded-xl bg-[#0f8f77] px-5 py-3 text-white font-bold shadow-sm"
+                >
+                  {serviceId === 'medical-assistant' ? 'Đăng ký dịch vụ' : 'Xem bảng giá'} <ChevronRight size={18} />
+                </a>
+                <a
+                  href="https://zalo.me/0899660847"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-xl border border-[#0f8f77]/30 bg-white px-5 py-3 text-[#0f8f77] font-bold hover:bg-[#f2fffb] transition-colors"
+                >
+                  Liên hệ nhanh <MessageCircle size={18} />
+                </a>
+              </div>
+            </div>
+
+            <div className="relative rounded-2xl overflow-hidden border border-white/70 bg-white shadow-[0_20px_50px_rgba(3,15,12,0.10)]">
+              <img src={service.image} alt={service.title} className="w-full h-[300px] md:h-[420px] object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/0 to-white/0"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Content Section */}
-      <section className="py-16 md:py-24 bg-[#FAFAFA]" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
-        <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <section className="relative overflow-hidden py-14 md:py-20">
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <div className="absolute -left-24 top-24 w-72 h-72 rounded-full bg-gradient-to-br from-[#60a5fa]/26 to-[#22c55e]/22 blur-2xl" />
+          <div className="absolute -right-24 top-[46%] w-80 h-80 rounded-full bg-gradient-to-br from-[#0ea5e9]/22 to-[#14b8a6]/22 blur-2xl" />
+          <div className="absolute left-[34%] -bottom-24 w-44 h-44 rounded-full border-[6px] border-[#60a5fa]/18" />
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
           
-          {/* Main Content - 8 cols */}
-          <div className="lg:col-span-8 space-y-16">
+          <div className="space-y-16">
             
             {/* Trust Header */}
-            <div className="flex items-center gap-4 border-b border-gray-200 pb-6">
-              <div className="flex -space-x-2">
-                {[1,2,3,4].map(i => (
-                  <img key={i} src={`https://picsum.photos/seed/user${i}/100/100`} alt="User" className="w-10 h-10 rounded-full border-2 border-white" />
-                ))}
-              </div>
-              <div className="text-sm">
-                <p className="font-bold text-gray-900">Được tin dùng bởi 10.000+ khách hàng</p>
-                <div className="flex text-yellow-500 gap-0.5">
-                  <Star size={14} fill="currentColor" />
-                  <Star size={14} fill="currentColor" />
-                  <Star size={14} fill="currentColor" />
-                  <Star size={14} fill="currentColor" />
-                  <Star size={14} fill="currentColor" />
-                  <span className="text-gray-400 ml-2 font-normal">4.9/5 đánh giá</span>
+            <div className="rounded-2xl border border-gray-100 bg-white p-6 md:p-8 shadow-sm">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div className="text-sm">
+                  <p className="font-bold text-[#113a2b]">Được tin dùng bởi 10.000+ khách hàng</p>
+                  <div className="mt-2 flex items-center text-yellow-500 gap-0.5">
+                    <Star size={14} fill="currentColor" />
+                    <Star size={14} fill="currentColor" />
+                    <Star size={14} fill="currentColor" />
+                    <Star size={14} fill="currentColor" />
+                    <Star size={14} fill="currentColor" />
+                    <span className="text-gray-500 ml-2 font-semibold">4.9/5 đánh giá</span>
+                  </div>
+                </div>
+                <div className="flex flex-wrap items-center gap-2 text-xs font-semibold">
+                  <span className="rounded-full bg-[#f2fffb] px-3 py-1 text-[#0f8f77]">Minh bạch</span>
+                  <span className="rounded-full bg-[#f2fffb] px-3 py-1 text-[#0f8f77]">Bảo mật</span>
+                  <span className="rounded-full bg-[#f2fffb] px-3 py-1 text-[#0f8f77]">Hỗ trợ nhanh</span>
                 </div>
               </div>
             </div>
 
             {/* Detailed Description */}
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 tracking-tight leading-tight">
+              <h2 className="text-3xl md:text-4xl font-black text-[#113a2b] mb-8 tracking-tight leading-tight">
                 Chi tiết dịch vụ
               </h2>
-              <div className="prose prose-lg text-gray-600 max-w-none">
-                <p className="leading-relaxed text-lg mb-8 text-gray-800">
+              <div className="prose prose-lg text-gray-700 max-w-none">
+                <p className="leading-relaxed text-lg mb-8 text-gray-700">
                   {service.detailedDescription || service.description}
                 </p>
+                {hasVisibleGallery && (
+                <div className="my-10 not-prose">
+                  <div className="flex items-end justify-between gap-4 mb-4">
+                    <h3 className="text-xl md:text-2xl font-black text-[#113a2b] tracking-tight">Hình ảnh minh hoạ thực tế</h3>
+                    <span className="text-xs uppercase tracking-[0.2em] text-gray-400">Lướt ngang để xem</span>
+                  </div>
+                  <div className="flex overflow-x-auto gap-4 scrollbar-hide snap-x snap-mandatory pb-2">
+                    {serviceGallery.map((image, idx) =>
+                      brokenGalleryIndexes.has(idx) ? null : (
+                      <div key={`${service.id}-gallery-${idx}`} className="min-w-[80%] md:min-w-[44%] lg:min-w-[38%] aspect-[4/3] rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-sm snap-start">
+                        <img
+                          src={image}
+                          alt={`${service.title} ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          onError={() => {
+                            setBrokenGalleryIndexes((prev) => {
+                              const next = new Set(prev);
+                              next.add(idx);
+                              return next;
+                            });
+                          }}
+                        />
+                      </div>
+                      )
+                    )}
+                  </div>
+                </div>
+                )}
                 
-                <div className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm my-8">
-                  <h4 className="font-bold text-lg text-gray-900 mb-4 flex items-center gap-2">
-                    <ShieldCheck className="text-green-600" size={24} />
+                <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm my-8">
+                  <h4 className="font-black text-lg text-[#113a2b] mb-4 flex items-center gap-2">
+                    <ShieldCheck className="text-[#0f8f77]" size={24} />
                     Cam kết từ LAVIA
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex gap-3">
-                      <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+                      <CheckCircle className="text-[#0f8f77] flex-shrink-0 mt-1" size={20} />
                       <div>
-                        <span className="font-bold text-gray-900 block">Minh bạch tuyệt đối</span>
+                        <span className="font-bold text-[#113a2b] block">Minh bạch tuyệt đối</span>
                         <span className="text-sm text-gray-500">Báo cáo tiến độ theo thời gian thực, không phí ẩn.</span>
                       </div>
                     </div>
                     <div className="flex gap-3">
-                      <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+                      <CheckCircle className="text-[#0f8f77] flex-shrink-0 mt-1" size={20} />
                       <div>
-                        <span className="font-bold text-gray-900 block">Hoàn tiền 100%</span>
+                        <span className="font-bold text-[#113a2b] block">Hoàn tiền 100%</span>
                         <span className="text-sm text-gray-500">Nếu không đạt kết quả như cam kết ban đầu.</span>
                       </div>
                     </div>
                     <div className="flex gap-3">
-                      <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+                      <CheckCircle className="text-[#0f8f77] flex-shrink-0 mt-1" size={20} />
                       <div>
-                        <span className="font-bold text-gray-900 block">Bảo mật thông tin</span>
+                        <span className="font-bold text-[#113a2b] block">Bảo mật thông tin</span>
                         <span className="text-sm text-gray-500">Dữ liệu khách hàng được mã hóa và bảo vệ 2 lớp.</span>
                       </div>
                     </div>
                     <div className="flex gap-3">
-                      <CheckCircle className="text-blue-600 flex-shrink-0 mt-1" size={20} />
+                      <CheckCircle className="text-[#0f8f77] flex-shrink-0 mt-1" size={20} />
                       <div>
-                        <span className="font-bold text-gray-900 block">Hỗ trợ 24/7</span>
+                        <span className="font-bold text-[#113a2b] block">Hỗ trợ 24/7</span>
                         <span className="text-sm text-gray-500">Đội ngũ chuyên viên sẵn sàng giải đáp mọi lúc.</span>
                       </div>
                     </div>
@@ -1341,15 +1455,17 @@ const ServiceDetail = () => {
             {/* Features / Benefits - Editorial Style */}
             {service.features && (
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-8 tracking-tight">Tại sao chọn chúng tôi?</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                <h3 className="text-2xl md:text-3xl font-black text-[#113a2b] mb-8 tracking-tight">Tại sao chọn chúng tôi?</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {service.features.map((feature, idx) => (
-                    <div key={idx} className="group">
-                      <div className="w-12 h-12 bg-gray-900 text-white rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <span className="font-bold text-lg">{idx + 1}</span>
+                    <div key={idx} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+                      <div className="w-11 h-11 bg-[#f2fffb] text-[#0f8f77] rounded-full flex items-center justify-center">
+                        <span className="font-black text-base">{idx + 1}</span>
                       </div>
-                      <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">Tiêu chuẩn {idx === 0 ? 'Quốc tế' : (idx === 1 ? 'Chuyên nghiệp' : (idx === 2 ? 'Tận tâm' : 'Bảo mật'))}</h4>
-                      <p className="text-gray-600 leading-relaxed">{feature}</p>
+                      <h4 className="mt-4 text-lg font-black text-[#113a2b]">
+                        Tiêu chuẩn {idx === 0 ? 'Quốc tế' : (idx === 1 ? 'Chuyên nghiệp' : (idx === 2 ? 'Tận tâm' : 'Bảo mật'))}
+                      </h4>
+                      <p className="mt-2 text-gray-600 leading-relaxed">{feature}</p>
                     </div>
                   ))}
                 </div>
@@ -1370,11 +1486,14 @@ const ServiceDetail = () => {
              ) : (
               /* Pricing Section - Clean Table */
               service.pricing && (
-                <div className="mt-12">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-8 tracking-tight">Bảng giá minh bạch</h3>
+                <div className="mt-12" id="pricing">
+                  <h3 className="text-2xl md:text-3xl font-black text-[#113a2b] mb-8 tracking-tight">Bảng giá minh bạch</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {service.pricing.map((pkg, idx) => (
-                    <div key={idx} className={`relative p-8 rounded-2xl border transition-all duration-300 ${pkg.recommended ? 'bg-gray-900 text-white border-gray-900 shadow-xl scale-105 z-10' : 'bg-white text-gray-900 border-gray-200 hover:border-gray-300'}`}>
+                    <div
+                      key={idx}
+                      className={`relative p-8 rounded-2xl border transition-all duration-300 ${pkg.recommended ? 'bg-[#0f8f77] text-white border-[#0f8f77] shadow-[0_18px_50px_rgba(3,15,12,0.12)] md:scale-105 z-10' : 'bg-white text-gray-900 border-gray-100 shadow-sm hover:shadow-md hover:border-gray-200'}`}
+                    >
                       {pkg.recommended && (
                         <div className="absolute top-4 right-4">
                           <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
@@ -1383,16 +1502,16 @@ const ServiceDetail = () => {
                         </div>
                       )}
                       
-                      <h4 className={`text-lg font-bold uppercase tracking-wider mb-4 ${pkg.recommended ? 'text-gray-300' : 'text-gray-500'}`}>{pkg.name}</h4>
+                      <h4 className={`text-lg font-bold uppercase tracking-wider mb-4 ${pkg.recommended ? 'text-white/80' : 'text-gray-500'}`}>{pkg.name}</h4>
                       <div className="flex items-baseline gap-1 mb-6">
-                        <span className="text-4xl font-bold">{pkg.price}</span>
+                        <span className="text-4xl font-black">{pkg.price}</span>
                       </div>
-                      <p className={`text-sm mb-8 pb-8 border-b ${pkg.recommended ? 'text-gray-400 border-gray-700' : 'text-gray-500 border-gray-100'}`}>{pkg.description}</p>
+                      <p className={`text-sm mb-8 pb-8 border-b ${pkg.recommended ? 'text-white/80 border-white/20' : 'text-gray-600 border-gray-100'}`}>{pkg.description}</p>
 
                       <ul className="space-y-4 mb-8">
                         {pkg.features.map((feat, fIdx) => (
                           <li key={fIdx} className="flex items-start gap-3 text-sm">
-                            <CheckCircle size={18} className={`flex-shrink-0 mt-0.5 ${pkg.recommended ? 'text-green-400' : 'text-green-600'}`} />
+                            <CheckCircle size={18} className={`flex-shrink-0 mt-0.5 ${pkg.recommended ? 'text-white' : 'text-[#0f8f77]'}`} />
                             <span className="leading-relaxed">{feat}</span>
                           </li>
                         ))}
@@ -1403,14 +1522,14 @@ const ServiceDetail = () => {
                           href={pkg.actionUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className={`block w-full text-center py-4 rounded-xl font-bold text-sm uppercase tracking-widest transition-all duration-300 ${pkg.recommended ? 'bg-white text-gray-900 hover:bg-gray-100' : 'bg-gray-900 text-white hover:bg-gray-800'}`}
+                          className={`block w-full text-center py-4 rounded-xl font-bold text-sm uppercase tracking-widest transition-all duration-300 ${pkg.recommended ? 'bg-white text-[#0f8f77] hover:bg-[#f2fffb]' : 'bg-[#0f8f77] text-white hover:bg-[#0c7a66]'}`}
                         >
                           {pkg.actionLabel}
                         </a>
                       ) : (
                         <button 
                           onClick={() => handleSelectPackage(pkg)}
-                          className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest transition-all duration-300 ${pkg.recommended ? 'bg-white text-gray-900 hover:bg-gray-100' : 'bg-gray-900 text-white hover:bg-gray-800'}`}
+                          className={`w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest transition-all duration-300 ${pkg.recommended ? 'bg-white text-[#0f8f77] hover:bg-[#f2fffb]' : 'bg-[#0f8f77] text-white hover:bg-[#0c7a66]'}`}
                         >
                           Chọn gói này
                         </button>
@@ -1418,118 +1537,36 @@ const ServiceDetail = () => {
                     </div>
                   ))}
                 </div>
-                <div className="mt-8 flex items-center justify-center gap-2 text-sm text-gray-500 bg-white p-4 rounded-lg border border-gray-100 inline-block mx-auto">
-                  <ShieldCheck size={16} className="text-green-600" />
+                <div className="mt-8 flex items-center justify-center gap-2 text-sm text-gray-600 bg-white p-4 rounded-xl border border-gray-100 inline-block mx-auto">
+                  <ShieldCheck size={16} className="text-[#0f8f77]" />
                   <span>Cam kết không phát sinh chi phí ẩn. Hoàn tiền 100% nếu không hài lòng.</span>
                 </div>
               </div>
             )
             )}
-          </div>
 
-          {/* Sidebar / CTA - 4 cols */}
-          <div className="lg:col-span-4">
-              <div className="sticky top-32 space-y-8">
-                {/* Consultation Card */}
-                <div className="bg-white p-8 rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 relative overflow-hidden group hover:shadow-2xl hover:shadow-blue-100/50 transition-all duration-500">
-                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-lavia-blue via-blue-400 to-lavia-mint"></div>
-                  
-                  <div className="flex items-center gap-5 mb-8 border-b border-gray-50 pb-8">
-                    <div className="relative">
-                      <div className="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-gray-100 to-white shadow-lg">
-                        <img src="https://picsum.photos/seed/expert_avatar/200/200" alt="Specialist" className="w-full h-full rounded-full object-cover border-2 border-white" />
-                      </div>
-                      <div className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-[3px] border-white rounded-full shadow-sm animate-pulse"></div>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1.5 mb-1">
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-lavia-blue bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
-                          Chuyên gia cao cấp
-                        </span>
-                      </div>
-                      <h4 className="font-display font-bold text-xl text-gray-900 flex items-center gap-1.5">
-                        Nguyễn Thanh Hương
-                        <CheckCircle size={16} className="text-blue-500 fill-blue-50" />
-                      </h4>
-                      <div className="flex items-center gap-1 text-xs text-yellow-500 mt-1.5">
-                        <div className="flex">
-                          {[1,2,3,4,5].map(i => (
-                            <Star key={i} size={14} fill="currentColor" className="text-yellow-400" />
-                          ))}
-                        </div>
-                        <span className="text-gray-400 font-medium ml-1.5">(4.9/5 - 500+ tư vấn)</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="mb-8">
-                    <h3 className="text-xl font-display font-bold text-gray-900 mb-3">Đăng ký tư vấn miễn phí</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">
-                      Để lại thông tin, chuyên viên của chúng tôi sẽ phân tích hồ sơ và liên hệ lại tư vấn giải pháp tối ưu cho bạn trong vòng 30 phút.
-                    </p>
-                  </div>
-                  
-                  <div className="space-y-4 mb-8">
-                    <a 
-                      href="https://zalo.me/0899660847" 
-                      target="_blank" 
-                      rel="noreferrer"
-                      className="group relative flex items-center justify-center gap-3 w-full bg-gradient-to-r from-[#0068FF] to-[#0054CC] text-white py-4 font-bold uppercase tracking-widest rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-600/40 hover:-translate-y-0.5 transition-all overflow-hidden"
-                    >
-                      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                      <MessageCircle size={20} className="relative z-10 group-hover:scale-110 transition-transform" />
-                      <span className="relative z-10">Chat Zalo ngay</span>
-                    </a>
-                    <a 
-                      href="tel:0899660847"
-                      className="group flex items-center justify-center gap-3 w-full bg-white border border-gray-200 text-gray-700 py-4 font-bold uppercase tracking-widest hover:border-lavia-blue hover:text-lavia-blue hover:bg-blue-50/30 transition-all rounded-xl hover:shadow-lg hover:-translate-y-0.5"
-                    >
-                      <Phone size={20} className="group-hover:scale-110 transition-transform" />
-                      Gọi 0899 660 847
-                    </a>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-100 mb-6">
-                    <SeniorSupport />
-                  </div>
-
-                  <div className="pt-6 border-t border-gray-100">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="flex flex-col gap-1">
-                        <span className="text-xs text-gray-400 flex items-center gap-1.5">
-                          <Clock size={12} /> Tốc độ phản hồi
-                        </span>
-                        <span className="font-bold text-green-600 text-sm flex items-center gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-                          ~ 5 phút
-                        </span>
-                      </div>
-                      <div className="flex flex-col gap-1 border-l border-gray-100 pl-4">
-                        <span className="text-xs text-gray-400 flex items-center gap-1.5">
-                          <Users size={12} /> Trực tuyến
-                        </span>
-                        <span className="font-bold text-lavia-blue text-sm">
-                          12 chuyên viên
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="text-center p-2">
+                  <ShieldCheck className="mx-auto text-[#0f8f77] mb-2" size={24} />
+                  <p className="text-xs font-bold text-gray-700 uppercase">Bảo mật 100%</p>
                 </div>
-
-                {/* Trust Badges */}
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 grid grid-cols-2 gap-4">
-                  <div className="text-center p-2">
-                    <ShieldCheck className="mx-auto text-lavia-blue mb-2" size={24} />
-                    <p className="text-xs font-bold text-gray-700 uppercase">Bảo mật 100%</p>
-                  </div>
-                  <div className="text-center p-2">
-                    <Award className="mx-auto text-lavia-blue mb-2" size={24} />
-                    <p className="text-xs font-bold text-gray-700 uppercase">Uy tín hàng đầu</p>
-                  </div>
+                <div className="text-center p-2">
+                  <Award className="mx-auto text-[#0f8f77] mb-2" size={24} />
+                  <p className="text-xs font-bold text-gray-700 uppercase">Uy tín hàng đầu</p>
                 </div>
-
-                <AuthoritySection signals={service.psychology?.authoritySignals} />
+                <div className="text-center p-2">
+                  <Clock className="mx-auto text-[#0f8f77] mb-2" size={24} />
+                  <p className="text-xs font-bold text-gray-700 uppercase">Đúng hẹn</p>
+                </div>
+                <div className="text-center p-2">
+                  <Users className="mx-auto text-[#0f8f77] mb-2" size={24} />
+                  <p className="text-xs font-bold text-gray-700 uppercase">Hỗ trợ nhanh</p>
+                </div>
               </div>
+            </div>
+
+            <AuthoritySection signals={service.psychology?.authoritySignals} />
           </div>
 
         </div>

@@ -90,7 +90,7 @@ const ContactDrawer: React.FC<ContactDrawerProps> = ({ isOpen, onClose }) => {
                 <ContactOption 
                   icon={Mail} 
                   label="Gửi email" 
-                  href="mailto:support@lavia.vn" 
+                  href="mailto:lavia.ecosystem@gmail.com" 
                 />
                 <ContactOption 
                   icon={MessageCircle} 
@@ -104,8 +104,8 @@ const ContactDrawer: React.FC<ContactDrawerProps> = ({ isOpen, onClose }) => {
                 />
                 <ContactOption 
                   icon={Facebook} 
-                  label="Facebook Messenger" 
-                  href="https://m.me/lavia.vn" 
+                  label="Lavia - Giải pháp Trợ Giúp Đa Ngành" 
+                  href="https://www.facebook.com/lavia.ecosystem" 
                 />
                 {/* Zalo - Custom Icon or Generic */}
                 <a 
